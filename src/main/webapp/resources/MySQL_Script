@@ -1,0 +1,193 @@
+CREATE TABLE `users` (
+	`id` INT NOT NULL,
+	`email` VARCHAR(255) NOT NULL,
+	`password` VARCHAR(255) NOT NULL,
+	`social_id` INT NOT NULL,
+	`login_type` INT NOT NULL,
+	PRIMARY KEY (`id`)
+);
+
+CREATE TABLE `preferences` (
+	`user_id` INT NOT NULL,
+	`city` VARCHAR(255) NOT NULL,
+	`nickname` VARCHAR(255) NOT NULL,
+	`gender` VARCHAR(255) NOT NULL,
+	`birthday` INT NOT NULL,
+	`adress` VARCHAR(255) NOT NULL,
+	`menstrual_cycle` INT NOT NULL,
+	`red_days` INT NOT NULL,
+	`last_menstruation_start_day` DATE NOT NULL,
+	`weigth` FLOAT NOT NULL,
+	`height` FLOAT NOT NULL,
+	`avatar` VARCHAR(255) NOT NULL
+);
+
+CREATE TABLE `calendar` (
+	`user_id` INT NOT NULL,
+	`date` DATE NOT NULL,
+	`basic_body_temperature` FLOAT NOT NULL,
+	`recommended_food` VARCHAR(255) NOT NULL,
+	`recommended_nuts` VARCHAR(255) NOT NULL,
+	`has_nuts` BOOLEAN NOT NULL,
+	`recommended_tea` VARCHAR(255) NOT NULL,
+	`has_tea` BOOLEAN NOT NULL,
+	`recommended_exercise` VARCHAR(255) NOT NULL,
+	`has_exercise` BOOLEAN NOT NULL,
+	`going_to_bed_from` VARCHAR(255) NOT NULL,
+	`going_to_bed_to` VARCHAR(255) NOT NULL,
+	`water_intake` VARCHAR(255) NOT NULL,
+	`heating_bathing` VARCHAR(255) NOT NULL,
+	`vitamin` BOOLEAN NOT NULL,
+	`folic_acid` BOOLEAN NOT NULL,
+	`coffee_intake` BOOLEAN NOT NULL,
+	`alcohol_intake` BOOLEAN NOT NULL,
+	`smoking` BOOLEAN NOT NULL,
+	`emotional_state` VARCHAR(255) NOT NULL,
+	`bmi` FLOAT NOT NULL
+);
+
+CREATE TABLE `basic_questions` (
+	`user_id` INT,
+	`passed_questions` BOOLEAN NOT NULL,
+	`years_not_been_pregnant` VARCHAR(255),
+	`children` VARCHAR(255),
+	`treatment` VARCHAR(255),
+	`causes_infertility_female` VARCHAR(255),
+	`causes_infertility_male` VARCHAR(255),
+	`need_help` VARCHAR(255),
+	`plans_for_family` VARCHAR(255)
+);
+
+CREATE TABLE `app_user` (
+	`id` INT NOT NULL AUTO_INCREMENT,
+	`sso_id` VARCHAR(255) NOT NULL,
+	`email` VARCHAR(255) NOT NULL,
+	`password` VARCHAR(255) NOT NULL,
+	PRIMARY KEY (`id`)
+);
+
+CREATE TABLE `app_user_user_profile` (
+	`user_id` INT NOT NULL,
+	`user_profile_id` INT NOT NULL
+);
+
+CREATE TABLE `user_profile` (
+	`id` INT NOT NULL AUTO_INCREMENT,
+	`type` VARCHAR(255) NOT NULL,
+	PRIMARY KEY (`id`)
+);
+
+CREATE TABLE `notice` (
+	`id` INT NOT NULL,
+	`date` DATE NOT NULL,
+	`title` VARCHAR(255),
+	`text` VARCHAR(255) NOT NULL
+);
+
+CREATE TABLE `recipe_guide` (
+	`id` INT NOT NULL,
+	`title` VARCHAR(255) NOT NULL,
+	`date` DATE NOT NULL,
+	`image_thumbnail` VARCHAR(255) NOT NULL,
+	`url_naver` VARCHAR(255) NOT NULL
+);
+
+CREATE TABLE `fertilization_guide` (
+	`id` INT NOT NULL,
+	`title` VARCHAR(255) NOT NULL,
+	`date` DATE NOT NULL,
+	`image` VARCHAR(255) NOT NULL
+);
+
+CREATE TABLE `images` (
+	`id_body` INT NOT NULL,
+	`type` VARCHAR(255) NOT NULL,
+	`images_0` VARCHAR(255) NOT NULL,
+	`images_1` VARCHAR(255) NOT NULL,
+	`images_2` VARCHAR(255) NOT NULL,
+	`images_3` VARCHAR(255) NOT NULL,
+	`images_4` VARCHAR(255) NOT NULL,
+	`images_5` VARCHAR(255) NOT NULL,
+	`images_6` VARCHAR(255) NOT NULL,
+	`images_7` VARCHAR(255) NOT NULL,
+	`images_8` VARCHAR(255) NOT NULL,
+	`images_9` VARCHAR(255) NOT NULL
+);
+
+CREATE TABLE `blog` (
+	`id` INT NOT NULL,
+	`id_user` INT NOT NULL,
+	`type` VARCHAR(255) NOT NULL,
+	`title` VARCHAR(255) NOT NULL,
+	`text` VARCHAR(255) NOT NULL,
+	`datetime` DATETIME NOT NULL
+);
+
+CREATE TABLE `comments` (
+	`id_blog` INT NOT NULL,
+	`id_user` INT NOT NULL,
+	`text` VARCHAR(255) NOT NULL,
+	`datetime` DATETIME NOT NULL
+);
+
+CREATE TABLE `likes` (
+	`id_blog` INT NOT NULL,
+	`id_user` INT NOT NULL,
+	`like` BOOLEAN NOT NULL
+);
+
+CREATE TABLE `q_a` (
+	`id` INT NOT NULL,
+	`id_user` INT NOT NULL,
+	`date` DATE NOT NULL,
+	`title` VARCHAR(255) NOT NULL,
+	`text` VARCHAR(255) NOT NULL,
+	`is_access` BOOLEAN NOT NULL,
+	`answer` VARCHAR(255) NOT NULL
+);
+
+INSERT INTO `user_profile`(type)
+VALUES ('CUSTOMER');
+
+INSERT INTO `user_profile`(type)
+VALUES ('ADMIN');
+
+INSERT INTO `user_profile`(type)
+VALUES ('MANAGER');
+
+INSERT INTO `app_user`(sso_id, password, email)
+VALUES ('admin@mail.com',123, 'admin@mail.com');
+
+INSERT INTO `app_user`(sso_id, password, email)
+VALUES ('manager1@mail.com',123, 'manager1@mail.com');
+
+INSERT INTO `app_user`(sso_id, password, email)
+VALUES ('manager2@mail.com',123, 'manager2@mail.com');
+
+INSERT INTO `app_user`(sso_id, password, email)
+VALUES ('customer1@mail.com',123, 'customer1@mail.com');
+
+INSERT INTO `app_user`(sso_id, password, email)
+VALUES ('customer2@mail.com',123, 'customer2@mail.com');
+
+INSERT INTO `app_user`(sso_id, password, email)
+VALUES ('customer3@mail.com',123, 'customer3@mail.com');
+
+INSERT INTO `app_user_user_profile` (user_id, user_profile_id)
+  value(4,1);
+
+  INSERT INTO `app_user_user_profile` (user_id, user_profile_id)
+	value(5,1);
+
+   INSERT INTO `app_user_user_profile` (user_id, user_profile_id)
+  value(6,1);
+
+    INSERT INTO `app_user_user_profile` (user_id, user_profile_id)
+  value(2,3);
+
+  INSERT INTO `app_user_user_profile` (user_id, user_profile_id)
+  value(3,1);
+
+  INSERT INTO `app_user_user_profile` (user_id, user_profile_id)
+    value(1,2);
+
