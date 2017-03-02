@@ -1,3 +1,4 @@
+/*
 package com.ComeOnBaby.controller;
 
 
@@ -14,9 +15,11 @@ import org.springframework.web.servlet.ModelAndView;
 import javax.servlet.http.HttpSession;
 import java.util.*;
 
+*/
 /*
 * customer1@mail.com - 123
-* */
+* *//*
+
 @Controller
 @RequestMapping("/cabinet")
 @SessionAttributes("roles")
@@ -269,3 +272,4 @@ public class CabinetController {
         return modelAndView;
     }
 }
+*/

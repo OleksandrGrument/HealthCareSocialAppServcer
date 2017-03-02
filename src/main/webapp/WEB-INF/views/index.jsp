@@ -19,187 +19,83 @@
     <title>Users list :: Come On Baby</title>
 
     <!-- Bootstrap -->
-    <link href="resources/css/bootstrap/bootstrap.min.css" rel="stylesheet" />
-    <link href="resources/css/bootstrap/bootstrap-select.min.css" rel="stylesheet" />
-    <link href="resources/css/bootstrap/bootstrap-fileinput.min.css" rel="stylesheet" />
-    <link href="resources/css/bootstrap/bootstrap-datetimepicker.min.css" rel="stylesheet" />
-    <link href="resources/css/bootstrap/bootstrap-awesome-checkbox.min.css" rel="stylesheet" />
+    <link href="/resources/css/bootstrap/bootstrap.min.css" rel="stylesheet" />
+    <link href="/resources/css/bootstrap/bootstrap-select.min.css" rel="stylesheet" />
+    <link href="/resources/css/bootstrap/bootstrap-fileinput.min.css" rel="stylesheet" />
+    <link href="/resources/css/bootstrap/bootstrap-datetimepicker.min.css" rel="stylesheet" />
+    <link href="/resources/css/bootstrap/bootstrap-awesome-checkbox.min.css" rel="stylesheet" />
 
     <!-- JQuery -->
-    <link href="resources/css/jquery/jquery.fancybox.min.css" rel="stylesheet" />
-    <link href="resources/css/jquery/jquery.sweet-alert.min.css" rel="stylesheet" />
+    <link href="/resources/css/jquery/jquery.fancybox.min.css" rel="stylesheet" />
+    <link href="/resources/css/jquery/jquery.sweet-alert.min.css" rel="stylesheet" />
 
     <!-- Font Awesome -->
-    <link href="resources/css/font-awesome/font-awesome.min.css" rel="stylesheet" />
+    <link href="/resources/css/font-awesome/font-awesome.min.css" rel="stylesheet" />
 
     <!-- Data Tables -->
-    <link href="resources/css/dataTables/dataTables.bootstrap.min.css" rel="stylesheet" />
-    <link href="resources/css/dataTables/dataTables.responsive.min.css" rel="stylesheet" />
+    <link href="/resources/css/dataTables/dataTables.bootstrap.min.css" rel="stylesheet" />
+    <link href="/resources/css/dataTables/dataTables.responsive.min.css" rel="stylesheet" />
 
     <!-- Base -->
-    <link href="resources/css/style.css" rel="stylesheet" />
-    <link href="resources/css/responsive.css" rel="stylesheet" />
+    <link href="/resources/css/signin.css" rel="stylesheet" />
 
     <!--[if lt IE 9]>
-    <script src="resources/js/dataTables/html5shiv.js"></script>
-    <script src="resources/js/dataTables/respond.min.js"></script>
+    <script src="/resources/js/dataTables/html5shiv.js"></script>
+    <script src="/resources/js/dataTables/respond.min.js"></script>
     <![endif]-->
 </head>
 <body>
 
-<!-- Wrapper -->
-<div id="wrapper">
+<!-- Sign In -->
+<c:url var="loginUrl" value="/login?${_csrf.parameterName}=${_csrf.token}"/>
+<div class="container">
+    <div class="card card-container">
+        <img id="profile-img" class="profile-img-card" src="/resources/images/logo-big.png" />
+        <p id="profile-name" class="profile-name-card"></p>
+        <form class="form-signin" action="${loginUrl}" method="post">
 
-    <!-- Sidebar -->
-    <div id="sidebar-wrapper">
+            <input type="text" id="inputId" class="form-control" placeholder="ID" name="ssoId" required autofocus>
+            <input type="password" id="inputPassword" class="form-control" placeholder="Password" name="password" required>
 
-        <aside class="sidebar-nav">
-            <div class="left-top-line logo"><a href="/">ComeOnBaby</a></div>
-            <ul>
-                <li class="active"><a href="javascript:void(0);"><i class="fa fa-user" aria-hidden="true"></i> Users</a></li>
-                <li>
-                    <a href="javascript:void(0);"><i class="fa fa-file" aria-hidden="true"></i> Guide</a>
-                    <ul class="sub-menu">
-                        <li><a href="javascript:void(0);"><i class="fa fa-angle-double-right" aria-hidden="true"></i> Featured recipes</a></li>
-                        <li><a href="javascript:void(0);"><i class="fa fa-angle-double-right" aria-hidden="true"></i> Fertilization guide</a></li>
-                    </ul>
-                </li>
-                <li>
-                    <a href="javascript:void(0);"><i class="fa fa-users" aria-hidden="true"></i> Community</a>
-                    <ul class="sub-menu">
-                        <li><a href="javascript:void(0);"><i class="fa fa-angle-double-right" aria-hidden="true"></i> Notice / Event</a></li>
-                        <li><a href="javascript:void(0);"><i class="fa fa-angle-double-right" aria-hidden="true"></i> My success story</a></li>
-                        <li><a href="javascript:void(0);"><i class="fa fa-angle-double-right" aria-hidden="true"></i> My recipes</a></li>
-                        <li><a href="javascript:void(0);"><i class="fa fa-angle-double-right" aria-hidden="true"></i> Husband story</a></li>
-                        <li><a href="javascript:void(0);"><i class="fa fa-angle-double-right" aria-hidden="true"></i> Q &amp; A list</a></li>
-                    </ul>
-                </li>
-                <li><a href="javascript:void(0);"><i class="fa fa-envelope" aria-hidden="true"></i> Push</a></li>
-                <li><a href="javascript:void(0);"><i class="fa fa-bar-chart" aria-hidden="true"></i> Report</a></li>
-                <li><a href="javascript:void(0);"><i class="fa fa-cogs" aria-hidden="true"></i> Settings</a></li>
-            </ul>
-            <div class="copyright">2017 &copy; ComeOnBaby</div>
-        </aside>
+            <button class="btn btn-block btn-signin" type="submit">Sign in</button>
+        </form>
+    <%--    <a href="javascript:void(0);" class="forgot-password">Forgot the password?</a>--%>
     </div>
-    <!-- #End Sidebar -->
-
-    <!-- Page Content -->
-    <div id="page-content-wrapper">
-
-        <!-- Top line -->
-        <header class="container-fluid top-line">
-            <div class="text-left top-switcher pull-left">
-                <a href="javascript:void(0);" class="btn btn-toggle" id="menu-toggle"><i class="fa fa-bars" aria-hidden="true"></i></a>
-            </div>
-            <div class="text-right">
-                <ul class="nav navbar-nav navbar-right">
-                    <li class="dropdown">
-                        <a href="javascript:void(0);" class="dropdown-toggle avatar" data-toggle="dropdown"><i class="fa fa-user-o"></i></a>
-                        <ul class="dropdown-menu">
-                            <li class="dropdown-menu-header text-center">Hello, Maxim!</li>
-                            <li><a href="javascript:void(0);"><i class="fa fa-cog"></i> Settings</a></li>
-                            <li><a href="javascript:void(0);"><i class="fa fa-sign-out"></i> Logout</a></li>
-                        </ul>
-                    </li>
-                </ul>
-            </div>
-        </header>
-        <!-- #End Top line -->
-
-        <!-- Content section -->
-        <section class="container-fluid content">
-            <h3><i class="fa fa-user"></i>Users list</h3>
-
-            <div class="mb20">
-                <button class="btn btn-primary">Download Excel</button>
-            </div>
-
-            <table id="dataTable" class="table table-striped table-bordered" width="100%" cellspacing="0">
-                <thead>
-                <tr>
-                    <th>ID</th>
-                    <th>Login</th>
-                    <th>E-mail</th>
-                    <th>Birthday</th>
-                    <th>Classification</th>
-                    <th>Sex</th>
-                </tr>
-                </thead>
-                <tfoot>
-                <tr>
-                    <th>ID</th>
-                    <th>Login</th>
-                    <th>E-mail</th>
-                    <th>Birthday</th>
-                    <th>Classification</th>
-                    <th>Sex</th>
-                </tr>
-                </tfoot>
-
-                <!-- Items list -->
-                <tbody>
-                <tr>
-                    <td>1</td>
-                    <td><a href="userProfile.html">Tiger Nixon</a></td>
-                    <td>info@someserver.com</td>
-                    <td>08-03-1978 (39 years)</td>
-                    <td>Facebook</td>
-                    <td><i class="fa fa-mars"></i> Male</td>
-                </tr>
-                <tr>
-                    <td>2</td>
-                    <td><a href="userProfile.html">Susan Smith</a></td>
-                    <td>info@someserver.com</td>
-                    <td>28-06-1982 (35 years)</td>
-                    <td>Kakao Talk</td>
-                    <td><i class="fa fa-venus"></i> Female</td>
-                </tr>
-                </tbody>
-                <!-- #End Items list -->
-
-            </table>
-
-        </section>
-        <!-- Content section -->
-
-    </div>
-    <!-- #End Page-content -->
-
 </div>
-<!-- #End Wrapper -->
+<!-- #End Sign In -->
 
 <!-- JQuery -->
-<script src="resources/js/jquery/jquery.min.js"></script>
-<script src="resources/js/jquery/jquery-ui.min.js"></script>
-<script src="resources/js/jquery/jquery.mousewheel.min.js"></script>
-<script src="resources/js/jquery/jquery.fancybox.min.js"></script>
-<script src="resources/js/jquery/jquery.sweet-alert.min.js"></script>
-<script src="resources/js/jquery/jquery.timeago.js"></script>
-<script src="resources/js/jquery/jquery.timeago.ko.js"></script>
+<script src="/resources/js/jquery/jquery.min.js"></script>
+<script src="/resources/js/jquery/jquery-ui.min.js"></script>
+<script src="/resources/js/jquery/jquery.mousewheel.min.js"></script>
+<script src="/resources/js/jquery/jquery.fancybox.min.js"></script>
+<script src="/resources/js/jquery/jquery.sweet-alert.min.js"></script>
+<script src="/resources/js/jquery/jquery.timeago.js"></script>
+<script src="/resources/js/jquery/jquery.timeago.ko.js"></script>
 
 <!-- Bootstrap -->
-<script src="resources/js/bootstrap/bootstrap.min.js"></script>
-<script src="resources/js/bootstrap/bootstrap-moment.min.js"></script>
-<script src="resources/js/bootstrap/bootstrap-datetimepicker.min.js"></script>
-<script src="resources/js/bootstrap/bootstrap-form-helpers.min.js"></script>
-<script src="resources/js/bootstrap/bootstrap-select.min.js"></script>
-<script src="resources/js/bootstrap/bootstrap.validator.min.js"></script>
-<script src="resources/js/bootstrap/bootstrap-fileinput.min.js"></script>
+<script src="/resources/js/bootstrap/bootstrap.min.js"></script>
+<script src="/resources/js/bootstrap/bootstrap-moment.min.js"></script>
+<script src="/resources/js/bootstrap/bootstrap-datetimepicker.min.js"></script>
+<script src="/resources/js/bootstrap/bootstrap-form-helpers.min.js"></script>
+<script src="/resources/js/bootstrap/bootstrap-select.min.js"></script>
+<script src="/resources/js/bootstrap/bootstrap.validator.min.js"></script>
+<script src="/resources/js/bootstrap/bootstrap-fileinput.min.js"></script>
 
 <!-- Data Tables -->
-<script src="resources/js/dataTables/dataTables.jquery.min.js"></script>
-<script src="resources/js/dataTables/dataTables.bootstrap.min.js"></script>
-<script src="resources/js/dataTables/dataTables.responsive.min.js"></script>
+<script src="/resources/js/dataTables/dataTables.jquery.min.js"></script>
+<script src="/resources/js/dataTables/dataTables.bootstrap.min.js"></script>
+<script src="/resources/js/dataTables/dataTables.responsive.min.js"></script>
 
 <!-- Others -->
-<script src="resources/js/other/sortable.min.js"></script>
-<script src="resources/js/other/form-validation.min.js"></script>
-<script src="resources/js/other/pagination.min.js"></script>
+<script src="/resources/js/other/sortable.min.js"></script>
+<script src="/resources/js/other/form-validation.min.js"></script>
+<script src="/resources/js/other/pagination.min.js"></script>
 
 <!-- Ckeditor -->
-<script src="resources/js/ckeditor/ckeditor.js"></script>
+<script src="/resources/js/ckeditor/ckeditor.js"></script>
 
 <!-- Base -->
-<script src="resources/js/main.js"></script>
+<script src="/resources/js/main.js"></script>
 </body>
 </html>

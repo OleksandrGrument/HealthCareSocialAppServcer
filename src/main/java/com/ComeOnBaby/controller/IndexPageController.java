@@ -28,9 +28,7 @@ public class IndexPageController {
 
 
     @RequestMapping(value = "/main", method = RequestMethod.GET)
-    public ModelAndView loginPage(@RequestParam(value = "isEstimateSuccess", required = false) Boolean isEstimateSuccess ,
-                                  @RequestParam(value = "isGenerateCustomerIdSuccess" , required=false) Boolean isGenerateSuccess ,
-                                  @RequestParam(value ="isSessionExpired" , required = false) Boolean isSessionExpired ) {
+    public ModelAndView loginPage( ) {
 
         if (isCurrentAuthenticationAnonymous()) {
             ModelAndView mainPage = new ModelAndView("index");
