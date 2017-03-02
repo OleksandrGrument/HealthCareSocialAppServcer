@@ -74,11 +74,32 @@
             <scope>compile</scope>
         </dependency>
 
-        <!--<dependency>-->
-            <!--<groupId>com.squareup.retrofit</groupId>-->
-            <!--<artifactId>converter-gson</artifactId>-->
-            <!--<version>2.0.0-beta1</version>-->
-        <!--</dependency>-->
+
+        <!-- xls view -->
+        <dependency>
+            <groupId>org.apache.poi</groupId>
+            <artifactId>poi</artifactId>
+            <version>3.14</version>
+        </dependency>
+
+        <!-- xlsx view -->
+        <dependency>
+            <groupId>org.apache.poi</groupId>
+            <artifactId>poi-ooxml</artifactId>
+            <version>3.14</version>
+        </dependency>
+        <!-- pdf view -->
+        <dependency>
+            <groupId>com.lowagie</groupId>
+            <artifactId>itext</artifactId>
+            <version>2.1.7</version>
+        </dependency>
+        <!-- pdf view -->
+        <dependency>
+            <groupId>com.itextpdf</groupId>
+            <artifactId>itextpdf</artifactId>
+            <version>5.5.9</version>
+        </dependency>
 
 
         <!-- Hibernate -->

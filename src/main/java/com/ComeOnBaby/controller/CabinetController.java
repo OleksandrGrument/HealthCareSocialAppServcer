@@ -91,6 +91,7 @@ public class CabinetController {
 
         AppUser appUser = appUserService.findById(id);
 
+
         Preferences preferences = null;
         if(appUser!=null) preferences = preferencesService.findFirstByUserId(appUser.getId());
 
@@ -156,6 +157,8 @@ public class CabinetController {
         fields.add("Date");
         fields.add("Title");
         fields.add("Text");
+
+
 
         List<String> values = new ArrayList<>();
         for(Blog blog: blogs) {

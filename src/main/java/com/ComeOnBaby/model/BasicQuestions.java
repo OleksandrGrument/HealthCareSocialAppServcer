@@ -26,13 +26,13 @@ public class BasicQuestions {
     @Column(name="children")
     private String children;
 
-    @Column(name="treatmentt")
+    @Column(name="treatment")
     private String treatment;
 
     @Column(name="causes_infertility_female")
     private String causes_infertility_female;
 
-    @Column(name="causes_infertility_malet")
+    @Column(name="causes_infertility_male")
     private String causes_infertility_male;
 
     @Column(name="need_help")

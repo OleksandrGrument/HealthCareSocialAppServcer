@@ -2,12 +2,14 @@ package com.ComeOnBaby.configuration;
 
 
 import com.ComeOnBaby.converter.RoleToUserProfileConverter;
+import com.ComeOnBaby.util.XlsxView;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.ComponentScan;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.context.support.ReloadableResourceBundleMessageSource;
 import org.springframework.format.FormatterRegistry;
+import org.springframework.http.MediaType;
 import org.springframework.mail.javamail.JavaMailSender;
 import org.springframework.mail.javamail.JavaMailSenderImpl;
 import org.springframework.web.servlet.config.annotation.*;
@@ -41,6 +43,21 @@ public class AppConfig extends WebMvcConfigurerAdapter {
         viewResolver.setPrefix("/WEB-INF/views/");
         viewResolver.setSuffix(".jsp");
         registry.viewResolver(viewResolver);
+        registry.enableContentNegotiation(
+                new XlsxView());
+
+    }
+
+    //EXCEL
+    @Override
+    public void configureContentNegotiation(ContentNegotiationConfigurer configurer) {
+        configurer
+                .defaultContentType(MediaType.TEXT_HTML)
+                .parameterName("type")
+                .favorParameter(true)
+                .ignoreUnknownPathExtensions(false)
+                .ignoreAcceptHeader(false)
+                .useJaf(true);
     }
 
     /**
