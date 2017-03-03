@@ -74,27 +74,5 @@ public class AppUser {
                 ", socialID=" + socialID +
                 ", loginType=" + loginType + '}';
     }
-    public String getStringToTable(){
-        StringBuilder sb = new StringBuilder();
 
-        sb.append("<tr>");
-        sb.append("<td> id </td>");
-        sb.append("<td> <a href=\"../cabinet/user/"+id+"\">"+email+"</a> </td>");
-        if(preferences!=null) {
-            sb.append("<td>"+preferences.getNickname()+"</td>");//nickname
-            sb.append("<td>"+preferences.getBirth_year()+"</td>");//bithyear
-        } else {
-            sb.append("<td> </td>");//nickname
-            sb.append("<td> </td>");//bithyear
-        }
-        sb.append("<td> "+getLoginType()+" </td>");
-        if(preferences!=null) {
-            sb.append("<td>"+preferences.getGender()+"</td>");//gender
-        } else {
-            sb.append("<td> </td>");//gender
-        }
-        sb.append("</tr>");
-
-        return sb.toString();
-    }
 }

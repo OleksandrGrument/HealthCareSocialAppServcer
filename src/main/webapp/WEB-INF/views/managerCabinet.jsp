@@ -1,3 +1,7 @@
+<%@ page import="com.ComeOnBaby.model.AppUser" %>
+<%@ page import="java.util.ArrayList" %>
+<%@ page import="java.util.Iterator" %>
+<%@ page import="com.ComeOnBaby.model.Preferences" %>
 <%@ taglib prefix="spring" uri="http://www.springframework.org/tags" %>
 <%@ page language="java" pageEncoding="UTF-8"%>
 <%@ page contentType="text/html;charset=UTF-8" %>
@@ -19,30 +23,30 @@
     <title>Users list :: Come On Baby</title>
 
     <!-- Bootstrap -->
-    <link href="resources/css/bootstrap/bootstrap.min.css" rel="stylesheet" />
-    <link href="resources/css/bootstrap/bootstrap-select.min.css" rel="stylesheet" />
-    <link href="resources/css/bootstrap/bootstrap-fileinput.min.css" rel="stylesheet" />
-    <link href="resources/css/bootstrap/bootstrap-datetimepicker.min.css" rel="stylesheet" />
-    <link href="resources/css/bootstrap/bootstrap-awesome-checkbox.min.css" rel="stylesheet" />
+    <link href="/resources/css/bootstrap/bootstrap.min.css" rel="stylesheet" />
+    <link href="/resources/css/bootstrap/bootstrap-select.min.css" rel="stylesheet" />
+    <link href="/resources/css/bootstrap/bootstrap-fileinput.min.css" rel="stylesheet" />
+    <link href="/resources/css/bootstrap/bootstrap-datetimepicker.min.css" rel="stylesheet" />
+    <link href="/resources/css/bootstrap/bootstrap-awesome-checkbox.min.css" rel="stylesheet" />
 
     <!-- JQuery -->
-    <link href="resources/css/jquery/jquery.fancybox.min.css" rel="stylesheet" />
-    <link href="resources/css/jquery/jquery.sweet-alert.min.css" rel="stylesheet" />
+    <link href="/resources/css/jquery/jquery.fancybox.min.css" rel="stylesheet" />
+    <link href="/resources/css/jquery/jquery.sweet-alert.min.css" rel="stylesheet" />
 
     <!-- Font Awesome -->
-    <link href="resources/css/font-awesome/font-awesome.min.css" rel="stylesheet" />
+    <link href="/resources/css/font-awesome/font-awesome.min.css" rel="stylesheet" />
 
     <!-- Data Tables -->
-    <link href="resources/css/dataTables/dataTables.bootstrap.min.css" rel="stylesheet" />
-    <link href="resources/css/dataTables/dataTables.responsive.min.css" rel="stylesheet" />
+    <link href="/resources/css/dataTables/dataTables.bootstrap.min.css" rel="stylesheet" />
+    <link href="/resources/css/dataTables/dataTables.responsive.min.css" rel="stylesheet" />
 
     <!-- Base -->
-    <link href="resources/css/style.css" rel="stylesheet" />
-    <link href="resources/css/responsive.css" rel="stylesheet" />
+    <link href="/resources/css/style.css" rel="stylesheet" />
+    <link href="/resources/css/responsive.css" rel="stylesheet" />
 
     <!--[if lt IE 9]>
-    <script src="resources/js/dataTables/html5shiv.js"></script>
-    <script src="resources/js/dataTables/respond.min.js"></script>
+    <script src="/resources/js/dataTables/html5shiv.js"></script>
+    <script src="/resources/js/dataTables/respond.min.js"></script>
     <![endif]-->
 </head>
 <body>
@@ -138,22 +142,35 @@
 
                 <!-- Items list -->
                 <tbody>
-                <tr>
-                    <td>1</td>
-                    <td><a href="userProfile.html">Tiger Nixon</a></td>
-                    <td>info@someserver.com</td>
-                    <td>08-03-1978 (39 years)</td>
-                    <td>Facebook</td>
-                    <td><i class="fa fa-mars"></i> Male</td>
-                </tr>
-                <tr>
-                    <td>2</td>
-                    <td><a href="userProfile.html">Susan Smith</a></td>
-                    <td>info@someserver.com</td>
-                    <td>28-06-1982 (35 years)</td>
-                    <td>Kakao Talk</td>
-                    <td><i class="fa fa-venus"></i> Female</td>
-                </tr>
+
+
+               <%
+                   ArrayList<AppUser> users = (ArrayList<AppUser>) request.getAttribute("users");
+                   Iterator<AppUser> appUserIterator = users.iterator();
+
+                   while (appUserIterator.hasNext()) {
+                        AppUser user = appUserIterator.next();
+                        Preferences preferences = user.getPreferences();
+               %>
+                    <tr>
+                        <td><%out.print(user.getId());%></td>
+                        <td><%if (preferences!=null) out.print(preferences.getNickname());%></td>
+                        <td><%out.print(user.getEmail());%></td>
+                        <td><%if (preferences!=null) out.print(preferences.getBirth_year());%></td>
+                        <td><%out.print(user.getLoginType());%></td>
+
+                        <%if (preferences!=null) if(preferences.getGender()!= null) {
+                            if(preferences.getGender().equals("true")){%>
+                                <td><i class="fa fa-mars"></i> <%out.print(" Man");%></td>
+                            <%}else if(preferences.getGender().equals("false")){%>
+                                <td><i class="fa fa-venus"></i> <%out.print(" Women");%></td>
+                            <%}%>
+                        <%}else if (preferences.getGender()== null){%>
+                            <td><i class="fa fa-venus"></i> <%out.print("");%></td> %>
+                        <%}%>
+                    </tr>
+                <%}%>
+
                 </tbody>
                 <!-- #End Items list -->
 
@@ -169,37 +186,37 @@
 <!-- #End Wrapper -->
 
 <!-- JQuery -->
-<script src="resources/js/jquery/jquery.min.js"></script>
-<script src="resources/js/jquery/jquery-ui.min.js"></script>
-<script src="resources/js/jquery/jquery.mousewheel.min.js"></script>
-<script src="resources/js/jquery/jquery.fancybox.min.js"></script>
-<script src="resources/js/jquery/jquery.sweet-alert.min.js"></script>
-<script src="resources/js/jquery/jquery.timeago.js"></script>
-<script src="resources/js/jquery/jquery.timeago.ko.js"></script>
+<script src="/resources/js/jquery/jquery.min.js"></script>
+<script src="/resources/js/jquery/jquery-ui.min.js"></script>
+<script src="/resources/js/jquery/jquery.mousewheel.min.js"></script>
+<script src="/resources/js/jquery/jquery.fancybox.min.js"></script>
+<script src="/resources/js/jquery/jquery.sweet-alert.min.js"></script>
+<script src="/resources/js/jquery/jquery.timeago.js"></script>
+<script src="/resources/js/jquery/jquery.timeago.ko.js"></script>
 
 <!-- Bootstrap -->
-<script src="resources/js/bootstrap/bootstrap.min.js"></script>
-<script src="resources/js/bootstrap/bootstrap-moment.min.js"></script>
-<script src="resources/js/bootstrap/bootstrap-datetimepicker.min.js"></script>
-<script src="resources/js/bootstrap/bootstrap-form-helpers.min.js"></script>
-<script src="resources/js/bootstrap/bootstrap-select.min.js"></script>
-<script src="resources/js/bootstrap/bootstrap.validator.min.js"></script>
-<script src="resources/js/bootstrap/bootstrap-fileinput.min.js"></script>
+<script src="/resources/js/bootstrap/bootstrap.min.js"></script>
+<script src="/resources/js/bootstrap/bootstrap-moment.min.js"></script>
+<script src="/resources/js/bootstrap/bootstrap-datetimepicker.min.js"></script>
+<script src="/resources/js/bootstrap/bootstrap-form-helpers.min.js"></script>
+<script src="/resources/js/bootstrap/bootstrap-select.min.js"></script>
+<script src="/resources/js/bootstrap/bootstrap.validator.min.js"></script>
+<script src="/resources/js/bootstrap/bootstrap-fileinput.min.js"></script>
 
 <!-- Data Tables -->
-<script src="resources/js/dataTables/dataTables.jquery.min.js"></script>
-<script src="resources/js/dataTables/dataTables.bootstrap.min.js"></script>
-<script src="resources/js/dataTables/dataTables.responsive.min.js"></script>
+<script src="/resources/js/dataTables/dataTables.jquery.min.js"></script>
+<script src="/resources/js/dataTables/dataTables.bootstrap.min.js"></script>
+<script src="/resources/js/dataTables/dataTables.responsive.min.js"></script>
 
 <!-- Others -->
-<script src="resources/js/other/sortable.min.js"></script>
-<script src="resources/js/other/form-validation.min.js"></script>
-<script src="resources/js/other/pagination.min.js"></script>
+<script src="/resources/js/other/sortable.min.js"></script>
+<script src="/resources/js/other/form-validation.min.js"></script>
+<script src="/resources/js/other/pagination.min.js"></script>
 
 <!-- Ckeditor -->
-<script src="resources/js/ckeditor/ckeditor.js"></script>
+<script src="/resources/js/ckeditor/ckeditor.js"></script>
 
 <!-- Base -->
-<script src="resources/js/main.js"></script>
+<script src="/resources/js/main.js"></script>
 </body>
 </html>

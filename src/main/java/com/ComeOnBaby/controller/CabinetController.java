@@ -1,4 +1,3 @@
-/*
 package com.ComeOnBaby.controller;
 
 
@@ -15,10 +14,7 @@ import org.springframework.web.servlet.ModelAndView;
 import javax.servlet.http.HttpSession;
 import java.util.*;
 
-*/
-/*
-* customer1@mail.com - 123
-* *//*
+
 
 @Controller
 @RequestMapping("/cabinet")
@@ -49,43 +45,6 @@ public class CabinetController {
         return listMenuUrls;
     }
 
-    @RequestMapping(value = "/", method = RequestMethod.GET)
-    public ModelAndView getListUsers(HttpSession httpSession) {
-
-        ModelAndView modelAndView = new ModelAndView("personalsArea");
-
-        List<AppUser> appUsers = appUserService.getAllUsers();
-        //
-        List<String> menuUrlsList = new ArrayList<>(Arrays.asList(menuUrls));
-        //
-        List<String> fields = new ArrayList<>();
-        fields.add("ID");
-        fields.add("Email");
-        fields.add("Nickname");
-        fields.add("Birthyear");
-        fields.add("Login Type");
-        fields.add("Gender");
-
-
-        List<String> values = new ArrayList<>();
-        for(AppUser user: appUsers) {
-            values.add(user.getStringToTable());
-        }
-
-        System.out.println("/cabinet/");
-        fields.forEach(a-> System.out.println(a));
-        values.forEach(a-> System.out.println(a));
-        System.out.println("/cabinet/");
-
-        modelAndView.addObject("fields" , fields);
-        modelAndView.addObject("values" , values);
-        modelAndView.addObject("namePage" , "Users table");
-        modelAndView.addObject("nameTitle" , "Users of ComeOnBaby <small> list users</small>");
-        modelAndView.addObject("menuUrls" , getMenuUrls());
-        modelAndView.addObject("addPath" , "../");//"/ComeOnBaby/"
-
-        return modelAndView;
-    }
 
     @RequestMapping(value = "/user/{id}", method = RequestMethod.GET)
     public ModelAndView getShowUser(@PathVariable Long id, HttpSession httpSession) {
@@ -272,4 +231,3 @@ public class CabinetController {
         return modelAndView;
     }
 }
-*/
