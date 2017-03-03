@@ -16,6 +16,10 @@
     .dropdown-menu li:not(:last-child) { border-bottom: 1px solid #307f7a !important; }
     .dropdown-menu .dropdown-menu-header { background-color: #3b9c96 !important; color: #fff !important; }
     .dropdown-menu li a i.fa { padding-right: 7px; color: #fff !important; }
+
+    .content .question .radio-inline { display: block !important; float: none !important; margin: 0 0 5px 0; }
+    .content .question .checkbox { padding-bottom: 5px; }
+    .content .question .checkbox label { margin-bottom: 10px; }
 }
 @media screen and (max-width:639px) {
 }

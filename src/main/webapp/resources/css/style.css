@@ -83,6 +83,9 @@ h3 i.fa { padding-right: 10px; }
 .content .user-profile-table .title { font-weight: bold; }
 .content .delimiter { border-top: 1px solid #eee; padding-top: 10px; }
 
+.content .question { padding: 0 0 10px 0; margin-bottom: 15px; border-bottom: 1px solid #eee; }
+.content .question h4 { display: block; font-size: 12pt; color: #307f7a; margin-bottom: 5px; }
+
 .copyright { color: #999; text-align: center; font-size: 8pt; margin-top: 20px; }
 
 /* Other */
@@ -104,9 +107,9 @@ h3 i.fa { padding-right: 10px; }
 .pl0 { padding-left: 0 !important; } .pl5 { padding-left: 5px; } .pl10 { padding-left: 10px; } .pl15 { padding-left: 15px; } .pl20 { padding-left: 20px; } .pl25 { padding-left: 25px; } .pl30 { padding-left: 30px; } .pl35 { padding-left: 35px; } .pl40 { padding-left: 40px; } .pl45 { padding-left: 45px; } .pl50 { padding-left: 50px; }
 .pr0 { padding-right: 0 !important; } .pr5 { padding-right: 5px; } .pr10 { padding-right: 10px; } .pr15 { padding-right: 15px; } .pr20 { padding-right: 20px; } .pr25 { padding-right: 25px; } .pr30 { padding-right: 30px; } .pr35 { padding-right: 35px; } .pr40 { padding-right: 40px; } .pr45 { padding-right: 45px; } .pr50 { padding-right: 50px; }
 
-.clearfix:before, .clearfix:after { content: " "; display: table; }
-.clearfix:after { clear: both; }
-.clearfix { *zoom: 1; }
+.clearfix:before, .clearfix:after { content: " " !important; display: table !important; }
+.clearfix:after { clear: both !important; }
+.clearfix { *zoom: 1 !important; }
 
 .form-control:focus { border-color: #3b9c96; outline: 0;
     -webkit-box-shadow: inset 0 1px 1px rgba(0,0,0,.1),0 0 8px rgba(48, 127, 122, .4);
