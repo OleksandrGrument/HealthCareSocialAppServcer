@@ -154,7 +154,7 @@
                %>
                     <tr>
                         <td><%out.print(user.getId());%></td>
-                        <td><%if (preferences!=null) out.print(preferences.getNickname());%></td>
+                        <td><%if (preferences!=null) %><a href="<%out.print("/cabinet/user-profile/"+user.getId());%>">   <% out.print(preferences.getNickname());%></a></td>
                         <td><%out.print(user.getEmail());%></td>
                         <td><%if (preferences!=null) out.print(preferences.getBirth_year());%></td>
                         <td><%out.print(user.getLoginType());%></td>

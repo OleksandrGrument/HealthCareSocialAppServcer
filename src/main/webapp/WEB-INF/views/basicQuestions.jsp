@@ -37,7 +37,8 @@
     <link href="/resources/css/dataTables/dataTables.responsive.min.css" rel="stylesheet" />
 
     <!-- Base -->
-    <link href="/resources/css/signin.css" rel="stylesheet" />
+    <link href="/resources/css/style.css" rel="stylesheet" />
+    <link href="/resources/css/responsive.css" rel="stylesheet" />
 
     <!--[if lt IE 9]>
     <script src="/resources/js/dataTables/html5shiv.js"></script>

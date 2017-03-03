@@ -1,3 +1,5 @@
+<%@ page import="com.ComeOnBaby.model.AppUser" %>
+<%@ page import="com.ComeOnBaby.model.Preferences" %>
 <%@ taglib prefix="spring" uri="http://www.springframework.org/tags" %>
 <%@ page language="java" pageEncoding="UTF-8"%>
 <%@ page contentType="text/html;charset=UTF-8" %>
@@ -19,30 +21,30 @@
     <title>Users list :: Come On Baby</title>
 
     <!-- Bootstrap -->
-    <link href="resources/css/bootstrap/bootstrap.min.css" rel="stylesheet" />
-    <link href="resources/css/bootstrap/bootstrap-select.min.css" rel="stylesheet" />
-    <link href="resources/css/bootstrap/bootstrap-fileinput.min.css" rel="stylesheet" />
-    <link href="resources/css/bootstrap/bootstrap-datetimepicker.min.css" rel="stylesheet" />
-    <link href="resources/css/bootstrap/bootstrap-awesome-checkbox.min.css" rel="stylesheet" />
+    <link href="/resources/css/bootstrap/bootstrap.min.css" rel="stylesheet" />
+    <link href="/resources/css/bootstrap/bootstrap-select.min.css" rel="stylesheet" />
+    <link href="/resources/css/bootstrap/bootstrap-fileinput.min.css" rel="stylesheet" />
+    <link href="/resources/css/bootstrap/bootstrap-datetimepicker.min.css" rel="stylesheet" />
+    <link href="/resources/css/bootstrap/bootstrap-awesome-checkbox.min.css" rel="stylesheet" />
 
     <!-- JQuery -->
-    <link href="resources/css/jquery/jquery.fancybox.min.css" rel="stylesheet" />
-    <link href="resources/css/jquery/jquery.sweet-alert.min.css" rel="stylesheet" />
+    <link href="/resources/css/jquery/jquery.fancybox.min.css" rel="stylesheet" />
+    <link href="/resources/css/jquery/jquery.sweet-alert.min.css" rel="stylesheet" />
 
     <!-- Font Awesome -->
-    <link href="resources/css/font-awesome/font-awesome.min.css" rel="stylesheet" />
+    <link href="/resources/css/font-awesome/font-awesome.min.css" rel="stylesheet" />
 
     <!-- Data Tables -->
-    <link href="resources/css/dataTables/dataTables.bootstrap.min.css" rel="stylesheet" />
-    <link href="resources/css/dataTables/dataTables.responsive.min.css" rel="stylesheet" />
+    <link href="/resources/css/dataTables/dataTables.bootstrap.min.css" rel="stylesheet" />
+    <link href="/resources/css/dataTables/dataTables.responsive.min.css" rel="stylesheet" />
 
     <!-- Base -->
-    <link href="resources/css/style.css" rel="stylesheet" />
-    <link href="resources/css/responsive.css" rel="stylesheet" />
+    <link href="/resources/css/style.css" rel="stylesheet" />
+    <link href="/resources/css/responsive.css" rel="stylesheet" />
 
     <!--[if lt IE 9]>
-    <script src="resources/js/dataTables/html5shiv.js"></script>
-    <script src="resources/js/dataTables/respond.min.js"></script>
+    <script src="/resources/js/dataTables/html5shiv.js"></script>
+    <script src="/resources/js/dataTables/respond.min.js"></script>
     <![endif]-->
 </head>
 <body>
@@ -110,72 +112,75 @@
         <section class="container-fluid content">
             <h3><i class="fa fa-user"></i>User profile</h3>
 
-            <table>
-                <tbody class="user-profile-table">
+            <table class="user-profile-table">
+
+                <%AppUser user = (AppUser) request.getAttribute("user");%>
+                <%Preferences preferences = user.getPreferences();%>
+                <tbody>
                 <!-- Base information -->
                 <tr><td colspan="2" class="header pt0">Base information</td></tr>
                 <tr>
                     <td class="title">Name:</td>
-                    <td>Susan Smith</td>
+                    <td><%if (preferences!=null) out.print(preferences.getNickname());%></td>
                 </tr>
                 <tr>
                     <td class="title">E-mail:</td>
-                    <td><a href="mailto:info@someserver.com">info@someserver.com</a></td>
+                    <td><a href="mailto:info@someserver.com"><%out.print(user.getEmail());%></a></td>
                 </tr>
+
                 <tr>
                     <td class="title">Sex:</td>
-                    <td><i class="fa fa-venus"></i> Female</td>
+                    <%if (preferences!=null) if(preferences.getGender()!= null) {
+                        if(preferences.getGender().equals("true")){%>
+                    <td><i class="fa fa-mars"></i> <%out.print(" Man");%></td>
+                    <%}else if(preferences.getGender().equals("false")){%>
+                    <td><i class="fa fa-venus"></i> <%out.print(" Women");%></td>
+                    <%}%>
+                    <%}else if (preferences.getGender()== null){%>
+                    <td><i class="fa fa-venus"></i> <%out.print("");%></td> %>
+                    <%}%>
                 </tr>
                 <tr>
                     <td class="title">Birthday:</td>
-                    <td>28-06-1982 (35 years)</td>
+                    <td><%out.print(preferences.getBirth_year());%></td>
                 </tr>
                 <tr>
                     <td class="title">City:</td>
-                    <td>Seoul</td>
+                    <td><%--<%preferences.%>--%></td>
                 </tr>
                 <tr>
                     <td class="title">Address:</td>
-                    <td>Euljiro 1 Goko and Bunga Building 20-2</td>
-                </tr>
-                <tr>
-                    <td class="title">Last modified:</td>
-                    <td>02-03-2017</td>
-                </tr>
-                <tr>
-                    <td class="title">Final modifier:</td>
-                    <td>admin</td>
+                    <td><%out.print(preferences.getAddress());%></td>
                 </tr>
 
                 <!-- Personal information -->
                 <tr><td colspan="2" class="header">Personal information</td></tr>
                 <tr>
                     <td class="title">Menstrual cycle:</td>
-                    <td>23</td>
+                    <td><%out.print(preferences.getMenstrual_cycle());%></td>
                 </tr>
                 <tr>
                     <td class="title">Last menstrual date:</td>
-                    <td>22-02-2017</td>
+                    <td><%out.print(preferences.getLast_cycle());%></td>
                 </tr>
                 <tr>
                     <td class="title">Height:</td>
-                    <td>162 sm</td>
+                    <td><%out.print(preferences.getHeight());%></td>
                 </tr>
                 <tr>
                     <td class="title">Weight:</td>
-                    <td>54 kg</td>
+                    <td><%out.print(preferences.getWeight());%></td>
                 </tr>
                 </tbody>
             </table>
 
             <div class="mt10">
-                <a href="javascript:void(0);" class="btn btn-default">Basic questions</a>
+                <a href="<%out.print("/cabinet/basic-questions/"+user.getId());%>" class="btn btn-default">Basic questions</a>
                 <a href="javascript:void(0);" class="btn btn-default">Monthly report</a>
                 <a href="javascript:void(0);" class="btn btn-default">Weekly report</a>
             </div>
             <div class="mt20 delimiter">
                 <a href="index.html" class="btn btn-default">Back</a>
-                <button class="btn btn-primary">Confirm</button>
             </div>
 
         </section>
@@ -188,37 +193,37 @@
 <!-- #End Wrapper -->
 
 <!-- JQuery -->
-<script src="resources/js/jquery/jquery.min.js"></script>
-<script src="resources/js/jquery/jquery-ui.min.js"></script>
-<script src="resources/js/jquery/jquery.mousewheel.min.js"></script>
-<script src="resources/js/jquery/jquery.fancybox.min.js"></script>
-<script src="resources/js/jquery/jquery.sweet-alert.min.js"></script>
-<script src="resources/js/jquery/jquery.timeago.js"></script>
-<script src="resources/js/jquery/jquery.timeago.ko.js"></script>
+<script src="/resources/js/jquery/jquery.min.js"></script>
+<script src="/resources/js/jquery/jquery-ui.min.js"></script>
+<script src="/resources/js/jquery/jquery.mousewheel.min.js"></script>
+<script src="/resources/js/jquery/jquery.fancybox.min.js"></script>
+<script src="/resources/js/jquery/jquery.sweet-alert.min.js"></script>
+<script src="/resources/js/jquery/jquery.timeago.js"></script>
+<script src="/resources/js/jquery/jquery.timeago.ko.js"></script>
 
 <!-- Bootstrap -->
-<script src="resources/js/bootstrap/bootstrap.min.js"></script>
-<script src="resources/js/bootstrap/bootstrap-moment.min.js"></script>
-<script src="resources/js/bootstrap/bootstrap-datetimepicker.min.js"></script>
-<script src="resources/js/bootstrap/bootstrap-form-helpers.min.js"></script>
-<script src="resources/js/bootstrap/bootstrap-select.min.js"></script>
-<script src="resources/js/bootstrap/bootstrap.validator.min.js"></script>
-<script src="resources/js/bootstrap/bootstrap-fileinput.min.js"></script>
+<script src="/resources/js/bootstrap/bootstrap.min.js"></script>
+<script src="/resources/js/bootstrap/bootstrap-moment.min.js"></script>
+<script src="/resources/js/bootstrap/bootstrap-datetimepicker.min.js"></script>
+<script src="/resources/js/bootstrap/bootstrap-form-helpers.min.js"></script>
+<script src="/resources/js/bootstrap/bootstrap-select.min.js"></script>
+<script src="/resources/js/bootstrap/bootstrap.validator.min.js"></script>
+<script src="/resources/js/bootstrap/bootstrap-fileinput.min.js"></script>
 
 <!-- Data Tables -->
-<script src="resources/js/dataTables/dataTables.jquery.min.js"></script>
-<script src="resources/js/dataTables/dataTables.bootstrap.min.js"></script>
-<script src="resources/js/dataTables/dataTables.responsive.min.js"></script>
+<script src="/resources/js/dataTables/dataTables.jquery.min.js"></script>
+<script src="/resources/js/dataTables/dataTables.bootstrap.min.js"></script>
+<script src="/resources/js/dataTables/dataTables.responsive.min.js"></script>
 
 <!-- Others -->
-<script src="resources/js/other/sortable.min.js"></script>
-<script src="resources/js/other/form-validation.min.js"></script>
-<script src="resources/js/other/pagination.min.js"></script>
+<script src="/resources/js/other/sortable.min.js"></script>
+<script src="/resources/js/other/form-validation.min.js"></script>
+<script src="/resources/js/other/pagination.min.js"></script>
 
 <!-- Ckeditor -->
-<script src="resources/js/ckeditor/ckeditor.js"></script>
+<script src="/resources/js/ckeditor/ckeditor.js"></script>
 
 <!-- Base -->
-<script src="resources/js/main.js"></script>
+<script src="/resources/js/main.js"></script>
 </body>
 </html>
