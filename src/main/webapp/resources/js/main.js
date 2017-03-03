@@ -30,15 +30,7 @@ jQuery(document).ready(function($) {
 
     // Show nice tables
     $('#dataTable').DataTable({
-        responsive: true,
-        "columns": [
-            { "width": "20px" },
-            null,
-            null,
-            null,
-            null,
-            null
-        ]
+        responsive: true
     });
 });
 
