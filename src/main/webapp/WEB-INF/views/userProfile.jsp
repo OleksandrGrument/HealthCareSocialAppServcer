@@ -176,11 +176,11 @@
 
             <div class="mt10">
                 <a href="<%out.print("/cabinet/basic-questions/"+user.getId());%>" class="btn btn-default">Basic questions</a>
-                <a href="javascript:void(0);" class="btn btn-default">Monthly report</a>
-                <a href="javascript:void(0);" class="btn btn-default">Weekly report</a>
+                <a href="<%out.print("/cabinet/monthly-report/"+user.getId());%>" class="btn btn-default">Monthly report</a>
+                <a href="<%out.print("/cabinet/weekly-report/"+user.getId());%>" class="btn btn-default">Weekly report</a>
             </div>
             <div class="mt20 delimiter">
-                <a href="index.html" class="btn btn-default">Back</a>
+                <a href="<%out.print("/");%>" class="btn btn-default">Back</a>
             </div>
 
         </section>
