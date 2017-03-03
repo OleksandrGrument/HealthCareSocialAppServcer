@@ -2,6 +2,7 @@ package com.ComeOnBaby.controller;
 
 import com.ComeOnBaby.model.AppUser;
 import com.ComeOnBaby.service.AppUserService;
+import com.ComeOnBaby.util.XlsxView;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -81,6 +82,14 @@ public class ManagerCabinetController {
         weeklyReport.addObject("user", user);
 
         return weeklyReport;
+    }
+
+    @RequestMapping(value = "/download" , method = RequestMethod.GET)
+    public ModelAndView download (){
+
+        XlsxView xlsxView = new XlsxView();
+        xlsxView.setAppUserList(appUserService.getAllUsers());
+        return new ModelAndView(xlsxView);
     }
 
 }

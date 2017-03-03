@@ -1,9 +1,12 @@
 package com.ComeOnBaby.util;
 
 import com.ComeOnBaby.model.AppUser;
+import com.ComeOnBaby.service.AppUserService;
 import org.apache.poi.ss.usermodel.Row;
 import org.apache.poi.ss.usermodel.Sheet;
 import org.apache.poi.ss.usermodel.Workbook;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.servlet.view.document.AbstractXlsxView;
 
 import javax.servlet.http.HttpServletRequest;
@@ -16,6 +19,9 @@ import java.util.Map;
  */
 public class XlsxView extends AbstractXlsxView {
 
+
+    private List<AppUser> appUsers;
+
     @Override
     protected void buildExcelDocument(Map<String, Object> model,
                                       Workbook workbook,
@@ -25,12 +31,10 @@ public class XlsxView extends AbstractXlsxView {
         // set the file name
         response.setHeader("Content-Disposition", "attachment; filename=\"users.xlsx\"");
 
-        @SuppressWarnings("unchecked")
-        List<AppUser> appUsers = (List<AppUser>) model.get("appUsers");
-
+        System.out.println("=================QQQQQQQQQQQQQQQQQ===============");
         // create sheet
         Sheet sheet = workbook.createSheet("users");
-
+        System.out.println("=================QQQQQQQQQQQQQQQQQ===============");
         // create header
         Row header = sheet.createRow(0);
         header.createCell(0).setCellValue("ID");
@@ -52,5 +56,10 @@ public class XlsxView extends AbstractXlsxView {
             fruitRow.createCell(5).setCellValue(appUser.getPreferences().getGender());
         }
 
+    }
+
+
+    public void setAppUserList(List<AppUser> appUsers){
+        this.appUsers = appUsers;
     }
 }
