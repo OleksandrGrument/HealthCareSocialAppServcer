@@ -1,24 +1,17 @@
 package com.ComeOnBaby.configuration;
 
 
-import com.ComeOnBaby.converter.RoleToUserProfileConverter;
 import com.ComeOnBaby.util.XlsxView;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.ComponentScan;
 import org.springframework.context.annotation.Configuration;
-import org.springframework.context.support.ReloadableResourceBundleMessageSource;
-import org.springframework.format.FormatterRegistry;
 import org.springframework.http.MediaType;
 import org.springframework.mail.javamail.JavaMailSender;
 import org.springframework.mail.javamail.JavaMailSenderImpl;
 import org.springframework.web.servlet.config.annotation.*;
-import org.springframework.web.servlet.i18n.CookieLocaleResolver;
-import org.springframework.web.servlet.i18n.LocaleChangeInterceptor;
 import org.springframework.web.servlet.view.InternalResourceViewResolver;
 import org.springframework.web.servlet.view.JstlView;
 
-import java.util.Locale;
 import java.util.Properties;
 
 
@@ -27,7 +20,7 @@ import java.util.Properties;
 @ComponentScan(basePackages = "com.ComeOnBaby")
 public class AppConfig extends WebMvcConfigurerAdapter {
 
-	
+
 	/*@Autowired
 	RoleToUserProfileConverter roleToUserProfileConverter;
 	*/
@@ -127,4 +120,3 @@ public class AppConfig extends WebMvcConfigurerAdapter {
         return mailSender;
     }
 }
-
