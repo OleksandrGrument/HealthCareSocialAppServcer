@@ -16,7 +16,7 @@
     <meta name="description" content="" />
     <meta name="keywords" content="" />
 
-    <title>Edit guide :: Come On Baby</title>
+    <title>Edit story :: Come On Baby</title>
 
     <%@ include file="headerStyles.jsp" %>
 
@@ -40,7 +40,7 @@
 
         <!-- Content section -->
         <section class="container-fluid content">
-            <h3><i class="fa fa-list-ul"></i>3rd Week of Pregnancy</h3>
+            <h3><i class="fa fa-file-text-o"></i>Edit story</h3>
 
             <!-- Edit form -->
             <form action="" method="post">
@@ -48,24 +48,36 @@
                     <div class="col-md-6">
 
                         <div class="form-group">
-                            <label for="title">Guide title</label>
-                            <input type="text" class="form-control" name="title" id="title" value="3rd Week of Pregnancy" placeholder="Guide title" required />
+                            <label for="title">Story title</label>
+                            <input type="text" class="form-control" name="title" id="title" value="Stand up from the last pain" placeholder="Story title" required />
                         </div>
 
                         <div class="form-group form-img-thumbnail">
-                            <a data-fancybox="gallery" href="/resources/images/guide.jpg"><img src="/resources/images/guide.jpg" alt="Roasted Carrot Soup" class="img-thumbnail"></a>
-                            <a href="javascript:void(0);" class="delete deleteConfirm"><i class="fa fa-times"></i></a>
+                            <a data-fancybox="gallery" href="images/story.jpg"><img src="images/story.jpg" alt="Stand up from the last pain" class="img-thumbnail"></a>
                         </div>
 
                         <div class="form-group">
-                            <label class="control-label">Guide image</label>
+                            <label class="control-label">Story image</label>
                             <input id="fileInput" type="file" class="file" required />
+                        </div>
+
+                        <div class="form-group">
+                            <label class="control-label">Story text</label>
+                            <textarea class="form-control" name="body" id="editor">Contact your council for a Temporary Event Notice (TEN) if you want to carry out a ‘licensable activity’ on unlicensed premises in England or Wales...</textarea>
+                        </div>
+
+                        <div class="form-group">
+                            <b>Story likes:</b> 112 likes
                         </div>
                     </div>
                 </div>
 
+                <div class="mt10">
+                    <a href="mySuccessStoryComments.php" class="btn btn-default">Story Comments (9)</a>
+                </div>
+
                 <div class="mt20 delimiter">
-                    <a href="fertilizationGuide.php" class="btn btn-default">Back</a>
+                    <a href="mySuccessStory.php" class="btn btn-default">Back</a>
                     <button class="btn btn-primary">Confirm</button>
                 </div>
             </form>

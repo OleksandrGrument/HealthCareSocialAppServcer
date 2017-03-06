@@ -53,6 +53,9 @@ jQuery(document).ready(function($) {
         win.focus();
     });
 
+    // Tooltipe
+    $('[data-toggle="tooltip"]').tooltip();
+
 });
 
 

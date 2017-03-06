@@ -91,6 +91,9 @@ h3 i.fa { padding-right: 10px; }
 .content .user-profile-table .marker span.excellent,
 .content .table .marker span.excellent { background-color: #009c19; }
 
+.content .table tr td {  }
+.content .table tr td a.url { white-space: nowrap; overflow: hidden; text-overflow: ellipsis; display: block; max-width: 200px; }
+
 .content .delimiter { border-top: 1px solid #eee; padding-top: 10px; }
 
 .content .question { padding: 0 0 10px 0; margin-bottom: 15px; border-bottom: 1px solid #eee; }
@@ -102,6 +105,14 @@ h3 i.fa { padding-right: 10px; }
     border: 1px solid #ab0618; background-color: #d4061b; padding: 1px 6px; border-radius: 50%; outline: none !important;  }
 .content form .form-img-thumbnail .delete:hover { text-decoration: none; }
 
+
+.content .comment { border: 1px solid #ccc; border-radius: 5px; padding: 10px 15px; margin-bottom: 20px;
+    -webkit-box-shadow: 0px 0px 5px 3px rgba(221,221,221,.5);
+    -moz-box-shadow: 0px 0px 5px 3px rgba(221,221,221,.5);
+    box-shadow: 0px 0px 5px 3px rgba(221,221,221,.5);
+}
+.content .comment:last-child {  margin-bottom: 0;}
+
 .copyright { color: #999; text-align: center; font-size: 8pt; margin-top: 20px; }
 
 /* Other */
@@ -111,6 +122,7 @@ h3 i.fa { padding-right: 10px; }
 .btn.btn-primary:focus { background-color: #307f7a; }
 
 .no-border { border: 0 !important; }
+
 
 /* --- margins --- */
 .m0 { margin: 0 !important; } .m5 { margin: 5px; } .m10 { margin: 10px; } .m15 { margin: 15px; } .m20 { margin: 20px; } .m25 { margin: 25px; } .m30 { margin: 30px; } .m35 { margin: 35px; } .m40 { margin: 40px; } .m45 { margin: 45px; } .m50 { margin: 50px; }

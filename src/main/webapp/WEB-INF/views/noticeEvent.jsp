@@ -16,7 +16,7 @@
     <meta name="description" content="" />
     <meta name="keywords" content="" />
 
-    <title>Fertilization guide :: Come On Baby</title>
+    <title>Edit recipes :: Come On Baby</title>
 
     <%@ include file="headerStyles.jsp" %>
 
@@ -40,10 +40,10 @@
 
         <!-- Content section -->
         <section class="container-fluid content">
-            <h3><i class="fa fa-list-ul"></i>Fertilization guide</h3>
+            <h3><i class="fa fa-calendar"></i>Notice / Event</h3>
 
             <div class="mb20">
-                <button class="btn btn-primary">Add new guide</button>
+                <button class="btn btn-primary">Add new notice / event</button>
             </div>
 
             <table id="dataTable" class="table table-striped table-bordered" width="100%" cellspacing="0">
@@ -68,19 +68,19 @@
                 <tbody>
                 <tr>
                     <td align="center">1</td>
-                    <td><a href="fertilizationGuideEdit.php">3rd Week of Pregnancy</a></td>
-                    <td align="center">18-02-2017 15:04</td>
+                    <td><a href="noticeEventEdit.php">Temporary Events Notice</a></td>
+                    <td align="center">22-02-2017 15:04</td>
                     <td align="center">
-                        <a href="fertilizationGuideEdit.php" data-toggle="tooltip" title="Edit"><i class="fa fa-edit"></i> Edit</a>&nbsp; |&nbsp;
+                        <a href="noticeEventEdit.php" data-toggle="tooltip" title="Edit"><i class="fa fa-edit"></i> Edit</a>&nbsp; |&nbsp;
                         <a href="javascript:void(0);" data-toggle="tooltip" title="Delete" class="deleteConfirm"><i class="fa fa-trash"></i> Delete</a>
                     </td>
                 </tr>
                 <tr>
                     <td align="center">2</td>
-                    <td><a href="fertilizationGuideEdit.php">3rd Week of Pregnancy</a></td>
-                    <td align="center">28-02-2017 15:04</td>
+                    <td><a href="noticeEventEdit.php">Temporary Events Notice</a></td>
+                    <td align="center">26-02-2017 15:04</td>
                     <td align="center">
-                        <a href="fertilizationGuideEdit.php" data-toggle="tooltip" title="Edit"><i class="fa fa-edit"></i> Edit</a>&nbsp; |&nbsp;
+                        <a href="noticeEventEdit.php" data-toggle="tooltip" title="Edit"><i class="fa fa-edit"></i> Edit</a>&nbsp; |&nbsp;
                         <a href="javascript:void(0);" data-toggle="tooltip" title="Delete" class="deleteConfirm"><i class="fa fa-trash"></i> Delete</a>
                     </td>
                 </tr>

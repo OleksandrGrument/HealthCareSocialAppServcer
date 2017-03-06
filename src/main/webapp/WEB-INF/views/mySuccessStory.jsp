@@ -16,7 +16,7 @@
     <meta name="description" content="" />
     <meta name="keywords" content="" />
 
-    <title>Fertilization guide :: Come On Baby</title>
+    <title>My success story :: Come On Baby</title>
 
     <%@ include file="headerStyles.jsp" %>
 
@@ -40,10 +40,10 @@
 
         <!-- Content section -->
         <section class="container-fluid content">
-            <h3><i class="fa fa-list-ul"></i>Fertilization guide</h3>
+            <h3><i class="fa fa-file-text-o"></i>My success story</h3>
 
             <div class="mb20">
-                <button class="btn btn-primary">Add new guide</button>
+                <button class="btn btn-primary">Add new story</button>
             </div>
 
             <table id="dataTable" class="table table-striped table-bordered" width="100%" cellspacing="0">
@@ -51,6 +51,8 @@
                 <tr>
                     <th width="20">ID</th>
                     <th>Title</th>
+                    <th width="90">Likes</th>
+                    <th width="90">Comments</th>
                     <th width="150">Date</th>
                     <th width="150">Action</th>
                 </tr>
@@ -59,6 +61,8 @@
                 <tr>
                     <th>ID</th>
                     <th>Title</th>
+                    <th>Likes</th>
+                    <th>Comments</th>
                     <th>Date</th>
                     <th>Action</th>
                 </tr>
@@ -68,19 +72,12 @@
                 <tbody>
                 <tr>
                     <td align="center">1</td>
-                    <td><a href="fertilizationGuideEdit.php">3rd Week of Pregnancy</a></td>
+                    <td><a href="mySuccessStoryEdit.php">Stand up from the last pain</a></td>
+                    <td align="center">112</td>
+                    <td align="center">9</td>
                     <td align="center">18-02-2017 15:04</td>
                     <td align="center">
-                        <a href="fertilizationGuideEdit.php" data-toggle="tooltip" title="Edit"><i class="fa fa-edit"></i> Edit</a>&nbsp; |&nbsp;
-                        <a href="javascript:void(0);" data-toggle="tooltip" title="Delete" class="deleteConfirm"><i class="fa fa-trash"></i> Delete</a>
-                    </td>
-                </tr>
-                <tr>
-                    <td align="center">2</td>
-                    <td><a href="fertilizationGuideEdit.php">3rd Week of Pregnancy</a></td>
-                    <td align="center">28-02-2017 15:04</td>
-                    <td align="center">
-                        <a href="fertilizationGuideEdit.php" data-toggle="tooltip" title="Edit"><i class="fa fa-edit"></i> Edit</a>&nbsp; |&nbsp;
+                        <a href="mySuccessStoryEdit.php" data-toggle="tooltip" title="Edit"><i class="fa fa-edit"></i> Edit</a>&nbsp; |&nbsp;
                         <a href="javascript:void(0);" data-toggle="tooltip" title="Delete" class="deleteConfirm"><i class="fa fa-trash"></i> Delete</a>
                     </td>
                 </tr>
