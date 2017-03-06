@@ -58,7 +58,7 @@
                 </tr>
                 <tr>
                     <td class="title">E-mail:</td>
-                    <td><a href="mailto:info@someserver.com"><%out.print(user.getEmail());%></a></td>
+                    <td><a href="mailto:<%out.print(user.getEmail());%>"><%out.print(user.getEmail());%></a></td>
                 </tr>
 
                 <tr>

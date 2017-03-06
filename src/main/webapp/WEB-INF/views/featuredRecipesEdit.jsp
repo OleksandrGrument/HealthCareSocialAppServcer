@@ -49,22 +49,21 @@
 
                         <div class="form-group">
                             <label for="title">Recipe title</label>
-                            <input type="text" class="form-control" name="title" id="title" value="Roasted Carrot Soup" placeholder="Recipe title">
+                            <input type="text" class="form-control" name="title" id="title" value="Roasted Carrot Soup" placeholder="Recipe title" required />
                         </div>
 
                         <div class="form-group">
-                            <label for="title">Recipe URL <a href="javascript:void(0);" class="pl5 recipesOpenLink"><i class="fa fa-link"></i> Open link</a></label>
-                            <input type="text" class="form-control" name="url" id="title" value="https://food52.com/recipes/9743-roasted-carrot-soup" placeholder="Recipe URL">
+                            <label for="url">Recipe URL <a href="javascript:void(0);" class="pl5 recipesOpenLink"><i class="fa fa-link"></i> Open link</a></label>
+                            <input type="text" class="form-control" name="url" id="url" value="https://food52.com/recipes/9743-roasted-carrot-soup" placeholder="Recipe URL" required />
                         </div>
 
                         <div class="form-group form-img-thumbnail">
                             <a data-fancybox="gallery" href="/resources/images/recipe.jpeg"><img src="/resources/images/recipe.jpeg" alt="Roasted Carrot Soup" class="img-thumbnail"></a>
-                            <a href="javascript:void(0);" class="delete deleteConfirm"><i class="fa fa-times"></i></a>
                         </div>
 
                         <div class="form-group">
                             <label class="control-label">Recipe image</label>
-                            <input id="fileInput" type="file" class="file">
+                            <input id="fileInput" type="file" class="file" required />
                         </div>
                     </div>
                 </div>

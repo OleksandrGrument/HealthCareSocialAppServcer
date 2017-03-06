@@ -40,7 +40,7 @@
 
         <!-- Content section -->
         <section class="container-fluid content">
-            <h3><i class="fa fa-list-ul"></i>Notice / Event</h3>
+            <h3><i class="fa fa-calendar"></i>Notice / Event</h3>
 
             <div class="mb20">
                 <button class="btn btn-primary">Add new notice / event</button>
@@ -71,7 +71,8 @@
                     <td><a href="noticeEventEdit.php">Temporary Events Notice</a></td>
                     <td align="center">22-02-2017 15:04</td>
                     <td align="center">
-                        <a href="noticeEventEdit.php"><i class="fa fa-edit"></i> Edit</a>&nbsp;|&nbsp;<a href="javascript:void(0);" class="deleteConfirm"><i class="fa fa-trash"></i> Delete</a>
+                        <a href="noticeEventEdit.php" data-toggle="tooltip" title="Edit"><i class="fa fa-edit"></i> Edit</a>&nbsp; |&nbsp;
+                        <a href="javascript:void(0);" data-toggle="tooltip" title="Delete" class="deleteConfirm"><i class="fa fa-trash"></i> Delete</a>
                     </td>
                 </tr>
                 <tr>
@@ -79,7 +80,8 @@
                     <td><a href="noticeEventEdit.php">Temporary Events Notice</a></td>
                     <td align="center">26-02-2017 15:04</td>
                     <td align="center">
-                        <a href="noticeEventEdit.php"><i class="fa fa-edit"></i> Edit</a>&nbsp;|&nbsp;<a href="javascript:void(0);" class="deleteConfirm"><i class="fa fa-trash"></i> Delete</a>
+                        <a href="noticeEventEdit.php" data-toggle="tooltip" title="Edit"><i class="fa fa-edit"></i> Edit</a>&nbsp; |&nbsp;
+                        <a href="javascript:void(0);" data-toggle="tooltip" title="Delete" class="deleteConfirm"><i class="fa fa-trash"></i> Delete</a>
                     </td>
                 </tr>
                 </tbody>

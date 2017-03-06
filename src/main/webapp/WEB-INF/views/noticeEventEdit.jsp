@@ -40,7 +40,7 @@
 
         <!-- Content section -->
         <section class="container-fluid content">
-            <h3><i class="fa fa-list-ul"></i>Edit notice / event</h3>
+            <h3><i class="fa fa-calendar"></i>Edit notice / event</h3>
 
             <!-- Edit form -->
             <form action="" method="post">

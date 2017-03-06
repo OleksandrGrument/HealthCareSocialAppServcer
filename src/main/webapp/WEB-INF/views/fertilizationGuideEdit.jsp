@@ -49,7 +49,7 @@
 
                         <div class="form-group">
                             <label for="title">Guide title</label>
-                            <input type="text" class="form-control" name="title" id="title" value="3rd Week of Pregnancy" placeholder="Guide title">
+                            <input type="text" class="form-control" name="title" id="title" value="3rd Week of Pregnancy" placeholder="Guide title" required />
                         </div>
 
                         <div class="form-group form-img-thumbnail">
@@ -59,7 +59,7 @@
 
                         <div class="form-group">
                             <label class="control-label">Guide image</label>
-                            <input id="fileInput" type="file" class="file">
+                            <input id="fileInput" type="file" class="file" required />
                         </div>
                     </div>
                 </div>
