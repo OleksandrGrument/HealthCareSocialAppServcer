@@ -71,7 +71,7 @@
                 <tr>
                     <td align="center">1</td>
                     <td><a href="featuredRecipesEdit.php">Roasted Carrot Soup</a></td>
-                    <td><a href="https://food52.com/recipes/9743-roasted-carrot-soup" target="_blank">https://food52.com/...carrot-soup</a></td>
+                    <td><a href="https://food52.com/recipes/9743-roasted-carrot-soup" class="url" target="_blank">https://food52.com/recipes/9743-roasted-carrot-soup</a></td>
                     <td align="center">08-03-2017 15:04</td>
                     <td align="center">
                         <a href="featuredRecipesEdit.php"><i class="fa fa-edit"></i> Edit</a>&nbsp;|&nbsp;<a href="javascript:void(0);" class="deleteConfirm"><i class="fa fa-trash"></i> Delete</a>
@@ -80,7 +80,7 @@
                 <tr>
                     <td align="center">2</td>
                     <td><a href="featuredRecipesEdit.php">Roasted Carrot Soup</a></td>
-                    <td><a href="https://food52.com/recipes/9743-roasted-carrot-soup">https://food52.com/...carrot-soup</a></td>
+                    <td><a href="https://food52.com/recipes/9743-roasted-carrot-soup" class="url" target="_blank">https://food52.com/recipes/9743-roasted-carrot-soup</a></td>
                     <td align="center">08-03-2017 15:04</td>
                     <td align="center">
                         <a href="featuredRecipesEdit.php"><i class="fa fa-edit"></i> Edit</a>&nbsp;|&nbsp;<a href="javascript:void(0);" class="deleteConfirm"><i class="fa fa-trash"></i> Delete</a>
