@@ -88,8 +88,8 @@ CREATE TABLE `recipe_guide` (
 	`id` INT NOT NULL,
 	`title` VARCHAR(255) NOT NULL,
 	`date` DATE NOT NULL,
-	`image_thumbnail` VARCHAR(255) NOT NULL,
-	`url_naver` VARCHAR(255) NOT NULL
+	`imageThumbnail` VARCHAR(255) NOT NULL,
+	`urlNaver` VARCHAR(255) NOT NULL
 );
 
 CREATE TABLE `fertilization_guide` (

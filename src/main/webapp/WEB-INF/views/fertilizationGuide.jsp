@@ -71,7 +71,8 @@
                     <td><a href="fertilizationGuideEdit.php">3rd Week of Pregnancy</a></td>
                     <td align="center">18-02-2017 15:04</td>
                     <td align="center">
-                        <a href="fertilizationGuideEdit.php"><i class="fa fa-edit"></i> Edit</a>&nbsp;|&nbsp;<a href="javascript:void(0);" class="deleteConfirm"><i class="fa fa-trash"></i> Delete</a>
+                        <a href="fertilizationGuideEdit.php" data-toggle="tooltip" title="Edit"><i class="fa fa-edit"></i> Edit</a>&nbsp; |&nbsp;
+                        <a href="javascript:void(0);" data-toggle="tooltip" title="Delete" class="deleteConfirm"><i class="fa fa-trash"></i> Delete</a>
                     </td>
                 </tr>
                 <tr>
@@ -79,7 +80,8 @@
                     <td><a href="fertilizationGuideEdit.php">3rd Week of Pregnancy</a></td>
                     <td align="center">28-02-2017 15:04</td>
                     <td align="center">
-                        <a href="fertilizationGuideEdit.php"><i class="fa fa-edit"></i> Edit</a>&nbsp;|&nbsp;<a href="javascript:void(0);" class="deleteConfirm"><i class="fa fa-trash"></i> Delete</a>
+                        <a href="fertilizationGuideEdit.php" data-toggle="tooltip" title="Edit"><i class="fa fa-edit"></i> Edit</a>&nbsp; |&nbsp;
+                        <a href="javascript:void(0);" data-toggle="tooltip" title="Delete" class="deleteConfirm"><i class="fa fa-trash"></i> Delete</a>
                     </td>
                 </tr>
                 </tbody>

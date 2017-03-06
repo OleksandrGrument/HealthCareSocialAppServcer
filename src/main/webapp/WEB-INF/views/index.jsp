@@ -16,33 +16,13 @@
     <meta name="description" content="" />
     <meta name="keywords" content="" />
 
-    <title>Users list :: Come On Baby</title>
+    <title>Welcome to Administration :: Come On Baby</title>
 
-    <!-- Bootstrap -->
-    <link href="/resources/css/bootstrap/bootstrap.min.css" rel="stylesheet" />
-    <link href="/resources/css/bootstrap/bootstrap-select.min.css" rel="stylesheet" />
-    <link href="/resources/css/bootstrap/bootstrap-fileinput.min.css" rel="stylesheet" />
-    <link href="/resources/css/bootstrap/bootstrap-datetimepicker.min.css" rel="stylesheet" />
-    <link href="/resources/css/bootstrap/bootstrap-awesome-checkbox.min.css" rel="stylesheet" />
+    <%@ include file="headerStyles.jsp" %>
 
-    <!-- JQuery -->
-    <link href="/resources/css/jquery/jquery.fancybox.min.css" rel="stylesheet" />
-    <link href="/resources/css/jquery/jquery.sweet-alert.min.css" rel="stylesheet" />
-
-    <!-- Font Awesome -->
-    <link href="/resources/css/font-awesome/font-awesome.min.css" rel="stylesheet" />
-
-    <!-- Data Tables -->
-    <link href="/resources/css/dataTables/dataTables.bootstrap.min.css" rel="stylesheet" />
-    <link href="/resources/css/dataTables/dataTables.responsive.min.css" rel="stylesheet" />
-
-    <!-- Base -->
+    <!-- SignIn page -->
     <link href="/resources/css/signin.css" rel="stylesheet" />
 
-    <!--[if lt IE 9]>
-    <script src="/resources/js/dataTables/html5shiv.js"></script>
-    <script src="/resources/js/dataTables/respond.min.js"></script>
-    <![endif]-->
 </head>
 <body>
 
@@ -64,38 +44,7 @@
 </div>
 <!-- #End Sign In -->
 
-<!-- JQuery -->
-<script src="/resources/js/jquery/jquery.min.js"></script>
-<script src="/resources/js/jquery/jquery-ui.min.js"></script>
-<script src="/resources/js/jquery/jquery.mousewheel.min.js"></script>
-<script src="/resources/js/jquery/jquery.fancybox.min.js"></script>
-<script src="/resources/js/jquery/jquery.sweet-alert.min.js"></script>
-<script src="/resources/js/jquery/jquery.timeago.js"></script>
-<script src="/resources/js/jquery/jquery.timeago.ko.js"></script>
+<%@ include file="footerJavaScript.jsp" %>
 
-<!-- Bootstrap -->
-<script src="/resources/js/bootstrap/bootstrap.min.js"></script>
-<script src="/resources/js/bootstrap/bootstrap-moment.min.js"></script>
-<script src="/resources/js/bootstrap/bootstrap-datetimepicker.min.js"></script>
-<script src="/resources/js/bootstrap/bootstrap-form-helpers.min.js"></script>
-<script src="/resources/js/bootstrap/bootstrap-select.min.js"></script>
-<script src="/resources/js/bootstrap/bootstrap.validator.min.js"></script>
-<script src="/resources/js/bootstrap/bootstrap-fileinput.min.js"></script>
-
-<!-- Data Tables -->
-<script src="/resources/js/dataTables/dataTables.jquery.min.js"></script>
-<script src="/resources/js/dataTables/dataTables.bootstrap.min.js"></script>
-<script src="/resources/js/dataTables/dataTables.responsive.min.js"></script>
-
-<!-- Others -->
-<script src="/resources/js/other/sortable.min.js"></script>
-<script src="/resources/js/other/form-validation.min.js"></script>
-<script src="/resources/js/other/pagination.min.js"></script>
-
-<!-- Ckeditor -->
-<script src="/resources/js/ckeditor/ckeditor.js"></script>
-
-<!-- Base -->
-<script src="/resources/js/main.js"></script>
 </body>
 </html>

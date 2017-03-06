@@ -82,7 +82,7 @@ public class UsersController {
     Fertilization_guideService guideService;
 
     @Autowired
-    Recipe_guideService recipeService;
+    RecipeGuideService recipeService;
 
 
     @RequestMapping(value = "/users", method = RequestMethod.POST, produces={"application/json; charset=UTF-8"})
@@ -705,7 +705,7 @@ public class UsersController {
 
     private JSONObject getRecipe(JSONObject inJSON, JSONObject outJSON) {
 
-        List<Recipe_guide> recipeList = recipeService.getAllRecipe_guide();
+        List<RecipeGuide> recipeList = recipeService.getAllRecipeGuide();
 
 
         outJSON.put(RESULT, SUCCESS);
@@ -713,21 +713,21 @@ public class UsersController {
 
         JSONArray jsonArray = new JSONArray();
 
-        for (Recipe_guide recipe : recipeList) {
+        for (RecipeGuide recipe : recipeList) {
             jsonArray.put(getRecipeJSON(recipe));
         }
         outJSON.put(DATA,jsonArray.toString());
         return outJSON;
     }
 
-    //Make JSON from Recipe_guide
-    private JSONObject getRecipeJSON(Recipe_guide recipe) {
+    //Make JSON from RecipeGuide
+    private JSONObject getRecipeJSON(RecipeGuide recipe) {
         JSONObject outGuide = new JSONObject();
         outGuide.put("id", recipe.getId());
         outGuide.put("title", recipe.getTitle());
         outGuide.put("date", recipe.getDateFormat());
-        outGuide.put("image_thumbnail" , recipe.getImage_thumbnail());
-        outGuide.put("url_naver" , recipe.getUrl_naver());
+        outGuide.put("image_thumbnail" , recipe.getImageThumbnail());
+        outGuide.put("url_naver" , recipe.getUrlNaver());
         return outGuide;
     }
 

@@ -5,7 +5,7 @@
         <li>
             <a href="javascript:void(0);"><i class="fa fa-file" aria-hidden="true"></i> Guide</a>
             <ul class="sub-menu">
-                <li><a href="javascript:void(0);"><i class="fa fa-angle-double-right" aria-hidden="true"></i> Featured recipes</a></li>
+                <li><a href="<%out.print("/guide/featured-recipes");%>"><i class="fa fa-angle-double-right" aria-hidden="true"></i> Featured recipes</a></li>
                 <li><a href="javascript:void(0);"><i class="fa fa-angle-double-right" aria-hidden="true"></i> Fertilization guide</a></li>
             </ul>
         </li>

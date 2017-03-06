@@ -1,3 +1,4 @@
+<%@ page import="com.ComeOnBaby.model.RecipeGuide" %>
 <%@ taglib prefix="spring" uri="http://www.springframework.org/tags" %>
 <%@ page language="java" pageEncoding="UTF-8"%>
 <%@ page contentType="text/html;charset=UTF-8" %>
@@ -38,40 +39,52 @@
 
         <%@ include file="topLine.jsp" %>
 
+        <%RecipeGuide recipeGuide = (RecipeGuide) request.getAttribute("recipeGuide");%>
+        <%boolean isNew = (boolean) request.getAttribute("isNew");%>
+        <%String formAction = "/guide/save-new-recipe";%>
         <!-- Content section -->
         <section class="container-fluid content">
-            <h3><i class="fa fa-list-ul"></i>Roasted Carrot Soup</h3>
+
+            <%String headTitle ="New Recipe"; if (!isNew) headTitle = recipeGuide.getTitle();%>
+            <h3><i class="fa fa-list-ul"></i><%out.print(headTitle);%></h3>
 
             <!-- Edit form -->
-            <form action="" method="post">
+            <form action="<%out.print(formAction);%>" method="post" enctype="multipart/form-data">
                 <div class="row">
                     <div class="col-md-6">
 
+                        <input type="hidden" name="id" value="<%if (!isNew)out.print(recipeGuide.getId());%>">
+
+                        <%String title =""; if (!isNew) title = recipeGuide.getTitle();%>
                         <div class="form-group">
                             <label for="title">Recipe title</label>
-                            <input type="text" class="form-control" name="title" id="title" value="Roasted Carrot Soup" placeholder="Recipe title">
+                            <input type="text" class="form-control" name="title" id="title" value="<%out.print(title);%>" placeholder="Recipe title">
                         </div>
 
+                        <%String urlNaver =""; if (!isNew) urlNaver = recipeGuide.getUrlNaver();%>
                         <div class="form-group">
-                            <label for="title">Recipe URL <a href="javascript:void(0);" class="pl5 recipesOpenLink"><i class="fa fa-link"></i> Open link</a></label>
-                            <input type="text" class="form-control" name="url" id="title" value="https://food52.com/recipes/9743-roasted-carrot-soup" placeholder="Recipe URL">
+                            <label for="url">Recipe URL <%if (!isNew){%><a href="javascript:void(0);" class="pl5 recipesOpenLink"><i class="fa fa-link"></i> Open link</a><%}%></label>
+                            <input type="text" class="form-control" name="url" id="url" value="<%out.print(urlNaver);%>" placeholder="Recipe URL">
                         </div>
 
+                        <% if(!isNew){
+                            String urlPic = recipeGuide.getImageThumbnail(); %>
                         <div class="form-group form-img-thumbnail">
-                            <a data-fancybox="gallery" href="images/recipe.jpeg"><img src="images/recipe.jpeg" alt="Roasted Carrot Soup" class="img-thumbnail"></a>
-                            <a href="javascript:void(0);" class="delete deleteConfirm"><i class="fa fa-times"></i></a>
+                            <a data-fancybox="gallery" href="<%out.print(urlPic);%>"><img src="<%out.print(urlPic);%>" alt="Roasted Carrot Soup" class="img-thumbnail"></a>
                         </div>
+                        <%}%>
+
 
                         <div class="form-group">
                             <label class="control-label">Recipe image</label>
-                            <input id="fileInput" type="file" class="file">
+                            <input id="fileInput" name="filePicture[]" type="file" class="file" <%if (isNew){%>required <%}%>>
                         </div>
                     </div>
                 </div>
 
                 <div class="mt20 delimiter">
-                    <a href="featuredRecipes.php" class="btn btn-default">Back</a>
-                    <button class="btn btn-primary">Confirm</button>
+                    <a href="<%out.print("/guide/featured-recipes");%>" class="btn btn-default">Back</a>
+                    <button class="btn btn-primary" type="submit">Confirm</button>
                 </div>
             </form>
             <!-- #End Edit form -->

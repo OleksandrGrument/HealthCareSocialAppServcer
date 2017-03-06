@@ -93,6 +93,8 @@ public class ManagerCabinetController {
         return weeklyReport;
     }
 
+
+
     @RequestMapping(value = "/download" , method = RequestMethod.GET)
     public ModelAndView download (){
 

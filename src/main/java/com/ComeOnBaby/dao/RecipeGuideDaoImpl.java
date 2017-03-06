@@ -1,7 +1,7 @@
 package com.ComeOnBaby.dao;
 
 
-import com.ComeOnBaby.model.Recipe_guide;
+import com.ComeOnBaby.model.RecipeGuide;
 import org.hibernate.Query;
 import org.hibernate.Session;
 import org.hibernate.SessionFactory;
@@ -14,9 +14,9 @@ import java.util.List;
 
 
 @Repository("recipe_guideDao")
-public class Recipe_quideDaoImpl implements Recipe_guideDao {
+public class RecipeGuideDaoImpl implements RecipeGuideDao {
 
-    private static final Logger logger = LoggerFactory.getLogger(Recipe_quideDaoImpl.class);
+    private static final Logger logger = LoggerFactory.getLogger(RecipeGuideDaoImpl.class);
 
     private SessionFactory sessionFactory;
 
@@ -27,38 +27,38 @@ public class Recipe_quideDaoImpl implements Recipe_guideDao {
 
 
     @Override
-    public Long create(Recipe_guide aRecipe_guide) {
+    public Long create(RecipeGuide aRecipe_guide) {
         Session session = sessionFactory.getCurrentSession();
         Long id = (Long) session.save(aRecipe_guide);
         return id;
     }
 
     @Override
-    public Recipe_guide read(Long id) {
+    public RecipeGuide read(Long id) {
         Session session = sessionFactory.getCurrentSession();
-        Recipe_guide aRecipe_guide = (Recipe_guide) session.get(Recipe_guide.class, id);
+        RecipeGuide aRecipe_guide = (RecipeGuide) session.get(RecipeGuide.class, id);
         return aRecipe_guide;
     }
 
     @Override
-    public void update(Recipe_guide aRecipe_guide) {
+    public void update(RecipeGuide aRecipe_guide) {
         Session session = sessionFactory.getCurrentSession();
         session.update(aRecipe_guide);
         //session.getTransaction().commit();
-        logger.error("Recipe_guide update successfully, Recipe_guide=" + aRecipe_guide);
+        logger.error("RecipeGuide update successfully, RecipeGuide=" + aRecipe_guide);
     }
 
     @Override
-    public void delete(Recipe_guide aRecipe_guide) {
+    public void delete(RecipeGuide aRecipe_guide) {
         Session session = sessionFactory.getCurrentSession();
         session.delete(aRecipe_guide);
-        logger.info("Recipe_guide deleted successfully, Recipe_guide details=" + aRecipe_guide);
+        logger.info("RecipeGuide deleted successfully, RecipeGuide details=" + aRecipe_guide);
     }
 
     @Override
-    public List<Recipe_guide> findAll() {
+    public List<RecipeGuide> findAll() {
         Session session = sessionFactory.getCurrentSession();
-        Query query = session.createQuery("from Recipe_guide");
+        Query query = session.createQuery("from RecipeGuide");
         return query.list();
     }
 
