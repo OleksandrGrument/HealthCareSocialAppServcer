@@ -1,3 +1,6 @@
+<%@ page import="com.ComeOnBaby.model.RecipeGuide" %>
+<%@ page import="java.util.Iterator" %>
+<%@ page import="java.util.ArrayList" %>
 <%@ taglib prefix="spring" uri="http://www.springframework.org/tags" %>
 <%@ page language="java" pageEncoding="UTF-8"%>
 <%@ page contentType="text/html;charset=UTF-8" %>
@@ -43,10 +46,12 @@
             <h3><i class="fa fa-list-ul"></i>Featured recipes</h3>
 
             <div class="mb20">
-                <button class="btn btn-primary">Add new recipe</button>
+                <a href="<%out.print("/guide/add-recipe");%>" class="btn btn-primary">Add new recipe</a>
             </div>
 
             <table id="dataTable" class="table table-striped table-bordered" width="100%" cellspacing="0">
+
+
                 <thead>
                 <tr>
                     <th width="20">ID</th>
@@ -67,25 +72,29 @@
                 </tfoot>
 
                 <!-- Items list -->
+
                 <tbody>
+                <%
+                    ArrayList<RecipeGuide> recipeGuides = (ArrayList<RecipeGuide>) request.getAttribute("recipeGuide");
+
+                    Iterator<RecipeGuide> recipeGuideIterator = recipeGuides.iterator();
+
+                    while (recipeGuideIterator.hasNext()) {
+                        RecipeGuide recipeGuide = recipeGuideIterator.next();
+                        String editGuideUrl = "/guide/edit-recipe/"+recipeGuide.getId();
+                   %>
                 <tr>
-                    <td align="center">1</td>
-                    <td><a href="featuredRecipesEdit.php">Roasted Carrot Soup</a></td>
-                    <td><a href="https://food52.com/recipes/9743-roasted-carrot-soup" target="_blank">https://food52.com/...carrot-soup</a></td>
-                    <td align="center">08-03-2017 15:04</td>
+                    <td align="center"><%out.print(recipeGuide.getId());%></td>
+                    <td><a href="<%out.print(editGuideUrl);%>"><%out.print(recipeGuide.getTitle());%></a></td>
+                    <td><a href="https://food52.com/recipes/9743-roasted-carrot-soup" target="_blank"><%out.print(recipeGuide.getUrlNaver());%></a></td>
+                    <td align="center"><%out.print(recipeGuide.getDate());%></td>
                     <td align="center">
-                        <a href="featuredRecipesEdit.php"><i class="fa fa-edit"></i> Edit</a>&nbsp;|&nbsp;<a href="javascript:void(0);" class="deleteConfirm"><i class="fa fa-trash"></i> Delete</a>
+                        <a href="<%out.print(editGuideUrl);%>"><i class="fa fa-edit"></i> Edit</a>&nbsp;|&nbsp;<a href="javascript:void(0);" class="deleteConfirm"><i class="fa fa-trash"></i> Delete</a>
                     </td>
                 </tr>
-                <tr>
-                    <td align="center">2</td>
-                    <td><a href="featuredRecipesEdit.php">Roasted Carrot Soup</a></td>
-                    <td><a href="https://food52.com/recipes/9743-roasted-carrot-soup">https://food52.com/...carrot-soup</a></td>
-                    <td align="center">08-03-2017 15:04</td>
-                    <td align="center">
-                        <a href="featuredRecipesEdit.php"><i class="fa fa-edit"></i> Edit</a>&nbsp;|&nbsp;<a href="javascript:void(0);" class="deleteConfirm"><i class="fa fa-trash"></i> Delete</a>
-                    </td>
-                </tr>
+
+                <%}%>
+
                 </tbody>
                 <!-- #End Items list -->
 
