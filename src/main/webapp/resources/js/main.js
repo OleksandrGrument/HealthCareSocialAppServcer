@@ -30,9 +30,31 @@ jQuery(document).ready(function($) {
 
     // Show nice tables
     $('#dataTable').DataTable({
-        responsive: true
+        responsive: true,
     });
+
+    // Delete confirm
+    $('.deleteConfirm').on('click', function () {
+        swal({
+            title: 'Are you sure?',
+            text: "You won't be able to revert this!",
+            type: 'warning',
+            showCancelButton: true,
+            confirmButtonColor: '#3b9c96',
+            cancelButtonText: 'No, thank you',
+            confirmButtonText: 'Yes, delete it!'
+        });
+    });
+
+    // Recipes open link
+    $('.recipesOpenLink').on('click', function() {
+        var url = $("input[name=url]").val();
+        var win = window.open(url, '_blank');
+        win.focus();
+    });
+
 });
+
 
 // CKEDITOR show
 var editor = CKEDITOR.replace('editor', {

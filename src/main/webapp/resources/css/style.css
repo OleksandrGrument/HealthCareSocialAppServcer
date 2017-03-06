@@ -73,7 +73,7 @@ h3 i.fa { padding-right: 10px; }
 .btn-toggle:hover, .btn-toggle:focus, .btn-toggle:active { color: #fff; }
 /* #End Header line */
 
-.content { margin: 20px 0 20px 0; }
+.content { margin: 20px 0 40px 0; }
 .content .table thead { background-color: #3b9c96; color: #fff; }
 .content .table tfoot { background-color: #eee; }
 .content .user-profile-table {  }
@@ -81,16 +81,26 @@ h3 i.fa { padding-right: 10px; }
 .content .user-profile-table td:first-child { padding-left: 0; }
 .content .user-profile-table .header { font-weight: bold; font-size: 12pt; padding: 10px 0; color: #3b9c96; }
 .content .user-profile-table .title { font-weight: bold; }
-.content .user-profile-table .marker span { display: block; color: #fff; padding: 3px 10px; font-size: 8pt; text-align: center; border-radius: 5px; }
+.content .user-profile-table .marker span,
+.content .table .marker span { display: block; color: #fff; padding: 3px 10px; font-size: 8pt; text-align: center; border-radius: 5px; width: 70px; }
 
-.content .user-profile-table .marker span.good { background-color: #FF8900; }
-.content .user-profile-table .marker span.bad { background-color: #ff413e; }
-.content .user-profile-table .marker span.excellent { background-color: #009c19; }
+.content .user-profile-table .marker span.good,
+.content .table .marker span.good { background-color: #FF8900; }
+.content .user-profile-table .marker span.bad,
+.content .table .marker span.bad { background-color: #ff413e; }
+.content .user-profile-table .marker span.excellent,
+.content .table .marker span.excellent { background-color: #009c19; }
 
 .content .delimiter { border-top: 1px solid #eee; padding-top: 10px; }
 
 .content .question { padding: 0 0 10px 0; margin-bottom: 15px; border-bottom: 1px solid #eee; }
 .content .question h4 { display: block; font-size: 12pt; color: #307f7a; margin-bottom: 5px; }
+
+.content form .form-img-thumbnail { position: relative; max-width: 300px; }
+.content form .form-img-thumbnail img { max-width: 300px; }
+.content form .form-img-thumbnail .delete { display: block; position: absolute; top: -6px; right: -6px; color: #fff;
+    border: 1px solid #ab0618; background-color: #d4061b; padding: 1px 6px; border-radius: 50%; outline: none !important;  }
+.content form .form-img-thumbnail .delete:hover { text-decoration: none; }
 
 .copyright { color: #999; text-align: center; font-size: 8pt; margin-top: 20px; }
 

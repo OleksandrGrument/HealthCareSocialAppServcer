@@ -1,4 +1,3 @@
-<%@ page import="com.ComeOnBaby.model.AppUser" %>
 <%@ taglib prefix="spring" uri="http://www.springframework.org/tags" %>
 <%@ page language="java" pageEncoding="UTF-8"%>
 <%@ page contentType="text/html;charset=UTF-8" %>
@@ -17,7 +16,7 @@
     <meta name="description" content="" />
     <meta name="keywords" content="" />
 
-    <title>Monthly reports :: Come On Baby</title>
+    <title>Fertilization guide :: Come On Baby</title>
 
     <%@ include file="headerStyles.jsp" %>
 
@@ -41,52 +40,52 @@
 
         <!-- Content section -->
         <section class="container-fluid content">
-            <h3><i class="fa fa-bar-chart"></i>Monthly report</h3>
+            <h3><i class="fa fa-list-ul"></i>Fertilization guide</h3>
 
-            <% AppUser user = (AppUser) request.getAttribute("user"); %>
+            <div class="mb20">
+                <button class="btn btn-primary">Add new guide</button>
+            </div>
 
             <table id="dataTable" class="table table-striped table-bordered" width="100%" cellspacing="0">
                 <thead>
                 <tr>
-                    <th>ID</th>
-                    <th>Generation month</th>
-                    <th>Evaluation</th>
+                    <th width="20">ID</th>
+                    <th>Title</th>
+                    <th width="150">Date</th>
+                    <th width="150">Action</th>
                 </tr>
                 </thead>
                 <tfoot>
                 <tr>
                     <th>ID</th>
-                    <th>Generation month</th>
-                    <th>Evaluation</th>
+                    <th>Title</th>
+                    <th>Date</th>
+                    <th>Action</th>
                 </tr>
                 </tfoot>
 
                 <!-- Items list -->
                 <tbody>
                 <tr>
-                    <td width="50">1</td>
-                    <td><a href="monthlyReportShow.html">01-2017</a></td>
-                    <td>Good</td>
+                    <td align="center">1</td>
+                    <td><a href="fertilizationGuideEdit.php">3rd Week of Pregnancy</a></td>
+                    <td align="center">18-02-2017 15:04</td>
+                    <td align="center">
+                        <a href="fertilizationGuideEdit.php"><i class="fa fa-edit"></i> Edit</a>&nbsp;|&nbsp;<a href="javascript:void(0);" class="deleteConfirm"><i class="fa fa-trash"></i> Delete</a>
+                    </td>
                 </tr>
                 <tr>
-                    <td>2</td>
-                    <td><a href="monthlyReportShow.html">02-2017</a></td>
-                    <td>Excellent</td>
-                </tr>
-                <tr>
-                    <td>3</td>
-                    <td><a href="monthlyReportShow.html">03-2017</a></td>
-                    <td>Bad</td>
+                    <td align="center">2</td>
+                    <td><a href="fertilizationGuideEdit.php">3rd Week of Pregnancy</a></td>
+                    <td align="center">28-02-2017 15:04</td>
+                    <td align="center">
+                        <a href="fertilizationGuideEdit.php"><i class="fa fa-edit"></i> Edit</a>&nbsp;|&nbsp;<a href="javascript:void(0);" class="deleteConfirm"><i class="fa fa-trash"></i> Delete</a>
+                    </td>
                 </tr>
                 </tbody>
                 <!-- #End Items list -->
 
             </table>
-
-            <div class="mt20 delimiter">
-                <a href="<% out.print("/cabinet/user-profile/" + user.getId()); %>" class="btn btn-default">Back</a>
-            </div>
-
 
         </section>
         <!-- Content section -->

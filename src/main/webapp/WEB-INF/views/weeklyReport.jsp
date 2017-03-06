@@ -17,34 +17,10 @@
     <meta name="description" content="" />
     <meta name="keywords" content="" />
 
-    <title>Users list :: Come On Baby</title>
+    <title>Weekly reports :: Come On Baby</title>
 
-    <!-- Bootstrap -->
-    <link href="/resources/css/bootstrap/bootstrap.min.css" rel="stylesheet" />
-    <link href="/resources/css/bootstrap/bootstrap-select.min.css" rel="stylesheet" />
-    <link href="/resources/css/bootstrap/bootstrap-fileinput.min.css" rel="stylesheet" />
-    <link href="/resources/css/bootstrap/bootstrap-datetimepicker.min.css" rel="stylesheet" />
-    <link href="/resources/css/bootstrap/bootstrap-awesome-checkbox.min.css" rel="stylesheet" />
+    <%@ include file="headerStyles.jsp" %>
 
-    <!-- JQuery -->
-    <link href="/resources/css/jquery/jquery.fancybox.min.css" rel="stylesheet" />
-    <link href="/resources/css/jquery/jquery.sweet-alert.min.css" rel="stylesheet" />
-
-    <!-- Font Awesome -->
-    <link href="/resources/css/font-awesome/font-awesome.min.css" rel="stylesheet" />
-
-    <!-- Data Tables -->
-    <link href="/resources/css/dataTables/dataTables.bootstrap.min.css" rel="stylesheet" />
-    <link href="/resources/css/dataTables/dataTables.responsive.min.css" rel="stylesheet" />
-
-    <!-- Base -->
-    <link href="/resources/css/style.css" rel="stylesheet" />
-    <link href="/resources/css/responsive.css" rel="stylesheet" />
-
-    <!--[if lt IE 9]>
-    <script src="/resources/js/dataTables/html5shiv.js"></script>
-    <script src="/resources/js/dataTables/respond.min.js"></script>
-    <![endif]-->
 </head>
 <body>
 <!-- Wrapper -->
@@ -53,62 +29,19 @@
     <!-- Sidebar -->
     <div id="sidebar-wrapper">
 
-        <aside class="sidebar-nav">
-            <div class="left-top-line logo"><a href="/">ComeOnBaby</a></div>
-            <ul>
-                <li class="active"><a href="javascript:void(0);"><i class="fa fa-user" aria-hidden="true"></i> Users</a></li>
-                <li>
-                    <a href="javascript:void(0);"><i class="fa fa-file" aria-hidden="true"></i> Guide</a>
-                    <ul class="sub-menu">
-                        <li><a href="javascript:void(0);"><i class="fa fa-angle-double-right" aria-hidden="true"></i> Featured recipes</a></li>
-                        <li><a href="javascript:void(0);"><i class="fa fa-angle-double-right" aria-hidden="true"></i> Fertilization guide</a></li>
-                    </ul>
-                </li>
-                <li>
-                    <a href="javascript:void(0);"><i class="fa fa-users" aria-hidden="true"></i> Community</a>
-                    <ul class="sub-menu">
-                        <li><a href="javascript:void(0);"><i class="fa fa-angle-double-right" aria-hidden="true"></i> Notice / Event</a></li>
-                        <li><a href="javascript:void(0);"><i class="fa fa-angle-double-right" aria-hidden="true"></i> My success story</a></li>
-                        <li><a href="javascript:void(0);"><i class="fa fa-angle-double-right" aria-hidden="true"></i> My recipes</a></li>
-                        <li><a href="javascript:void(0);"><i class="fa fa-angle-double-right" aria-hidden="true"></i> Husband story</a></li>
-                        <li><a href="javascript:void(0);"><i class="fa fa-angle-double-right" aria-hidden="true"></i> Q &amp; A list</a></li>
-                    </ul>
-                </li>
-                <li><a href="javascript:void(0);"><i class="fa fa-envelope" aria-hidden="true"></i> Push</a></li>
-                <li><a href="javascript:void(0);"><i class="fa fa-bar-chart" aria-hidden="true"></i> Report</a></li>
-                <li><a href="javascript:void(0);"><i class="fa fa-cogs" aria-hidden="true"></i> Settings</a></li>
-            </ul>
-            <div class="copyright">2017 &copy; ComeOnBaby</div>
-        </aside>
+        <%@ include file="leftCategoriesMenu.jsp" %>
+
     </div>
     <!-- #End Sidebar -->
 
     <!-- Page Content -->
     <div id="page-content-wrapper">
 
-        <!-- Top line -->
-        <header class="container-fluid top-line">
-            <div class="text-left top-switcher pull-left">
-                <a href="javascript:void(0);" class="btn btn-toggle" id="menu-toggle"><i class="fa fa-bars" aria-hidden="true"></i></a>
-            </div>
-            <div class="text-right">
-                <ul class="nav navbar-nav navbar-right">
-                    <li class="dropdown">
-                        <a href="javascript:void(0);" class="dropdown-toggle avatar" data-toggle="dropdown"><i class="fa fa-user-o"></i></a>
-                        <ul class="dropdown-menu">
-                            <li class="dropdown-menu-header text-center">Hello, Maxim!</li>
-                            <li><a href="javascript:void(0);"><i class="fa fa-cog"></i> Settings</a></li>
-                            <li><a href="javascript:void(0);"><i class="fa fa-sign-out"></i> Logout</a></li>
-                        </ul>
-                    </li>
-                </ul>
-            </div>
-        </header>
-        <!-- #End Top line -->
+        <%@ include file="topLine.jsp" %>
 
         <!-- Content section -->
         <section class="container-fluid content">
-            <h3><i class="fa fa-bar-chart"></i>Monthly report</h3>
+            <h3><i class="fa fa-bar-chart"></i>Weekly report</h3>
 
             <% AppUser user = (AppUser) request.getAttribute("user"); %>
 
