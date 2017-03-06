@@ -26,7 +26,7 @@
 </head>
 <body>
 
-<!-- 404 error -->
+<!-- 404 error page -->
 <div class="container text-center error-404">
     <div><a href="/"><img src="images/logo-big.png" /></a></div>
     <div class="hit-the-floor">404</div>
@@ -34,7 +34,7 @@
     <p>The page you are looking for could have been deleted or never have existed :( <br />We are sorry about it...</p>
     <a href="/" class="btn btn-primary">Go back to our homepage</a>
 </div>
-<!-- #End 404 error -->
+<!-- #End 404 error page -->
 
 <%@ include file="footerJavaScript.jsp" %>
 
