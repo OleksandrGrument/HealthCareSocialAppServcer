@@ -1,7 +1,11 @@
 package com.ComeOnBaby.controller;
 
 import com.ComeOnBaby.model.AppUser;
+import com.ComeOnBaby.model.Note;
 import com.ComeOnBaby.service.AppUserService;
+import com.ComeOnBaby.service.NoteService;
+import com.ComeOnBaby.util.DataNoteByMonth;
+import com.ComeOnBaby.util.MonthlyReportShowXlsx;
 import com.ComeOnBaby.util.XlsxView;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -22,6 +26,9 @@ public class ManagerCabinetController {
 
     @Autowired
     AppUserService appUserService;
+
+    @Autowired
+    NoteService noteService;
 
     @RequestMapping(value = "/", method = RequestMethod.GET)
     public ModelAndView indexCabinet() {
@@ -66,8 +73,10 @@ public class ManagerCabinetController {
         ModelAndView monthlyReport = new ModelAndView("monthlyReport");
 
         AppUser user = appUserService.findById(userId);
+        List<Note> notices = noteService.findUserNotes(user);
 
         monthlyReport.addObject("user", user);
+        monthlyReport.addObject("notices", notices);
 
         return monthlyReport;
     }
@@ -90,6 +99,43 @@ public class ManagerCabinetController {
         XlsxView xlsxView = new XlsxView();
         xlsxView.setAppUserList(appUserService.getAllUsers());
         return new ModelAndView(xlsxView);
+    }
+
+    @RequestMapping(value = "/monthlyReportShow/{userId}/{month}/{year}", method = RequestMethod.GET)
+    public ModelAndView monthlyReportShow(@PathVariable Long userId, @PathVariable int month, @PathVariable int year) {
+
+        System.out.println("========month " + month);
+        System.out.println("========year " + year);
+
+        ModelAndView monthlyReport = new ModelAndView("monthlyReportShow");
+
+        AppUser user = appUserService.findById(userId);
+        List<Note> notices = noteService.findUserNotes(user);
+        DataNoteByMonth dataNoteByMonth = new DataNoteByMonth(notices, month, year);
+
+        String daysInMonthsString = dataNoteByMonth.daysInMonthsString();
+        String valueInMonthsString = dataNoteByMonth.valueInMonthsString();
+
+        monthlyReport.addObject("user", user);
+        monthlyReport.addObject("dataNoteByMonth", dataNoteByMonth);
+        monthlyReport.addObject("month", month);
+        monthlyReport.addObject("year", year);
+        monthlyReport.addObject("daysInMonthsString", daysInMonthsString);
+        monthlyReport.addObject("valueInMonthsString", valueInMonthsString);
+
+        return monthlyReport;
+    }
+
+    @RequestMapping(value = "/downloadMonthlyReport/{userId}/{month}/{year}" , method = RequestMethod.GET)
+    public ModelAndView downloadMonthlyReport (@PathVariable Long userId, @PathVariable int month, @PathVariable int year){
+
+        AppUser user = appUserService.findById(userId);
+        List<Note> notices = noteService.findUserNotes(user);
+        DataNoteByMonth dataNoteByMonth = new DataNoteByMonth(notices, month, year);
+
+        MonthlyReportShowXlsx monthlyReportShowXlsx = new MonthlyReportShowXlsx();
+        monthlyReportShowXlsx.setDataNoteByMonth(dataNoteByMonth);
+        return new ModelAndView(monthlyReportShowXlsx);
     }
 
 }

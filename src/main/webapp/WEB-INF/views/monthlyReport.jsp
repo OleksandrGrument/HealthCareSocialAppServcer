@@ -1,4 +1,8 @@
 <%@ page import="com.ComeOnBaby.model.AppUser" %>
+<%@ page import="com.ComeOnBaby.model.Note" %>
+<%@ page import="java.util.List" %>
+<%@ page import="java.util.Date" %>
+<%@ page import="java.text.SimpleDateFormat" %>
 <%@ taglib prefix="spring" uri="http://www.springframework.org/tags" %>
 <%@ page language="java" pageEncoding="UTF-8"%>
 <%@ page contentType="text/html;charset=UTF-8" %>
@@ -44,18 +48,19 @@
             <h3><i class="fa fa-bar-chart"></i>Monthly report</h3>
 
             <% AppUser user = (AppUser) request.getAttribute("user"); %>
+            <% List<Note> notices = (List<Note>) request.getAttribute("notices"); %>
 
             <table id="dataTable" class="table table-striped table-bordered" width="100%" cellspacing="0">
                 <thead>
                 <tr>
-                    <th>ID</th>
+                    <%--<th>ID</th>--%>
                     <th>Generation month</th>
                     <th>Evaluation</th>
                 </tr>
                 </thead>
                 <tfoot>
                 <tr>
-                    <th>ID</th>
+                    <%--<th>ID</th>--%>
                     <th>Generation month</th>
                     <th>Evaluation</th>
                 </tr>
@@ -63,21 +68,24 @@
 
                 <!-- Items list -->
                 <tbody>
+                <%
+                    Date date = notices.get(0).getDate();
+                    SimpleDateFormat dateFormat = new SimpleDateFormat("MM.yyyy");
+                    SimpleDateFormat dateFormat1 = new SimpleDateFormat("MM/yyyy");
+                %>
                 <tr>
-                    <td width="50">1</td>
-                    <td><a href="monthlyReportShow.html">01-2017</a></td>
+                    <td><a href="<%out.print("/cabinet/monthlyReportShow/"+user.getId()+"/"+dateFormat1.format(date));%>"><%out.print(dateFormat.format(date));%></a></td>
                     <td>Good</td>
                 </tr>
-                <tr>
-                    <td>2</td>
-                    <td><a href="monthlyReportShow.html">02-2017</a></td>
-                    <td>Excellent</td>
-                </tr>
-                <tr>
-                    <td>3</td>
-                    <td><a href="monthlyReportShow.html">03-2017</a></td>
-                    <td>Bad</td>
-                </tr>
+                <%for(Note note: notices){
+                    if(!dateFormat.format(note.getDate()).equals(dateFormat.format(date))){%>
+                        <tr>
+                            <td><a href="<%out.print("/cabinet/monthlyReportShow/"+user.getId()+"/"+note.getDate().getMonth()+"/"+note.getDate().getYear());%>"><%out.print(dateFormat.format(note.getDate()));%></a></td>
+                            <td>Good</td>
+                        </tr>
+                        <%date = note.getDate();%>
+                    <%}%>
+                <%}%>
                 </tbody>
                 <!-- #End Items list -->
 

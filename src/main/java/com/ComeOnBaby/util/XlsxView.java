@@ -20,21 +20,19 @@ import java.util.Map;
 public class XlsxView extends AbstractXlsxView {
 
 
-    private List<AppUser> appUsers;
+   private List<AppUser> appUsers;
 
     @Override
     protected void buildExcelDocument(Map<String, Object> model,
                                       Workbook workbook,
                                       HttpServletRequest request,
                                       HttpServletResponse response) throws Exception {
-        System.out.println("=================QQQQQQQQQQQQQQQQQ===============");
         // set the file name
-        response.setHeader("Content-Disposition", "attachment; filename=\"users.xlsx\"");
+        response.setHeader("Content-Disposition", "attachment; filename=\"AppUsers.xlsx\"");
 
-        System.out.println("=================QQQQQQQQQQQQQQQQQ===============");
         // create sheet
         Sheet sheet = workbook.createSheet("users");
-        System.out.println("=================QQQQQQQQQQQQQQQQQ===============");
+
         // create header
         Row header = sheet.createRow(0);
         header.createCell(0).setCellValue("ID");
@@ -55,6 +53,7 @@ public class XlsxView extends AbstractXlsxView {
             fruitRow.createCell(4).setCellValue(appUser.getLoginType());
             fruitRow.createCell(5).setCellValue(appUser.getPreferences().getGender());
         }
+
 
     }
 

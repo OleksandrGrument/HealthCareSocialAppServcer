@@ -48,7 +48,7 @@
             <h3><i class="fa fa-user"></i>Users list</h3>
 
             <div class="mb20">
-                <a class="btn btn-primary" href="/download/">Download Excel</a>
+                <a class="btn btn-primary" href="/cabinet/download/">Download Excel</a>
             </div>
 
             <table id="dataTable" class="table table-striped table-bordered" width="100%" cellspacing="0">
