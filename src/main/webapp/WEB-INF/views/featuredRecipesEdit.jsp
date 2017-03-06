@@ -58,7 +58,7 @@
                         </div>
 
                         <div class="form-group form-img-thumbnail">
-                            <a data-fancybox="gallery" href="images/recipe.jpeg"><img src="images/recipe.jpeg" alt="Roasted Carrot Soup" class="img-thumbnail"></a>
+                            <a data-fancybox="gallery" href="/resources/images/recipe.jpeg"><img src="/resources/images/recipe.jpeg" alt="Roasted Carrot Soup" class="img-thumbnail"></a>
                             <a href="javascript:void(0);" class="delete deleteConfirm"><i class="fa fa-times"></i></a>
                         </div>
 
