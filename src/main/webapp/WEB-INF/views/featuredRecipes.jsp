@@ -111,5 +111,25 @@
 
 <%@ include file="footerJavaScript.jsp" %>
 
+<script>
+    jQuery(document).ready(function($) {
+        // Delete confirm
+        $('.deleteConfirm').on('click', function () {
+            swal({
+                title: 'Are you sure?',
+                text: "You won't be able to revert this!",
+                type: 'warning',
+                showCancelButton: true,
+                confirmButtonColor: '#3b9c96',
+                cancelButtonText: 'No, thank you',
+                confirmButtonText: 'Yes, delete it!'
+            }).then(function () {
+                // link what you need!
+                window.location.href = 'http://google.com.ua/';
+            });
+        });
+    });
+</script>
+
 </body>
 </html>
