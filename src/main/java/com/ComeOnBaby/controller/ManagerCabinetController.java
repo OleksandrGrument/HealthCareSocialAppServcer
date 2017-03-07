@@ -5,8 +5,8 @@ import com.ComeOnBaby.model.Note;
 import com.ComeOnBaby.service.AppUserService;
 import com.ComeOnBaby.service.NoteService;
 import com.ComeOnBaby.util.DataNoteByMonth;
-import com.ComeOnBaby.util.MonthlyReportShowXlsx;
-import com.ComeOnBaby.util.XlsxView;
+import com.ComeOnBaby.XlsxView.MonthlyReportShowXlsx;
+import com.ComeOnBaby.XlsxView.AllAppUsersInfoXlsx;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -98,16 +98,13 @@ public class ManagerCabinetController {
     @RequestMapping(value = "/download" , method = RequestMethod.GET)
     public ModelAndView download (){
 
-        XlsxView xlsxView = new XlsxView();
+        AllAppUsersInfoXlsx xlsxView = new AllAppUsersInfoXlsx();
         xlsxView.setAppUserList(appUserService.getAllUsers());
         return new ModelAndView(xlsxView);
     }
 
     @RequestMapping(value = "/monthlyReportShow/{userId}/{month}/{year}", method = RequestMethod.GET)
     public ModelAndView monthlyReportShow(@PathVariable Long userId, @PathVariable int month, @PathVariable int year) {
-
-        System.out.println("========month " + month);
-        System.out.println("========year " + year);
 
         ModelAndView monthlyReport = new ModelAndView("monthlyReportShow");
 

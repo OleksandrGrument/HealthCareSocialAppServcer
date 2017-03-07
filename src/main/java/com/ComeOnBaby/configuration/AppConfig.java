@@ -1,7 +1,7 @@
 package com.ComeOnBaby.configuration;
 
 
-import com.ComeOnBaby.util.XlsxView;
+import com.ComeOnBaby.XlsxView.AllAppUsersInfoXlsx;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.ComponentScan;
 import org.springframework.context.annotation.Configuration;
@@ -38,7 +38,7 @@ public class AppConfig extends WebMvcConfigurerAdapter {
         viewResolver.setSuffix(".jsp");
         registry.viewResolver(viewResolver);
         registry.enableContentNegotiation(
-                new XlsxView());
+                new AllAppUsersInfoXlsx());
 
     }
 

@@ -1,7 +1,6 @@
 <%@ page import="com.ComeOnBaby.model.AppUser" %>
 <%@ page import="com.ComeOnBaby.util.DataNoteByMonth" %>
 <%@ page import="java.util.Date" %>
-<%@ page import="com.ComeOnBaby.util.DaysInMonths" %>
 <%@ taglib prefix="spring" uri="http://www.springframework.org/tags" %>
 <%@ page language="java" pageEncoding="UTF-8"%>
 <%@ page contentType="text/html;charset=UTF-8" %>
@@ -175,12 +174,11 @@
 
 <% String daysInMonthsString = (String) request.getAttribute("daysInMonthsString"); %>
 <% String valueInMonthsString = (String) request.getAttribute("valueInMonthsString"); %>
-<%Date date = new Date();%>
 
 <script>
     new Chartist.Line('.ct-chart', {
-        labels: [<%out.print(daysInMonthsString);%>],
-        series: [<%out.print(valueInMonthsString);%>]
+       labels: [<%out.print(daysInMonthsString);%>],
+       series: [[<%out.print(valueInMonthsString);%>]]
     }, {
         fullWidth: true,
         showArea: true

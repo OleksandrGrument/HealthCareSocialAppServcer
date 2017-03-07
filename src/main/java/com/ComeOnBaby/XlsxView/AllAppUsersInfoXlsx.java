@@ -1,4 +1,4 @@
-package com.ComeOnBaby.util;
+package com.ComeOnBaby.XlsxView;
 
 import com.ComeOnBaby.model.AppUser;
 import com.ComeOnBaby.service.AppUserService;
@@ -17,7 +17,7 @@ import java.util.Map;
 /**
  * Created by Oleksandr on 3/2/2017.
  */
-public class XlsxView extends AbstractXlsxView {
+public class AllAppUsersInfoXlsx extends AbstractXlsxView {
 
 
    private List<AppUser> appUsers;
