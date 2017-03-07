@@ -1,37 +1,35 @@
 package com.ComeOnBaby.model;
 
+import org.hibernate.annotations.GenericGenerator;
 import org.hibernate.validator.constraints.NotEmpty;
 
-import javax.persistence.Column;
-import javax.persistence.Entity;
-import javax.persistence.Id;
-import javax.persistence.Table;
+import javax.persistence.*;
 import java.text.SimpleDateFormat;
 import java.util.Date;
 
 
 @Entity
 @Table(name = "fertilization_guide")
-public class Fertilization_guide {
+public class FertilizationGuide {
 
     @Id
-    @NotEmpty
-    @Column(name="id", nullable=false)
+    @GeneratedValue(generator = "increment2")
+    @GenericGenerator(name = "increment2", strategy = "increment")
+    @Column(name = "id")
     private Long id;
 
     @NotEmpty
-    @Column(name="title", nullable=false)
+    @Column(name = "title", nullable = false)
     private String title;
 
-    @NotEmpty
-    @Column(name="date", nullable=false)
+    @Column(name = "date", columnDefinition = "DATETIME")
+    @Temporal(TemporalType.TIMESTAMP)
     private Date date;
 
-    @Column(name="image")
+    @Column(name = "image")
     private String image;
 
-    public Fertilization_guide(){
-
+    public FertilizationGuide() {
     }
 
     public Long getId() {
@@ -59,7 +57,7 @@ public class Fertilization_guide {
     }
 
     public String getDateFormat() {
-        return  new SimpleDateFormat("yyyy-MM-dd").format(date);
+        return new SimpleDateFormat("yyyy-MM-dd").format(date);
     }
 
     public String getImage() {
@@ -70,7 +68,7 @@ public class Fertilization_guide {
         this.image = image;
     }
 
-    public Fertilization_guide(Long id, String title, Date date, String image) {
+    public FertilizationGuide(Long id, String title, Date date, String image) {
         this.id = id;
         this.title = title;
         this.date = date;
@@ -79,7 +77,7 @@ public class Fertilization_guide {
 
     @Override
     public String toString() {
-        return "Fertilization_guide{" +
+        return "FertilizationGuide{" +
                 "id=" + id +
                 ", title='" + title + '\'' +
                 ", date=" + date +

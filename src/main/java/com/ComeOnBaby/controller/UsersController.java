@@ -79,7 +79,7 @@ public class UsersController {
     NoteService noteService;
 
     @Autowired
-    Fertilization_guideService guideService;
+    FertilizationGuideService guideService;
 
     @Autowired
     RecipeGuideService recipeService;
@@ -677,7 +677,7 @@ public class UsersController {
     }
 
     private JSONObject getGuide(JSONObject inJSON, JSONObject outJSON) {
-        List<Fertilization_guide> guideList = guideService.getAllFertilization_guide();
+        List<FertilizationGuide> guideList = guideService.getAllFertilizationGuide();
 
 
         outJSON.put(RESULT, SUCCESS);
@@ -685,7 +685,7 @@ public class UsersController {
 
         JSONArray jsonArray = new JSONArray();
 
-        for (Fertilization_guide guide : guideList) {
+        for (FertilizationGuide guide : guideList) {
             System.out.println("TO STRING GUIDE   : " + guide.toString());
             jsonArray.put(getGuideJSON(guide));
         }
@@ -693,8 +693,8 @@ public class UsersController {
         return outJSON;
     }
 
-    //Make JSON from Fertilization_guide
-    private JSONObject getGuideJSON(Fertilization_guide guide) {
+    //Make JSON from FertilizationGuide
+    private JSONObject getGuideJSON(FertilizationGuide guide) {
         JSONObject outGuide = new JSONObject();
         outGuide.put("id", guide.getId());
         outGuide.put("title", guide.getTitle());

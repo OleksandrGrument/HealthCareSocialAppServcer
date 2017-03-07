@@ -6,6 +6,7 @@
 <%@ page contentType="text/html;charset=UTF-8" %>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
 <%@ taglib prefix="sec" uri="http://www.springframework.org/security/tags" %>
+<%@ taglib prefix="form" uri="http://www.springframework.org/tags/form" %>
 <%@ page session="false" %>
 <!DOCTYPE html>
 <html lang="en">
@@ -46,7 +47,7 @@
             <h3><i class="fa fa-list-ul"></i>Featured recipes</h3>
 
             <div class="mb20">
-                <a href="<%out.print("/guide/add-recipe");%>" class="btn btn-primary">Add new recipe</a>
+                <a href="/guide/add-recipe" class="btn btn-primary">Add new recipe</a>
             </div>
 
             <table id="dataTable" class="table table-striped table-bordered" width="100%" cellspacing="0">
@@ -89,7 +90,8 @@
                     <td><a href="https://food52.com/recipes/9743-roasted-carrot-soup" target="_blank"><%out.print(recipeGuide.getUrlNaver());%></a></td>
                     <td align="center"><%out.print(recipeGuide.getDate());%></td>
                     <td align="center">
-                        <a href="<%out.print(editGuideUrl);%>"><i class="fa fa-edit"></i> Edit</a>&nbsp;|&nbsp;<a href="javascript:void(0);" class="deleteConfirm"><i class="fa fa-trash"></i> Delete</a>
+                        <input type="hidden" value="<%%>">
+                        <a href="<%out.print(editGuideUrl);%>"><i class="fa fa-edit"></i> Edit</a>&nbsp;|&nbsp;<a href="<%out.print("/guide/delete-recipe/"+recipeGuide.getId());%>" class="deleteConfirm"><i class="fa fa-trash"></i> Delete</a>
                     </td>
                 </tr>
 
@@ -111,25 +113,6 @@
 
 <%@ include file="footerJavaScript.jsp" %>
 
-<script>
-    jQuery(document).ready(function($) {
-        // Delete confirm
-        $('.deleteConfirm').on('click', function () {
-            swal({
-                title: 'Are you sure?',
-                text: "You won't be able to revert this!",
-                type: 'warning',
-                showCancelButton: true,
-                confirmButtonColor: '#3b9c96',
-                cancelButtonText: 'No, thank you',
-                confirmButtonText: 'Yes, delete it!'
-            }).then(function () {
-                // link what you need!
-                window.location.href = 'http://google.com.ua/';
-            });
-        });
-    });
-</script>
 
 </body>
 </html>

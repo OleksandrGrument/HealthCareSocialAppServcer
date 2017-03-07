@@ -1,3 +1,6 @@
+<%@ page import="com.ComeOnBaby.model.FertilizationGuide" %>
+<%@ page import="java.util.ArrayList" %>
+<%@ page import="java.util.Iterator" %>
 <%@ taglib prefix="spring" uri="http://www.springframework.org/tags" %>
 <%@ page language="java" pageEncoding="UTF-8"%>
 <%@ page contentType="text/html;charset=UTF-8" %>
@@ -43,7 +46,7 @@
             <h3><i class="fa fa-list-ul"></i>Fertilization guide</h3>
 
             <div class="mb20">
-                <button class="btn btn-primary">Add new guide</button>
+                <a href="/guide/add-fertilization" class="btn btn-primary">Add new guide</a>
             </div>
 
             <table id="dataTable" class="table table-striped table-bordered" width="100%" cellspacing="0">
@@ -66,24 +69,25 @@
 
                 <!-- Items list -->
                 <tbody>
+              <%
+                    ArrayList<FertilizationGuide> fertilizationGuideArrayList = (ArrayList<FertilizationGuide>) request.getAttribute("fertilizationGuides");
+
+                    Iterator<FertilizationGuide> fertilizationGuideIterator = fertilizationGuideArrayList.iterator();
+
+                    while (fertilizationGuideIterator.hasNext()) {
+                        FertilizationGuide fertilizationGuide = fertilizationGuideIterator.next();
+                        String editGuideUrl = "/guide/edit-fertilization/"+fertilizationGuide.getId();
+                %>
                 <tr>
-                    <td align="center">1</td>
-                    <td><a href="fertilizationGuideEdit.php">3rd Week of Pregnancy</a></td>
-                    <td align="center">18-02-2017 15:04</td>
+                    <td align="center"><%out.print(fertilizationGuide.getId());%></td>
+                    <td><a href="<%out.print(editGuideUrl);%>"><%out.print(fertilizationGuide.getTitle());%></a></td>
+                    <td align="center"><%out.print(fertilizationGuide.getDate());%></td>
                     <td align="center">
-                        <a href="fertilizationGuideEdit.php" data-toggle="tooltip" title="Edit"><i class="fa fa-edit"></i> Edit</a>&nbsp; |&nbsp;
-                        <a href="javascript:void(0);" data-toggle="tooltip" title="Delete" class="deleteConfirm"><i class="fa fa-trash"></i> Delete</a>
+                        <a href="<%out.print(editGuideUrl);%>" data-toggle="tooltip" title="Edit"><i class="fa fa-edit"></i> Edit</a>&nbsp; |&nbsp;
+                        <a href="<%out.print("/guide/delete-fertilization/"+fertilizationGuide.getId());%>" data-toggle="tooltip" title="Delete" class="deleteConfirm"><i class="fa fa-trash"></i> Delete</a>
                     </td>
                 </tr>
-                <tr>
-                    <td align="center">2</td>
-                    <td><a href="fertilizationGuideEdit.php">3rd Week of Pregnancy</a></td>
-                    <td align="center">28-02-2017 15:04</td>
-                    <td align="center">
-                        <a href="fertilizationGuideEdit.php" data-toggle="tooltip" title="Edit"><i class="fa fa-edit"></i> Edit</a>&nbsp; |&nbsp;
-                        <a href="javascript:void(0);" data-toggle="tooltip" title="Delete" class="deleteConfirm"><i class="fa fa-trash"></i> Delete</a>
-                    </td>
-                </tr>
+                <%}%>
                 </tbody>
                 <!-- #End Items list -->
 

@@ -1,3 +1,4 @@
+<%@ page import="com.ComeOnBaby.model.FertilizationGuide" %>
 <%@ taglib prefix="spring" uri="http://www.springframework.org/tags" %>
 <%@ page language="java" pageEncoding="UTF-8"%>
 <%@ page contentType="text/html;charset=UTF-8" %>
@@ -38,35 +39,47 @@
 
         <%@ include file="topLine.jsp" %>
 
+
+        <%FertilizationGuide fertilizationGuide = (FertilizationGuide) request.getAttribute("fertilizationGuide");%>
+        <%boolean isNew = (boolean) request.getAttribute("isNew");%>
+        <%String formAction = "/guide/save-new-fertilization";%>
+
         <!-- Content section -->
         <section class="container-fluid content">
-            <h3><i class="fa fa-list-ul"></i>3rd Week of Pregnancy</h3>
+            <%String headTitle ="New Fertilization"; if (!isNew) headTitle = fertilizationGuide.getTitle();%>
+            <h3><i class="fa fa-list-ul"></i><%out.print(headTitle);%></h3>
 
             <!-- Edit form -->
-            <form action="" method="post">
+            <form action="<%out.print(formAction);%>" method="post" enctype="multipart/form-data">
                 <div class="row">
                     <div class="col-md-6">
 
+                        <input type="hidden" name="id" value="<%if (!isNew)out.print(fertilizationGuide.getId());%>">
+
+
+                        <%String title =""; if (!isNew) title = fertilizationGuide.getTitle();%>
                         <div class="form-group">
                             <label for="title">Guide title</label>
-                            <input type="text" class="form-control" name="title" id="title" value="3rd Week of Pregnancy" placeholder="Guide title" required />
+                            <input type="text" class="form-control" name="title" id="title" value="<%out.print(title);%>" placeholder="Guide title" required />
                         </div>
 
+                        <% if(!isNew){
+                            String urlPic = fertilizationGuide.getImage(); %>
                         <div class="form-group form-img-thumbnail">
-                            <a data-fancybox="gallery" href="/resources/images/guide.jpg"><img src="/resources/images/guide.jpg" alt="Roasted Carrot Soup" class="img-thumbnail"></a>
-                            <a href="javascript:void(0);" class="delete deleteConfirm"><i class="fa fa-times"></i></a>
+                            <a data-fancybox="gallery" href="<%out.print(urlPic);%>"><img src="<%out.print(urlPic);%>" alt="Roasted Carrot Soup" class="img-thumbnail"></a>
                         </div>
+                        <%}%>
 
                         <div class="form-group">
                             <label class="control-label">Guide image</label>
-                            <input id="fileInput" type="file" class="file" required />
+                            <input id="fileInput" name="filePicture[]" type="file" class="file" <%if (isNew){%>required <%}%> />
                         </div>
                     </div>
                 </div>
 
                 <div class="mt20 delimiter">
-                    <a href="fertilizationGuide.php" class="btn btn-default">Back</a>
-                    <button class="btn btn-primary">Confirm</button>
+                    <a href="/guide/fertilization" class="btn btn-default">Back</a>
+                    <button class="btn btn-primary" type="submit">Confirm</button>
                 </div>
             </form>
             <!-- #End Edit form -->

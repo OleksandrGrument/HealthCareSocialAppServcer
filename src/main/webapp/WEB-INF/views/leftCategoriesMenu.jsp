@@ -1,12 +1,12 @@
 <aside class="sidebar-nav">
     <div class="left-top-line logo"><a href="/">ComeOnBaby</a></div>
     <ul>
-        <li><a href="javascript:void(0);"><i class="fa fa-user" aria-hidden="true"></i> Users</a></li>
+        <li><a href="/cabinet/"><i class="fa fa-user" aria-hidden="true"></i> Users</a></li>
         <li>
             <a href="javascript:void(0);"><i class="fa fa-file" aria-hidden="true"></i> Guide</a>
             <ul class="sub-menu">
-                <li><a href="<%out.print("/guide/featured-recipes");%>"><i class="fa fa-angle-double-right" aria-hidden="true"></i> Featured recipes</a></li>
-                <li><a href="javascript:void(0);"><i class="fa fa-angle-double-right" aria-hidden="true"></i> Fertilization guide</a></li>
+                <li><a href="/guide/featured-recipes"><i class="fa fa-angle-double-right" aria-hidden="true"></i> Featured recipes</a></li>
+                <li><a href="/guide/fertilization"><i class="fa fa-angle-double-right" aria-hidden="true"></i> Fertilization guide</a></li>
             </ul>
         </li>
         <li>
