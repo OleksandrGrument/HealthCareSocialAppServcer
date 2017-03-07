@@ -33,19 +33,6 @@ jQuery(document).ready(function($) {
         responsive: true,
     });
 
-    // Delete confirm
-    $('.deleteConfirm').on('click', function () {
-        swal({
-            title: 'Are you sure?',
-            text: "You won't be able to revert this!",
-            type: 'warning',
-            showCancelButton: true,
-            confirmButtonColor: '#3b9c96',
-            cancelButtonText: 'No, thank you',
-            confirmButtonText: 'Yes, delete it!'
-        });
-    });
-
     // Recipes open link
     $('.recipesOpenLink').on('click', function() {
         var url = $("input[name=url]").val();
