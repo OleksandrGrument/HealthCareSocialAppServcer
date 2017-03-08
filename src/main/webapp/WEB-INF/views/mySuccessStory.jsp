@@ -1,3 +1,6 @@
+<%@ page import="java.util.ArrayList" %>
+<%@ page import="com.ComeOnBaby.model.Blog" %>
+<%@ page import="java.util.Iterator" %>
 <%@ taglib prefix="spring" uri="http://www.springframework.org/tags" %>
 <%@ page language="java" pageEncoding="UTF-8"%>
 <%@ page contentType="text/html;charset=UTF-8" %>
@@ -40,10 +43,11 @@
 
         <!-- Content section -->
         <section class="container-fluid content">
-            <h3><i class="fa fa-file-text-o"></i>My success story</h3>
+            <%String title = (String) request.getAttribute("title");%>
+            <h3><i class="fa fa-file-text-o"></i><%out.print(title);%></h3>
 
             <div class="mb20">
-                <button class="btn btn-primary">Add new story</button>
+                <a href="/my/new" class="btn btn-primary">Add new</a>
             </div>
 
             <table id="dataTable" class="table table-striped table-bordered" width="100%" cellspacing="0">
@@ -70,17 +74,29 @@
 
                 <!-- Items list -->
                 <tbody>
+
+                <%
+                    ArrayList<Blog> blogs = (ArrayList<Blog>) request.getAttribute("blogs");
+
+                    Iterator<Blog> blogIterator = blogs.iterator();
+
+                    while (blogIterator.hasNext()) {
+                        Blog blog = blogIterator.next();
+                        String editStoryUrl = "/my/edit/"+blog.getId();
+                %>
+
                 <tr>
-                    <td align="center">1</td>
-                    <td><a href="mySuccessStoryEdit.php">Stand up from the last pain</a></td>
-                    <td align="center">112</td>
-                    <td align="center">9</td>
-                    <td align="center">18-02-2017 15:04</td>
+                    <td align="center"><%out.print(blog.getId());%></td>
+                    <td><a href="<%out.print(editStoryUrl);%>"><%out.print(blog.getTitle());%></a></td>
+                    <td align="center">112</td>   <%--likes--%>
+                    <td align="center">9</td>      <%-- comments--%>
+                    <td align="center"><%out.print(blog.getDatetime());%></td>
                     <td align="center">
-                        <a href="mySuccessStoryEdit.php" data-toggle="tooltip" title="Edit"><i class="fa fa-edit"></i> Edit</a>&nbsp; |&nbsp;
-                        <a href="javascript:void(0);" data-toggle="tooltip" title="Delete" class="deleteConfirm"><i class="fa fa-trash"></i> Delete</a>
+                        <a href="<%out.print(editStoryUrl);%>" data-toggle="tooltip" title="Edit"><i class="fa fa-edit"></i> Edit</a>&nbsp; |&nbsp;
+                        <a href="<%out.print("/my/delete/"+blog.getId());%>" data-toggle="tooltip" title="Delete" class="deleteConfirm"><i class="fa fa-trash"></i> Delete</a>
                     </td>
                 </tr>
+                <%}%>
                 </tbody>
                 <!-- #End Items list -->
 

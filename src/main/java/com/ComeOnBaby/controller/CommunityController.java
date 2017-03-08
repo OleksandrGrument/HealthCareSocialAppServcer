@@ -354,15 +354,17 @@ public class CommunityController {
         }
     }
 
+
+    // Save comments for blog
     private void saveCommentOperation(AppUser user, CommunityRequest req, JSONObject outJSON) {
         System.out.println("INSIDE SAVE COMMENT: ");
         try {
-            Comment comm = new Comment();
-            comm.setId_user(user.getId());
-            comm.setId_blog(req.communityID);
-            comm.setText(req.getContent());
-            comm.setDatetime(Calendar.getInstance().getTime());
-            commentsService.addNewComments(comm);
+            Comment comment = new Comment();
+            comment.setAppUser(user);
+            comment.setBlog(blogService.findById(req.communityID));
+            comment.setText(req.getContent());
+            comment.setDatetime(Calendar.getInstance().getTime());
+            commentsService.addNewComments(comment);
         } catch (Exception exc) {
             exc.printStackTrace();
             outJSON.put(RESULT, FAILURE);
@@ -439,18 +441,18 @@ public class CommunityController {
 
     private final static String COMMID = "comm_id";
 
-    private JSONObject getCommentJSON(Comment comm) {
+    private JSONObject getCommentJSON(Comment comment) {
         JSONObject json = new JSONObject();
-        json.put(COMMID, comm.getId());
-        json.put(BLOGID, comm.getId_blog());
-        json.put(USERID, comm.getId_user());
-        json.put(BLOGTEXT, comm.getText());
-        Preferences pr = prefService.findById(comm.getId_user());
+        json.put(COMMID, comment.getId());
+        json.put(BLOGID, comment.getBlog().getId());
+        json.put(USERID, comment.getAppUser().getId());
+        json.put(BLOGTEXT, comment.getText());
+        Preferences pr = prefService.findById(comment.getAppUser().getId());
         if(pr != null) {
             if (pr.getAvatar() != null) json.put(USERAVATAR, pr.getAvatar());
             if (pr.getNickname() != null) json.put(USERNICKNAME, pr.getNickname());
         }
-        json.put(BLOGDATE, dateFormat.format(comm.getDatetime()));
+        json.put(BLOGDATE, dateFormat.format(comment.getDatetime()));
         return json;
     }
 

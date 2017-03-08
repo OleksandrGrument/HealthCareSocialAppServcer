@@ -83,7 +83,7 @@
                 </div>
 
                 <div class="mt20 delimiter">
-                    <a href="<%out.print("/guide/featured-recipes");%>" class="btn btn-default">Back</a>
+                    <a href="/guide/featured-recipes" class="btn btn-default">Back</a>
                     <button class="btn btn-primary" type="submit">Confirm</button>
                 </div>
             </form>

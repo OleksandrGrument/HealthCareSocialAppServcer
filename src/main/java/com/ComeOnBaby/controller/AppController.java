@@ -75,7 +75,7 @@ public class AppController {
 
 		if (userProfile.getType().equals("ADMIN")){
 			System.out.println("LOGIN AS ADMIN");
-			modelAndView.setViewName("redirect:/cabinet/");
+			modelAndView.setViewName("userslist");
 
 		} else if (userProfile.getType().equals("CUSTOMER")){
 			System.out.println("LOGIN AS CUSTOMER");

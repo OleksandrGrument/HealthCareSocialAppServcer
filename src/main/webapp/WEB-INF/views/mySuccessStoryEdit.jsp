@@ -1,3 +1,4 @@
+<%@ page import="com.ComeOnBaby.model.Blog" %>
 <%@ taglib prefix="spring" uri="http://www.springframework.org/tags" %>
 <%@ page language="java" pageEncoding="UTF-8"%>
 <%@ page contentType="text/html;charset=UTF-8" %>
@@ -38,32 +39,47 @@
 
         <%@ include file="topLine.jsp" %>
 
+
+        <%Blog blog = (Blog) request.getAttribute("blog");%>
+        <%boolean isNew = (boolean) request.getAttribute("isNew");%>
+        <%String formAction = "/my/save-new";%>
         <!-- Content section -->
         <section class="container-fluid content">
-            <h3><i class="fa fa-file-text-o"></i>Edit story</h3>
+
+            <%String headTitle ="New "; if (!isNew) headTitle = "Edit information";%>
+            <h3><i class="fa fa-file-text-o"></i><%out.print(headTitle);%></h3>
+
+
 
             <!-- Edit form -->
-            <form action="" method="post">
+            <form action="<%out.print(formAction);%>" method="post" enctype="multipart/form-data">
                 <div class="row">
                     <div class="col-md-6">
 
+                        <input type="hidden" name="id" value="<%if (!isNew)out.print(blog.getId());%>">
+
+                        <%String blogTitle =""; if (!isNew) blogTitle = blog.getTitle();%>
                         <div class="form-group">
-                            <label for="title">Story title</label>
-                            <input type="text" class="form-control" name="title" id="title" value="Stand up from the last pain" placeholder="Story title" required />
+                            <label for="title">Title</label>
+                            <input type="text" class="form-control" name="title" id="title" value="<%out.print(blogTitle);%>" placeholder="Story title" required />
                         </div>
 
+                    <%--    <% if(!isNew){
+                        /*    String urlPic = blog.; */%>
                         <div class="form-group form-img-thumbnail">
-                            <a data-fancybox="gallery" href="images/story.jpg"><img src="images/story.jpg" alt="Stand up from the last pain" class="img-thumbnail"></a>
+                            <a data-fancybox="gallery" href="<%%>"><img src="images/story.jpg" alt="Stand up from the last pain" class="img-thumbnail"></a>
                         </div>
+                        <%}%>
 
                         <div class="form-group">
                             <label class="control-label">Story image</label>
                             <input id="fileInput" type="file" class="file" required />
                         </div>
-
+--%>
+                        <%String text = ""; if (!isNew) text = blog.getText();%>
                         <div class="form-group">
                             <label class="control-label">Story text</label>
-                            <textarea class="form-control" name="body" id="editor">Contact your council for a Temporary Event Notice (TEN) if you want to carry out a ‘licensable activity’ on unlicensed premises in England or Wales...</textarea>
+                            <textarea class="form-control" name="body" id="editor"><%out.print(text);%></textarea>
                         </div>
 
                         <div class="form-group">
@@ -73,12 +89,15 @@
                 </div>
 
                 <div class="mt10">
-                    <a href="mySuccessStoryComments.php" class="btn btn-default">Story Comments (9)</a>
+                    <a href="<%out.print("/my/comments/"+blog.getId());%>" class="btn btn-default">Story Comments (9)</a>
                 </div>
 
+
+                <%String backLink = "" ; if (blog.getType().equals(2)) backLink="/my/recipe"; else if (blog.getType().equals(3)) backLink="/my/story";
+                else if (blog.getType().equals(4)) backLink="/my/husband"; %>
                 <div class="mt20 delimiter">
-                    <a href="mySuccessStory.php" class="btn btn-default">Back</a>
-                    <button class="btn btn-primary">Confirm</button>
+                    <a href="<%out.print(backLink);%>" class="btn btn-default">Back</a>
+                    <button type="submit" class="btn btn-primary">Confirm</button>
                 </div>
             </form>
             <!-- #End Edit form -->

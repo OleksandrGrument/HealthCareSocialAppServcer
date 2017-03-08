@@ -7,6 +7,8 @@ CREATE TABLE `users` (
 	PRIMARY KEY (`id`)
 );
 
+INSERT INTO users (email, password, social_id, login_type) VALUES (‘test1245698765@mail.com’, ‘123’, ‘1’, ‘ADMIN’)
+
 CREATE TABLE `preferences` (
 	`user_id` INT NOT NULL,
 	`city` VARCHAR(255) NOT NULL,
@@ -87,7 +89,7 @@ CREATE TABLE `notice` (
 CREATE TABLE `recipe_guide` (
 	`id` INT NOT NULL,
 	`title` VARCHAR(255) NOT NULL,
-	`date` DATE NOT NULL,
+	`date` DATETIME NOT NULL,
 	`imageThumbnail` VARCHAR(255) NOT NULL,
 	`urlNaver` VARCHAR(255) NOT NULL
 );
@@ -95,7 +97,7 @@ CREATE TABLE `recipe_guide` (
 CREATE TABLE `fertilization_guide` (
 	`id` INT NOT NULL,
 	`title` VARCHAR(255) NOT NULL,
-	`date` DATE NOT NULL,
+	`date` DATETIME NOT NULL,
 	`image` VARCHAR(255) NOT NULL
 );
 
