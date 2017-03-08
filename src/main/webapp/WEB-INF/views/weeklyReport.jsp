@@ -73,7 +73,7 @@
                 <%for(WeekReportInformation weekReport : weekReports){ %>
                     <tr>
                         <td width="50">1</td>
-                        <td><a href="<%out.print("/cabinet/weeklyReportShow/"+user.getId()+"/"+weekReport.getCountWeekOfYear());%>"><%out.print(weekReport.getStartOfWeek()+" - "+weekReport.getEndOfWeek());%></a></td>
+                        <td><a href="<%out.print("/users/weeklyReportShow/"+user.getId()+"/"+weekReport.getCountWeekOfYear());%>"><%out.print(weekReport.getStartOfWeek()+" - "+weekReport.getEndOfWeek());%></a></td>
                         <td>Good</td>
                     </tr>
                 <%}%>

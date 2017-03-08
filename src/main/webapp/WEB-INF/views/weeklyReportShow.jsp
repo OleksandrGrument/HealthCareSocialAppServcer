@@ -151,12 +151,11 @@
             <!-- #End User chart information -->
 
             <div class="mt10">
-                <a class="btn btn-primary" href="<%out.print("/cabinet/downloadWeeklyReport/"+user.getId()+"/"+weekReport.getCountWeekOfYear());%>">Download Excel</a>
+                <a class="btn btn-primary" href="<%out.print("/users/downloadWeeklyReport/"+user.getId()+"/"+weekReport.getCountWeekOfYear());%>">Download Excel</a>
             </div>
 
             <div class="mt20 delimiter">
-                <a href="<%out.print("/cabinet/weekly-report/"+user.getId());%>" class="btn btn-default">Back</a>
-                <button class="btn btn-primary">Confirm</button>
+                <a href="<%out.print("/users/weekly-report/"+user.getId());%>" class="btn btn-default">Back</a>
             </div>
 
         </section>
@@ -170,10 +169,13 @@
 
 <%@ include file="footerJavaScript.jsp" %>
 
+<% String daysInWeekString = (String) request.getAttribute("daysInWeekString"); %>
+<% String valueInWeekString = (String) request.getAttribute("valueInWeekString"); %>
+
 <script>
     new Chartist.Line('.ct-chart', {
-        labels: ['Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday', 'Saturday', 'Sunday'],
-        series: [[1, 9, 7, 8, 0, 15, 22]]
+        labels: [<%out.print(daysInWeekString);%>],
+        series: [[<%out.print(valueInWeekString);%>]]
     }, {
         fullWidth: true,
         showArea: true

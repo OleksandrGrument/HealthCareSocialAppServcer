@@ -12,10 +12,19 @@ public class WeekReportInformation {
     private int countWeekOfYear;
 
     public WeekReportInformation(Date date) {
-        Calendar calendar = convertDateToCalendar(date);
+        Calendar calendar = null;
+        DateFormat formatter = new SimpleDateFormat("dd-MM-yyyy");
+        String stringDate = formatter.format(date);
+        try {
+            Date newDate = formatter.parse(stringDate);
+            calendar = Calendar.getInstance();
+            calendar.setTime(newDate);
+        } catch (ParseException e) {
+            e.printStackTrace();
+        }
         this.startOfWeek = dateFirstDayOfWeek(calendar);
         this.endOfWeek = dateLastDayOfWeek(calendar);
-        this.countWeekOfYear = calendar.get(Calendar.WEEK_OF_YEAR);
+        this.countWeekOfYear = calendar.get(Calendar.WEEK_OF_YEAR)-1;
     }
 
     public String getStartOfWeek() {
@@ -47,21 +56,5 @@ public class WeekReportInformation {
         calendar.add(Calendar.DAY_OF_MONTH, dayDifference);
         return dateLastDayOfWeek;
     }
-
-    private Calendar convertDateToCalendar(Date date) {
-        Calendar cal = null;
-        DateFormat formatter = new SimpleDateFormat("dd-MM-yyyy");
-        String stringDate = formatter.format(date);
-        try {
-            Date newDate = formatter.parse(stringDate);
-            cal = Calendar.getInstance();
-            cal.setTime(newDate);
-        } catch (ParseException e) {
-            e.printStackTrace();
-        }
-        return cal;
-    }
-
-
 
 }

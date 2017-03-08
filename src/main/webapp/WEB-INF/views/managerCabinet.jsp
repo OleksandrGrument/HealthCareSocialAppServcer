@@ -48,7 +48,7 @@
             <h3><i class="fa fa-user"></i>Users list</h3>
 
             <div class="mb20">
-                <a class="btn btn-primary" href="/cabinet/download/">Download Excel</a>
+                <a class="btn btn-primary" href="/users/download/">Download Excel</a>
             </div>
 
             <table id="dataTable" class="table table-striped table-bordered" width="100%" cellspacing="0">
@@ -87,7 +87,7 @@
                %>
                     <tr>
                         <td><%out.print(user.getId());%></td>
-                        <td><%if (preferences!=null) %><a href="<%out.print("/cabinet/user-profile/"+user.getId());%>">   <% out.print(preferences.getNickname());%></a></td>
+                        <td><%if (preferences!=null) %><a href="<%out.print("/users/user-profile/"+user.getId());%>">   <% out.print(preferences.getNickname());%></a></td>
                         <td><%out.print(user.getEmail());%></td>
                         <td><%if (preferences!=null) out.print(preferences.getBirth_year());%></td>
                         <td><%out.print(user.getLoginType());%></td>

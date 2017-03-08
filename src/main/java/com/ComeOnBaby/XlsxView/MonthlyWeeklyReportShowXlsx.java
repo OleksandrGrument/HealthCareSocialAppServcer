@@ -13,7 +13,7 @@ import java.util.Map;
 /**
  * Created by mr_je on 06.03.2017.
  */
-public class MonthlyReportShowXlsx extends AbstractXlsxView {
+public class MonthlyWeeklyReportShowXlsx extends AbstractXlsxView {
 
     private DataNoteByMonthWeek dataNoteByMonthWeek;
 
@@ -22,7 +22,7 @@ public class MonthlyReportShowXlsx extends AbstractXlsxView {
                                       HttpServletRequest request,
                                       HttpServletResponse response) throws Exception {
         // set the file name
-        response.setHeader("Content-Disposition", "attachment; filename=\"MonthlyReport.xlsx\"");
+        response.setHeader("Content-Disposition", "attachment; filename=\"Report.xlsx\"");
 
         // create sheet
         Sheet sheet = workbook.createSheet("users");

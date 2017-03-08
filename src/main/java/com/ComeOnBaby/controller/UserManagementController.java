@@ -6,7 +6,7 @@ import com.ComeOnBaby.model.Note;
 import com.ComeOnBaby.service.AppUserService;
 import com.ComeOnBaby.service.NoteService;
 import com.ComeOnBaby.util.DataNoteByMonthWeek;
-import com.ComeOnBaby.XlsxView.MonthlyReportShowXlsx;
+import com.ComeOnBaby.XlsxView.MonthlyWeeklyReportShowXlsx;
 import com.ComeOnBaby.XlsxView.AllAppUsersInfoXlsx;
 import com.ComeOnBaby.util.WeekReportInformation;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -17,8 +17,6 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.SessionAttributes;
 import org.springframework.web.servlet.ModelAndView;
 
-import java.text.DateFormat;
-import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.*;
 
@@ -140,7 +138,7 @@ public class UserManagementController {
         List<Note> notices = noteService.findUserNotes(user);
         DataNoteByMonthWeek dataNoteByMonth = new DataNoteByMonthWeek(notices, month, year);
 
-        MonthlyReportShowXlsx monthlyReportShowXlsx = new MonthlyReportShowXlsx();
+        MonthlyWeeklyReportShowXlsx monthlyReportShowXlsx = new MonthlyWeeklyReportShowXlsx();
         monthlyReportShowXlsx.setDataNoteByMonthWeek(dataNoteByMonth);
         return new ModelAndView(monthlyReportShowXlsx);
     }
@@ -149,16 +147,21 @@ public class UserManagementController {
     public ModelAndView weeklyReportShow(@PathVariable Long userId, @PathVariable int countWeekOfYear) {
         ModelAndView weeklyReportShow = new ModelAndView("weeklyReportShow");
 
+
+        System.out.println("countWeekOfYear in controller "+ countWeekOfYear);
         AppUser user = appUserService.findById(userId);
         List<Note> notes = noteService.findUserNotes(user);
-        Collections.sort(notes, new NoteByDateComparator());
 
         DataNoteByMonthWeek dataNoteByWeek = new DataNoteByMonthWeek(notes, countWeekOfYear);
         WeekReportInformation weekReportInformation = new WeekReportInformation(dataNoteByWeek.getDataNoteByMonthWeek().get(0).getDate());
 
+
         weeklyReportShow.addObject("user", user);
         weeklyReportShow.addObject("weekReportInformation", weekReportInformation);
         weeklyReportShow.addObject("dataNoteByWeek", dataNoteByWeek);
+
+        weeklyReportShow.addObject("daysInWeekString", dataNoteByWeek.daysInWeekString());
+        weeklyReportShow.addObject("valueInWeekString", dataNoteByWeek.valueInWeekString());
 
         return weeklyReportShow;
     }
@@ -167,27 +170,15 @@ public class UserManagementController {
     public ModelAndView downloadWeeklyReport(@PathVariable Long userId, @PathVariable int countWeekOfYear) {
 
         AppUser user = appUserService.findById(userId);
-        List<Note> notices = noteService.findUserNotes(user);
-        DataNoteByMonthWeek dataNoteByMonth = new DataNoteByMonthWeek(notices, countWeekOfYear);
+        List<Note> notes = noteService.findUserNotes(user);
+        Collections.sort(notes, new NoteByDateComparator());
 
-        MonthlyReportShowXlsx monthlyReportShowXlsx = new MonthlyReportShowXlsx();
-        monthlyReportShowXlsx.setDataNoteByMonthWeek(dataNoteByMonth);
-        return new ModelAndView(monthlyReportShowXlsx);
+        DataNoteByMonthWeek dataNoteByWeek = new DataNoteByMonthWeek(notes, countWeekOfYear);
+
+        System.out.println("=======WEEKLY REPORT====");
+
+        MonthlyWeeklyReportShowXlsx weekyReportShowXlsx = new MonthlyWeeklyReportShowXlsx();
+        weekyReportShowXlsx.setDataNoteByMonthWeek(dataNoteByWeek);
+        return new ModelAndView(weekyReportShowXlsx);
     }
-
-/*    private Calendar convertStringDateToCalendar(Date date) {
-        Calendar cal = null;
-        DateFormat formatter = new SimpleDateFormat("dd-MM-yyyy");
-        String stringDate = formatter.format(date);
-        try {
-            Date newDate = formatter.parse(stringDate);
-            cal = Calendar.getInstance();
-            cal.setTime(newDate);
-        } catch (ParseException e) {
-            e.printStackTrace();
-        }
-        return cal;
-    }*/
-
-
 }
