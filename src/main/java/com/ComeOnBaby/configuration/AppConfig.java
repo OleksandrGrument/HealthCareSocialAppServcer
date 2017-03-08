@@ -46,12 +46,14 @@ public class AppConfig extends WebMvcConfigurerAdapter {
     @Override
     public void configureContentNegotiation(ContentNegotiationConfigurer configurer) {
         configurer
-                .defaultContentType(MediaType.TEXT_HTML)
+                .defaultContentType(MediaType.ALL)
                 .parameterName("type")
                 .favorParameter(true)
                 .ignoreUnknownPathExtensions(false)
                 .ignoreAcceptHeader(false)
                 .useJaf(true);
+
+
     }
 
     /**

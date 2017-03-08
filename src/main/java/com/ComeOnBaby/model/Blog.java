@@ -35,14 +35,14 @@ public class Blog {
     @Column(name="text", nullable=false)
     private String text;
 
-    @Column(name="datetime", nullable=false)
+    @Column(name = "datetime", columnDefinition = "DATETIME")
+    @Temporal(TemporalType.TIMESTAMP)
     private Date datetime;
 
     @Column(name="images")
     private String images;
 
     public Blog(){
-
     }
 
     public Blog(Long id, Long id_user, Integer type, String title, String text, Date datetime, String images) {
@@ -78,29 +78,4 @@ public class Blog {
         this.appUser = appUser;
     }
 
-    public String getStringToTable(){
-        SimpleDateFormat formatDate = new SimpleDateFormat("MM.dd.yyyy");
-        String strDate = formatDate.format(datetime);
-
-        StringBuilder sb = new StringBuilder();
-
-        sb.append("<tr>");
-        sb.append("<td> "+id+" </td>");//id
-        if(appUser!=null) {
-            sb.append("<td> "+appUser.getEmail()+" </td>");//email
-        } else {
-            sb.append("<td> </td>");//email
-        }
-        if(appUser!=null && appUser.getPreferences()!=null) {
-            sb.append("<td> "+appUser.getPreferences().getNickname()+" </td>");//nickname
-        } else {
-            sb.append("<td> </td>");//nickname
-        }
-        sb.append("<td> "+strDate+"</td>");//date
-        sb.append("<td> "+title+" </td>");//title
-        sb.append("<td> "+text+"</td>");//text
-        sb.append("</tr>");
-
-        return sb.toString();
-    }
 }

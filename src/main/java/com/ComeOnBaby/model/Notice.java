@@ -24,7 +24,8 @@ public class Notice {
     private Long id;
 
 
-    @Column(name = "date")
+    @Column(name = "date", columnDefinition = "DATETIME")
+    @Temporal(TemporalType.TIMESTAMP)
     private Date date;
 
     @NotEmpty
@@ -37,10 +38,7 @@ public class Notice {
     @OneToMany(mappedBy = "notice", cascade = CascadeType.ALL, fetch = FetchType.EAGER)
     private Set<ImgText> imgTexts;
 
-    /*
-    @OneToMany(mappedBy = "aCase", cascade = CascadeType.ALL, fetch = FetchType.EAGER)
-    private Set<Message> messages;
-    * */
+
     @Column(name = "html")
     private String html;
 
