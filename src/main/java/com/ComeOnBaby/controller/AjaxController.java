@@ -1,3 +1,4 @@
+/*
 package com.ComeOnBaby.controller;
 
 import com.ComeOnBaby.model.ImgText;
@@ -15,9 +16,11 @@ import org.springframework.web.servlet.ModelAndView;
 import javax.servlet.http.HttpSession;
 import java.util.*;
 
+*/
 /**
  * Created by Макс on 24.02.2017.
- */
+ *//*
+
 
 @Controller
 @RequestMapping("/ajax")
@@ -145,3 +148,4 @@ public class AjaxController {
     }
 }
 
+*/
