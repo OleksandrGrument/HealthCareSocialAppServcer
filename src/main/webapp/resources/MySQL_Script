@@ -7,6 +7,8 @@ CREATE TABLE `users` (
 	PRIMARY KEY (`id`)
 );
 
+INSERT INTO users (email, password, social_id, login_type) VALUES (‘test1245698765@mail.com’, ‘123’, ‘1’, ‘ADMIN’)
+
 CREATE TABLE `preferences` (
 	`user_id` INT NOT NULL,
 	`city` VARCHAR(255) NOT NULL,

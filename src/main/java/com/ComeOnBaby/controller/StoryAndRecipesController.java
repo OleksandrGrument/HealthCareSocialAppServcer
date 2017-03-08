@@ -2,7 +2,9 @@ package com.ComeOnBaby.controller;
 
 
 
+import com.ComeOnBaby.comparator.CommentByDateComparator;
 import com.ComeOnBaby.model.Blog;
+import com.ComeOnBaby.model.Comment;
 import com.ComeOnBaby.service.BlogService;
 import com.ComeOnBaby.service.CommentsService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -11,6 +13,8 @@ import org.springframework.web.bind.annotation.*;
 import org.springframework.web.servlet.ModelAndView;
 
 import java.util.ArrayList;
+import java.util.Collections;
+import java.util.Set;
 
 
 @Controller
@@ -84,7 +88,14 @@ public class StoryAndRecipesController {
 
         ModelAndView comments = new ModelAndView("mySuccessStoryComments");
 
-      /*  Comment comment*/
+        Blog blog = blogService.findById(id);
+
+        Set<Comment> commentsUnsorted = blog.getComments();
+        ArrayList <Comment> commentsSorted = new ArrayList<>(commentsUnsorted);
+
+        Collections.sort(commentsSorted,new CommentByDateComparator());
+
+        comments.addObject("comments" , commentsSorted);
 
         return comments;
 
