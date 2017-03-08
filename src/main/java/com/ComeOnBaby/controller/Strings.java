@@ -31,6 +31,9 @@ public class Strings {
     public final static String MSG_LIST_CITY_FAIL = "Get list cities fail";
     public final static String MSG_LIST_CITY_SUCCESS = "Get list cities success";
     public final static String MSG_PROFILE_UPDATE_SUCCESS = "Profile update success";
+
+    public final static String MSG_B_Q_UPLOAD_SUCCESS = "B_Q upload success";
+
     public final static String MSG_NOTE_SAVE_SUCCESS = "Note save success";
     public final static String MSG_GUIDE_DOWNLOAD_SUCCESS = "Guides download success";
     public final static String MSG_RECIPE_DOWNLOAD_SUCCESS = "Recipes download success";

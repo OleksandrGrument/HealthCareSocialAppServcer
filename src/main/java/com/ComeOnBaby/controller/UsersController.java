@@ -7,6 +7,8 @@ import com.ComeOnBaby.service.*;
 import com.ComeOnBaby.service.NoteService;
 import com.ComeOnBaby.service.PreferencesService;
 import com.google.gson.Gson;
+import com.itextpdf.text.log.SysoCounter;
+import org.apache.poi.util.SystemOutLogger;
 import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
@@ -51,6 +53,7 @@ public class UsersController {
     private final static String GET_RECIPE_OPERATION = "getrecipe";
     private final static String GET_USER_NOTES_OPERATION = "getnotes";
 
+    public static final String UPLOAD_BASIC_QUESTION = "uploadbasicquestion";
 
     //JSON KEYS
     private final static String OPERATION = "operation";
@@ -84,6 +87,9 @@ public class UsersController {
     @Autowired
     RecipeGuideService recipeService;
 
+    @Autowired
+    BasicQuestionsService basicQuestionsService;
+
 
     @RequestMapping(value = "/users", method = RequestMethod.POST, produces={"application/json; charset=UTF-8"})
     @ResponseStatus(value = HttpStatus.OK )
@@ -114,6 +120,10 @@ public class UsersController {
 //                break;
 //            }
             case FORGET_PASS_OPERATION: {
+                break;
+            }
+            case UPLOAD_BASIC_QUESTION: { // B_Q
+                updateBasicQuestion(inJSON, outJSON);
                 break;
             }
             case SOCIAL_LOGIN_OPERATION: {
@@ -487,6 +497,31 @@ public class UsersController {
         return outJSON;
     }
 
+    // Update Basic Question from APP to Server
+    private JSONObject updateBasicQuestion(JSONObject inJSON, JSONObject outJSON){
+        Gson gson = new Gson();
+        JSONObject data = new JSONObject(inJSON.getString(DATA));
+        JSONObject jsonUser = new JSONObject(inJSON.getString(USER));
+
+        AppUser inUser = gson.fromJson(jsonUser.toString(), AppUser.class);
+        Long userID = inUser.getId();
+
+
+        if (userID == null) {
+            throw new IllegalArgumentException(Strings.ERR_USER_NOT_FOUND);
+        } else {
+            BasicQuestions basicQuestions = gson.fromJson(data.toString(), BasicQuestions.class);
+            basicQuestionsService.addNewBasicQuestions(basicQuestions);
+
+            outJSON.put(RESULT, SUCCESS);
+            outJSON.put(MESSAGE, Strings.MSG_B_Q_UPLOAD_SUCCESS);
+            outJSON.put(USER, getUserJSON(inUser).toString());
+            outJSON.put(DATA, basicQuestions.toString());
+            System.out.println("=========START5");
+        }
+        return outJSON;
+    }
+
     //get Profile data to server
     private JSONObject getProfile(JSONObject inJSON, JSONObject outJSON){
         Gson gson = new Gson();
@@ -536,6 +571,16 @@ public class UsersController {
         outPreferences.put("is_finish_question", pref.getIs_finish_question());
         return outPreferences;
     }
+
+    //Make JSON from
+//    private JSONObject createJSONFromBasicQuestion(BasicQuestions basicQuestions) {
+//        JSONObject jsonBasicQuestion = new JSONObject();
+//        jsonBasicQuestion.put("user_id", basicQuestions.getUser_id());
+//
+//        return jsonBasicQuestion;
+//    }
+
+
 
     private JSONObject getNoteJSON(Note note) {
         JSONObject js = new JSONObject();

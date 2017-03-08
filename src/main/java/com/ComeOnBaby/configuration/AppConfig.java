@@ -59,6 +59,7 @@ public class AppConfig extends WebMvcConfigurerAdapter {
     /**
      * Configure ResourceHandlers to serve static resources like CSS/ Javascript etc...
      */
+
     @Override
     public void addResourceHandlers(ResourceHandlerRegistry registry) {
         registry.addResourceHandler("/resources/**").addResourceLocations("/resources/");
