@@ -1,6 +1,8 @@
 <%@ page import="java.util.ArrayList" %>
 <%@ page import="com.ComeOnBaby.model.Comment" %>
 <%@ page import="java.util.Iterator" %>
+<%@ page import="com.ComeOnBaby.model.AppUser" %>
+<%@ page import="com.ComeOnBaby.model.Blog" %>
 <%@ taglib prefix="spring" uri="http://www.springframework.org/tags" %>
 <%@ page language="java" pageEncoding="UTF-8"%>
 <%@ page contentType="text/html;charset=UTF-8" %>
@@ -55,32 +57,39 @@
 
 
                             Iterator<Comment> commentIterator = comments.iterator();
+                            String actionUrl = "/my/write-comment";
+                            Blog blog = comments.get(0).getBlog();
 
                             while (commentIterator.hasNext()) {
                                 Comment comment = commentIterator.next();
                                 String deleteCommentUrl = "/my/delete-comment/"+comment.getId();
-                            if(comment.getAppUser().getId()!=1){
+                                AppUser appUser = comment.getAppUser();
+                            if(appUser.getId()!=1){
                         %>
-                        <div class="comment">
-                            <div class="clearfix pb10">
-                                <span class="pull-left"><a href="javascript:void(0);">NikName (ID: 00012)</a></span>
-                                <span class="pull-right"><a href="javascript:void(0);" data-toggle="tooltip" title="Delete" class="deleteConfirm"><i class="fa fa-remove"></i></a></span>
+                            <div class="comment">
+                                <div class="clearfix pb10">
+                                    <span class="pull-left"><a href="<%out.print("/users/user-profile/"+appUser.getId());%>"><%out.print(appUser.getPreferences().getNickname());%> (ID: <%out.print(appUser.getId());%>)</a></span>
+                                    <span class="pull-right"><a href="<%out.print(deleteCommentUrl);%>" data-toggle="tooltip" title="Delete" class="deleteConfirm"><i class="fa fa-remove"></i></a></span>
+                                </div>
+                                <div class="delimiter"> <%out.print(comment.getText());%> </div>
                             </div>
-                            <div class="delimiter">You can also use the data-placement attribute with a value of "auto", which will let the browser decide the position of the tooltip. For example, if the value is "auto left", the tooltip will display on the left side when possible, otherwise on the right.</div>
-                        </div>
 
-                            <%} else { %>
+                                <%} else { %>
 
-                        <div class="comment alert-warning">
-                            <div class="clearfix pb10">
-                                <span class="pull-left"><b>Administrator</b></span>
-                                <span class="pull-right"><a href="javascript:void(0);" data-toggle="tooltip" title="Delete" class="deleteConfirm"><i class="fa fa-remove"></i></a></span>
+                            <div class="comment alert-warning">
+                                <div class="clearfix pb10">
+                                    <span class="pull-left"><b>Administrator</b></span>
+                                    <span class="pull-right"><a href="<%out.print(deleteCommentUrl);%>" data-toggle="tooltip" title="Delete" class="deleteConfirm"><i class="fa fa-remove"></i></a></span>
+                                </div>
+                                <div class="delimiter">You can also use the data-placement attribute with a value of "auto", which will let the browser decide the position of the tooltip. For example, if the value is "auto left", the tooltip will display on the left side when possible, otherwise on the right.</div>
                             </div>
-                            <div class="delimiter">You can also use the data-placement attribute with a value of "auto", which will let the browser decide the position of the tooltip. For example, if the value is "auto left", the tooltip will display on the left side when possible, otherwise on the right.</div>
-                        </div>
+                            <%}%>
                         <%}%>
 
-                        <form action="" method="post">
+                        <form action="<%out.print(actionUrl);%>" method="post">
+
+                            <input type="hidden" value="<%out.print(blog.getId());%>">
+
                             <div class="form-group delimiter">
                                 <label class="control-label">Administrator comment</label>
                                 <textarea class="form-control" id="editor"></textarea>
@@ -94,7 +103,7 @@
                 </div>
             </form>
             <div class="mt20 delimiter">
-                <a href="mySuccessStoryEdit.php" class="btn btn-default">Back</a>
+                <a href="<%out.print("/my/edit/"+blog.getId());%>" class="btn btn-default">Back</a>
             </div>
         </section>
         <!-- Content section -->

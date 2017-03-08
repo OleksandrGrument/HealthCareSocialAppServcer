@@ -79,7 +79,7 @@ public class AppController {
 
 		} else if (userProfile.getType().equals("CUSTOMER")){
 			System.out.println("LOGIN AS CUSTOMER");
-			modelAndView.setViewName("redirect:/cabinet/");
+			modelAndView.setViewName("redirect:/users/");
 		}
 
 		System.out.println(currentUser.getId());
