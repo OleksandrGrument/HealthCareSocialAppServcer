@@ -1,4 +1,9 @@
 <%@ page import="com.ComeOnBaby.model.AppUser" %>
+<%@ page import="com.ComeOnBaby.model.Note" %>
+<%@ page import="java.util.List" %>
+<%@ page import="java.util.Calendar" %>
+<%@ page import="java.util.Date" %>
+<%@ page import="com.ComeOnBaby.util.WeekReportInformation" %>
 <%@ taglib prefix="spring" uri="http://www.springframework.org/tags" %>
 <%@ page language="java" pageEncoding="UTF-8"%>
 <%@ page contentType="text/html;charset=UTF-8" %>
@@ -44,6 +49,8 @@
             <h3><i class="fa fa-bar-chart"></i>Weekly report</h3>
 
             <% AppUser user = (AppUser) request.getAttribute("user"); %>
+            <% List<WeekReportInformation> weekReports = (List<WeekReportInformation>)request.getAttribute("weekReportInformation"); %>
+
 
             <table id="dataTable" class="table table-striped table-bordered" width="100%" cellspacing="0">
                 <thead>
@@ -63,21 +70,13 @@
 
                 <!-- Items list -->
                 <tbody>
-                <tr>
-                    <td width="50">1</td>
-                    <td><a href="weeklyReportShow.html">01-01-2017 &mdash; 07-01-2017</a></td>
-                    <td>Good</td>
-                </tr>
-                <tr>
-                    <td>2</td>
-                    <td><a href="weeklyReportShow.html">07-01-2017 &mdash; 14-01-2017</a></td>
-                    <td>Excellent</td>
-                </tr>
-                <tr>
-                    <td>3</td>
-                    <td><a href="weeklyReportShow.html">14-01-2017 &mdash; 21-01-2017</a></td>
-                    <td>Bad</td>
-                </tr>
+                <%for(WeekReportInformation weekReport : weekReports){ %>
+                    <tr>
+                        <td width="50">1</td>
+                        <td><a href="<%out.print("/cabinet/weeklyReportShow/"+user.getId()+"/"+weekReport.getCountWeekOfYear());%>"><%out.print(weekReport.getStartOfWeek()+" - "+weekReport.getEndOfWeek());%></a></td>
+                        <td>Good</td>
+                    </tr>
+                <%}%>
                 </tbody>
                 <!-- #End Items list -->
 

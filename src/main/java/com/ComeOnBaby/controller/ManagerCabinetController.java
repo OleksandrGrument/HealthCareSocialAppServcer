@@ -1,12 +1,14 @@
 package com.ComeOnBaby.controller;
 
+import com.ComeOnBaby.comparator.NoteByDateComparator;
 import com.ComeOnBaby.model.AppUser;
 import com.ComeOnBaby.model.Note;
 import com.ComeOnBaby.service.AppUserService;
 import com.ComeOnBaby.service.NoteService;
-import com.ComeOnBaby.util.DataNoteByMonth;
+import com.ComeOnBaby.util.DataNoteByMonthWeek;
 import com.ComeOnBaby.XlsxView.MonthlyReportShowXlsx;
 import com.ComeOnBaby.XlsxView.AllAppUsersInfoXlsx;
+import com.ComeOnBaby.util.WeekReportInformation;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -15,7 +17,10 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.SessionAttributes;
 import org.springframework.web.servlet.ModelAndView;
 
-import java.util.List;
+import java.text.DateFormat;
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
+import java.util.*;
 
 
 @Controller
@@ -81,22 +86,25 @@ public class ManagerCabinetController {
         return monthlyReport;
     }
 
-    @RequestMapping(value = "/weekly-report/{userId}" , method = RequestMethod.GET)
-    public ModelAndView weeklyReport(@PathVariable Long userId){
+    @RequestMapping(value = "/weekly-report/{userId}", method = RequestMethod.GET)
+    public ModelAndView weeklyReport(@PathVariable Long userId) {
 
         ModelAndView weeklyReport = new ModelAndView("weeklyReport");
-
         AppUser user = appUserService.findById(userId);
+        List<Note> notes = noteService.findUserNotes(user);
+        Collections.sort(notes, new NoteByDateComparator());
+
+        DataNoteByMonthWeek dataNoteByWeek = new DataNoteByMonthWeek(notes);
 
         weeklyReport.addObject("user", user);
+        weeklyReport.addObject("weekReportInformation", dataNoteByWeek.weekReportInformation());
 
         return weeklyReport;
     }
 
 
-
-    @RequestMapping(value = "/download" , method = RequestMethod.GET)
-    public ModelAndView download (){
+    @RequestMapping(value = "/download", method = RequestMethod.GET)
+    public ModelAndView download() {
 
         AllAppUsersInfoXlsx xlsxView = new AllAppUsersInfoXlsx();
         xlsxView.setAppUserList(appUserService.getAllUsers());
@@ -110,7 +118,7 @@ public class ManagerCabinetController {
 
         AppUser user = appUserService.findById(userId);
         List<Note> notices = noteService.findUserNotes(user);
-        DataNoteByMonth dataNoteByMonth = new DataNoteByMonth(notices, month, year);
+        DataNoteByMonthWeek dataNoteByMonth = new DataNoteByMonthWeek(notices, month, year);
 
         String daysInMonthsString = dataNoteByMonth.daysInMonthsString();
         String valueInMonthsString = dataNoteByMonth.valueInMonthsString();
@@ -125,16 +133,61 @@ public class ManagerCabinetController {
         return monthlyReport;
     }
 
-    @RequestMapping(value = "/downloadMonthlyReport/{userId}/{month}/{year}" , method = RequestMethod.GET)
-    public ModelAndView downloadMonthlyReport (@PathVariable Long userId, @PathVariable int month, @PathVariable int year){
+    @RequestMapping(value = "/downloadMonthlyReport/{userId}/{month}/{year}", method = RequestMethod.GET)
+    public ModelAndView downloadMonthlyReport(@PathVariable Long userId, @PathVariable int month, @PathVariable int year) {
 
         AppUser user = appUserService.findById(userId);
         List<Note> notices = noteService.findUserNotes(user);
-        DataNoteByMonth dataNoteByMonth = new DataNoteByMonth(notices, month, year);
+        DataNoteByMonthWeek dataNoteByMonth = new DataNoteByMonthWeek(notices, month, year);
 
         MonthlyReportShowXlsx monthlyReportShowXlsx = new MonthlyReportShowXlsx();
-        monthlyReportShowXlsx.setDataNoteByMonth(dataNoteByMonth);
+        monthlyReportShowXlsx.setDataNoteByMonthWeek(dataNoteByMonth);
         return new ModelAndView(monthlyReportShowXlsx);
     }
+
+    @RequestMapping(value = "/weeklyReportShow/{userId}/{countWeekOfYear}", method = RequestMethod.GET)
+    public ModelAndView weeklyReportShow(@PathVariable Long userId, @PathVariable int countWeekOfYear) {
+        ModelAndView weeklyReportShow = new ModelAndView("weeklyReportShow");
+
+        AppUser user = appUserService.findById(userId);
+        List<Note> notes = noteService.findUserNotes(user);
+        Collections.sort(notes, new NoteByDateComparator());
+
+        DataNoteByMonthWeek dataNoteByWeek = new DataNoteByMonthWeek(notes, countWeekOfYear);
+        WeekReportInformation weekReportInformation = new WeekReportInformation(dataNoteByWeek.getDataNoteByMonthWeek().get(0).getDate());
+
+        weeklyReportShow.addObject("user", user);
+        weeklyReportShow.addObject("weekReportInformation", weekReportInformation);
+        weeklyReportShow.addObject("dataNoteByWeek", dataNoteByWeek);
+
+        return weeklyReportShow;
+    }
+
+    @RequestMapping(value = "/downloadWeeklyReport/{userId}/{countWeekOfYear}", method = RequestMethod.GET)
+    public ModelAndView downloadWeeklyReport(@PathVariable Long userId, @PathVariable int countWeekOfYear) {
+
+        AppUser user = appUserService.findById(userId);
+        List<Note> notices = noteService.findUserNotes(user);
+        DataNoteByMonthWeek dataNoteByMonth = new DataNoteByMonthWeek(notices, countWeekOfYear);
+
+        MonthlyReportShowXlsx monthlyReportShowXlsx = new MonthlyReportShowXlsx();
+        monthlyReportShowXlsx.setDataNoteByMonthWeek(dataNoteByMonth);
+        return new ModelAndView(monthlyReportShowXlsx);
+    }
+
+/*    private Calendar convertStringDateToCalendar(Date date) {
+        Calendar cal = null;
+        DateFormat formatter = new SimpleDateFormat("dd-MM-yyyy");
+        String stringDate = formatter.format(date);
+        try {
+            Date newDate = formatter.parse(stringDate);
+            cal = Calendar.getInstance();
+            cal.setTime(newDate);
+        } catch (ParseException e) {
+            e.printStackTrace();
+        }
+        return cal;
+    }*/
+
 
 }

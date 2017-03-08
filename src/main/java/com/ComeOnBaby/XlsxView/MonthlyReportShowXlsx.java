@@ -1,7 +1,6 @@
 package com.ComeOnBaby.XlsxView;
 
-import com.ComeOnBaby.model.Note;
-import com.ComeOnBaby.util.DataNoteByMonth;
+import com.ComeOnBaby.util.DataNoteByMonthWeek;
 import org.apache.poi.ss.usermodel.Row;
 import org.apache.poi.ss.usermodel.Sheet;
 import org.apache.poi.ss.usermodel.Workbook;
@@ -9,7 +8,6 @@ import org.springframework.web.servlet.view.document.AbstractXlsxView;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
-import java.util.List;
 import java.util.Map;
 
 /**
@@ -17,7 +15,7 @@ import java.util.Map;
  */
 public class MonthlyReportShowXlsx extends AbstractXlsxView {
 
-    private DataNoteByMonth dataNoteByMonth;
+    private DataNoteByMonthWeek dataNoteByMonthWeek;
 
     @Override
     protected void buildExcelDocument(Map<String, Object> map, Workbook workbook,
@@ -51,24 +49,24 @@ public class MonthlyReportShowXlsx extends AbstractXlsxView {
         int rowCount = 1;
 
         Row fruitRow = sheet.createRow(rowCount);
-        fruitRow.createCell(0).setCellValue(dataNoteByMonth.recommendedFood());
-        fruitRow.createCell(1).setCellValue(dataNoteByMonth.nuts());
-        fruitRow.createCell(2).setCellValue(dataNoteByMonth.car());
-        fruitRow.createCell(3).setCellValue(dataNoteByMonth.exercise());
-        fruitRow.createCell(4).setCellValue(dataNoteByMonth.sleepBeforeMidnight());
-        fruitRow.createCell(5).setCellValue(dataNoteByMonth.averageSleepTime());
-        fruitRow.createCell(6).setCellValue(dataNoteByMonth.waterIngestion());
-        fruitRow.createCell(7).setCellValue(dataNoteByMonth.slut());
-        fruitRow.createCell(8).setCellValue(dataNoteByMonth.vitamin());
-        fruitRow.createCell(9).setCellValue(dataNoteByMonth.folicAcid());
-        fruitRow.createCell(10).setCellValue(dataNoteByMonth.coffee());
-        fruitRow.createCell(11).setCellValue(dataNoteByMonth.alcohol());
-        fruitRow.createCell(12).setCellValue(dataNoteByMonth.smoking());
-        fruitRow.createCell(13).setCellValue(dataNoteByMonth.emotion());
-        fruitRow.createCell(14).setCellValue(dataNoteByMonth.bodyMassIndex());
+        fruitRow.createCell(0).setCellValue(dataNoteByMonthWeek.recommendedFood());
+        fruitRow.createCell(1).setCellValue(dataNoteByMonthWeek.nuts());
+        fruitRow.createCell(2).setCellValue(dataNoteByMonthWeek.car());
+        fruitRow.createCell(3).setCellValue(dataNoteByMonthWeek.exercise());
+        fruitRow.createCell(4).setCellValue(dataNoteByMonthWeek.sleepBeforeMidnight());
+        fruitRow.createCell(5).setCellValue(dataNoteByMonthWeek.averageSleepTime());
+        fruitRow.createCell(6).setCellValue(dataNoteByMonthWeek.waterIngestion());
+        fruitRow.createCell(7).setCellValue(dataNoteByMonthWeek.slut());
+        fruitRow.createCell(8).setCellValue(dataNoteByMonthWeek.vitamin());
+        fruitRow.createCell(9).setCellValue(dataNoteByMonthWeek.folicAcid());
+        fruitRow.createCell(10).setCellValue(dataNoteByMonthWeek.coffee());
+        fruitRow.createCell(11).setCellValue(dataNoteByMonthWeek.alcohol());
+        fruitRow.createCell(12).setCellValue(dataNoteByMonthWeek.smoking());
+        fruitRow.createCell(13).setCellValue(dataNoteByMonthWeek.emotion());
+        fruitRow.createCell(14).setCellValue(dataNoteByMonthWeek.bodyMassIndex());
     }
 
-    public void setDataNoteByMonth(DataNoteByMonth dataNoteByMonth) {
-        this.dataNoteByMonth = dataNoteByMonth;
+    public void setDataNoteByMonthWeek(DataNoteByMonthWeek dataNoteByMonthWeek) {
+        this.dataNoteByMonthWeek = dataNoteByMonthWeek;
     }
 }

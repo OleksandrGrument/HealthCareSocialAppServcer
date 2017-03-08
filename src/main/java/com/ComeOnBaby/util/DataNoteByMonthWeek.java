@@ -3,19 +3,19 @@ package com.ComeOnBaby.util;
 import com.ComeOnBaby.comparator.NoteByDateComparator;
 import com.ComeOnBaby.model.Note;
 
+import java.text.DateFormat;
+import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.*;
 
-/**
- * Created by mr_je on 06.03.2017.
- */
-public class DataNoteByMonth {
-    private List<Note> dataNoteByMonth;
-    private int[] daysInMonths = {31, 28, 31, 30, 31, 30, 31, 31, 30, 31, 30, 31};
-    private int mounthValue;
+public class DataNoteByMonthWeek {
+    private List<Note> dataNoteByMonthWeek;
 
-    public DataNoteByMonth(List<Note> notes, int month, int year) {
-        this.mounthValue = month;
+    public DataNoteByMonthWeek(List<Note> dataNoteByMonthWeek) {
+        this.dataNoteByMonthWeek = dataNoteByMonthWeek;
+    }
+
+    public DataNoteByMonthWeek(List<Note> notes, int month, int year) {
         SimpleDateFormat dateFormat = new SimpleDateFormat("MM.yyyy");
         Date date = new Date(year, month, 0);
 
@@ -25,12 +25,44 @@ public class DataNoteByMonth {
                 dataNoteByMonth.add(note);
             }
         }
-        this.dataNoteByMonth = dataNoteByMonth;
+        this.dataNoteByMonthWeek = dataNoteByMonth;
+    }
+
+    public List<WeekReportInformation> weekReportInformation(){
+        ArrayList<Integer> weekValue = new ArrayList<>();
+        List<WeekReportInformation> weekReportInformation = new ArrayList<>();
+        for (Note note : this.dataNoteByMonthWeek) {
+            Calendar cal = convertDateToCalendar(note.getDate());
+            int value = cal.get(Calendar.WEEK_OF_YEAR);
+            if (weekValue.indexOf(value) < 0) {
+                weekValue.add(value);
+                weekReportInformation.add(new WeekReportInformation(note.getDate()));
+            }
+        }
+        return weekReportInformation;
+    }
+
+
+
+    public DataNoteByMonthWeek(List<Note> dataNoteByWeek, int countWeekOfYear){
+        List<Note> notesByWeek = new ArrayList<>();
+        for (Note note : dataNoteByWeek) {
+            Calendar cal = convertDateToCalendar(note.getDate());
+            int value = cal.get(Calendar.WEEK_OF_YEAR);
+            if (value == countWeekOfYear) {
+                notesByWeek.add(note);
+            }
+        }
+        this.dataNoteByMonthWeek = notesByWeek;
+    }
+
+    public List<Note> getDataNoteByMonthWeek() {
+        return dataNoteByMonthWeek;
     }
 
     public int recommendedFood() {
         int count = 0;
-        for (Note note : dataNoteByMonth) {
+        for (Note note : dataNoteByMonthWeek) {
             if (note.getRecommended_food() != null) {
                 count++;
             }
@@ -40,7 +72,7 @@ public class DataNoteByMonth {
 
     public int nuts() {
         int count = 0;
-        for (Note note : dataNoteByMonth) {
+        for (Note note : dataNoteByMonthWeek) {
             if (note.getHas_nuts() != null) {
                 count++;
             }
@@ -50,7 +82,7 @@ public class DataNoteByMonth {
 
     public int car() {
         int count = 0;
-        for (Note note : dataNoteByMonth) {
+        for (Note note : dataNoteByMonthWeek) {
             if (note.getGoing_to_bed_from() != null) {
                 count++;
             }
@@ -60,7 +92,7 @@ public class DataNoteByMonth {
 
     public int exercise() {
         int count = 0;
-        for (Note note : dataNoteByMonth) {
+        for (Note note : dataNoteByMonthWeek) {
             if (note.getHas_exercise() != null) {
                 count++;
             }
@@ -70,7 +102,7 @@ public class DataNoteByMonth {
 
     public int sleepBeforeMidnight() {
         int count = 0;
-        for (Note note : dataNoteByMonth) {
+        for (Note note : dataNoteByMonthWeek) {
             //if(note.get!=null){
             count++;
             //}
@@ -80,7 +112,7 @@ public class DataNoteByMonth {
 
     public int averageSleepTime() {
         int count = 0;
-        for (Note note : dataNoteByMonth) {
+        for (Note note : dataNoteByMonthWeek) {
             //if(note.get!=null){
             count++;
             //}
@@ -90,17 +122,19 @@ public class DataNoteByMonth {
 
     public double waterIngestion() {
         double count = 0;
-        for (Note note : dataNoteByMonth) {
+        int countValue = 0;
+        for (Note note : dataNoteByMonthWeek) {
             if (note.getWater_intake() != null) {
                 count += note.getWater_intake();
+                countValue++;
             }
         }
-        return count;
+        return count/countValue;
     }
 
     public double slut() {
         double count = 0;
-        for (Note note : dataNoteByMonth) {
+        for (Note note : dataNoteByMonthWeek) {
             /*if(note.getE!=null){
                 count+=note.getWater_intake();
             }*/
@@ -110,7 +144,7 @@ public class DataNoteByMonth {
 
     public int vitamin() {
         int count = 0;
-        for (Note note : dataNoteByMonth) {
+        for (Note note : dataNoteByMonthWeek) {
             if (note.getVitamin() != null) {
                 count++;
             }
@@ -120,7 +154,7 @@ public class DataNoteByMonth {
 
     public int folicAcid() {
         int count = 0;
-        for (Note note : dataNoteByMonth) {
+        for (Note note : dataNoteByMonthWeek) {
             if (note.getFolic_acid() != null) {
                 count++;
             }
@@ -130,7 +164,7 @@ public class DataNoteByMonth {
 
     public int coffee() {
         int count = 0;
-        for (Note note : dataNoteByMonth) {
+        for (Note note : dataNoteByMonthWeek) {
             if (note.getCoffee_intake() != null) {
                 count += note.getCoffee_intake();
             }
@@ -140,7 +174,7 @@ public class DataNoteByMonth {
 
     public int alcohol() {
         int count = 0;
-        for (Note note : dataNoteByMonth) {
+        for (Note note : dataNoteByMonthWeek) {
             if (note.getAlcohol_intake() != null) {
                 count += note.getAlcohol_intake();
             }
@@ -150,7 +184,7 @@ public class DataNoteByMonth {
 
     public int smoking() {
         int count = 0;
-        for (Note note : dataNoteByMonth) {
+        for (Note note : dataNoteByMonthWeek) {
             if (note.getSmoking() != null) {
                 count++;
             }
@@ -165,7 +199,7 @@ public class DataNoteByMonth {
         int countEmotionPoor = 0;
         String str = "";
 
-        for (Note note : dataNoteByMonth) {
+        for (Note note : dataNoteByMonthWeek) {
             if (note.getEmotional_state() != null) {
                 if (note.getEmotional_state() == 4) {
                     countEmotionVeryGood++;
@@ -187,7 +221,7 @@ public class DataNoteByMonth {
         String str = "";
         float count = 0;
         float value = 0;
-        for (Note note : dataNoteByMonth) {
+        for (Note note : dataNoteByMonthWeek) {
             count++;
             value += note.getBmi();
         }
@@ -202,16 +236,51 @@ public class DataNoteByMonth {
         } else {
             str = (value / count) + " (altitude obesity)";
         }
+        return str;
+    }
 
+    public String evolitionState(float value) {
+        String str = "";
+        if ((value >= 0) & (value <= 10)) {
+            str = "<span class=\"bad\">bad</span>";
+        } else if ((value >= 11) & (value <= 20)) {
+            str = "<span class=\"good\">good</span>";
+        } else {
+            str = "<span class=\"excellent\">excellent</span>";
+        }
+        return str;
+    }
+
+    public String evolitionStateWater(double value) {
+        String str = "";
+        if ((value >= 0) & (value <= 1)) {
+            str = "<span class=\"bad\">bad</span>";
+        } else if ((value >1) & (value <= 1.5)) {
+            str = "<span class=\"good\">good</span>";
+        } else {
+            str = "<span class=\"excellent\">excellent</span>";
+        }
+        return str;
+    }
+
+    public String evolitionStateAlcohol(double value) {
+        String str = "";
+        if ((value >= 0) & (value <= 10)) {
+            str = "<span class=\"excellent\">excellent</span>";
+        } else if ((value >11) & (value <= 20)) {
+            str = "<span class=\"good\">good</span>";
+        } else {
+            str = "<span class=\"bad\">bad</span>";
+        }
         return str;
     }
 
     public String daysInMonthsString() {
         String strDate = "";
-        Collections.sort(dataNoteByMonth, new NoteByDateComparator());
-        for (int i = 0; i <dataNoteByMonth.size(); i++) {
-            if(dataNoteByMonth.get(i).getBbt()!= null){
-                strDate+=dataNoteByMonth.get(i).getDate().getDate()+",";
+        Collections.sort(dataNoteByMonthWeek, new NoteByDateComparator());
+        for (int i = 0; i < dataNoteByMonthWeek.size(); i++) {
+            if(dataNoteByMonthWeek.get(i).getBbt()!= null){
+                strDate+= dataNoteByMonthWeek.get(i).getDate().getDate()+",";
             }
         }
         System.out.println("date in month " + strDate);
@@ -220,13 +289,26 @@ public class DataNoteByMonth {
 
     public String valueInMonthsString() {
         String strBtp = "";
-            for (int i = 0; i < dataNoteByMonth.size(); i++) {
-               if(dataNoteByMonth.get(i).getBbt()!= null){
-                   strBtp += dataNoteByMonth.get(i).getBbt() + ",";
+            for (int i = 0; i < dataNoteByMonthWeek.size(); i++) {
+               if(dataNoteByMonthWeek.get(i).getBbt()!= null){
+                   strBtp += dataNoteByMonthWeek.get(i).getBbt() + ",";
                 }
             }
         System.out.println("value strBtp : "+strBtp);
         return strBtp;
     }
 
+    private Calendar convertDateToCalendar(Date date) {
+        Calendar cal = null;
+        DateFormat formatter = new SimpleDateFormat("dd-MM-yyyy");
+        String stringDate = formatter.format(date);
+        try {
+            Date newDate = formatter.parse(stringDate);
+            cal = Calendar.getInstance();
+            cal.setTime(newDate);
+        } catch (ParseException e) {
+            e.printStackTrace();
+        }
+        return cal;
+    }
 }

@@ -1,3 +1,6 @@
+<%@ page import="com.ComeOnBaby.util.WeekReportInformation" %>
+<%@ page import="com.ComeOnBaby.util.DataNoteByMonthWeek" %>
+<%@ page import="com.ComeOnBaby.model.AppUser" %>
 <%@ taglib prefix="spring" uri="http://www.springframework.org/tags" %>
 <%@ page language="java" pageEncoding="UTF-8"%>
 <%@ page contentType="text/html;charset=UTF-8" %>
@@ -32,6 +35,9 @@
 
     </div>
     <!-- #End Sidebar -->
+    <% AppUser user = (AppUser) request.getAttribute("user"); %>
+    <% WeekReportInformation weekReport = (WeekReportInformation)request.getAttribute("weekReportInformation"); %>
+    <% DataNoteByMonthWeek dataNoteByWeek = (DataNoteByMonthWeek)request.getAttribute("dataNoteByWeek"); %>
 
     <!-- Page Content -->
     <div id="page-content-wrapper">
@@ -40,7 +46,8 @@
 
         <!-- Content section -->
         <section class="container-fluid content">
-            <h3><i class="fa fa-bar-chart"></i>Weekly for the: 01-01-2017 &mdash; 07-01-2017</h3>
+            <h3><i class="fa fa-bar-chart"></i>Weekly for the: <%out.print(weekReport.getStartOfWeek()+ " - "+weekReport.getEndOfWeek());%></h3>
+
 
             <!-- Show chart -->
             <div class="ct-chart"></div>
@@ -52,91 +59,91 @@
                 <tr><td colspan="2" class="header pt0">Detailed information</td></tr>
                 <tr>
                     <td class="title">Recommended food:</td>
-                    <td>month 29 time intake</td>
-                    <td class="marker"><span class="good">good</span></td>
+                    <td>month <%out.print(dataNoteByWeek.recommendedFood());%> time intake</td>
+                    <td class="marker"><%out.print(dataNoteByWeek.evolitionState(dataNoteByWeek.recommendedFood()));%></td>
                 </tr>
 
                 <tr>
                     <td class="title">Nuts:</td>
-                    <td>month 17 ingestion</td>
-                    <td class="marker"><span class="bad">bad</span></td>
+                    <td>month <%out.print(dataNoteByWeek.nuts());%> ingestion</td>
+                    <td class="marker"><%out.print(dataNoteByWeek.evolitionState(dataNoteByWeek.nuts()));%></td>
                 </tr>
 
                 <tr>
                     <td class="title">Car:</td>
-                    <td>month 9 ingestion</td>
-                    <td class="marker"><span class="excellent">excellent</span></td>
+                    <td>month <%out.print("@@@@");%> ingestion</td>
+                    <td class="marker"><%out.print(dataNoteByWeek.evolitionState(0));%></td>
                 </tr>
 
                 <tr>
                     <td class="title">Exercise:</td>
-                    <td>month 15 time</td>
-                    <td class="marker"><span class="bad">bad</span></td>
+                    <td>month <%out.print(dataNoteByWeek.exercise());%> time</td>
+                    <td class="marker"><%out.print(dataNoteByWeek.evolitionState(dataNoteByWeek.exercise()));%></td>
                 </tr>
 
                 <tr>
                     <td class="title">Sleep before midnight:</td>
-                    <td>month 12 time</td>
-                    <td class="marker"><span class="excellent">excellent</span></td>
+                    <td>month <%out.print("@@@@");%> time</td>
+                    <td class="marker"><%out.print(dataNoteByWeek.evolitionState(0));%></td>
                 </tr>
 
                 <tr>
                     <td class="title">Average sleep time:</td>
-                    <td>month average 7 hours 16 minute</td>
-                    <td class="marker"><span class="good">good</span></td>
+                    <td>month average <%out.print("@@@@");%></td>
+                    <td class="marker"><%out.print(dataNoteByWeek.evolitionState(0));%></td>
                 </tr>
 
                 <tr>
                     <td class="title">Water ingestion:</td>
-                    <td>average of 0.8 liters per month</td>
-                    <td class="marker"><span class="bad">bad</span></td>
+                    <td>average of <%out.print(dataNoteByWeek.waterIngestion());%> liters per month</td>
+                    <td class="marker"><%out.print(dataNoteByWeek.evolitionStateWater(dataNoteByWeek.waterIngestion()));%></td>
                 </tr>
 
                 <tr>
                     <td class="title">Eun-hoon / Slut:</td>
-                    <td>month 19 times</td>
-                    <td class="marker"><span class="good">good</span></td>
+                    <td>month <%out.print("@@@@");%> times</td>
+                    <td class="marker"><%out.print(dataNoteByWeek.evolitionState(0));%></td>
                 </tr>
 
                 <tr>
                     <td class="title">Vitamin:</td>
-                    <td>month 15 times intake</td>
-                    <td class="marker"><span class="bad">bad</span></td>
+                    <td>month <%out.print(dataNoteByWeek.vitamin());%> times intake</td>
+                    <td class="marker"><%out.print(dataNoteByWeek.evolitionState(dataNoteByWeek.vitamin()));%></td>
                 </tr>
 
                 <tr>
                     <td class="title">Folic acid:</td>
-                    <td>month 10 Ingestion</td>
-                    <td class="marker"><span class="excellent">excellent</span></td>
+                    <td>month <%out.print(dataNoteByWeek.folicAcid());%> Ingestion</td>
+                    <td class="marker"><%out.print(dataNoteByWeek.evolitionState(dataNoteByWeek.folicAcid()));%></td>
                 </tr>
 
                 <tr>
                     <td class="title">Less than one cup of coffee:</td>
-                    <td>month 3 time</td>
-                    <td class="marker"><span class="good">good</span></td>
+                    <td>month <%out.print(dataNoteByWeek.coffee());%> time</td>
+                    <td class="marker"><%out.print(dataNoteByWeek.evolitionState(dataNoteByWeek.coffee()));%></td>
                 </tr>
 
                 <tr>
                     <td class="title">Alcohol:</td>
-                    <td>month 6 time Drinking / average 1.7 cups</td>
-                    <td class="marker"><span class="excellent">excellent</span></td>
+                    <td>month <%out.print(dataNoteByWeek.alcohol());%> time Drinking / average 0 cups</td>
+                    <td class="marker"><%out.print(dataNoteByWeek.evolitionStateAlcohol(dataNoteByWeek.alcohol()));%></td>
                 </tr>
 
                 <tr>
                     <td class="title">No smoking:</td>
-                    <td>month 8 times</td>
-                    <td class="marker"><span class="bad">bad</span></td>
+                    <td>month <%out.print(dataNoteByWeek.smoking());%> times</td>
+                    <td class="marker"><%out.print(dataNoteByWeek.evolitionState(dataNoteByWeek.smoking()));%></td>
                 </tr>
 
                 <tr><td class="delimiter" colspan="3"></td></tr>
                 <tr>
                     <td class="title">Emotion:</td>
-                    <td colspan="2">very good 5 times, good 3 times, usually 9 times, poor 7 times</td>
+                    <td colspan="2"><%out.print(dataNoteByWeek.emotion());%></td>
                 </tr>
 
                 <tr>
                     <td class="title">BMI (Body Mass Index):</td>
-                    <td colspan="2">25 (normal)</td>
+                    <td colspan="2"><%out.print(dataNoteByWeek.bodyMassIndex());%></td>
                 </tr>
 
                 </tbody>
@@ -144,11 +151,11 @@
             <!-- #End User chart information -->
 
             <div class="mt10">
-                <button class="btn btn-primary">Download Excel</button>
+                <a class="btn btn-primary" href="<%out.print("/cabinet/downloadWeeklyReport/"+user.getId()+"/"+weekReport.getCountWeekOfYear());%>">Download Excel</a>
             </div>
 
             <div class="mt20 delimiter">
-                <a href="weeklyReport.html" class="btn btn-default">Back</a>
+                <a href="<%out.print("/cabinet/weekly-report/"+user.getId());%>" class="btn btn-default">Back</a>
                 <button class="btn btn-primary">Confirm</button>
             </div>
 
