@@ -11,5 +11,6 @@ public interface CommentsService {
     void updateComments(Comment comment);
     void deleteComments(Comment comment);
     List<Comment> getAllComments();
-    public List<Comment> findByBlogID(Long blogID);
+    List<Comment> findByBlogID(Long blogID);
+    Comment findCommentById(Long commentId);
 }

@@ -33,7 +33,6 @@ public class Comment {
     private String text;
 
 
-
     @Column(name = "datetime", columnDefinition = "DATETIME")
     @Temporal(TemporalType.TIMESTAMP)
     private Date datetime;

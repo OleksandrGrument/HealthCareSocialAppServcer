@@ -2,46 +2,41 @@ package com.ComeOnBaby.model;
 
 import org.hibernate.validator.constraints.NotEmpty;
 
-import javax.persistence.Column;
-import javax.persistence.Entity;
-import javax.persistence.Id;
-import javax.persistence.Table;
+import javax.persistence.*;
 
 @Entity
 @Table(name="likes")
 public class Likes {
 
+    public Likes(){
+    }
+
     @Id
     @NotEmpty
     @Column(name="id_blog", nullable=false)
-    private Long id_blog;
+    private Long idBlog;
+
+
+    @ManyToOne(fetch = FetchType.EAGER)
+    @JoinColumn(name = "id_blog", insertable = false, updatable = false)
+    private Blog blog;
+
 
     @NotEmpty
     @Column(name="id_user", nullable=false)
-    private Long id_user;
+    private Long idUser;
 
     @NotEmpty
     @Column(name="like", nullable=false)
     private Boolean like;
 
-    public Likes(){
 
+    public Long getIdUser() {
+        return idUser;
     }
 
-    public Long getId_blog() {
-        return id_blog;
-    }
-
-    public void setId_blog(Long id_blog) {
-        this.id_blog = id_blog;
-    }
-
-    public Long getId_user() {
-        return id_user;
-    }
-
-    public void setId_user(Long id_user) {
-        this.id_user = id_user;
+    public void setIdUser(Long idUser) {
+        this.idUser = idUser;
     }
 
     public Boolean getLike() {
@@ -52,18 +47,19 @@ public class Likes {
         this.like = like;
     }
 
-    public Likes(Long id_blog, Long id_user, Boolean like) {
-        this.id_blog = id_blog;
-        this.id_user = id_user;
-        this.like = like;
+    public Blog getBlog() {
+        return blog;
     }
 
-    @Override
-    public String toString() {
-        return "Likes{" +
-                "id_blog=" + id_blog +
-                ", id_user=" + id_user +
-                ", like=" + like +
-                '}';
+    public void setBlog(Blog blog) {
+        this.blog = blog;
+    }
+
+    public Long getIdBlog() {
+        return idBlog;
+    }
+
+    public void setIdBlog(Long idBlog) {
+        this.idBlog = idBlog;
     }
 }
