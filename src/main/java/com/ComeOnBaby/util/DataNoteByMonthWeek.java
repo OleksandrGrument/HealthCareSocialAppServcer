@@ -9,6 +9,7 @@ import java.text.SimpleDateFormat;
 import java.util.*;
 
 public class DataNoteByMonthWeek {
+
     private List<Note> dataNoteByMonthWeek;
 
     public DataNoteByMonthWeek(List<Note> dataNoteByMonthWeek) {
@@ -28,6 +29,23 @@ public class DataNoteByMonthWeek {
         this.dataNoteByMonthWeek = dataNoteByMonth;
     }
 
+    public DataNoteByMonthWeek(List<Note> dataNoteByWeek, int countWeekOfYear){
+        List<Note> notesByWeek = new ArrayList<>();
+        for (Note note : dataNoteByWeek) {
+            Calendar cal = convertDateToCalendar(note.getDate());
+            int value = cal.get(Calendar.WEEK_OF_YEAR);
+            if (value == countWeekOfYear) {
+                notesByWeek.add(note);
+            }
+        }
+        Collections.sort(notesByWeek, new NoteByDateComparator());
+        this.dataNoteByMonthWeek = notesByWeek;
+    }
+
+    public List<Note> getDataNoteByMonthWeek() {
+        return dataNoteByMonthWeek;
+    }
+
     public List<WeekReportInformation> weekReportInformation(){
         ArrayList<Integer> weekValue = new ArrayList<>();
         List<WeekReportInformation> weekReportInformation = new ArrayList<>();
@@ -42,23 +60,6 @@ public class DataNoteByMonthWeek {
         return weekReportInformation;
     }
 
-
-
-    public DataNoteByMonthWeek(List<Note> dataNoteByWeek, int countWeekOfYear){
-        List<Note> notesByWeek = new ArrayList<>();
-        for (Note note : dataNoteByWeek) {
-            Calendar cal = convertDateToCalendar(note.getDate());
-            int value = cal.get(Calendar.WEEK_OF_YEAR);
-            if (value == countWeekOfYear) {
-                notesByWeek.add(note);
-            }
-        }
-        this.dataNoteByMonthWeek = notesByWeek;
-    }
-
-    public List<Note> getDataNoteByMonthWeek() {
-        return dataNoteByMonthWeek;
-    }
 
     public int recommendedFood() {
         int count = 0;
@@ -298,6 +299,29 @@ public class DataNoteByMonthWeek {
         return strBtp;
     }
 
+    public String daysInWeekString() {
+        String strDate = "";
+
+        SimpleDateFormat dateFormatter = new SimpleDateFormat("EEEE", Locale.ENGLISH);
+        SimpleDateFormat dateFormatter1 = new SimpleDateFormat("EEEE dd.MM.yyyy");
+        for (Note note : dataNoteByMonthWeek) {
+            if(note.getBbt()!= null){
+                strDate+= "'"+dateFormatter.format(note.getDate())+"',";
+            }
+        }
+        return strDate;
+    }
+
+    public String valueInWeekString() {
+        String strBtp = "";
+        for (Note note : dataNoteByMonthWeek) {
+            if(note.getBbt()!= null){
+                strBtp += note.getBbt() + ",";
+            }
+        }
+        return strBtp;
+    }
+
     private Calendar convertDateToCalendar(Date date) {
         Calendar cal = null;
         DateFormat formatter = new SimpleDateFormat("dd-MM-yyyy");
@@ -310,5 +334,14 @@ public class DataNoteByMonthWeek {
             e.printStackTrace();
         }
         return cal;
+    }
+
+    public void listOutPut(){
+        SimpleDateFormat dateFormatter1 = new SimpleDateFormat("EEEE dd.MM.yyyy");
+        for (Note note : dataNoteByMonthWeek) {
+            if(note!= null){
+                System.out.println(dateFormatter1.format(note.getDate())+", ");
+            }
+        }
     }
 }

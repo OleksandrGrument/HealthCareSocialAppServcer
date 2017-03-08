@@ -51,7 +51,12 @@ public class AllAppUsersInfoXlsx extends AbstractXlsxView {
             fruitRow.createCell(2).setCellValue(appUser.getEmail());
             fruitRow.createCell(3).setCellValue(appUser.getPreferences().getBirth_year());
             fruitRow.createCell(4).setCellValue(appUser.getLoginType());
-            fruitRow.createCell(5).setCellValue(appUser.getPreferences().getGender());
+            if(appUser.getPreferences().getGender().equals("true")){
+                fruitRow.createCell(5).setCellValue("Man");
+            }else {
+                fruitRow.createCell(5).setCellValue("Woman");
+            }
+
         }
 
 

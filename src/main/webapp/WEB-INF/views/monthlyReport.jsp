@@ -74,13 +74,13 @@
                     SimpleDateFormat dateFormat1 = new SimpleDateFormat("MM/yyyy");
                 %>
                 <tr>
-                    <td><a href="<%out.print("/cabinet/monthlyReportShow/"+user.getId()+"/"+dateFormat1.format(date));%>"><%out.print(dateFormat.format(date));%></a></td>
+                    <td><a href="<%out.print("/users/monthlyReportShow/"+user.getId()+"/"+dateFormat1.format(date));%>"><%out.print(dateFormat.format(date));%></a></td>
                     <td>Good</td>
                 </tr>
                 <%for(Note note: notices){
                     if(!dateFormat.format(note.getDate()).equals(dateFormat.format(date))){%>
                         <tr>
-                            <td><a href="<%out.print("/cabinet/monthlyReportShow/"+user.getId()+"/"+note.getDate().getMonth()+"/"+note.getDate().getYear());%>"><%out.print(dateFormat.format(note.getDate()));%></a></td>
+                            <td><a href="<%out.print("/users/monthlyReportShow/"+user.getId()+"/"+note.getDate().getMonth()+"/"+note.getDate().getYear());%>"><%out.print(dateFormat.format(note.getDate()));%></a></td>
                             <td>Good</td>
                         </tr>
                         <%date = note.getDate();%>
@@ -92,7 +92,7 @@
             </table>
 
             <div class="mt20 delimiter">
-                <a href="<% out.print("/cabinet/user-profile/" + user.getId()); %>" class="btn btn-default">Back</a>
+                <a href="<% out.print("/users/user-profile/" + user.getId()); %>" class="btn btn-default">Back</a>
             </div>
 
 

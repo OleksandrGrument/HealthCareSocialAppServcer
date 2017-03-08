@@ -37,7 +37,7 @@
     <!-- #End Sidebar -->
 
     <% AppUser user = (AppUser) request.getAttribute("user"); %>
-    <% DataNoteByMonthWeek dataNoteByMonthWeek = (DataNoteByMonthWeek) request.getAttribute("dataNoteByMonthWeek"); %>
+    <% DataNoteByMonthWeek dataNoteByMonthWeek = (DataNoteByMonthWeek) request.getAttribute("dataNoteByMonth"); %>
     <% int month = (int) request.getAttribute("month"); %>
     <% int year = (int) request.getAttribute("year"); %>
 
@@ -153,12 +153,11 @@
 
             <div class="mt10">
 
-                <a class="btn btn-primary" href="<%out.print("/cabinet/downloadMonthlyReport/"+user.getId()+"/"+month+"/"+year);%>">Download Excel</a>
+                <a class="btn btn-primary" href="<%out.print("/users/downloadMonthlyReport/"+user.getId()+"/"+month+"/"+year);%>">Download Excel</a>
             </div>
 
             <div class="mt20 delimiter">
-                <a href="monthlyReport.html" class="btn btn-default">Back</a>
-                <button class="btn btn-primary">Confirm</button>
+                <a href="<%out.print("/users/monthly-report/"+user.getId());%>" class="btn btn-default">Back</a>
             </div>
 
         </section>
