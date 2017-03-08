@@ -1,7 +1,7 @@
 <aside class="sidebar-nav">
     <div class="left-top-line logo"><a href="/">ComeOnBaby</a></div>
     <ul>
-        <li><a href="/cabinet/"><i class="fa fa-user" aria-hidden="true"></i> Users</a></li>
+        <li><a href="/users/"><i class="fa fa-user" aria-hidden="true"></i> Users</a></li>
         <li>
             <a href="javascript:void(0);"><i class="fa fa-file" aria-hidden="true"></i> Guide</a>
             <ul class="sub-menu">

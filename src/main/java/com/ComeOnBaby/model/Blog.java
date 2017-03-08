@@ -40,6 +40,9 @@ public class Blog {
     @OneToMany(mappedBy = "blog", fetch = FetchType.EAGER)
     private Set<Comment> comments;
 
+    @OneToMany(mappedBy = "blog", fetch = FetchType.EAGER)
+    private Set<Likes> likes;
+
 
     @Column(name = "images")
     private String images;
@@ -127,5 +130,13 @@ public class Blog {
 
     public void setComments(Set<Comment> comments) {
         this.comments = comments;
+    }
+
+    public Set<Likes> getLikes() {
+        return likes;
+    }
+
+    public void setLikes(Set<Likes> likes) {
+        this.likes = likes;
     }
 }

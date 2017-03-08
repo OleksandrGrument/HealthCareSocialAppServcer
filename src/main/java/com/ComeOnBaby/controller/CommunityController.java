@@ -413,7 +413,7 @@ public class CommunityController {
         JSONObject json = new JSONObject();
         json.put(BLOGID, blog.getId());
         json.put(USERID, blog.getId_user());
-//        Preferences pr = prefService.findById(blog.getId_user());
+//        Preferences pr = prefService.findById(blog.getIdUser());
 //        if(pr != null) {
 //            if (pr.getAvatar() != null) json.put(USERAVATAR, pr.getAvatar());
 //            if (pr.getNickname() != null) json.put(USERNICKNAME, pr.getNickname());

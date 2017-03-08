@@ -43,7 +43,10 @@
 
         <%@ include file="topLine.jsp" %>
 
-        <%ArrayList<Comment> comments = (ArrayList<Comment>) request.getAttribute("comments");%>
+        <%
+            ArrayList<Comment> comments = (ArrayList<Comment>) request.getAttribute("comments");
+            Blog blog = (Blog) request.getAttribute("blog");
+        %>
 
 
         <!-- Content section -->
@@ -54,15 +57,13 @@
                     <div class="col-md-6">
 
                         <%
-
-
                             Iterator<Comment> commentIterator = comments.iterator();
                             String actionUrl = "/my/write-comment";
-                            Blog blog = comments.get(0).getBlog();
+
 
                             while (commentIterator.hasNext()) {
                                 Comment comment = commentIterator.next();
-                                String deleteCommentUrl = "/my/delete-comment/"+comment.getId();
+                                String deleteCommentUrl = "/my/delete-comment/"+comment.getId()+"/"+blog.getId();
                                 AppUser appUser = comment.getAppUser();
                             if(appUser.getId()!=1){
                         %>
@@ -70,6 +71,7 @@
                                 <div class="clearfix pb10">
                                     <span class="pull-left"><a href="<%out.print("/users/user-profile/"+appUser.getId());%>"><%out.print(appUser.getPreferences().getNickname());%> (ID: <%out.print(appUser.getId());%>)</a></span>
                                     <span class="pull-right"><a href="<%out.print(deleteCommentUrl);%>" data-toggle="tooltip" title="Delete" class="deleteConfirm"><i class="fa fa-remove"></i></a></span>
+                                    <div class="pull-right mr20"><%out.print(comment.getDatetime().toString().substring(0, 19));%></div>
                                 </div>
                                 <div class="delimiter"> <%out.print(comment.getText());%> </div>
                             </div>
@@ -80,19 +82,20 @@
                                 <div class="clearfix pb10">
                                     <span class="pull-left"><b>Administrator</b></span>
                                     <span class="pull-right"><a href="<%out.print(deleteCommentUrl);%>" data-toggle="tooltip" title="Delete" class="deleteConfirm"><i class="fa fa-remove"></i></a></span>
+                                    <div class="pull-right mr20"><%out.print(comment.getDatetime().toString().substring(0, 19));%></div>
                                 </div>
-                                <div class="delimiter">You can also use the data-placement attribute with a value of "auto", which will let the browser decide the position of the tooltip. For example, if the value is "auto left", the tooltip will display on the left side when possible, otherwise on the right.</div>
+                                <div class="delimiter"><%out.print(comment.getText());%></div>
                             </div>
                             <%}%>
                         <%}%>
 
                         <form action="<%out.print(actionUrl);%>" method="post">
 
-                            <input type="hidden" value="<%out.print(blog.getId());%>">
+                            <input type="hidden" name="id" value="<%out.print(blog.getId());%>">
 
                             <div class="form-group delimiter">
                                 <label class="control-label">Administrator comment</label>
-                                <textarea class="form-control" id="editor"></textarea>
+                                <textarea class="form-control" name="text" id="editor"></textarea>
                             </div>
 
                             <div class="text-right">

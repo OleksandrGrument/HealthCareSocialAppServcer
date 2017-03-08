@@ -88,9 +88,9 @@
                 <tr>
                     <td align="center"><%out.print(blog.getId());%></td>
                     <td><a href="<%out.print(editStoryUrl);%>"><%out.print(blog.getTitle());%></a></td>
-                    <td align="center">112</td>   <%--likes--%>
-                    <td align="center">9</td>      <%-- comments--%>
-                    <td align="center"><%out.print(blog.getDatetime());%></td>
+                    <td align="center"><%out.print(blog.getLikes().size());%></td>   <%--likes--%>
+                    <td align="center"><%out.print(blog.getComments().size());%></td>
+                    <td align="center"><%out.print(blog.getDatetime().toString().substring(0, 19));%></td>
                     <td align="center">
                         <a href="<%out.print(editStoryUrl);%>" data-toggle="tooltip" title="Edit"><i class="fa fa-edit"></i> Edit</a>&nbsp; |&nbsp;
                         <a href="<%out.print("/my/delete/"+blog.getId());%>" data-toggle="tooltip" title="Delete" class="deleteConfirm"><i class="fa fa-trash"></i> Delete</a>

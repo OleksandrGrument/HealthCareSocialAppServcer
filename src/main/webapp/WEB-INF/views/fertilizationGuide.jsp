@@ -81,7 +81,7 @@
                 <tr>
                     <td align="center"><%out.print(fertilizationGuide.getId());%></td>
                     <td><a href="<%out.print(editGuideUrl);%>"><%out.print(fertilizationGuide.getTitle());%></a></td>
-                    <td align="center"><%out.print(fertilizationGuide.getDate());%></td>
+                    <td align="center"><%out.print(fertilizationGuide.getDate().toString().substring(0, 19));%></td>
                     <td align="center">
                         <a href="<%out.print(editGuideUrl);%>" data-toggle="tooltip" title="Edit"><i class="fa fa-edit"></i> Edit</a>&nbsp; |&nbsp;
                         <a href="<%out.print("/guide/delete-fertilization/"+fertilizationGuide.getId());%>" data-toggle="tooltip" title="Delete" class="deleteConfirm"><i class="fa fa-trash"></i> Delete</a>

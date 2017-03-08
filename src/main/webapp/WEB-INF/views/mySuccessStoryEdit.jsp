@@ -83,13 +83,13 @@
                         </div>
 
                         <div class="form-group">
-                            <b>Story likes:</b> 112 likes
+                            <b>Story likes:</b> <%out.print(blog.getLikes().size());%> likes
                         </div>
                     </div>
                 </div>
 
                 <div class="mt10">
-                    <a href="<%out.print("/my/comments/"+blog.getId());%>" class="btn btn-default">Story Comments (9)</a>
+                    <a href="<%out.print("/my/comments/"+blog.getId());%>" class="btn btn-default">Story Comments (<%out.print(blog.getComments().size());%>)</a>
                 </div>
 
 

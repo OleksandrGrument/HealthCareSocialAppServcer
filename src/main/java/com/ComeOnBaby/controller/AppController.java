@@ -99,7 +99,7 @@ public class AppController {
 
 
 
-	@RequestMapping(value = "/Access_Denied", method = RequestMethod.GET)
+	@RequestMapping(value = "/access-denied", method = RequestMethod.GET)
 	public String accessDeniedPage(ModelMap model) {
 		model.addAttribute("loggedinuser", getPrincipal());
 		return "accessDenied";
@@ -180,6 +180,5 @@ public class AppController {
 		//Copy bytes from source to destination(outputstream in this example), closes both streams.
 		FileCopyUtils.copy(inputStream, response.getOutputStream());
 	}
-
 
 }
