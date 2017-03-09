@@ -3,14 +3,15 @@ package com.ComeOnBaby.controller;
 
 import com.ComeOnBaby.model.Notice;
 import com.ComeOnBaby.service.NoticeService;
+import com.ComeOnBaby.util.SaveFile;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestMethod;
-import org.springframework.web.bind.annotation.SessionAttributes;
+import org.springframework.web.bind.annotation.*;
+import org.springframework.web.multipart.MultipartFile;
 import org.springframework.web.servlet.ModelAndView;
 
 import java.util.ArrayList;
+import java.util.Date;
 
 @Controller
 @RequestMapping("/notice")
@@ -33,87 +34,93 @@ public class NoticeEventController {
         return noticeEvents;
     }
 
-}
-/*
-
-
-    @RequestMapping(value = "/add-recipe", method = RequestMethod.GET)
-    public ModelAndView addRecipe() {
-        ModelAndView addRecipe = new ModelAndView("featuredRecipesEdit");
-        addRecipe.addObject("isNew", true);
-        return addRecipe;
+    @RequestMapping(value = "/add-notice", method = RequestMethod.GET)
+    public ModelAndView addNotice() {
+        ModelAndView addNotice = new ModelAndView("noticeEventEdit");
+        addNotice.addObject("isNew", true);
+        return addNotice;
     }
 
-    @RequestMapping(value = "/edit-recipe/{recipeId}", method = RequestMethod.GET)
-    public ModelAndView editRecipe(@PathVariable Long recipeId) {
-        ModelAndView editRecipe = new ModelAndView("featuredRecipesEdit");
 
-        RecipeGuide recipeGuide = recipeGuideService.getRecipeGuideById(recipeId);
+    @RequestMapping(value = "/edit-notice/{noticeId}", method = RequestMethod.GET)
+    public ModelAndView editNotice(@PathVariable Long noticeId) {
+        ModelAndView editNotice = new ModelAndView("noticeEventEdit");
 
-        editRecipe.addObject("isNew", false);
-        editRecipe.addObject("recipeGuide", recipeGuide);
+        Notice notice = noticeService.get(noticeId);
 
-        return editRecipe;
+        editNotice.addObject("isNew", false);
+        editNotice.addObject("notice", notice);
+
+        return editNotice;
 
     }
 
-    @RequestMapping(value = "/save-new-recipe", method = RequestMethod.POST)
-    public ModelAndView saveNewRecipe(@RequestParam(value = "id") String id, @RequestParam("title") String title, @RequestParam("url") String naverUrl, @RequestParam("filePicture[]") MultipartFile[] files) {
+    @RequestMapping(value = "/delete-notice/{id}", method = RequestMethod.GET)
+    public ModelAndView deleteNotice(@PathVariable Long id) {
+
+        Notice notice = noticeService.get(id);
+
+        noticeService.deleteNotice(notice);
+
+        return new ModelAndView("redirect:/notice/events");
+    }
+
+
+
+    @RequestMapping(value = "/save-new-notice", method = RequestMethod.POST)
+    public ModelAndView saveNewRecipe(@RequestParam(value = "id") String id, @RequestParam("title") String title, @RequestParam("text") String noticeText, @RequestParam("filePicture[]") MultipartFile[] files) {
 
         if (id.equals("")) {
 
-            RecipeGuide recipeGuide = new RecipeGuide();
+            Notice notice = new Notice();
 
-            recipeGuide.setDate(new Date());
-            recipeGuide.setTitle(title);
-            recipeGuide.setUrlNaver(naverUrl);
+            notice.setDate(new Date());
+            notice.setTitle(title);
+            notice.setText(noticeText);
 
             //Save to file
+
+            StringBuilder noticeFileNames = new StringBuilder();
 
             if (!files[0].isEmpty()) {
                 String pathToSaveFile = "pictures/";
                 SaveFile saveFile = new SaveFile(pathToSaveFile, files);
-                saveFile.saveFile();
-                recipeGuide.setImageThumbnail(MainPathEnum.mainWebPath + "show-image/" + files[0].getOriginalFilename() + "/");
-                recipeGuideService.addNewRecipeGuide(recipeGuide);
+                saveFile.saveFileAndGetName();
+
+                ArrayList<String> fileNames = saveFile.saveFileAndGetName();
+                for (String name : fileNames){
+                    noticeFileNames.append(name+"|");
+                }
+                notice.setImages(noticeFileNames.toString());
+
+                noticeService.addNewNotice(notice);
             }
 
         } else {
 
-            RecipeGuide recipeGuide = recipeGuideService.getRecipeGuideById(Long.valueOf(id));
+            Notice notice = noticeService.get(Long.valueOf(id));
 
-            recipeGuide.setDate(new Date());
-            recipeGuide.setTitle(title);
-            recipeGuide.setUrlNaver(naverUrl);
+            notice.setDate(new Date());
+            notice.setTitle(title);
+            notice.setText(noticeText);
+
+            StringBuilder noticeFileNames = new StringBuilder();
 
             //Save to file
             if (files.length != 0) {
                 if (!files[0].isEmpty()) {
                     String pathToSaveFile = "pictures/";
                     SaveFile saveFile = new SaveFile(pathToSaveFile, files);
-                    saveFile.saveFile();
-                    recipeGuide.setImageThumbnail(MainPathEnum.mainWebPath + "show-image/" + files[0].getOriginalFilename() + "/");
+                    ArrayList<String> fileNames = saveFile.saveFileAndGetName();
+                    for (String name : fileNames){
+                        noticeFileNames.append(name+"|");
+                    }
+                    notice.setImages(noticeFileNames.toString());
                 }
             }
-            recipeGuideService.updateRecipeGuide(recipeGuide);
+            noticeService.updateNotice(notice);
         }
 
-        return new ModelAndView("redirect:/guide/featured-recipes");
+        return new ModelAndView("redirect:/notice/events");
     }
-
-    @RequestMapping(value = "/delete-recipe/{id}", method = RequestMethod.GET)
-    public ModelAndView deleteRecipe(@PathVariable Long id) {
-
-        RecipeGuide recipeGuide = recipeGuideService.getRecipeGuideById(id);
-
-        recipeGuideService.deleteRecipeGuide(recipeGuide);
-
-        return new ModelAndView("redirect:/guide/featured-recipes");
-    }
-
-    *//*
-
-
-
 }
-*/

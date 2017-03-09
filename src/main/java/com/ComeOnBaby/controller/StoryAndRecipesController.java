@@ -2,7 +2,6 @@ package com.ComeOnBaby.controller;
 
 
 import com.ComeOnBaby.comparator.CommentByDateComparator;
-import com.ComeOnBaby.enums.MainPathEnum;
 import com.ComeOnBaby.model.AppUser;
 import com.ComeOnBaby.model.Blog;
 import com.ComeOnBaby.model.Comment;
@@ -113,7 +112,7 @@ public class StoryAndRecipesController {
             if (!files[0].isEmpty()) {
                 String pathToSaveFile = "pictures/";
                 SaveFile saveFile = new SaveFile(pathToSaveFile, files);
-                saveFile.saveFile();
+                saveFile.saveFileAndGetName();
                 /*
                 fertilizationGuide.setImage(MainPathEnum.mainWebPath + "show-image/" + files[0].getOriginalFilename() + "/");*/
                 blogService.addNewBlog(blog);
@@ -131,7 +130,7 @@ public class StoryAndRecipesController {
                 if (!files[0].isEmpty()) {
                     String pathToSaveFile = "pictures/";
                     SaveFile saveFile = new SaveFile(pathToSaveFile, files);
-                    saveFile.saveFile();
+                    saveFile.saveFileAndGetName();
                     /*fertilizationGuide.setImage(MainPathEnum.mainWebPath + "show-image/" + files[0].getOriginalFilename() + "/");*/
                 }
             }

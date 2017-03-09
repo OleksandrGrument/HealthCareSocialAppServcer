@@ -73,8 +73,8 @@ public class GuideController {
             if (!files[0].isEmpty()) {
                 String pathToSaveFile = "pictures/";
                 SaveFile saveFile = new SaveFile(pathToSaveFile, files);
-                saveFile.saveFile();
-                recipeGuide.setImageThumbnail(MainPathEnum.mainWebPath + "show-image/" + files[0].getOriginalFilename() + "/");
+                ArrayList<String> fileNames = saveFile.saveFileAndGetName();
+                recipeGuide.setImageThumbnail(MainPathEnum.mainWebPath + "show-image/" + fileNames.get(0));
                 recipeGuideService.addNewRecipeGuide(recipeGuide);
             }
 
@@ -91,8 +91,8 @@ public class GuideController {
                 if (!files[0].isEmpty()) {
                     String pathToSaveFile = "pictures/";
                     SaveFile saveFile = new SaveFile(pathToSaveFile, files);
-                    saveFile.saveFile();
-                    recipeGuide.setImageThumbnail(MainPathEnum.mainWebPath + "show-image/" + files[0].getOriginalFilename() + "/");
+                    ArrayList<String> fileNames = saveFile.saveFileAndGetName();
+                    recipeGuide.setImageThumbnail(MainPathEnum.mainWebPath + "show-image/" + fileNames.get(0) );
                 }
             }
             recipeGuideService.updateRecipeGuide(recipeGuide);
@@ -167,8 +167,8 @@ public class GuideController {
             if (!files[0].isEmpty()) {
                 String pathToSaveFile = "pictures/";
                 SaveFile saveFile = new SaveFile(pathToSaveFile, files);
-                saveFile.saveFile();
-                fertilizationGuide.setImage(MainPathEnum.mainWebPath + "show-image/" + files[0].getOriginalFilename() + "/");
+                ArrayList<String> fileNames = saveFile.saveFileAndGetName();
+                fertilizationGuide.setImage(MainPathEnum.mainWebPath + "show-image/" + fileNames.get(0));
                 fertilizationGuideService.addNewFertilizationGuide(fertilizationGuide);
             }
 
@@ -184,8 +184,8 @@ public class GuideController {
                 if (!files[0].isEmpty()) {
                     String pathToSaveFile = "pictures/";
                     SaveFile saveFile = new SaveFile(pathToSaveFile, files);
-                    saveFile.saveFile();
-                    fertilizationGuide.setImage(MainPathEnum.mainWebPath + "show-image/" + files[0].getOriginalFilename() + "/");
+                    ArrayList<String> fileNames = saveFile.saveFileAndGetName();
+                    fertilizationGuide.setImage(MainPathEnum.mainWebPath + "show-image/" + fileNames.get(0));
                 }
             }
             fertilizationGuideService.updateFertilizationGuide(fertilizationGuide);

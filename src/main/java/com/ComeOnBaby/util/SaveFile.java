@@ -6,6 +6,7 @@ import org.springframework.web.multipart.MultipartFile;
 import java.io.BufferedOutputStream;
 import java.io.File;
 import java.io.FileOutputStream;
+import java.util.ArrayList;
 
 public class SaveFile {
     private String pathForSaveFile;
@@ -19,10 +20,16 @@ public class SaveFile {
         this.files = files;
     }
 
-    public void saveFile(){
+    public ArrayList<String> saveFileAndGetName(){
+
+        ArrayList<String> fileNames = new ArrayList<>();
+
         for (int i = 0; i < this.files.length; i++) {
             MultipartFile file = this.files[i];
-            String name = file.getOriginalFilename();
+            String originalFileName =  file.getOriginalFilename();
+            String fileExtension = originalFileName.substring(originalFileName.lastIndexOf("."));
+            String name =  (java.util.UUID.randomUUID() + fileExtension);
+            fileNames.add(name);
             try {
                 byte[] bytes = file.getBytes();
                 File dir = new File(MainPathEnum.mainPath + this.pathForSaveFile);
@@ -48,7 +55,7 @@ public class SaveFile {
                 System.out.println(e.getMessage());
             }
         }
-
+        return fileNames;
     }
 
     public String getPathForSaveFile() {
