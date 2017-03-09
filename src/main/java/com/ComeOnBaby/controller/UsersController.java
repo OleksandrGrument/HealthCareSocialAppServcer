@@ -6,9 +6,8 @@ import com.ComeOnBaby.service.*;
 
 import com.ComeOnBaby.service.NoteService;
 import com.ComeOnBaby.service.PreferencesService;
+import com.ComeOnBaby.util.ServerResponseAnswersConstant;
 import com.google.gson.Gson;
-import com.itextpdf.text.log.SysoCounter;
-import org.apache.poi.util.SystemOutLogger;
 import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
@@ -98,13 +97,13 @@ public class UsersController {
         System.out.println("Get json: " + body.toString());
         JSONObject inJSON = new JSONObject(body);
 
-        if(!inJSON.has(OPERATION)) throw new IllegalArgumentException(Strings.ERR_NO_OPERATION);
-        if(!inJSON.has(USER)) throw new IllegalArgumentException(Strings.ERR_NO_USER);
+        if(!inJSON.has(OPERATION)) throw new IllegalArgumentException(ServerResponseAnswersConstant.ERR_NO_OPERATION);
+        if(!inJSON.has(USER)) throw new IllegalArgumentException(ServerResponseAnswersConstant.ERR_NO_USER);
         //Default response values
         JSONObject outJSON = new JSONObject();
         outJSON.put(RESULT, FAILURE);
         outJSON.put(OPERATION, inJSON.getString(OPERATION));
-        outJSON.put(MESSAGE, Strings.ERR_SERVER_ERROR);
+        outJSON.put(MESSAGE, ServerResponseAnswersConstant.ERR_SERVER_ERROR);
 
         switch (inJSON.getString(OPERATION)) {
             case REG_EMAIL_OPERATION: {
@@ -169,7 +168,7 @@ public class UsersController {
             }
 
             default: {
-                throw new IllegalArgumentException(Strings.ERR_UNKNOWN_OPERATION);
+                throw new IllegalArgumentException(ServerResponseAnswersConstant.ERR_UNKNOWN_OPERATION);
             }
         }
         System.out.println("Out JSON: " + outJSON.toString()  + "\n");
@@ -185,7 +184,7 @@ public class UsersController {
         JSONObject jsnote = new JSONObject(inJSON.getString(DATA));
         Note note = parseNoteFromJson(jsnote.toString());
         if(inUser.getId() == null || note == null) {
-            outJSON.put(MESSAGE, Strings.ERR_SAVE_NOTE);
+            outJSON.put(MESSAGE, ServerResponseAnswersConstant.ERR_SAVE_NOTE);
             return outJSON;
         }
         note.setUser_id(inUser.getId());
@@ -199,7 +198,7 @@ public class UsersController {
             noteService.updateNote(note);
         }
         outJSON.put(RESULT, SUCCESS);
-        outJSON.put(MESSAGE, Strings.MSG_NOTE_SAVE_SUCCESS);
+        outJSON.put(MESSAGE, ServerResponseAnswersConstant.MSG_NOTE_SAVE_SUCCESS);
         return outJSON;
     }
 
@@ -210,7 +209,7 @@ public class UsersController {
         JSONObject jsonuser = new JSONObject(inJSON.getString(USER));
         AppUser inUser = gson.fromJson(jsonuser.toString(), AppUser.class);
         if(inUser.getId() == null || userService.findById(inUser.getId()) == null) {
-            outJSON.put(MESSAGE, Strings.ERR_GET_NOTES);
+            outJSON.put(MESSAGE, ServerResponseAnswersConstant.ERR_GET_NOTES);
             return outJSON;
         }
         Integer year = null, month = null;
@@ -242,7 +241,7 @@ public class UsersController {
             listNotes = noteService.findUserNotes(inUser);
         }
         if(listNotes == null) {
-            outJSON.put(MESSAGE, Strings.ERR_GET_NOTES);
+            outJSON.put(MESSAGE, ServerResponseAnswersConstant.ERR_GET_NOTES);
             return outJSON;
         }
         JSONArray notesarr = new JSONArray();
@@ -252,7 +251,7 @@ public class UsersController {
         }
         outJSON.put(DATA, notesarr.toString());
         outJSON.put(RESULT, SUCCESS);
-        outJSON.put(MESSAGE, Strings.MSG_GET_NOTES_SUCCESS);
+        outJSON.put(MESSAGE, ServerResponseAnswersConstant.MSG_GET_NOTES_SUCCESS);
         return outJSON;
     }
 
@@ -267,7 +266,7 @@ public class UsersController {
         AppUser idUser = userService.findById(inUser.getId());
         //Если пользователя с таким ID нет, тогда ошибка
         if(idUser == null) {
-            outJSON.put(MESSAGE, Strings.ERR_USER_NOT_FOUND);
+            outJSON.put(MESSAGE, ServerResponseAnswersConstant.ERR_USER_NOT_FOUND);
             return outJSON;
         }
         AppUser emailUser = userService.findByEmail(newEmail);
@@ -276,18 +275,18 @@ public class UsersController {
             idUser.setEmail(newEmail);
             userService.updateUser(idUser);
             outJSON.put(RESULT, SUCCESS);
-            outJSON.put(MESSAGE, Strings.MSG_EMAIL_UPDATE_SUCCESS);
+            outJSON.put(MESSAGE, ServerResponseAnswersConstant.MSG_EMAIL_UPDATE_SUCCESS);
             outJSON.put(USER, getUserJSON(idUser).toString());
             outJSON.put(DATA, data.toString());
         //Если мыло не изменилось
         } else if (idUser.getId() == emailUser.getId()) {
             outJSON.put(RESULT, SUCCESS);
-            outJSON.put(MESSAGE, Strings.MSG_EMAIL_UPDATE_SUCCESS);
+            outJSON.put(MESSAGE, ServerResponseAnswersConstant.MSG_EMAIL_UPDATE_SUCCESS);
             outJSON.put(USER, getUserJSON(idUser).toString());
             outJSON.put(DATA, data.toString());
             //Если такое мыло уже у другого пользователя
         } else {
-            outJSON.put(MESSAGE, Strings.MSG_EMAIL_UPDATE_FAIL);
+            outJSON.put(MESSAGE, ServerResponseAnswersConstant.MSG_EMAIL_UPDATE_FAIL);
         }
         return outJSON;
     }
@@ -303,12 +302,12 @@ public class UsersController {
         AppUser idUser = userService.findById(inUser.getId());
         //Если пользователя с таким ID нет, тогда ошибка
         if(idUser == null) {
-            outJSON.put(MESSAGE, Strings.ERR_USER_NOT_FOUND);
+            outJSON.put(MESSAGE, ServerResponseAnswersConstant.ERR_USER_NOT_FOUND);
         } else {
             idUser.setPassword(newPassword);
             userService.updateUser(idUser);
             outJSON.put(RESULT, SUCCESS);
-            outJSON.put(MESSAGE, Strings.MSG_PASSWORD_UPDATE_SUCCESS);
+            outJSON.put(MESSAGE, ServerResponseAnswersConstant.MSG_PASSWORD_UPDATE_SUCCESS);
             outJSON.put(USER, getUserJSON(idUser).toString());
         }
         return outJSON;
@@ -327,17 +326,17 @@ public class UsersController {
         String nickname = null;
         if(jsdata.has(NICKNAME)) nickname = jsdata.getString(NICKNAME);
         if(email == null || password == null || loginType == null || !loginType.equals(LOGIN_EMAIL)) {
-            throw new IllegalArgumentException(Strings.ERR_ILLEGAL_ARGUMENT);
+            throw new IllegalArgumentException(ServerResponseAnswersConstant.ERR_ILLEGAL_ARGUMENT);
         }
         //Check if user with specified email allready exists in BD
         AppUser bdUser = userService.findByEmail(email);
         if(bdUser != null) {
-            outJSON.put(MESSAGE, Strings.MSG_REGISTER_USER_FAIL);
+            outJSON.put(MESSAGE, ServerResponseAnswersConstant.MSG_REGISTER_USER_FAIL);
         } else {
             Long userid = userService.addNewUser(inUser);
             AppUser newUser = userService.findById(userid);
             outJSON.put(RESULT, SUCCESS);
-            outJSON.put(MESSAGE, Strings.MSG_REGISTER_USER_SUCCESS);
+            outJSON.put(MESSAGE, ServerResponseAnswersConstant.MSG_REGISTER_USER_SUCCESS);
             outJSON.put(USER, getUserJSON(newUser).toString());
             //создаем настройки юзера
             Preferences preferences = new Preferences();
@@ -361,18 +360,18 @@ public class UsersController {
         String password = inUser.getPassword();
         String loginType = inUser.getLoginType();
         if(email == null || password == null || loginType == null) {
-            throw new IllegalArgumentException(Strings.ERR_ILLEGAL_ARGUMENT);
+            throw new IllegalArgumentException(ServerResponseAnswersConstant.ERR_ILLEGAL_ARGUMENT);
         }
         //Check if user with specified email exists in BD
         AppUser bdUser = userService.findByEmail(email);
         if(bdUser == null) {
-            outJSON.put(MESSAGE, Strings.MSG_LOGIN_EMAIL_FAIL);
+            outJSON.put(MESSAGE, ServerResponseAnswersConstant.MSG_LOGIN_EMAIL_FAIL);
         } else {
             if(bdUser.getPassword() == null || !bdUser.getPassword().equals(password)) {
-                outJSON.put(MESSAGE, Strings.MSG_LOGIN_EMAIL_FAIL);
+                outJSON.put(MESSAGE, ServerResponseAnswersConstant.MSG_LOGIN_EMAIL_FAIL);
             } else {
                 outJSON.put(RESULT, SUCCESS);
-                outJSON.put(MESSAGE, Strings.MSG_LOGIN_EMAIL_SUCCESS);
+                outJSON.put(MESSAGE, ServerResponseAnswersConstant.MSG_LOGIN_EMAIL_SUCCESS);
                 outJSON.put(USER, getUserJSON(bdUser).toString());
 
                 //JSONObject profile = getPreferencesJSON(prefService.findById(bdUser.getId()));
@@ -388,7 +387,7 @@ public class UsersController {
 //    private JSONObject changePassword(JSONObject inJSON, JSONObject outJSON) {
 //        //Check required key NEW_PASSWORD in json
 //        if(!inJSON.has(NEW_PASSWORD)) {
-//            throw new IllegalArgumentException(Strings.ERR_ILLEGAL_ARGUMENT);
+//            throw new IllegalArgumentException(ServerResponseAnswersConstant.ERR_ILLEGAL_ARGUMENT);
 //        }
 //        Gson gson = new Gson();
 //        AppUser inUser = gson.fromJson(inJSON.getJSONObject(MODEL).toString(), AppUser.class);
@@ -397,22 +396,22 @@ public class UsersController {
 //        String email = inUser.getEmail();
 //        //Check required fields not null
 //        if(email == null || oldPassword == null || newPassword == null) {
-//            throw new IllegalArgumentException(Strings.ERR_ILLEGAL_ARGUMENT);
+//            throw new IllegalArgumentException(ServerResponseAnswersConstant.ERR_ILLEGAL_ARGUMENT);
 //        }
 //        outJSON.put(OPERATION, CHANGE_PASS_OPERATION);
 //        //Check if user with specified email exists in BD
 //        AppUser bdUser = userService.findByEmail(email);
 //        if(bdUser == null) {                                        //no such user email in BD
 //            outJSON.put(RESULT, FAILURE);
-//            outJSON.put(MESSAGE, Strings.ERR_USER_NOT_FOUND);
+//            outJSON.put(MESSAGE, ServerResponseAnswersConstant.ERR_USER_NOT_FOUND);
 //        } else if (!bdUser.getPassword().equals(oldPassword)) {     //old password incorrect
 //            outJSON.put(RESULT, FAILURE);
-//            outJSON.put(MESSAGE, Strings.MSG_PASSWORD_UPDATE_FAIL);
+//            outJSON.put(MESSAGE, ServerResponseAnswersConstant.MSG_PASSWORD_UPDATE_FAIL);
 //        } else {                                                    //all good
 //            bdUser.setPassword(newPassword);
 //            userService.updateUser(bdUser);
 //            outJSON.put(RESULT, SUCCESS);
-//            outJSON.put(MESSAGE, Strings.MSG_PASSWORD_UPDATE_SUCCESS);
+//            outJSON.put(MESSAGE, ServerResponseAnswersConstant.MSG_PASSWORD_UPDATE_SUCCESS);
 //            outJSON.put(MODEL, getUserJSON(bdUser));
 //        }
 //        return outJSON;
@@ -427,7 +426,7 @@ public class UsersController {
         String loginType = inUser.getLoginType();
         String email = inUser.getEmail();
         if(socialID == null || loginType == null || !(loginType.equals(LOGIN_KAKAO) || loginType.equals(LOGIN_FACEBOOK))) {
-            throw new IllegalArgumentException(Strings.ERR_ILLEGAL_ARGUMENT);
+            throw new IllegalArgumentException(ServerResponseAnswersConstant.ERR_ILLEGAL_ARGUMENT);
         }
         //Ищем пользователя с таким socialID в БД
         AppUser bdIdUser = userService.findBySocialID(loginType, socialID);
@@ -450,14 +449,14 @@ public class UsersController {
             //Создаем пользователя
             Long userid = userService.addNewUser(inUser);
             bdIdUser = userService.findById(userid);
-            outJSON.put(MESSAGE, Strings.MSG_REGISTER_SOCIAL_SUCCESS);
+            outJSON.put(MESSAGE, ServerResponseAnswersConstant.MSG_REGISTER_SOCIAL_SUCCESS);
             //создаем настройки юзера
             Preferences preferences = new Preferences();
             preferences.setId(userid);
             prefService.addNewPreferences(preferences);
         //Если пользователь с таким socialID уже есть
         } else {
-            outJSON.put(MESSAGE, Strings.MSG_LOGIN_SOCIAL_SUCCESS);
+            outJSON.put(MESSAGE, ServerResponseAnswersConstant.MSG_LOGIN_SOCIAL_SUCCESS);
         }
         JSONObject profile = getPreferencesJSON(prefService.findById(bdIdUser.getId()));
         outJSON.put(RESULT, SUCCESS);
@@ -480,7 +479,7 @@ public class UsersController {
         Long userID = inUser.getId();
 
         if (userID == null) {
-            throw new IllegalArgumentException(Strings.ERR_USER_NOT_FOUND);
+            throw new IllegalArgumentException(ServerResponseAnswersConstant.ERR_USER_NOT_FOUND);
         } else {
             Preferences pref = gson.fromJson(data.toString(), Preferences.class);
             pref.setId(userID);
@@ -490,7 +489,7 @@ public class UsersController {
                 prefService.updatePreferences(pref);
             }
             outJSON.put(RESULT, SUCCESS);
-            outJSON.put(MESSAGE, Strings.MSG_PROFILE_UPDATE_SUCCESS);
+            outJSON.put(MESSAGE, ServerResponseAnswersConstant.MSG_PROFILE_UPDATE_SUCCESS);
             outJSON.put(USER, getUserJSON(inUser).toString());
             outJSON.put(DATA, getPreferencesJSON(pref).toString());
         }
@@ -508,13 +507,13 @@ public class UsersController {
 
 
         if (userID == null) {
-            throw new IllegalArgumentException(Strings.ERR_USER_NOT_FOUND);
+            throw new IllegalArgumentException(ServerResponseAnswersConstant.ERR_USER_NOT_FOUND);
         } else {
             BasicQuestions basicQuestions = gson.fromJson(data.toString(), BasicQuestions.class);
             basicQuestionsService.addNewBasicQuestions(basicQuestions);
 
             outJSON.put(RESULT, SUCCESS);
-            outJSON.put(MESSAGE, Strings.MSG_B_Q_UPLOAD_SUCCESS);
+            outJSON.put(MESSAGE, ServerResponseAnswersConstant.MSG_B_Q_UPLOAD_SUCCESS);
             outJSON.put(USER, getUserJSON(inUser).toString());
             outJSON.put(DATA, basicQuestions.toString());
             System.out.println("=========START5");
@@ -531,10 +530,10 @@ public class UsersController {
 
         Preferences pref = prefService.findById(id_user);
         if (pref==null) {
-            outJSON.put(MESSAGE, Strings.ERR_PROFILE_NOT_FOUND);
+            outJSON.put(MESSAGE, ServerResponseAnswersConstant.ERR_PROFILE_NOT_FOUND);
         } else {
             outJSON.put(RESULT, SUCCESS);
-            outJSON.put(MESSAGE, Strings.MSG_PROFILE_UPDATE_SUCCESS);
+            outJSON.put(MESSAGE, ServerResponseAnswersConstant.MSG_PROFILE_UPDATE_SUCCESS);
             outJSON.put(USER, getUserJSON(inUser).toString());
             outJSON.put(DATA, getPreferencesJSON(pref).toString());
         }
@@ -726,7 +725,7 @@ public class UsersController {
 
 
         outJSON.put(RESULT, SUCCESS);
-        outJSON.put(MESSAGE, Strings.MSG_GUIDE_DOWNLOAD_SUCCESS);
+        outJSON.put(MESSAGE, ServerResponseAnswersConstant.MSG_GUIDE_DOWNLOAD_SUCCESS);
 
         JSONArray jsonArray = new JSONArray();
 
@@ -754,7 +753,7 @@ public class UsersController {
 
 
         outJSON.put(RESULT, SUCCESS);
-        outJSON.put(MESSAGE, Strings.MSG_RECIPE_DOWNLOAD_SUCCESS);
+        outJSON.put(MESSAGE, ServerResponseAnswersConstant.MSG_RECIPE_DOWNLOAD_SUCCESS);
 
         JSONArray jsonArray = new JSONArray();
 

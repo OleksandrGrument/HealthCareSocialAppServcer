@@ -1,9 +1,7 @@
-package com.ComeOnBaby.controller;
+package com.ComeOnBaby.util;
 
-/**
- * Created by olegs on 16.02.2017.
- */
-public class Strings {
+
+public class ServerResponseAnswersConstant {
     //Errors
     public final static String ERR_SERVER_ERROR = "Server error! ";
     public final static String ERR_NO_OPERATION = "Error! No \"operation\" argument";
