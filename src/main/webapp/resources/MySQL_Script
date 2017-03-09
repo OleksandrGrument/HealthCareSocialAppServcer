@@ -121,39 +121,25 @@ CREATE TABLE `user_profile` (
 
 CREATE TABLE `notice` (
 	`id` INT NOT NULL,
-	`date` DATE NOT NULL,
-	`title` VARCHAR(255),
-	`text` VARCHAR(255) NOT NULL
+	`date` DATETIME NOT NULL,
+	`title` TEXT,
+	`text` TEXT NOT NULL,
+	`images`
 );
 
 CREATE TABLE `recipe_guide` (
 	`id` INT NOT NULL,
-	`title` VARCHAR(255) NOT NULL,
+	`title` TEXT NOT NULL,
 	`date` DATETIME NOT NULL,
-	`imageThumbnail` VARCHAR(255) NOT NULL,
-	`urlNaver` VARCHAR(255) NOT NULL
+	`imageThumbnail` TEXT NOT NULL,
+	`urlNaver` TEXT NOT NULL
 );
 
 CREATE TABLE `fertilization_guide` (
 	`id` INT NOT NULL,
 	`title` VARCHAR(255) NOT NULL,
 	`date` DATETIME NOT NULL,
-	`image` VARCHAR(255) NOT NULL
-);
-
-CREATE TABLE `images` (
-	`id_body` INT NOT NULL,
-	`type` VARCHAR(255) NOT NULL,
-	`images_0` VARCHAR(255) NOT NULL,
-	`images_1` VARCHAR(255) NOT NULL,
-	`images_2` VARCHAR(255) NOT NULL,
-	`images_3` VARCHAR(255) NOT NULL,
-	`images_4` VARCHAR(255) NOT NULL,
-	`images_5` VARCHAR(255) NOT NULL,
-	`images_6` VARCHAR(255) NOT NULL,
-	`images_7` VARCHAR(255) NOT NULL,
-	`images_8` VARCHAR(255) NOT NULL,
-	`images_9` VARCHAR(255) NOT NULL
+	`image` TEXT NOT NULL
 );
 
 CREATE TABLE `blog` (
@@ -161,14 +147,14 @@ CREATE TABLE `blog` (
 	`idUser` INT NOT NULL,
 	`type` VARCHAR(255) NOT NULL,
 	`title` VARCHAR(255) NOT NULL,
-	`text` VARCHAR(255) NOT NULL,
+	`text` TEXT NOT NULL,
 	`datetime` DATETIME NOT NULL
 );
 
 CREATE TABLE `comments` (
 	`idBlog` INT NOT NULL,
 	`idUser` INT NOT NULL,
-	`text` VARCHAR(255) NOT NULL,
+	`text` TEXT NOT NULL,
 	`datetime` DATETIME NOT NULL
 );
 
@@ -183,9 +169,9 @@ CREATE TABLE `q_a` (
 	`idUser` INT NOT NULL,
 	`date` DATE NOT NULL,
 	`title` VARCHAR(255) NOT NULL,
-	`text` VARCHAR(255) NOT NULL,
+	`text` TEXT NOT NULL,
 	`is_access` BOOLEAN NOT NULL,
-	`answer` VARCHAR(255) NOT NULL
+	`answer` TEXT NOT NULL
 );
 
 INSERT INTO `user_profile`(type)

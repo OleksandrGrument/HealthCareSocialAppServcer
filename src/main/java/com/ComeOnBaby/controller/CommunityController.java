@@ -434,7 +434,7 @@ public class CommunityController {
         js.put(BLOGDATE, dateFormat.format(notice.getDate()));
         js.put(BLOGTYPE, 1);
         js.put(BLOGTITLE, notice.getTitle());
-        js.put(BLOGTEXT, notice.getHtml());
+        js.put(BLOGTEXT, "" /*notice.getHtml()*/);
         return js;
     }
 
