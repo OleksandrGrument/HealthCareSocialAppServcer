@@ -1,6 +1,7 @@
 package com.ComeOnBaby.service;
 
 import com.ComeOnBaby.dao.BasicQuestionsDao;
+import com.ComeOnBaby.model.AppUser;
 import com.ComeOnBaby.model.BasicQuestions;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -23,6 +24,12 @@ public class BasicQuestionsServiceImpl implements BasicQuestionsService{
     @Transactional
     public void addNewBasicQuestions(BasicQuestions basicQuestions) {
         basicQuestionsDao.create(basicQuestions);
+    }
+
+    @Override
+    @Transactional
+    public BasicQuestions readBasicQuestionsByUser(AppUser user) {
+        return basicQuestionsDao.read(user.getId());
     }
 
     @Override

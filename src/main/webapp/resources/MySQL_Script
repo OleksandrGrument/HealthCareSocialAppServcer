@@ -1,13 +1,11 @@
 CREATE TABLE `users` (
-	`id` INT NOT NULL,
+	`id` INT NOT NULL AUTO_INCREMENT,
 	`email` VARCHAR(255) NOT NULL,
 	`password` VARCHAR(255) NOT NULL,
 	`social_id` INT NOT NULL,
-	`login_type` INT NOT NULL,
+	`login_type` VARCHAR(255) NOT NULL,
 	PRIMARY KEY (`id`)
 );
-
-INSERT INTO users (email, password, social_id, login_type) VALUES (‘test1245698765@mail.com’, ‘123’, ‘1’, ‘ADMIN’)
 
 CREATE TABLE `preferences` (
 	`user_id` INT NOT NULL,
@@ -232,4 +230,3 @@ INSERT INTO `app_user_user_profile` (user_id, user_profile_id)
 
   INSERT INTO `app_user_user_profile` (user_id, user_profile_id)
     value(1,2);
-
