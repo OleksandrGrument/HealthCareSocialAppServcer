@@ -11,7 +11,9 @@ import org.springframework.web.multipart.MultipartFile;
 import org.springframework.web.servlet.ModelAndView;
 
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.Date;
+import java.util.List;
 
 @Controller
 @RequestMapping("/notice")
@@ -47,7 +49,11 @@ public class NoticeEventController {
         ModelAndView editNotice = new ModelAndView("noticeEventEdit");
 
         Notice notice = noticeService.get(noticeId);
+        String images = notice.getImages();
 
+        List<String> imagesList = Arrays.asList(images.split("<>"));
+
+        editNotice.addObject("images" ,imagesList);
         editNotice.addObject("isNew", false);
         editNotice.addObject("notice", notice);
 
@@ -89,7 +95,7 @@ public class NoticeEventController {
 
                 ArrayList<String> fileNames = saveFile.saveFileAndGetName();
                 for (String name : fileNames){
-                    noticeFileNames.append(name+"|");
+                    noticeFileNames.append(name+"<>");
                 }
                 notice.setImages(noticeFileNames.toString());
 
@@ -113,7 +119,7 @@ public class NoticeEventController {
                     SaveFile saveFile = new SaveFile(pathToSaveFile, files);
                     ArrayList<String> fileNames = saveFile.saveFileAndGetName();
                     for (String name : fileNames){
-                        noticeFileNames.append(name+"|");
+                        noticeFileNames.append(name+"<>");
                     }
                     notice.setImages(noticeFileNames.toString());
                 }

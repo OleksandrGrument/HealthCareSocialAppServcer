@@ -1,4 +1,7 @@
 <%@ page import="com.ComeOnBaby.model.Notice" %>
+<%@ page import="java.util.ArrayList" %>
+<%@ page import="com.ComeOnBaby.enums.MainPathEnum" %>
+<%@ page import="java.util.List" %>
 <%@ taglib prefix="spring" uri="http://www.springframework.org/tags" %>
 <%@ page language="java" pageEncoding="UTF-8"%>
 <%@ page contentType="text/html;charset=UTF-8" %>
@@ -64,13 +67,17 @@
                             <input type="text" class="form-control" name="title" id="title" value="<%out.print(title);%>" placeholder="Notice / event title">
                         </div>
 
-                      <%--  <% if(!isNew){
-                            String urlPic = fertilizationGuide.getImage(); %>--%>
-                        <div class="form-group form-img-thumbnail">
-                            <a data-fancybox="gallery" href="/resources/images/notice-event.jpg"><img src="/resources/images/notice-event.jpg" alt="Roasted Carrot Soup" class="img-thumbnail"></a>
-                            <a href="javascript:void(0);" class="delete deleteConfirm"><i class="fa fa-times"></i></a>
-                        </div>
+                        <% if(!isNew){
 
+                            List<String> images = (List<String>) request.getAttribute("images");
+                            for (String image : images){
+                                String urlPic = MainPathEnum.mainWebPath+"show-image/"+image; %>
+                                <div class="form-group form-img-thumbnail">
+                                    <a data-fancybox="gallery" href="<%out.print(urlPic);%>"><img src="<%out.print(urlPic);%>" alt="Roasted Carrot Soup" class="img-thumbnail"></a>
+                                    <a href="javascript:void(0);" class="delete deleteConfirm"><i class="fa fa-times"></i></a>
+                                </div>
+                            <%}%>
+                        <%}%>
                         <div class="form-group">
                             <label class="control-label">Notice / event image</label>
                             <input multiple id="tenFilesInput" name="filePicture[]" type="file" class="file">
