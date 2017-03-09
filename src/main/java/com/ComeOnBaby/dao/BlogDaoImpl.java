@@ -2,11 +2,9 @@ package com.ComeOnBaby.dao;
 
 
 import com.ComeOnBaby.model.Blog;
-import org.hibernate.Criteria;
 import org.hibernate.Query;
 import org.hibernate.Session;
 import org.hibernate.SessionFactory;
-import org.hibernate.criterion.Restrictions;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -14,8 +12,9 @@ import org.springframework.stereotype.Repository;
 
 import java.util.List;
 
+
 @Repository("blogDao")
-public class BlogDaoImpl implements BlogDao{
+public class BlogDaoImpl implements BlogDao {
 
     private static final Logger logger = LoggerFactory.getLogger(BlogDaoImpl.class);
 
@@ -58,14 +57,15 @@ public class BlogDaoImpl implements BlogDao{
     @Override
     public List<Blog> findAll() {
         Session session = sessionFactory.getCurrentSession();
-        Query query =  session.createQuery("from Blog");
+        Query query = session.createQuery("from Blog");
         return query.list();
     }
+
     @Override
-    public List<Blog> findBlogByType(Integer type){
+    public List<Blog> findBlogByType(Integer type) {
         Session session = sessionFactory.getCurrentSession();
-        Criteria criteria = session.createCriteria(Blog.class).add(Restrictions.like("type", type));
-        List<Blog> list = criteria.list();
-        return list;
+        Query query = session.createQuery("select blog From Blog blog where blog.type  =  :type");
+        query.setParameter("type", type);
+        return query.list();
     }
 }

@@ -3,8 +3,7 @@ package com.ComeOnBaby.controller;
 import com.ComeOnBaby.model.*;
 import com.ComeOnBaby.service.*;
 import com.ComeOnBaby.configuration.ConstConfig;
-import com.ComeOnBaby.model.*;
-import com.ComeOnBaby.service.*;
+import com.ComeOnBaby.util.ServerResponseAnswersConstant;
 import com.google.gson.Gson;
 import org.json.JSONArray;
 import org.json.JSONObject;
@@ -157,7 +156,7 @@ public class CommunityController {
         byte[][] images = body.getBitmaps();
         if(images == null) {
             js.put(RESULT, FAILURE);
-            js.put(MESSAGE, Strings.ERR_SAVE_IMAGES);
+            js.put(MESSAGE, ServerResponseAnswersConstant.ERR_SAVE_IMAGES);
             return js.toString();
         }
         System.out.println("Get " + images.length + " images fom user with id=" + body.getUserid());
@@ -168,7 +167,7 @@ public class CommunityController {
         } catch (Exception e) {
             js.put(RESULT, FAILURE);
             removeFiles(files);
-            //js.put(MESSAGE, Strings.ERR_SAVE_IMAGES);
+            //js.put(MESSAGE, ServerResponseAnswersConstant.ERR_SAVE_IMAGES);
             js.put(MESSAGE, e.getMessage());
             return js.toString();
         }
@@ -178,7 +177,7 @@ public class CommunityController {
             filenames.put(i, files[i].getName());
         }
         js.put(RESULT, SUCCESS);
-        js.put(MESSAGE, Strings.MSG_SAVE_IMAGES_SUCCESS);
+        js.put(MESSAGE, ServerResponseAnswersConstant.MSG_SAVE_IMAGES_SUCCESS);
         js.put(DATA, filenames.toString());
         return js.toString();
     }
@@ -188,14 +187,14 @@ public class CommunityController {
         JSONObject outJSON = new JSONObject();
         outJSON.put(RESULT, FAILURE);
         outJSON.put(OPERATION, body.getOperation());
-        outJSON.put(MESSAGE, Strings.ERR_SERVER_ERROR);
+        outJSON.put(MESSAGE, ServerResponseAnswersConstant.ERR_SERVER_ERROR);
 
         Gson gson = new Gson();
         JSONObject jsuser = new JSONObject(body.getUser());
         AppUser inUser = gson.fromJson(jsuser.toString(), AppUser.class);
         byte[] byteImg = body.getBitmap();
         if(inUser == null || inUser.getId() == null || byteImg == null) {
-            outJSON.put(MESSAGE, Strings.MSG_UPDATE_AVATAR_FAIL);
+            outJSON.put(MESSAGE, ServerResponseAnswersConstant.MSG_UPDATE_AVATAR_FAIL);
             return outJSON.toString();
         }
         switch (body.getOperation()) {
@@ -205,7 +204,7 @@ public class CommunityController {
                 try {
                     Preferences pref = prefService.findById(inUser.getId());
                     if(pref == null) {
-                        outJSON.put(MESSAGE, Strings.ERR_PROFILE_NOT_FOUND);
+                        outJSON.put(MESSAGE, ServerResponseAnswersConstant.ERR_PROFILE_NOT_FOUND);
                         return outJSON.toString();
                     }
                     if (pref.getAvatar() != null && pref.getAvatar() != "") {
@@ -234,12 +233,12 @@ public class CommunityController {
                     return outJSON.toString();
                 }
                 outJSON.put(RESULT, SUCCESS);
-                outJSON.put(MESSAGE, Strings.MSG_UPDATE_AVATAR_SUCCESS);
+                outJSON.put(MESSAGE, ServerResponseAnswersConstant.MSG_UPDATE_AVATAR_SUCCESS);
                 outJSON.put(DATA, new JSONObject().put(AVATAR, newAvatar.getName()).toString());
                 break;
             }
             default: {
-                outJSON.put(MESSAGE, Strings.ERR_UNKNOWN_OPERATION);
+                outJSON.put(MESSAGE, ServerResponseAnswersConstant.ERR_UNKNOWN_OPERATION);
                 break;
             }
         }
@@ -252,10 +251,10 @@ public class CommunityController {
         JSONObject outJSON = new JSONObject();
         outJSON.put(RESULT, FAILURE);
         outJSON.put(OPERATION, req.getOperation());
-        outJSON.put(MESSAGE, Strings.ERR_SERVER_ERROR);
+        outJSON.put(MESSAGE, ServerResponseAnswersConstant.ERR_SERVER_ERROR);
 
-        if (req.getOperation() == null) throw new IllegalArgumentException(Strings.ERR_NO_OPERATION);
-        if (req.getUser() == null) throw new IllegalArgumentException(Strings.ERR_NO_USER);
+        if (req.getOperation() == null) throw new IllegalArgumentException(ServerResponseAnswersConstant.ERR_NO_OPERATION);
+        if (req.getUser() == null) throw new IllegalArgumentException(ServerResponseAnswersConstant.ERR_NO_USER);
         JSONObject jsuser = new JSONObject(req.getUser());
         Gson gson = new Gson();
         AppUser inUser = gson.fromJson(jsuser.toString(), AppUser.class);
@@ -264,7 +263,7 @@ public class CommunityController {
             bdUser = userService.findById(inUser.getId());
         }
         if (bdUser == null) {
-            outJSON.put(MESSAGE, Strings.ERR_USER_NOT_FOUND);
+            outJSON.put(MESSAGE, ServerResponseAnswersConstant.ERR_USER_NOT_FOUND);
             return outJSON.toString();
         }
         switch (req.getOperation()) {
@@ -298,7 +297,7 @@ public class CommunityController {
                 break;
             }
             default: {
-                outJSON.put(MESSAGE, Strings.ERR_UNKNOWN_OPERATION);
+                outJSON.put(MESSAGE, ServerResponseAnswersConstant.ERR_UNKNOWN_OPERATION);
                 return outJSON.toString();
             }
         }
@@ -328,13 +327,13 @@ public class CommunityController {
                 blogService.deleteBlog(blog);
 
                 outJSON.put(RESULT, SUCCESS);
-                outJSON.put(MESSAGE, Strings.MSG_DELETE_COMMUNITY_SUCCESS);
+                outJSON.put(MESSAGE, ServerResponseAnswersConstant.MSG_DELETE_COMMUNITY_SUCCESS);
             } else {
                 throw new Exception("No such blog or user not own this blog");
             }
         } catch (Exception exc) {
             exc.printStackTrace();
-            outJSON.put(MESSAGE, Strings.MSG_DELETE_COMMUNITY_FAIL);
+            outJSON.put(MESSAGE, ServerResponseAnswersConstant.MSG_DELETE_COMMUNITY_FAIL);
         }
     }
 
@@ -346,11 +345,11 @@ public class CommunityController {
                 jsarr.put(i, getNoticeJSON(listNotices.get(i)));
             }
             outJSON.put(RESULT, SUCCESS);
-            outJSON.put(MESSAGE, Strings.MSG_GET_NOTICES_SUCCESS);
+            outJSON.put(MESSAGE, ServerResponseAnswersConstant.MSG_GET_NOTICES_SUCCESS);
             outJSON.put(DATA, jsarr.toString());
         } catch (Exception exc) {
             exc.printStackTrace();
-            outJSON.put(MESSAGE, Strings.MSG_GET_NOTICES_FAIL);
+            outJSON.put(MESSAGE, ServerResponseAnswersConstant.MSG_GET_NOTICES_FAIL);
         }
     }
 
@@ -368,11 +367,11 @@ public class CommunityController {
         } catch (Exception exc) {
             exc.printStackTrace();
             outJSON.put(RESULT, FAILURE);
-            outJSON.put(MESSAGE, Strings.MSG_SAVE_COMMENT_FAIL);
+            outJSON.put(MESSAGE, ServerResponseAnswersConstant.MSG_SAVE_COMMENT_FAIL);
             return;
         }
         outJSON.put(RESULT, SUCCESS);
-        outJSON.put(MESSAGE, Strings.MSG_SAVE_COMMENT_SUCCESS);
+        outJSON.put(MESSAGE, ServerResponseAnswersConstant.MSG_SAVE_COMMENT_SUCCESS);
     }
 
     private void getListComments(AppUser user, CommunityRequest req, JSONObject outJSON) {
@@ -383,7 +382,7 @@ public class CommunityController {
             jsarr.put(getCommentJSON(comm));
         }
         outJSON.put(RESULT, SUCCESS);
-        outJSON.put(MESSAGE, Strings.MSG_GET_COMMENTS_SUCCESS);
+        outJSON.put(MESSAGE, ServerResponseAnswersConstant.MSG_GET_COMMENTS_SUCCESS);
         outJSON.put(DATA, jsarr.toString());
     }
 
@@ -395,7 +394,7 @@ public class CommunityController {
             jsarr.put(getBlogJSON(blog));
         }
         outJSON.put(RESULT, SUCCESS);
-        outJSON.put(MESSAGE, Strings.MSG_GET_COMMUNITY_RECORDS_SUCCESS);
+        outJSON.put(MESSAGE, ServerResponseAnswersConstant.MSG_GET_COMMUNITY_RECORDS_SUCCESS);
         outJSON.put(DATA, jsarr.toString());
     }
 
@@ -435,7 +434,7 @@ public class CommunityController {
         js.put(BLOGDATE, dateFormat.format(notice.getDate()));
         js.put(BLOGTYPE, 1);
         js.put(BLOGTITLE, notice.getTitle());
-        js.put(BLOGTEXT, notice.getHtml());
+        js.put(BLOGTEXT, "" /*notice.getHtml()*/);
         return js;
     }
 
@@ -471,12 +470,12 @@ public class CommunityController {
             } catch (Exception exc) {
                 exc.printStackTrace();
                 removeFiles(images);
-                //outJSON.put(MESSAGE, Strings.MSG_SAVE_COMUNITY_RECORD_FAIL);
+                //outJSON.put(MESSAGE, ServerResponseAnswersConstant.MSG_SAVE_COMUNITY_RECORD_FAIL);
                 outJSON.put(MESSAGE, exc.getMessage());
                 return;
             }
         outJSON.put(RESULT, SUCCESS);
-        outJSON.put(MESSAGE, Strings.MSG_SAVE_COMUNITY_RECORD_SUCCESS);
+        outJSON.put(MESSAGE, ServerResponseAnswersConstant.MSG_SAVE_COMUNITY_RECORD_SUCCESS);
     }
 
     //Get String with filenames separated by separator
@@ -598,7 +597,7 @@ public class CommunityController {
 
         List<Q_A> q_a_List = q_a_service.getAllQ_A();
         outJSON.put(RESULT, SUCCESS);
-        outJSON.put(MESSAGE, Strings.MSG_Q_A_DOWNLOAD_SUCCESS);
+        outJSON.put(MESSAGE, ServerResponseAnswersConstant.MSG_Q_A_DOWNLOAD_SUCCESS);
 
         JSONArray jsonArray = new JSONArray();
 

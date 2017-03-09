@@ -2,6 +2,7 @@ package com.ComeOnBaby.controller;
 
 import com.ComeOnBaby.model.City;
 import com.ComeOnBaby.service.CityService;
+import com.ComeOnBaby.util.ServerResponseAnswersConstant;
 import org.json.JSONArray;
 import org.json.JSONObject;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -39,7 +40,7 @@ public class CitiesController {
         JSONObject outJSON = new JSONObject();
         outJSON.put(RESULT, FAILURE);
         outJSON.put(OPERATION, inJSON.getString(OPERATION));
-        outJSON.put(MESSAGE, Strings.ERR_SERVER_ERROR);
+        outJSON.put(MESSAGE, ServerResponseAnswersConstant.ERR_SERVER_ERROR);
 
         switch (inJSON.getString(OPERATION)) {
             case LIST_CITIES_OPERATION: {
@@ -58,13 +59,13 @@ public class CitiesController {
         List<City> list = cityService.getAllCities();
         if(list != null) {
             outJSON.put(RESULT, SUCCESS);
-            outJSON.put(MESSAGE, Strings.MSG_LIST_CITY_SUCCESS);
+            outJSON.put(MESSAGE, ServerResponseAnswersConstant.MSG_LIST_CITY_SUCCESS);
             JSONArray citiesArray = new JSONArray(list.toArray());
             JSONObject data = new JSONObject();
             data.put(CITIES_ARRAY, citiesArray);
             outJSON.put(DATA, data.toString());
         } else {
-            outJSON.put(MESSAGE, Strings.MSG_LIST_CITY_FAIL);
+            outJSON.put(MESSAGE, ServerResponseAnswersConstant.MSG_LIST_CITY_FAIL);
         }
     }
 

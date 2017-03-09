@@ -17,6 +17,9 @@ import java.util.TreeSet;
 @Table(name = "notice")
 public class Notice {
 
+    public Notice() {
+    }
+
     @Id
     @GeneratedValue(generator = "increment2")
     @GenericGenerator(name = "increment2", strategy = "increment")
@@ -35,16 +38,10 @@ public class Notice {
     @Column(name = "text")
     private String text;
 
-    @OneToMany(mappedBy = "notice", cascade = CascadeType.ALL, fetch = FetchType.EAGER)
-    private Set<ImgText> imgTexts;
+    @Column(name = "images")
+    private String images;
 
 
-    @Column(name = "html")
-    private String html;
-
-    public Notice() {
-
-    }
 
     public void rewriteHtml() {
         StringBuilder sb = new StringBuilder();
@@ -66,29 +63,14 @@ public class Notice {
         sb.append("</head>");
         sb.append("<body>");
         sb.append("<h1>"+title+"</h1>");
-        for(ImgText item: imgTexts){
+        /*for(ImgText item: imgTexts){
             sb.append("<div>"+item.getText()+"</div>");
-        }
+        }*/
         sb.append("</body>");
         sb.append("</html>");
-        html = sb.toString();
+  /*      html = sb.toString();*/
     }
 
-    public String getHtml() {
-        return html;
-    }
-
-    public void setHtml(String html) {
-        this.html = html;
-    }
-
-    public Set<ImgText> getImgTexts() {
-        return imgTexts;
-    }
-
-    public void setImgTexts(Set<ImgText> imgTexts) {
-        this.imgTexts = imgTexts;
-    }
 
     public Long getId() {
         return id;
@@ -127,12 +109,20 @@ public class Notice {
         this.text = text;
     }
 
+    public String getImages() {
+        return images;
+    }
+
+    public void setImages(String images) {
+        this.images = images;
+    }
+
     public Notice(Long id, Date date, String title, String text) {
         this.id = id;
         this.date = date;
         this.title = title;
         this.text = text;
-        html = "";
+
     }
 
     public Notice(Date date, String title, String text) {
@@ -140,7 +130,7 @@ public class Notice {
         this.date = date;
         this.title = title;
         this.text = text;
-        html = "";
+
     }
 
     @Override
@@ -150,8 +140,7 @@ public class Notice {
                 ", date=" + date +
                 ", title='" + title + '\'' +
                 ", text='" + text + '\'' +
-                ", html.length()='" + html.length() + '\'' +
-                ", imgTexts=" + imgTexts +
+                ", html.length()='" +
                 '}';
     }
 }
