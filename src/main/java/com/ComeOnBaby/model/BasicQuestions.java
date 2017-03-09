@@ -22,6 +22,9 @@ public class BasicQuestions {
     @Column(name="question_1_2")
     private String question_1_2;
 
+    @Column(name="question_1_3_11")
+    private String question_1_3_11;
+
     @Column(name="question_1_3_12")
     private String question_1_3_12;
 
@@ -39,6 +42,9 @@ public class BasicQuestions {
 
     @Column(name="question_1_3_17")
     private String question_1_3_17;
+
+    @Column(name="question_1_3_18")
+    private String question_1_3_18;
 
     @Column(name="question_1_3_19")
     private String question_1_3_19;
@@ -177,6 +183,10 @@ public class BasicQuestions {
         return question_1_2;
     }
 
+    public String getQuestion_1_3_11() {
+        return question_1_3_11;
+    }
+
     public String getQuestion_1_3_12() {
         return question_1_3_12;
     }
@@ -199,6 +209,10 @@ public class BasicQuestions {
 
     public String getQuestion_1_3_17() {
         return question_1_3_17;
+    }
+
+    public String getQuestion_1_3_18() {
+        return question_1_3_18;
     }
 
     public String getQuestion_1_3_19() {
@@ -363,6 +377,14 @@ public class BasicQuestions {
 
     public void setQuestion_1_2(String question_1_2) {
         this.question_1_2 = question_1_2;
+    }
+
+    public void setQuestion_1_3_11(String question_1_3_11) {
+        this.question_1_3_11 = question_1_3_11;
+    }
+
+    public void setQuestion_1_3_18(String question_1_3_18) {
+        this.question_1_3_18 = question_1_3_18;
     }
 
     public void setQuestion_1_3_12(String question_1_3_12) {
@@ -545,27 +567,18 @@ public class BasicQuestions {
         this.question_3_57 = question_3_57;
     }
 
-    public BasicQuestions(Long user_id, String question_1_1, String question_1_2, String question_1_3_12,
-                          String question_1_3_13, String question_1_3_14, String question_1_3_15, String question_1_3_16,
-                          String question_1_3_17, String question_1_3_19, String question_1_3_20, String question_2_21,
-                          String question_2_22, String question_2_23, String question_2_24, String question_2_25,
-                          String question_2_26, String question_2_27, String question_2_28, String question_2_29,
-                          String question_2_30, String question_2_31, String question_2_32, String question_2_33,
-                          String question_2_34, String question_2_35, String question_2_36, String question_2_37,
-                          String question_2_38, String question_2_39, String question_2_40, String question_3_41,
-                          String question_3_42, String question_3_43, String question_3_44, String question_3_45,
-                          String question_3_46, String question_3_47, String question_3_48, String question_3_49,
-                          String question_3_50, String question_3_51, String question_3_52, String question_3_53,
-                          String question_3_54, String question_3_55, String question_3_56, String question_3_57) {
+    public BasicQuestions(Long user_id, String question_1_1, String question_1_2, String question_1_3_11, String question_1_3_12, String question_1_3_13, String question_1_3_14, String question_1_3_15, String question_1_3_16, String question_1_3_17, String question_1_3_18, String question_1_3_19, String question_1_3_20, String question_2_21, String question_2_22, String question_2_23, String question_2_24, String question_2_25, String question_2_26, String question_2_27, String question_2_28, String question_2_29, String question_2_30, String question_2_31, String question_2_32, String question_2_33, String question_2_34, String question_2_35, String question_2_36, String question_2_37, String question_2_38, String question_2_39, String question_2_40, String question_3_41, String question_3_42, String question_3_43, String question_3_44, String question_3_45, String question_3_46, String question_3_47, String question_3_48, String question_3_49, String question_3_50, String question_3_51, String question_3_52, String question_3_53, String question_3_54, String question_3_55, String question_3_56, String question_3_57) {
         this.user_id = user_id;
         this.question_1_1 = question_1_1;
         this.question_1_2 = question_1_2;
+        this.question_1_3_11 = question_1_3_11;
         this.question_1_3_12 = question_1_3_12;
         this.question_1_3_13 = question_1_3_13;
         this.question_1_3_14 = question_1_3_14;
         this.question_1_3_15 = question_1_3_15;
         this.question_1_3_16 = question_1_3_16;
         this.question_1_3_17 = question_1_3_17;
+        this.question_1_3_18 = question_1_3_18;
         this.question_1_3_19 = question_1_3_19;
         this.question_1_3_20 = question_1_3_20;
         this.question_2_21 = question_2_21;
@@ -613,12 +626,14 @@ public class BasicQuestions {
                 "user_id=" + user_id +
                 ", question_1_1='" + question_1_1 + '\'' +
                 ", question_1_2='" + question_1_2 + '\'' +
+                ", question_1_3_11='" + question_1_3_11 + '\'' +
                 ", question_1_3_12='" + question_1_3_12 + '\'' +
                 ", question_1_3_13='" + question_1_3_13 + '\'' +
                 ", question_1_3_14='" + question_1_3_14 + '\'' +
                 ", question_1_3_15='" + question_1_3_15 + '\'' +
                 ", question_1_3_16='" + question_1_3_16 + '\'' +
                 ", question_1_3_17='" + question_1_3_17 + '\'' +
+                ", question_1_3_18='" + question_1_3_18 + '\'' +
                 ", question_1_3_19='" + question_1_3_19 + '\'' +
                 ", question_1_3_20='" + question_1_3_20 + '\'' +
                 ", question_2_21='" + question_2_21 + '\'' +

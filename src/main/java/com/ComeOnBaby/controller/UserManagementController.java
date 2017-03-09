@@ -2,9 +2,12 @@ package com.ComeOnBaby.controller;
 
 import com.ComeOnBaby.comparator.NoteByDateComparator;
 import com.ComeOnBaby.model.AppUser;
+import com.ComeOnBaby.model.BasicQuestions;
 import com.ComeOnBaby.model.Note;
 import com.ComeOnBaby.service.AppUserService;
+import com.ComeOnBaby.service.BasicQuestionsService;
 import com.ComeOnBaby.service.NoteService;
+import com.ComeOnBaby.util.BasicQuestionsForm;
 import com.ComeOnBaby.util.DataNoteByMonthWeek;
 import com.ComeOnBaby.XlsxView.MonthlyWeeklyReportShowXlsx;
 import com.ComeOnBaby.XlsxView.AllAppUsersInfoXlsx;
@@ -32,6 +35,9 @@ public class UserManagementController {
 
     @Autowired
     NoteService noteService;
+
+    @Autowired
+    BasicQuestionsService basicQuestionsService;
 
     @RequestMapping(value = "/", method = RequestMethod.GET)
     public ModelAndView indexCabinet() {
@@ -61,13 +67,30 @@ public class UserManagementController {
     @RequestMapping(value = "/basic-questions/{userId}", method = RequestMethod.GET)
     public ModelAndView baseQuestions(@PathVariable Long userId) {
 
-        ModelAndView basicQuestions = new ModelAndView("basicQuestions");
-
+        ModelAndView basicQuestionsView = new ModelAndView("basicQuestions");
         AppUser user = appUserService.findById(userId);
 
-        basicQuestions.addObject("user", user);
+        BasicQuestions basicQuestions = basicQuestionsService.readBasicQuestionsByUser(user);
+        BasicQuestionsForm basicQuestionsForm = new BasicQuestionsForm(basicQuestions);
 
-        return basicQuestions;
+        List<String> listQuestion1 = basicQuestionsForm.question1();
+        List<String> listQuestion2 = basicQuestionsForm.question2();
+        List<String> listQuestion3 = basicQuestionsForm.question3();
+        List<String> listQuestion4 = basicQuestionsForm.question4();
+        List<String> listQuestion5 = basicQuestionsForm.question5();
+        List<String> listQuestion6 = basicQuestionsForm.question6();
+        List<String> listQuestion7 = basicQuestionsForm.question7();
+
+        basicQuestionsView.addObject("user", user);
+        basicQuestionsView.addObject("listQuestion1", listQuestion1);
+        basicQuestionsView.addObject("listQuestion2", listQuestion2);
+        basicQuestionsView.addObject("listQuestion3", listQuestion3);
+        basicQuestionsView.addObject("listQuestion4", listQuestion4);
+        basicQuestionsView.addObject("listQuestion5", listQuestion5);
+        basicQuestionsView.addObject("listQuestion6", listQuestion6);
+        basicQuestionsView.addObject("listQuestion7", listQuestion7);
+
+        return basicQuestionsView;
     }
 
     @RequestMapping(value = "/monthly-report/{userId}", method = RequestMethod.GET)
@@ -174,8 +197,6 @@ public class UserManagementController {
         Collections.sort(notes, new NoteByDateComparator());
 
         DataNoteByMonthWeek dataNoteByWeek = new DataNoteByMonthWeek(notes, countWeekOfYear);
-
-        System.out.println("=======WEEKLY REPORT====");
 
         MonthlyWeeklyReportShowXlsx weekyReportShowXlsx = new MonthlyWeeklyReportShowXlsx();
         weekyReportShowXlsx.setDataNoteByMonthWeek(dataNoteByWeek);
