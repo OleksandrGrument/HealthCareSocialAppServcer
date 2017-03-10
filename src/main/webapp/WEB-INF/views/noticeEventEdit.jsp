@@ -2,6 +2,7 @@
 <%@ page import="java.util.ArrayList" %>
 <%@ page import="com.ComeOnBaby.enums.MainPathEnum" %>
 <%@ page import="java.util.List" %>
+<%@ page import="java.util.Iterator" %>
 <%@ taglib prefix="spring" uri="http://www.springframework.org/tags" %>
 <%@ page language="java" pageEncoding="UTF-8"%>
 <%@ page contentType="text/html;charset=UTF-8" %>
@@ -70,13 +71,20 @@
                         <% if(!isNew){
 
                             List<String> images = (List<String>) request.getAttribute("images");
-                            for (String image : images){
-                                String urlPic = MainPathEnum.mainWebPath+"show-image/"+image; %>
-                                <div class="form-group form-img-thumbnail">
-                                    <a data-fancybox="gallery" href="<%out.print(urlPic);%>"><img src="<%out.print(urlPic);%>" alt="Roasted Carrot Soup" class="img-thumbnail"></a>
-                                    <a href="javascript:void(0);" class="delete deleteConfirm"><i class="fa fa-times"></i></a>
-                                </div>
-                            <%}%>
+                            Iterator<String> imageIterator = images.iterator();
+
+                            while(imageIterator.hasNext()){
+                                int imageIndex = 0;
+                                String name = imageIterator.next();
+                                if (!name.equals("")){
+                                    String urlPic = MainPathEnum.mainWebPath+"show-image/"+name; %>
+                                    <div class="form-group form-img-thumbnail">
+                                        <a data-fancybox="gallery" href="<%out.print(urlPic);%>"><img src="<%out.print(urlPic);%>" alt="Roasted Carrot Soup" class="img-thumbnail"></a>
+                                        <a href="<%out.print("/notice/delete-image-from-notice/"+notice.getId()+"/"+imageIndex);%>" class="delete deleteConfirm"><i class="fa fa-times"></i></a>
+                                    </div>
+                                    <% imageIndex++;
+                                }
+                            }%>
                         <%}%>
                         <div class="form-group">
                             <label class="control-label">Notice / event image</label>
@@ -109,6 +117,8 @@
 <!-- #End Wrapper -->
 
 <%@ include file="footerJavaScript.jsp" %>
+
+
 
 </body>
 </html>

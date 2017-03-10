@@ -3,6 +3,7 @@ package com.ComeOnBaby.controller;
 
 import com.ComeOnBaby.model.Notice;
 import com.ComeOnBaby.service.NoticeService;
+import com.ComeOnBaby.util.ImageEditFunctions;
 import com.ComeOnBaby.util.SaveFile;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -53,13 +54,15 @@ public class NoticeEventController {
 
         List<String> imagesList = Arrays.asList(images.split("<>"));
 
-        editNotice.addObject("images" ,imagesList);
+        editNotice.addObject("images", imagesList);
         editNotice.addObject("isNew", false);
         editNotice.addObject("notice", notice);
 
         return editNotice;
 
     }
+
+
 
     @RequestMapping(value = "/delete-notice/{id}", method = RequestMethod.GET)
     public ModelAndView deleteNotice(@PathVariable Long id) {
@@ -71,7 +74,29 @@ public class NoticeEventController {
         return new ModelAndView("redirect:/notice/events");
     }
 
+    @RequestMapping(value = "/delete-image-from-notice/{noticeId}/{imageIndex}" , method = RequestMethod.GET)
+    public ModelAndView deleteImageFromNotice (@PathVariable(value = "noticeId") Long noticeId , @PathVariable(value = "imageIndex") Integer imageIndex){
 
+
+        Notice notice = noticeService.get(noticeId);
+
+        String noticeFilesNamesBeforeUpdate = notice.getImages();
+
+
+
+        ArrayList<String> imagesList = new ArrayList (Arrays.asList(noticeFilesNamesBeforeUpdate.split("<>")));
+
+        imagesList.remove(imageIndex.intValue());
+
+        String imageNamesToSave = ImageEditFunctions.generateStringWithSeparatorFromArray(imagesList);
+
+        notice.setImages(imageNamesToSave);
+
+        noticeService.updateNotice(notice);
+
+
+        return new ModelAndView("redirect:/notice/edit-notice/"+noticeId);
+    }
 
     @RequestMapping(value = "/save-new-notice", method = RequestMethod.POST)
     public ModelAndView saveNewRecipe(@RequestParam(value = "id") String id, @RequestParam("title") String title, @RequestParam("text") String noticeText, @RequestParam("filePicture[]") MultipartFile[] files) {
@@ -85,19 +110,16 @@ public class NoticeEventController {
             notice.setText(noticeText);
 
             //Save to file
-
-            StringBuilder noticeFileNames = new StringBuilder();
-
             if (!files[0].isEmpty()) {
                 String pathToSaveFile = "pictures/";
                 SaveFile saveFile = new SaveFile(pathToSaveFile, files);
                 saveFile.saveFileAndGetName();
 
                 ArrayList<String> fileNames = saveFile.saveFileAndGetName();
-                for (String name : fileNames){
-                    noticeFileNames.append(name+"<>");
-                }
-                notice.setImages(noticeFileNames.toString());
+
+                String noticeFileNames = ImageEditFunctions.generateStringWithSeparatorFromArray(fileNames);
+
+                notice.setImages(noticeFileNames);
 
                 noticeService.addNewNotice(notice);
             }
@@ -110,23 +132,16 @@ public class NoticeEventController {
             notice.setTitle(title);
             notice.setText(noticeText);
 
-            StringBuilder noticeFileNames = new StringBuilder();
+            String imagesFromNotice = notice.getImages();
 
-            //Save to file
-            if (files.length != 0) {
-                if (!files[0].isEmpty()) {
-                    String pathToSaveFile = "pictures/";
-                    SaveFile saveFile = new SaveFile(pathToSaveFile, files);
-                    ArrayList<String> fileNames = saveFile.saveFileAndGetName();
-                    for (String name : fileNames){
-                        noticeFileNames.append(name+"<>");
-                    }
-                    notice.setImages(noticeFileNames.toString());
-                }
-            }
+            String imagesUpdated = ImageEditFunctions.updateImages(imagesFromNotice , files);
+            notice.setImages(imagesUpdated);
+
             noticeService.updateNotice(notice);
         }
 
-        return new ModelAndView("redirect:/notice/events");
+        return new ModelAndView("redirect:/notice/edit-notice/"+id);
     }
+
+
 }
