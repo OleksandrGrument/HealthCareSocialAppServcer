@@ -20,15 +20,15 @@ public class SaveFile {
         this.files = files;
     }
 
-    public ArrayList<String> saveFileAndGetName(){
+    public ArrayList<String> saveFileAndGetName() {
 
         ArrayList<String> fileNames = new ArrayList<>();
 
         for (int i = 0; i < this.files.length; i++) {
             MultipartFile file = this.files[i];
-            String originalFileName =  file.getOriginalFilename();
+            String originalFileName = file.getOriginalFilename();
             String fileExtension = originalFileName.substring(originalFileName.lastIndexOf("."));
-            String name =  (java.util.UUID.randomUUID() + fileExtension);
+            String name = (java.util.UUID.randomUUID() + fileExtension);
             fileNames.add(name);
             try {
                 byte[] bytes = file.getBytes();
@@ -41,7 +41,7 @@ public class SaveFile {
                     System.out.println("==========CREATE DIR" + dir.getAbsolutePath());
                 }
                 // Create the file on server
-                File serverFile = new File(dir.getAbsolutePath()+"/"+ name);
+                File serverFile = new File(dir.getAbsolutePath() + "/" + name);
 
                 serverFile.setReadable(true, false);
                 serverFile.setExecutable(true, false);

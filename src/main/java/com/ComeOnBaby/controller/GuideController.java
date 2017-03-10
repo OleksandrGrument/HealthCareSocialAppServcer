@@ -98,7 +98,7 @@ public class GuideController {
             recipeGuideService.updateRecipeGuide(recipeGuide);
         }
 
-        return new ModelAndView("redirect:/guide/featured-recipes");
+        return new ModelAndView("redirect:/guide/edit-recipe/"+id);
     }
 
     @RequestMapping(value = "/delete-recipe/{id}", method = RequestMethod.GET)
@@ -191,7 +191,7 @@ public class GuideController {
             fertilizationGuideService.updateFertilizationGuide(fertilizationGuide);
         }
 
-        return new ModelAndView("redirect:/guide/fertilization");
+        return new ModelAndView("redirect:/guide/edit-fertilization/"+id);
     }
 
     @RequestMapping(value = "/delete-fertilization/{id}", method = RequestMethod.GET)

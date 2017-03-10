@@ -312,7 +312,7 @@ public class CommunityController {
             if (blog != null && user.getId().equals(blog.getId_user())) {
                 //Delete images
                 if(blog.getImages() != null && !blog.getImages().isEmpty()) {
-                    String[] images = blog.getImages().split(",");
+                    String[] images = blog.getImages().split("<>");
                     for (String img : images) {
                         File file = new File(IMAGES_DIR, img);
                         if (file.exists()) file.delete();
@@ -461,7 +461,7 @@ public class CommunityController {
         File[] images = null;
             try {
                 images = saveImagesToStorage(req.getBitmaps());
-                blog.setImages(getStringFileNames(images, ','));
+                blog.setImages(getStringFileNames(images, "<>"));
                 blog.setId_user(userID);
                 blog.setTitle(req.getTitle());
                 blog.setText(req.getContent());
@@ -480,7 +480,7 @@ public class CommunityController {
     }
 
     //Get String with filenames separated by separator
-    private String getStringFileNames(File[] files, char separator) {
+    private String getStringFileNames(File[] files, String separator) {
         String names = null;
         for(File file : files) {
             if(names == null) names = file.getName();
