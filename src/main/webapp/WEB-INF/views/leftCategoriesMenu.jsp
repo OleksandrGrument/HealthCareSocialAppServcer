@@ -20,7 +20,14 @@
             </ul>
         </li>
         <li><a href="javascript:void(0);"><i class="fa fa-envelope" aria-hidden="true"></i> Push</a></li>
-        <li><a href="javascript:void(0);"><i class="fa fa-bar-chart" aria-hidden="true"></i> Report</a></li>
+        <li>
+            <a href="javascript:void(0);"><i class="fa fa-bar-chart" aria-hidden="true"></i> Report</a>
+            <ul class="sub-menu">
+                <li><a href="generalMonthlyReport.php"><i class="fa fa-angle-double-right" aria-hidden="true"></i> Monthly report</a></li>
+                <li><a href="generalWeeklyReport.php"><i class="fa fa-angle-double-right" aria-hidden="true"></i> Weekly report</a></li>
+            </ul>
+
+        </li>
         <li><a href="javascript:void(0);"><i class="fa fa-cogs" aria-hidden="true"></i> Settings</a></li>
     </ul>
     <div class="copyright">2017 &copy; ComeOnBaby</div>

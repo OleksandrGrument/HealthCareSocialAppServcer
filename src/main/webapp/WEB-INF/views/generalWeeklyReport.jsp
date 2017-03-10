@@ -1,6 +1,3 @@
-<%@ page import="com.ComeOnBaby.model.AppUser" %>
-<%@ page import="java.util.List" %>
-<%@ page import="com.ComeOnBaby.util.WeekReportInformation" %>
 <%@ taglib prefix="spring" uri="http://www.springframework.org/tags" %>
 <%@ page language="java" pageEncoding="UTF-8"%>
 <%@ page contentType="text/html;charset=UTF-8" %>
@@ -19,7 +16,7 @@
     <meta name="description" content="" />
     <meta name="keywords" content="" />
 
-    <title>Weekly reports :: Come On Baby</title>
+    <title>Users weekly reports :: Come On Baby</title>
 
     <%@ include file="headerStyles.jsp" %>
 
@@ -43,46 +40,55 @@
 
         <!-- Content section -->
         <section class="container-fluid content">
-            <h3><i class="fa fa-bar-chart"></i>Weekly report</h3>
-
-            <% AppUser user = (AppUser) request.getAttribute("user"); %>
-            <% List<WeekReportInformation> weekReports = (List<WeekReportInformation>)request.getAttribute("weekReportInformation"); %>
-
+            <h3><i class="fa fa-bar-chart"></i>Users weekly reports</h3>
 
             <table id="dataTable" class="table table-striped table-bordered" width="100%" cellspacing="0">
                 <thead>
                 <tr>
-                    <th>ID</th>
-                    <th>Generation week</th>
-                    <th>Evaluation</th>
+                    <th width="20">ID</th>
+                    <th>E-mail</th>
+                    <th>Login</th>
+                    <th width="100">Evaluation</th>
+                    <th width="200">Generation week</th>
                 </tr>
                 </thead>
                 <tfoot>
                 <tr>
                     <th>ID</th>
-                    <th>Generation week</th>
+                    <th>E-mail</th>
+                    <th>Login</th>
                     <th>Evaluation</th>
+                    <th>Generation week</th>
                 </tr>
                 </tfoot>
 
                 <!-- Items list -->
                 <tbody>
-                <%for(WeekReportInformation weekReport : weekReports){ %>
-                    <tr>
-                        <td width="50">1</td>
-                        <td><a href="<%out.print("/users/weeklyReportShow/"+user.getId()+"/"+weekReport.getCountWeekOfYear());%>"><%out.print(weekReport.getStartOfWeek()+" - "+weekReport.getEndOfWeek());%></a></td>
-                        <td>Good</td>
-                    </tr>
-                <%}%>
+                <tr>
+                    <td align="center">10</td>
+                    <td><a href="mailto:some@server.com.ua">some@server.com.ua</a></td>
+                    <td><a href="userProfileShow.php">Tiger Nixon</a></td>
+                    <td align="center" class="marker"><span class="good">Good</span></td>
+                    <td align="center"><a href="generalWeeklyReportShow.php">01-01-2017 &mdash; 07-01-2017</a></td>
+                </tr>
+                <tr>
+                    <td align="center">10</td>
+                    <td><a href="mailto:some@server.com.ua">some@server.com.ua</a></td>
+                    <td><a href="userProfileShow.php">Tiger Nixon</a></td>
+                    <td align="center" class="marker"><span class="excellent">Excellent</span></td>
+                    <td align="center"><a href="generalWeeklyReportShow.php">07-01-2017 &mdash; 14-01-2017</a></td>
+                </tr>
+                <tr>
+                    <td align="center">10</td>
+                    <td><a href="mailto:some@server.com.ua">some@server.com.ua</a></td>
+                    <td><a href="userProfileShow.php">Tiger Nixon</a></td>
+                    <td align="center" class="marker"><span class="bad">Bad</span></td>
+                    <td align="center"><a href="generalWeeklyReportShow.php">14-01-2017 &mdash; 21-01-2017</a></td>
+                </tr>
                 </tbody>
                 <!-- #End Items list -->
 
             </table>
-
-            <div class="mt20 delimiter">
-                <a href="<% out.print("/cabinet/user-profile/" + user.getId()); %>" class="btn btn-default">Back</a>
-            </div>
-
 
         </section>
         <!-- Content section -->
