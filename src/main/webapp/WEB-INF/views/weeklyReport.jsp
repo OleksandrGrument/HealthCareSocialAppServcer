@@ -80,7 +80,7 @@
             </table>
 
             <div class="mt20 delimiter">
-                <a href="<% out.print("/cabinet/user-profile/" + user.getId()); %>" class="btn btn-default">Back</a>
+                <a href="<% out.print("/users/user-profile/" + user.getId()); %>" class="btn btn-default">Back</a>
             </div>
 
 
