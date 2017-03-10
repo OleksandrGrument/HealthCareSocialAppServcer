@@ -66,6 +66,13 @@ jQuery(document).ready(function($) {
         sebSweetConfirm(originLink);
     });
 
+    $("#tenFilesInput").fileinput({
+        allowedFileExtensions : ['jpg', 'jpeg','png'],
+        overwriteInitial: false,
+        maxFileSize: 1024,
+        maxFilesNum: 10,
+    });
+
 });
 
 

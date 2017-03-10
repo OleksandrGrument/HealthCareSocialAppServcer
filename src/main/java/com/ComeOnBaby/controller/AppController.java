@@ -136,7 +136,7 @@ public class AppController {
 	}
 
 
-	@RequestMapping(value = "/show-image/{filename}/", method = RequestMethod.GET)
+	@RequestMapping(value = "/show-image/{filename}", method = RequestMethod.GET)
 	public void downloadFile(HttpServletResponse response,  @PathVariable String filename) throws IOException {
 
 

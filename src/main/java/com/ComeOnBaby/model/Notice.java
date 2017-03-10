@@ -41,8 +41,6 @@ public class Notice {
     @Column(name = "images")
     private String images;
 
-
-
     public void rewriteHtml() {
         StringBuilder sb = new StringBuilder();
         sb.append("<!DOCTYPE html>");
