@@ -83,25 +83,27 @@
 
                    while (appUserIterator.hasNext()) {
                         AppUser user = appUserIterator.next();
+                        if (user.getId()!=1){
                         Preferences preferences = user.getPreferences();
                %>
-                    <tr>
-                        <td><%out.print(user.getId());%></td>
-                        <td><%if (preferences!=null) %><a href="<%out.print("/users/user-profile/"+user.getId());%>">   <% out.print(preferences.getNickname());%></a></td>
-                        <td><%out.print(user.getEmail());%></td>
-                        <td><%if (preferences!=null) out.print(preferences.getBirth_year());%></td>
-                        <td><%out.print(user.getLoginType());%></td>
+                        <tr>
+                            <td><%out.print(user.getId());%></td>
+                            <td><%if (preferences!=null) %><a href="<%out.print("/users/user-profile/"+user.getId());%>">   <% out.print(preferences.getNickname());%></a></td>
+                            <td><%out.print(user.getEmail());%></td>
+                            <td><%if (preferences!=null) out.print(preferences.getBirth_year());%></td>
+                            <td><%out.print(user.getLoginType());%></td>
 
-                        <%if (preferences!=null) if(preferences.getGender()!= null) {
-                            if(preferences.getGender().equals("true")){%>
-                                <td><i class="fa fa-mars"></i> <%out.print(" Man");%></td>
-                            <%}else if(preferences.getGender().equals("false")){%>
-                                <td><i class="fa fa-venus"></i> <%out.print(" Women");%></td>
+                            <%if (preferences!=null) if(preferences.getGender()!= null) {
+                                if(preferences.getGender().equals("true")){%>
+                                    <td><i class="fa fa-mars"></i> <%out.print(" Man");%></td>
+                                <%}else if(preferences.getGender().equals("false")){%>
+                                    <td><i class="fa fa-venus"></i> <%out.print(" Women");%></td>
+                                <%}%>
+                            <%}else if (preferences.getGender()== null){%>
+                                <td><i class="fa fa-venus"></i> <%out.print("");%></td> %>
                             <%}%>
-                        <%}else if (preferences.getGender()== null){%>
-                            <td><i class="fa fa-venus"></i> <%out.print("");%></td> %>
-                        <%}%>
-                    </tr>
+                        </tr>
+                    <%}%>
                 <%}%>
 
                 </tbody>

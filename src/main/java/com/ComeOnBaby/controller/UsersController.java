@@ -499,6 +499,9 @@ public class UsersController {
     // Update Basic Question from APP to Server
     private JSONObject updateBasicQuestion(JSONObject inJSON, JSONObject outJSON){
         Gson gson = new Gson();
+
+        System.out.println("JSON" + inJSON.getString(DATA));
+
         JSONObject data = new JSONObject(inJSON.getString(DATA));
         JSONObject jsonUser = new JSONObject(inJSON.getString(USER));
 

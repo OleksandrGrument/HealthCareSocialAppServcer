@@ -2,7 +2,7 @@ package com.ComeOnBaby.enums;
 
 public enum MainPathEnum {
     mainPath("opt/tomcat/webapps/comeonbaby/"),
-    mainWebPath("http://localhost:8080/");
+    mainWebPath("http://192.168.0.17:8080/");
 
     private String value;
 

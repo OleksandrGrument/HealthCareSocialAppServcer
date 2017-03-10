@@ -60,9 +60,11 @@ public class GuideController {
     @RequestMapping(value = "/save-new-recipe", method = RequestMethod.POST)
     public ModelAndView saveNewRecipe(@RequestParam(value = "id") String id, @RequestParam("title") String title, @RequestParam("url") String naverUrl, @RequestParam("filePicture[]") MultipartFile[] files) {
 
+        RecipeGuide recipeGuide = new RecipeGuide();
+
         if (id.equals("")) {
 
-            RecipeGuide recipeGuide = new RecipeGuide();
+            recipeGuide = new RecipeGuide();
 
             recipeGuide.setDate(new Date());
             recipeGuide.setTitle(title);
@@ -80,7 +82,7 @@ public class GuideController {
 
         } else {
 
-            RecipeGuide recipeGuide = recipeGuideService.getRecipeGuideById(Long.valueOf(id));
+            recipeGuide = recipeGuideService.getRecipeGuideById(Long.valueOf(id));
 
             recipeGuide.setDate(new Date());
             recipeGuide.setTitle(title);
@@ -98,7 +100,7 @@ public class GuideController {
             recipeGuideService.updateRecipeGuide(recipeGuide);
         }
 
-        return new ModelAndView("redirect:/guide/edit-recipe/"+id);
+        return new ModelAndView("redirect:/guide/edit-recipe/"+recipeGuide.getId());
     }
 
     @RequestMapping(value = "/delete-recipe/{id}", method = RequestMethod.GET)
@@ -154,9 +156,11 @@ public class GuideController {
     @RequestMapping(value = "/save-new-fertilization", method = RequestMethod.POST)
     public ModelAndView saveNewFertilization(@RequestParam(value = "id") String id, @RequestParam("title") String title, @RequestParam("filePicture[]") MultipartFile[] files) {
 
+        FertilizationGuide fertilizationGuide = new FertilizationGuide();
+
         if (id.equals("")) {
 
-            FertilizationGuide fertilizationGuide = new FertilizationGuide();
+             fertilizationGuide = new FertilizationGuide();
 
             fertilizationGuide.setDate(new Date());
             fertilizationGuide.setTitle(title);
@@ -174,7 +178,7 @@ public class GuideController {
 
         } else {
 
-            FertilizationGuide fertilizationGuide = fertilizationGuideService.getFertilizationGuideById(Long.valueOf(id));
+             fertilizationGuide = fertilizationGuideService.getFertilizationGuideById(Long.valueOf(id));
 
             fertilizationGuide.setDate(new Date());
             fertilizationGuide.setTitle(title);
@@ -191,7 +195,7 @@ public class GuideController {
             fertilizationGuideService.updateFertilizationGuide(fertilizationGuide);
         }
 
-        return new ModelAndView("redirect:/guide/edit-fertilization/"+id);
+        return new ModelAndView("redirect:/guide/edit-fertilization/"+fertilizationGuide.getId());
     }
 
     @RequestMapping(value = "/delete-fertilization/{id}", method = RequestMethod.GET)

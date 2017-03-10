@@ -272,72 +272,72 @@ public class BasicQuestionsForm {
     public List<String> question4() {
         List<String> listQuestion4 = new ArrayList<>();
 
-        if (basicQuestions.getQuestion_2_21() != null & !("true").equals(basicQuestions.getQuestion_2_21())) {
+        if (basicQuestions.getQuestion_2_21() != null & !("false").equals(basicQuestions.getQuestion_2_21())) {
             listQuestion4.add("checked");
         } else {
             listQuestion4.add("");
         }
-        if (basicQuestions.getQuestion_2_22() != null & !("true").equals(basicQuestions.getQuestion_2_22())) {
+        if (basicQuestions.getQuestion_2_22() != null & !("false").equals(basicQuestions.getQuestion_2_22())) {
             listQuestion4.add("checked");
         } else {
             listQuestion4.add("");
         }
-        if (basicQuestions.getQuestion_2_23() != null & !("true").equals(basicQuestions.getQuestion_2_23())) {
+        if (basicQuestions.getQuestion_2_23() != null & !("false").equals(basicQuestions.getQuestion_2_23())) {
             listQuestion4.add("checked");
         } else {
             listQuestion4.add("");
         }
-        if (basicQuestions.getQuestion_2_24() != null & !("true").equals(basicQuestions.getQuestion_2_24())) {
+        if (basicQuestions.getQuestion_2_24() != null & !("false").equals(basicQuestions.getQuestion_2_24())) {
             listQuestion4.add("checked");
         } else {
             listQuestion4.add("");
         }
-        if (basicQuestions.getQuestion_2_25() != null & !("true").equals(basicQuestions.getQuestion_2_25())) {
+        if (basicQuestions.getQuestion_2_25() != null & !("false").equals(basicQuestions.getQuestion_2_25())) {
             listQuestion4.add("checked");
         } else {
             listQuestion4.add("");
         }
-        if (basicQuestions.getQuestion_2_26() != null & !("true").equals(basicQuestions.getQuestion_2_26())) {
+        if (basicQuestions.getQuestion_2_26() != null & !("false").equals(basicQuestions.getQuestion_2_26())) {
             listQuestion4.add("checked");
         } else {
             listQuestion4.add("");
         }
-        if (basicQuestions.getQuestion_2_27() != null & !("true").equals(basicQuestions.getQuestion_2_27())) {
+        if (basicQuestions.getQuestion_2_27() != null & !("false").equals(basicQuestions.getQuestion_2_27())) {
             listQuestion4.add("checked");
         } else {
             listQuestion4.add("");
         }
-        if (basicQuestions.getQuestion_2_28() != null & !("true").equals(basicQuestions.getQuestion_2_28())) {
+        if (basicQuestions.getQuestion_2_28() != null & !("false").equals(basicQuestions.getQuestion_2_28())) {
             listQuestion4.add("checked");
         } else {
             listQuestion4.add("");
         }
-        if (basicQuestions.getQuestion_2_29() != null & !("true").equals(basicQuestions.getQuestion_2_29())) {
+        if (basicQuestions.getQuestion_2_29() != null & !("false").equals(basicQuestions.getQuestion_2_29())) {
             listQuestion4.add("checked");
         } else {
             listQuestion4.add("");
         }
-        if (basicQuestions.getQuestion_2_30() != null & !("true").equals(basicQuestions.getQuestion_2_30())) {
+        if (basicQuestions.getQuestion_2_30() != null & !("false").equals(basicQuestions.getQuestion_2_30())) {
             listQuestion4.add("checked");
         } else {
             listQuestion4.add("");
         }
-        if (basicQuestions.getQuestion_2_31() != null & !("true").equals(basicQuestions.getQuestion_2_31())) {
+        if (basicQuestions.getQuestion_2_31() != null & !("false").equals(basicQuestions.getQuestion_2_31())) {
             listQuestion4.add("checked");
         } else {
             listQuestion4.add("");
         }
-        if (basicQuestions.getQuestion_2_32() != null & !("true").equals(basicQuestions.getQuestion_2_32())) {
+        if (basicQuestions.getQuestion_2_32() != null & !("false").equals(basicQuestions.getQuestion_2_32())) {
             listQuestion4.add("checked");
         } else {
             listQuestion4.add("");
         }
-        if (basicQuestions.getQuestion_2_33() != null & !("true").equals(basicQuestions.getQuestion_2_33())) {
+        if (basicQuestions.getQuestion_2_33() != null & !("false").equals(basicQuestions.getQuestion_2_33())) {
             listQuestion4.add("checked");
         } else {
             listQuestion4.add("");
         }
-        if (basicQuestions.getQuestion_2_34() != null & !("true").equals(basicQuestions.getQuestion_2_34())) {
+        if (basicQuestions.getQuestion_2_34() != null & !("false").equals(basicQuestions.getQuestion_2_34())) {
             listQuestion4.add("checked");
             listQuestion4.add(basicQuestions.getQuestion_2_34());
         } else {
@@ -351,27 +351,27 @@ public class BasicQuestionsForm {
     public List<String> question5() {
         List<String> listQuestion5 = new ArrayList<>();
 
-        if (basicQuestions.getQuestion_2_35() != null & !("true").equals(basicQuestions.getQuestion_2_35())) {
+        if (basicQuestions.getQuestion_2_35() != null & !("false").equals(basicQuestions.getQuestion_2_35())) {
             listQuestion5.add("checked");
         } else {
             listQuestion5.add("");
         }
-        if (basicQuestions.getQuestion_2_36() != null & !("true").equals(basicQuestions.getQuestion_2_36())) {
+        if (basicQuestions.getQuestion_2_36() != null & !("false").equals(basicQuestions.getQuestion_2_36())) {
             listQuestion5.add("checked");
         } else {
             listQuestion5.add("");
         }
-        if (basicQuestions.getQuestion_2_37() != null & !("true").equals(basicQuestions.getQuestion_2_37())) {
+        if (basicQuestions.getQuestion_2_37() != null & !("false").equals(basicQuestions.getQuestion_2_37())) {
             listQuestion5.add("checked");
         } else {
             listQuestion5.add("");
         }
-        if (basicQuestions.getQuestion_2_38() != null & !("true").equals(basicQuestions.getQuestion_2_38())) {
+        if (basicQuestions.getQuestion_2_38() != null & !("false").equals(basicQuestions.getQuestion_2_38())) {
             listQuestion5.add("checked");
         } else {
             listQuestion5.add("");
         }
-        if (basicQuestions.getQuestion_2_39() != null & !("true").equals(basicQuestions.getQuestion_2_39())) {
+        if (basicQuestions.getQuestion_2_39() != null & !("false").equals(basicQuestions.getQuestion_2_39())) {
             listQuestion5.add("checked");
         } else {
             listQuestion5.add("");
@@ -391,38 +391,38 @@ public class BasicQuestionsForm {
     public List<String> question6() {
         List<String> listQuestion6 = new ArrayList<>();
 
-        if (basicQuestions.getQuestion_3_41() != null & !("true").equals(basicQuestions.getQuestion_3_41())) {
+        if (basicQuestions.getQuestion_3_41() != null & !("false").equals(basicQuestions.getQuestion_3_41())) {
             listQuestion6.add("checked");
         } else {
             listQuestion6.add("");
         }
-        if (basicQuestions.getQuestion_3_42() != null & !("true").equals(basicQuestions.getQuestion_3_42())) {
+        if (basicQuestions.getQuestion_3_42() != null & !("false").equals(basicQuestions.getQuestion_3_42())) {
             listQuestion6.add("checked");
         } else {
             listQuestion6.add("");
         }
-        if (basicQuestions.getQuestion_3_43() != null & !("true").equals(basicQuestions.getQuestion_3_43())) {
+        if (basicQuestions.getQuestion_3_43() != null & !("false").equals(basicQuestions.getQuestion_3_43())) {
             listQuestion6.add("checked");
         } else {
             listQuestion6.add("");
         }
-        if (basicQuestions.getQuestion_3_44() != null & !("true").equals(basicQuestions.getQuestion_3_44())) {
+        if (basicQuestions.getQuestion_3_44() != null & !("false").equals(basicQuestions.getQuestion_3_44())) {
             listQuestion6.add("checked");
         } else {
             listQuestion6.add("");
         }
-        if (basicQuestions.getQuestion_3_45() != null & !("true").equals(basicQuestions.getQuestion_3_45())) {
+        if (basicQuestions.getQuestion_3_45() != null & !("false").equals(basicQuestions.getQuestion_3_45())) {
             listQuestion6.add("checked");
         } else {
             listQuestion6.add("");
         }
 
-        if (basicQuestions.getQuestion_3_46() != null & !("true").equals(basicQuestions.getQuestion_3_46())) {
+        if (basicQuestions.getQuestion_3_46() != null & !("false").equals(basicQuestions.getQuestion_3_46())) {
             listQuestion6.add("checked");
         } else {
             listQuestion6.add("");
         }
-        if (basicQuestions.getQuestion_3_47() != null & !("true").equals(basicQuestions.getQuestion_3_47())) {
+        if (basicQuestions.getQuestion_3_47() != null & !("false").equals(basicQuestions.getQuestion_3_47())) {
             listQuestion6.add("checked");
         } else {
             listQuestion6.add("");
