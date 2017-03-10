@@ -12,7 +12,71 @@ public class BasicQuestionsForm {
 
 
     public BasicQuestionsForm(BasicQuestions basicQuestions) {
-        this.basicQuestions = basicQuestions;
+        if (basicQuestions != null){
+            this.basicQuestions = basicQuestions;
+        }else{
+            this.basicQuestions = nullBasicQuestions();
+        }
+
+    }
+
+    private BasicQuestions nullBasicQuestions() {
+        BasicQuestions basicQuestions = new BasicQuestions();
+        basicQuestions.setQuestion_1_1("");
+        basicQuestions.setQuestion_1_2("");
+
+        basicQuestions.setQuestion_1_3_11("");
+        basicQuestions.setQuestion_1_3_12("");
+        basicQuestions.setQuestion_1_3_13("");
+        basicQuestions.setQuestion_1_3_14("");
+        basicQuestions.setQuestion_1_3_15("");
+        basicQuestions.setQuestion_1_3_16("");
+        basicQuestions.setQuestion_1_3_17("");
+        basicQuestions.setQuestion_1_3_18("");
+        basicQuestions.setQuestion_1_3_19("");
+        basicQuestions.setQuestion_1_3_20("");
+
+        basicQuestions.setQuestion_2_21("");
+        basicQuestions.setQuestion_2_22("");
+        basicQuestions.setQuestion_2_23("");
+        basicQuestions.setQuestion_2_24("");
+        basicQuestions.setQuestion_2_25("");
+        basicQuestions.setQuestion_2_26("");
+        basicQuestions.setQuestion_2_27("");
+        basicQuestions.setQuestion_2_28("");
+        basicQuestions.setQuestion_2_29("");
+        basicQuestions.setQuestion_2_30("");
+        basicQuestions.setQuestion_2_31("");
+        basicQuestions.setQuestion_2_32("");
+        basicQuestions.setQuestion_2_33("");
+        basicQuestions.setQuestion_2_34("");
+        basicQuestions.setQuestion_2_35("");
+        basicQuestions.setQuestion_2_36("");
+        basicQuestions.setQuestion_2_37("");
+        basicQuestions.setQuestion_2_38("");
+        basicQuestions.setQuestion_2_39("");
+        basicQuestions.setQuestion_2_40("");
+
+        basicQuestions.setQuestion_3_41("");
+        basicQuestions.setQuestion_3_42("");
+        basicQuestions.setQuestion_3_43("");
+        basicQuestions.setQuestion_3_44("");
+        basicQuestions.setQuestion_3_45("");
+        basicQuestions.setQuestion_3_46("");
+        basicQuestions.setQuestion_3_47("");
+        basicQuestions.setQuestion_3_48("");
+        basicQuestions.setQuestion_3_49("");
+        basicQuestions.setQuestion_3_50("");
+        basicQuestions.setQuestion_3_51("");
+        basicQuestions.setQuestion_3_52("");
+        basicQuestions.setQuestion_3_53("");
+        basicQuestions.setQuestion_3_54("");
+        basicQuestions.setQuestion_3_55("");
+        basicQuestions.setQuestion_3_56("");
+        basicQuestions.setQuestion_3_57("");
+
+
+        return basicQuestions;
     }
 
     public List<String> question1() {
