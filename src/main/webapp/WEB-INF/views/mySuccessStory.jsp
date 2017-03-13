@@ -44,10 +44,11 @@
         <!-- Content section -->
         <section class="container-fluid content">
             <%String title = (String) request.getAttribute("title");%>
+            <%Integer type = (Integer) request.getAttribute("type");%>
             <h3><i class="fa fa-file-text-o"></i><%out.print(title);%></h3>
 
             <div class="mb20">
-                <a href="/my/new" class="btn btn-primary">Add new</a>
+                <a href="<%out.print("/my/new/"+type);%>" class="btn btn-primary">Add new</a>
             </div>
 
             <table id="dataTable" class="table table-striped table-bordered" width="100%" cellspacing="0">

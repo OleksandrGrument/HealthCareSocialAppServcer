@@ -1,4 +1,7 @@
 <%@ page import="com.ComeOnBaby.model.Blog" %>
+<%@ page import="java.util.List" %>
+<%@ page import="java.util.Iterator" %>
+<%@ page import="com.ComeOnBaby.enums.MainPathEnum" %>
 <%@ taglib prefix="spring" uri="http://www.springframework.org/tags" %>
 <%@ page language="java" pageEncoding="UTF-8"%>
 <%@ page contentType="text/html;charset=UTF-8" %>
@@ -42,7 +45,10 @@
 
         <%Blog blog = (Blog) request.getAttribute("blog");%>
         <%boolean isNew = (boolean) request.getAttribute("isNew");%>
-        <%String formAction = "/my/save-new";%>
+        <%String formAction = "/my/save-new-story";%>
+        <%Integer type;
+          if (isNew) type = (Integer) request.getAttribute("type");
+          else  type = blog.getType();           %>
         <!-- Content section -->
         <section class="container-fluid content">
 
@@ -57,6 +63,7 @@
                     <div class="col-md-6">
 
                         <input type="hidden" name="id" value="<%if (!isNew)out.print(blog.getId());%>">
+                        <input type="hidden" name="type" value="<% out.print(type) ;%>">
 
                         <%String blogTitle =""; if (!isNew) blogTitle = blog.getTitle();%>
                         <div class="form-group">
@@ -64,37 +71,54 @@
                             <input type="text" class="form-control" name="title" id="title" value="<%out.print(blogTitle);%>" placeholder="Story title" required />
                         </div>
 
-                    <%--    <% if(!isNew){
-                        /*    String urlPic = blog.; */%>
-                        <div class="form-group form-img-thumbnail">
-                            <a data-fancybox="gallery" href="<%%>"><img src="images/story.jpg" alt="Stand up from the last pain" class="img-thumbnail"></a>
-                        </div>
+                        <% if(!isNew){
+
+                            List<String> images = (List<String>) request.getAttribute("images");
+                            Iterator<String> imageIterator = images.iterator();
+                            int imageIndex = 0;
+                            while(imageIterator.hasNext()){
+
+                                String name = imageIterator.next();
+                                if (!name.equals("")){
+                                    String urlPic = MainPathEnum.mainWebPath+"show-image/"+name; %>
+                                    <div class="form-group form-img-thumbnail">
+                                        <a data-fancybox="gallery" href="<%out.print(urlPic);%>"><img src="<%out.print(urlPic);%>" alt="Roasted Carrot Soup" class="img-thumbnail"></a>
+                                        <a href="<%out.print("/my/delete-image-from-story/"+blog.getId()+"/"+imageIndex);%>" class="delete deleteConfirm"><i class="fa fa-times"></i></a>
+                                    </div>
+                                    <%  imageIndex++;
+                                }
+                            }%>
                         <%}%>
 
                         <div class="form-group">
                             <label class="control-label">Story image</label>
-                            <input id="fileInput" type="file" class="file" required />
+                            <input multiple id="tenFilesInput" name="filePicture[]" type="file" class="file">
                         </div>
---%>
+
+
                         <%String text = ""; if (!isNew) text = blog.getText();%>
                         <div class="form-group">
                             <label class="control-label">Story text</label>
-                            <textarea class="form-control" name="body" id="editor"><%out.print(text);%></textarea>
+                            <textarea class="form-control" name="text" id="editor"><%out.print(text);%></textarea>
                         </div>
-
-                        <div class="form-group">
-                            <b>Story likes:</b> <%out.print(blog.getLikes().size());%> likes
-                        </div>
+                        <%if (!isNew){%>
+                            <div class="form-group">
+                                <b>Story likes:</b> <%out.print(blog.getLikes().size());%> likes
+                            </div>
+                        <%}%>
                     </div>
                 </div>
 
-                <div class="mt10">
-                    <a href="<%out.print("/my/comments/"+blog.getId());%>" class="btn btn-default">Story Comments (<%out.print(blog.getComments().size());%>)</a>
-                </div>
+                <%if (!isNew){%>
+                    <div class="mt10">
+                        <a href="<%out.print("/my/comments/"+blog.getId());%>" class="btn btn-default">Story Comments (<%out.print(blog.getComments().size());%>)</a>
+                    </div>
+                <%}%>
 
-
-                <%String backLink = "" ; if (blog.getType().equals(2)) backLink="/my/recipe"; else if (blog.getType().equals(3)) backLink="/my/story";
-                else if (blog.getType().equals(4)) backLink="/my/husband"; %>
+                <% String backLink = "" ;
+                    if (type.equals(2)) backLink="/my/recipe"; else if (type.equals(3)) backLink="/my/story";
+                    else if (type.equals(4)) backLink="/my/husband";
+                %>
                 <div class="mt20 delimiter">
                     <a href="<%out.print(backLink);%>" class="btn btn-default">Back</a>
                     <button type="submit" class="btn btn-primary">Confirm</button>

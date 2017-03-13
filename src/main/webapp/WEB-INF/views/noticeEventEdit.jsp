@@ -72,9 +72,9 @@
 
                             List<String> images = (List<String>) request.getAttribute("images");
                             Iterator<String> imageIterator = images.iterator();
-
+                            int imageIndex = 0;
                             while(imageIterator.hasNext()){
-                                int imageIndex = 0;
+
                                 String name = imageIterator.next();
                                 if (!name.equals("")){
                                     String urlPic = MainPathEnum.mainWebPath+"show-image/"+name; %>

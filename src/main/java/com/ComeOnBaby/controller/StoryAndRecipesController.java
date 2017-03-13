@@ -5,9 +5,11 @@ import com.ComeOnBaby.comparator.CommentByDateComparator;
 import com.ComeOnBaby.model.AppUser;
 import com.ComeOnBaby.model.Blog;
 import com.ComeOnBaby.model.Comment;
+import com.ComeOnBaby.model.Notice;
 import com.ComeOnBaby.service.AppUserService;
 import com.ComeOnBaby.service.BlogService;
 import com.ComeOnBaby.service.CommentsService;
+import com.ComeOnBaby.util.ImageEditFunctions;
 import com.ComeOnBaby.util.SaveFile;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -15,10 +17,7 @@ import org.springframework.web.bind.annotation.*;
 import org.springframework.web.multipart.MultipartFile;
 import org.springframework.web.servlet.ModelAndView;
 
-import java.util.ArrayList;
-import java.util.Collections;
-import java.util.Date;
-import java.util.Set;
+import java.util.*;
 
 
 @Controller
@@ -34,6 +33,7 @@ public class StoryAndRecipesController {
 
         ModelAndView mySuccessStory = new ModelAndView("mySuccessStory");
         ArrayList<Blog> blogs = (ArrayList<Blog>) blogService.findBlogByType(3);
+        mySuccessStory.addObject("type" , 3);
         mySuccessStory.addObject("title", "My Success story");
         mySuccessStory.addObject("blogs", blogs);
         return mySuccessStory;
@@ -44,6 +44,7 @@ public class StoryAndRecipesController {
 
         ModelAndView myRecipes = new ModelAndView("mySuccessStory");
         ArrayList<Blog> blogs = (ArrayList<Blog>) blogService.findBlogByType(2);
+        myRecipes.addObject("type", 2);
         myRecipes.addObject("blogs", blogs);
         myRecipes.addObject("title", "My Recipes");
         return myRecipes;
@@ -54,6 +55,7 @@ public class StoryAndRecipesController {
 
         ModelAndView myHusband = new ModelAndView("mySuccessStory");
         ArrayList<Blog> blogs = (ArrayList<Blog>) blogService.findBlogByType(4);
+        myHusband.addObject("type", 4);
         myHusband.addObject("title", "Husband Story");
         myHusband.addObject("blogs", blogs);
         return myHusband;
@@ -67,28 +69,34 @@ public class StoryAndRecipesController {
 
         Blog blog = blogService.findById(id);
 
+        String images = blog.getImages();
+
+        List<String> imagesList = Arrays.asList(images.split("<>"));
+
+        editBlog.addObject("images", imagesList);
         editBlog.addObject("isNew", false);
         editBlog.addObject("blog", blog);
 
         return editBlog;
     }
 
-    @RequestMapping(value = "/delete/{id}" , method = RequestMethod.GET)
-    public ModelAndView deleteBlog(@PathVariable Long id){
+    @RequestMapping(value = "/delete/{id}", method = RequestMethod.GET)
+    public ModelAndView deleteBlog(@PathVariable Long id) {
         Blog blog = blogService.findById(id);
 
-        ModelAndView listBlogs = new ModelAndView("redirect:/my/" +getBlogType(blog));
+        ModelAndView listBlogs = new ModelAndView("redirect:/my/" + getBlogType(blog));
 
-            blogService.deleteBlog(blog);
+        blogService.deleteBlog(blog);
 
         return listBlogs;
     }
 
-    @RequestMapping(value = "/new", method = RequestMethod.GET)
-    public ModelAndView newBlog() {
+    @RequestMapping(value = "/new/{type}", method = RequestMethod.GET)
+    public ModelAndView newBlog(@PathVariable Integer type) {
 
         ModelAndView newBlog = new ModelAndView("mySuccessStoryEdit");
 
+        newBlog.addObject("type" , type);
         newBlog.addObject("isNew", true);
 
         return newBlog;
@@ -96,15 +104,21 @@ public class StoryAndRecipesController {
     }
 
     @RequestMapping(value = "/save-new-story", method = RequestMethod.POST)
-    public ModelAndView saveNewStory(@RequestParam(value = "id") String id, @RequestParam("title") String title, @RequestParam("filePicture[]") MultipartFile[] files) {
+    public ModelAndView saveNewStory(@RequestParam(value = "id") String id, @RequestParam("type") Integer type, @RequestParam("title") String title, @RequestParam("text") String text, @RequestParam("filePicture[]") MultipartFile[] files) {
 
-        Blog blog = new Blog();
+        Blog blog;
 
         if (id.equals("")) {
 
+             blog = new Blog();
+            AppUser appUser = appUserService.findById((long)1);
 
             blog.setDatetime(new Date());
             blog.setTitle(title);
+            blog.setText(text);
+            blog.setType(type);
+            blog.setAppUser(appUser);
+            blog.setId_user(appUser.getId());
 
 
             //Save to file
@@ -113,31 +127,34 @@ public class StoryAndRecipesController {
                 String pathToSaveFile = "pictures/";
                 SaveFile saveFile = new SaveFile(pathToSaveFile, files);
                 saveFile.saveFileAndGetName();
-                /*
-                fertilizationGuide.setImage(MainPathEnum.mainWebPath + "show-image/" + files[0].getOriginalFilename() + "/");*/
+
+                ArrayList<String> fileNames = saveFile.saveFileAndGetName();
+
+                String noticeFileNames = ImageEditFunctions.generateStringWithSeparatorFromArray(fileNames);
+
+                blog.setImages(noticeFileNames);
+
                 blogService.addNewBlog(blog);
             }
 
         } else {
 
-            blog = blogService.findById(Long.valueOf(id));
+             blog = blogService.findById(Long.valueOf(id));
 
             blog.setDatetime(new Date());
             blog.setTitle(title);
+            blog.setText(text);
 
             //Save to file
-            if (files.length != 0) {
-                if (!files[0].isEmpty()) {
-                    String pathToSaveFile = "pictures/";
-                    SaveFile saveFile = new SaveFile(pathToSaveFile, files);
-                    saveFile.saveFileAndGetName();
-                    /*fertilizationGuide.setImage(MainPathEnum.mainWebPath + "show-image/" + files[0].getOriginalFilename() + "/");*/
-                }
-            }
+            String imagesFromNotice = blog.getImages();
+
+            String imagesUpdated = ImageEditFunctions.updateImages(imagesFromNotice, files);
+            blog.setImages(imagesUpdated);
+
             blogService.updateBlog(blog);
         }
 
-        return new ModelAndView("redirect:/my/" +getBlogType(blog));
+        return new ModelAndView("redirect:/my/edit/" + blog.getId());
     }
 
 
@@ -204,19 +221,42 @@ public class StoryAndRecipesController {
         return comments;
     }
 
-    private String getBlogType(Blog blog){
+    @RequestMapping(value = "/delete-image-from-story/{blogId}/{imageIndex}", method = RequestMethod.GET)
+    public ModelAndView deleteImageFromNotice(@PathVariable(value = "blogId") Long blogId, @PathVariable(value = "imageIndex") Integer imageIndex) {
+
+
+        Blog blog = blogService.findById(blogId);
+
+        String blogFilesNamesBeforeUpdate = blog.getImages();
+
+        ArrayList<String> imagesList = new ArrayList(Arrays.asList(blogFilesNamesBeforeUpdate.split("<>")));
+
+        imagesList.remove(imageIndex.intValue());
+
+        String imageNamesToSave = ImageEditFunctions.generateStringWithSeparatorFromArray(imagesList);
+
+        blog.setImages(imageNamesToSave);
+
+        blogService.updateBlog(blog);
+
+
+        return new ModelAndView("redirect:/my/edit/" + blogId);
+    }
+
+
+    private String getBlogType(Blog blog) {
 
         int type = blog.getType();
         String path = "";
-        switch(type) {
+        switch (type) {
             case 2:
-                path="recipes";
+                path = "recipes";
                 break;
             case 3:
-                path="story";
+                path = "story";
                 break;
             case 4:
-                path="husband";
+                path = "husband";
                 break;
         }
         return path;

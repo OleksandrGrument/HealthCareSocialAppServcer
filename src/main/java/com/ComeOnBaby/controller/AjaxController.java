@@ -35,7 +35,7 @@ public class AjaxController {
 
     @ResponseBody
     @RequestMapping(value = "/action", method = RequestMethod.POST)
-    public String getAnswer(@RequestParam(value = "operation") String operation, @RequestParam(value = "code") String code) {
+    public String getAnswerText(@RequestParam(value = "operation") String operation, @RequestParam(value = "code") String code) {
         System.out.println("hello ajax/action, operation=" + operation + ", code=" + code);
         String[] answer = null;
         Notice notice = null;
@@ -95,7 +95,7 @@ public class AjaxController {
                                 imgT = imgText;
                                 //imgT.setNotice(notice);
                                 imgT.setSort(sort);
-                                imgT.setText(value);
+                                imgT.setQuestionText(value);
                                 System.out.println(", imgT=" + imgT);
                             }
                         }
@@ -107,7 +107,7 @@ public class AjaxController {
                             imgT.setNotice(notice);
                             imgT.setSort(sort);
                             imgT.setImg("");
-                            imgT.setText(value);
+                            imgT.setQuestionText(value);
                             imgT.setType(type);
                             imgTexts.add(imgT);
                         } catch (Exception e) {

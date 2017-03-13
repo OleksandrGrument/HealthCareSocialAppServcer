@@ -9,19 +9,23 @@ import java.util.Arrays;
 public class ImageEditFunctions {
 
     public static String updateImages(String images , MultipartFile[] files){
+
+        // Get all images as list
         ArrayList<String> imagesList = new ArrayList (Arrays.asList(images.split("<>")));
 
+
+        // Get all params
         String noticeFileNamesToReturn ="";
 
         int filesLength = files.length;
         int imagesLength = imagesList.size() + 1;
-
-
-
         int freeSpace = 10 - imagesLength;
+
+
 
         System.out.println("Files length " + filesLength + " Images length " + imagesLength + " Free space " + freeSpace);
 
+        // Delete images from list if images more than free space
         if (freeSpace < filesLength){
             int spaceToClear = filesLength - freeSpace -1;
             for(int i = 0; i < spaceToClear; i++){
@@ -40,11 +44,9 @@ public class ImageEditFunctions {
 
                 imagesList.addAll(fileNames);
 
-                noticeFileNamesToReturn = generateStringWithSeparatorFromArray(imagesList);
-
             }
         }
-
+        noticeFileNamesToReturn = generateStringWithSeparatorFromArray(imagesList);
 
         return noticeFileNamesToReturn;
     }

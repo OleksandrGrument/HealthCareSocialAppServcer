@@ -162,14 +162,15 @@ CREATE TABLE `likes` (
 	`like` BOOLEAN NOT NULL
 );
 
-CREATE TABLE `q_a` (
+CREATE TABLE `questionAnswer` (
 	`id` INT NOT NULL,
-	`idUser` INT NOT NULL,
-	`date` DATE NOT NULL,
+	`id_user` INT NOT NULL,
+	`question_date` DATE NOT NULL,
 	`title` VARCHAR(255) NOT NULL,
 	`text` TEXT NOT NULL,
 	`is_access` BOOLEAN NOT NULL,
-	`answer` TEXT NOT NULL
+	`answer` TEXT NOT NULL,
+	`is_answered` BOOLEAN NOT NULL,
 );
 
 INSERT INTO `user_profile`(type)

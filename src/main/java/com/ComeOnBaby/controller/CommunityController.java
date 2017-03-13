@@ -80,7 +80,7 @@ public class CommunityController {
     CommentsService commentsService;
 
     @Autowired
-    Q_AService q_a_service;
+    QuestionAnswerService q_a_service;
 
     @Autowired
     NoticeService noticeService;
@@ -593,35 +593,35 @@ public class CommunityController {
     }
 
 
-    //Get Q_A
+    //Get QuestionAnswer
     private JSONObject getQ_A(JSONObject outJSON) {
 
-        List<Q_A> q_a_List = q_a_service.getAllQ_A();
+        List<QuestionAnswer> questionAnswerList = q_a_service.getAllQuestionAnswers();
         outJSON.put(RESULT, SUCCESS);
         outJSON.put(MESSAGE, ServerResponseAnswersConstant.MSG_Q_A_DOWNLOAD_SUCCESS);
 
         JSONArray jsonArray = new JSONArray();
 
-        for (Q_A q_a : q_a_List) {
-            jsonArray.put(get_Q_A_JSON(q_a));
+        for (QuestionAnswer questionAnswer : questionAnswerList) {
+            jsonArray.put(get_Q_A_JSON(questionAnswer));
         }
         outJSON.put(DATA,jsonArray.toString());
         return outJSON;
     }
 
-    //Make JSON from Q_A
-    private JSONObject get_Q_A_JSON(Q_A q_a) {
+    //Make JSON from QuestionAnswer
+    private JSONObject get_Q_A_JSON(QuestionAnswer questionAnswer) {
         JSONObject outQ_A = new JSONObject();
-        outQ_A.put("id", q_a.getId());
-        outQ_A.put("id_user", q_a.getId_user());
-        outQ_A.put("question_date", q_a.getQuestionDateFormat());
-        outQ_A.put("answer_date", q_a.getAnswerDateFormat());
-        outQ_A.put("title", q_a.getTitle());
-        outQ_A.put("text", q_a.getText());
-        outQ_A.put("is_access", q_a.getIs_access());
-        outQ_A.put("answer", q_a.getAnswer());
-        outQ_A.put("is_answer", q_a.getIs_answer());
-        Preferences pr = prefService.findById(q_a.getId_user());
+        outQ_A.put("id", questionAnswer.getId());
+        outQ_A.put("id_user", questionAnswer.getAppUser().getId());
+        outQ_A.put("question_date", questionAnswer.getQuestionDateFormat());
+        outQ_A.put("answer_date", questionAnswer.getAnswerDateFormat());
+        outQ_A.put("title", questionAnswer.getTitle());
+        outQ_A.put("text", questionAnswer.getQuestionText());
+        outQ_A.put("is_access", questionAnswer.isAccess());
+        outQ_A.put("answer", questionAnswer.getAnswerText());
+        outQ_A.put("is_answer", questionAnswer.isAnswered());
+        Preferences pr = prefService.findById(questionAnswer.getAppUser().getId());
         if(pr != null) {
             if (pr.getAvatar() != null) outQ_A.put(USERAVATAR, pr.getAvatar());
             if (pr.getNickname() != null) outQ_A.put(USERNICKNAME, pr.getNickname());

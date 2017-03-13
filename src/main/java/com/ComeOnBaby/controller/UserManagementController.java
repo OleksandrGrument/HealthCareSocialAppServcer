@@ -280,6 +280,8 @@ public class UserManagementController {
 
         AppUser user = appUserService.findById(userId);
         List<Note> notices = noteService.findUserNotes(user);
+
+
         DataNoteByMonthWeek dataNoteByMonth = new DataNoteByMonthWeek(notices, month, year);
 
         String daysInMonthsString = dataNoteByMonth.daysInMonthsString();

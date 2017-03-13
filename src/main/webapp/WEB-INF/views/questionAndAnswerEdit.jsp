@@ -1,3 +1,4 @@
+<%@ page import="com.ComeOnBaby.model.QuestionAnswer" %>
 <%@ taglib prefix="spring" uri="http://www.springframework.org/tags" %>
 <%@ page language="java" pageEncoding="UTF-8"%>
 <%@ page contentType="text/html;charset=UTF-8" %>
@@ -16,7 +17,7 @@
     <meta name="description" content="" />
     <meta name="keywords" content="" />
 
-    <title>Edit question :: Come On Baby</title>
+    <title>Answer question :: Come On Baby</title>
 
     <%@ include file="headerStyles.jsp" %>
 
@@ -38,33 +39,40 @@
 
         <%@ include file="topLine.jsp" %>
 
+
+
         <!-- Content section -->
         <section class="container-fluid content">
-            <h3><i class="fa fa-question-circle-o"></i>Edit question</h3>
+            <h3><i class="fa fa-question-circle-o"></i>Answer the question</h3>
 
             <!-- Edit form -->
-            <form action="" method="post">
+            <%QuestionAnswer questionAnswer = (QuestionAnswer) request.getAttribute("questionAnswer");%>
+
+            <form action="/q-a/answer-the-question" method="post">
                 <div class="row">
                     <div class="col-md-6">
                         <!-- Question section -->
                         <div class="question">
-                            <h4>What should I do when this happens?</h4>
-                            <p class="mt10 mb0 text-justify">Sometimes, even when you know a lot of English, you can have difficulty finding the right words or phrases to answer simple questions. Here are 20 of the most common questions in English – each one with five sample responses.</p>
+                            <h4><%out.print(questionAnswer.getTitle());%></h4>
+                            <p class="mt10 mb0 text-justify"><%out.print(questionAnswer.getQuestionText());%></p>
                         </div>
                         <!-- #End Question section -->
+
+                        <input type="hidden" name="id" value="<%out.print(questionAnswer.getId());%>">
 
                         <!-- Answer section -->
                         <div class="form-group">
                             <label for="editor">Answer</label>
-                            <textarea name="answer" class="form-control" id="editor">Sometimes, even when you know a lot of English, you can have difficulty finding</textarea>
+                            <%String answerText = ""; if (questionAnswer.isAnswered()) answerText = questionAnswer.getAnswerText(); %>
+                            <textarea name="answerText" class="form-control" id="editor"><%out.print(answerText);%></textarea>
                         </div>
                         <!-- #End Answer section -->
                     </div>
                 </div>
 
                 <div class="mt20 delimiter">
-                    <a href="questionAndAnswer.php" class="btn btn-default">Back</a>
-                    <button class="btn btn-primary">Confirm</button>
+                    <a href="/q-a/list" class="btn btn-default">Back</a>
+                    <button type="submit" class="btn btn-primary">Confirm</button>
                 </div>
             </form>
             <!-- #End Edit form -->

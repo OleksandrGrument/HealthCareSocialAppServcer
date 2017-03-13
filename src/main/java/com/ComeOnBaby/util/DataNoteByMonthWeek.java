@@ -20,12 +20,11 @@ public class DataNoteByMonthWeek {
         SimpleDateFormat dateFormat = new SimpleDateFormat("MM.yyyy");
         List<Note> dataNoteByMonth = new ArrayList<Note>();
         if(notes.get(0) != null){
-            Note tempNote = notes.get(0);
-            dataNoteByMonth.add(tempNote);
+            //Note tempNote = notes.get(0);
             for (Note note : notes) {
-                if (!dateFormat.format(note.getDate()).equals(dateFormat.format(tempNote.getDate()))) {
+                if (note.getDate().getMonth() == month & note.getDate().getYear() == year) {
                     dataNoteByMonth.add(note);
-                    tempNote = note;
+                    //tempNote = note;
                 }
             }
         }else {
