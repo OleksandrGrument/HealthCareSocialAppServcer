@@ -124,7 +124,7 @@
                 <section class="question">
                     <h4>What treatment did you experience? <small>(Duplicate checkable)</small></h4>
 
-                    <div class="mt10 mb10 clearfix closeCheckbox">
+                    <div class="mt10 mb10 clearfix closeCheckbox onlyNumbers">
                         <div class="checkbox">
                             <input type="checkbox" name="question3_1" id="question3_1" <%out.print(listQuestion3.get(0));%>>
                             <label for="question3_1" style="display: inline-block; width: 170px;">Induce natural pregnancy</label>
@@ -377,7 +377,7 @@
                         </div>
 
                         <div class="checkbox checkbox-inline pt5 pb5 ml0 pr10">
-                            <input type="checkbox" name="question6_4" id="question6_4""  <%out.print(listQuestion7.get(3));%>>
+                            <input type="checkbox" name="question6_4" id="question6_4"  <%out.print(listQuestion7.get(3));%>>
                             <label for="question6_4">Divorce</label>
                         </div>
 
@@ -429,38 +429,36 @@
 
 <script>
     jQuery(document).ready(function($) {
-        $(".closeCheckbox").html(function () {
+        $(".onlyNumbers input[type=text]").keypress(function (e) {
+            if (e.which != 8 && e.which != 0 && (e.which < 48 || e.which > 57)) {
+                return false;
+            }
+        });
 
-            $("input[type=checkbox]").each(function () {
-                var checkbox_id = $(this).attr('id');
-                var input_id = checkbox_id + "_1";
+        $(".closeCheckbox input[type=checkbox]").each(function () {
+            var checkbox_id = $(this).attr('id');
+            var input_id = checkbox_id + "_1";
 
-                $("#" + input_id).keypress(function (e) {
-                    if (e.which != 8 && e.which != 0 && (e.which < 48 || e.which > 57)) {
-                        return false;
-                    }
-                });
+            $("#" + checkbox_id).attr("disabled", true);
 
-                $("#" + checkbox_id).attr("disabled", true);
+            if ($.trim($("#" + input_id).val()).length > 0) {
+                $("#" + checkbox_id).attr("checked", true);
+                $("#" + checkbox_id).attr("disabled", false);
+            }
 
+            $("#" + input_id).keyup(function () {
                 if ($.trim($("#" + input_id).val()).length > 0) {
-                    $("#" + checkbox_id).attr("checked", true);
+                    $("#" + checkbox_id).attr('checked', true);
                     $("#" + checkbox_id).attr("disabled", false);
+                } else {
+                    $("#" + checkbox_id).attr('checked', false);
+                    $("#" + checkbox_id).attr("disabled", true);
                 }
-
-                $("#" + input_id).keyup(function () {
-                    if ($.trim($("#" + input_id).val()).length > 0) {
-                        $("#" + checkbox_id).attr('checked', true);
-                        $("#" + checkbox_id).attr("disabled", false);
-                    } else {
-                        $("#" + checkbox_id).attr('checked', false);
-                        $("#" + checkbox_id).attr("disabled", true);
-                    }
-                });
             });
         });
     });
 </script>
+
 
 </body>
 </html>

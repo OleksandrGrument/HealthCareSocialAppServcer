@@ -94,7 +94,7 @@
                         <%String checkClass = "fa fa-square-o"; if (questionAnswer.isAnswered()) checkClass = "fa fa-check-square";%>
                         <td align="center"><i class="<%out.print(checkClass);%>"></i></td>
 
-                        <%String lockClass = "fa fa-lock"; if (questionAnswer.isAccess()) lockClass = "fa fa-unlock"; %>
+                        <%String lockClass = "fa fa-unlock"; if (questionAnswer.isAccess()) lockClass = "fa fa-lock"; %>
                         <td align="center"><i class="<%out.print(lockClass);%>"></i></td>
 
                         <td align="center"><%out.print(questionAnswer.getQuestionDate().toString().substring(0, 19));%></td>
