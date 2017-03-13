@@ -443,16 +443,13 @@
 
             if ($.trim($("#" + input_id).val()).length > 0) {
                 $("#" + checkbox_id).attr("checked", true);
-                $("#" + checkbox_id).attr("disabled", false);
             }
 
             $("#" + input_id).keyup(function () {
                 if ($.trim($("#" + input_id).val()).length > 0) {
                     $("#" + checkbox_id).attr('checked', true);
-                    $("#" + checkbox_id).attr("disabled", false);
                 } else {
                     $("#" + checkbox_id).attr('checked', false);
-                    $("#" + checkbox_id).attr("disabled", true);
                 }
             });
         });
