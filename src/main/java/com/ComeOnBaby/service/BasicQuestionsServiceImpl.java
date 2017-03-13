@@ -11,7 +11,7 @@ import java.util.List;
 
 
 @Service("basicQuestionService")
-public class BasicQuestionsServiceImpl implements BasicQuestionsService{
+public class BasicQuestionsServiceImpl implements BasicQuestionsService {
 
     private BasicQuestionsDao basicQuestionsDao;
 

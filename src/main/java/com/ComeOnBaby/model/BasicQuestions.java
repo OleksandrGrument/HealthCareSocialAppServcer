@@ -13,157 +13,157 @@ import javax.persistence.Table;
 public class BasicQuestions {
 
     @Id
-    @Column(name="user_id", nullable=false)
+    @Column(name = "user_id", nullable = false)
     private Long user_id;
 
-    @Column(name="question_1_1")
+    @Column(name = "question_1_1")
     private String question_1_1;
 
-    @Column(name="question_1_2")
+    @Column(name = "question_1_2")
     private String question_1_2;
 
-    @Column(name="question_1_3_11")
+    @Column(name = "question_1_3_11")
     private String question_1_3_11;
 
-    @Column(name="question_1_3_12")
+    @Column(name = "question_1_3_12")
     private String question_1_3_12;
 
-    @Column(name="question_1_3_13")
+    @Column(name = "question_1_3_13")
     private String question_1_3_13;
 
-    @Column(name="question_1_3_14")
+    @Column(name = "question_1_3_14")
     private String question_1_3_14;
 
-    @Column(name="question_1_3_15")
+    @Column(name = "question_1_3_15")
     private String question_1_3_15;
 
-    @Column(name="question_1_3_16")
+    @Column(name = "question_1_3_16")
     private String question_1_3_16;
 
-    @Column(name="question_1_3_17")
+    @Column(name = "question_1_3_17")
     private String question_1_3_17;
 
-    @Column(name="question_1_3_18")
+    @Column(name = "question_1_3_18")
     private String question_1_3_18;
 
-    @Column(name="question_1_3_19")
+    @Column(name = "question_1_3_19")
     private String question_1_3_19;
 
-    @Column(name="question_1_3_20")
+    @Column(name = "question_1_3_20")
     private String question_1_3_20;
 
-    @Column(name="question_2_21")
+    @Column(name = "question_2_21")
     private String question_2_21;
 
-    @Column(name="question_2_22")
+    @Column(name = "question_2_22")
     private String question_2_22;
 
-    @Column(name="question_2_23")
+    @Column(name = "question_2_23")
     private String question_2_23;
 
-    @Column(name="question_2_24")
+    @Column(name = "question_2_24")
     private String question_2_24;
 
-    @Column(name="question_2_25")
+    @Column(name = "question_2_25")
     private String question_2_25;
 
-    @Column(name="question_2_26")
+    @Column(name = "question_2_26")
     private String question_2_26;
 
-    @Column(name="question_2_27")
+    @Column(name = "question_2_27")
     private String question_2_27;
 
-    @Column(name="question_2_28")
+    @Column(name = "question_2_28")
     private String question_2_28;
 
-    @Column(name="question_2_29")
+    @Column(name = "question_2_29")
     private String question_2_29;
 
-    @Column(name="question_2_30")
+    @Column(name = "question_2_30")
     private String question_2_30;
 
-    @Column(name="question_2_31")
+    @Column(name = "question_2_31")
     private String question_2_31;
 
-    @Column(name="question_2_32")
+    @Column(name = "question_2_32")
     private String question_2_32;
 
-    @Column(name="question_2_33")
+    @Column(name = "question_2_33")
     private String question_2_33;
 
-    @Column(name="question_2_34")
+    @Column(name = "question_2_34")
     private String question_2_34;
 
-    @Column(name="question_2_35")
+    @Column(name = "question_2_35")
     private String question_2_35;
 
-    @Column(name="question_2_36")
+    @Column(name = "question_2_36")
     private String question_2_36;
 
-    @Column(name="question_2_37")
+    @Column(name = "question_2_37")
     private String question_2_37;
 
-    @Column(name="question_2_38")
+    @Column(name = "question_2_38")
     private String question_2_38;
 
-    @Column(name="question_2_39")
+    @Column(name = "question_2_39")
     private String question_2_39;
 
-    @Column(name="question_2_40")
+    @Column(name = "question_2_40")
     private String question_2_40;
 
-    @Column(name="question_3_41")
+    @Column(name = "question_3_41")
     private String question_3_41;
 
-    @Column(name="question_3_42")
+    @Column(name = "question_3_42")
     private String question_3_42;
 
-    @Column(name="question_3_43")
+    @Column(name = "question_3_43")
     private String question_3_43;
 
-    @Column(name="question_3_44")
+    @Column(name = "question_3_44")
     private String question_3_44;
 
-    @Column(name="question_3_45")
+    @Column(name = "question_3_45")
     private String question_3_45;
 
-    @Column(name="question_3_46")
+    @Column(name = "question_3_46")
     private String question_3_46;
 
-    @Column(name="question_3_47")
+    @Column(name = "question_3_47")
     private String question_3_47;
 
-    @Column(name="question_3_48")
+    @Column(name = "question_3_48")
     private String question_3_48;
 
-    @Column(name="question_3_49")
+    @Column(name = "question_3_49")
     private String question_3_49;
 
-    @Column(name="question_3_50")
+    @Column(name = "question_3_50")
     private String question_3_50;
 
-    @Column(name="question_3_51")
+    @Column(name = "question_3_51")
     private String question_3_51;
 
-    @Column(name="question_3_52")
+    @Column(name = "question_3_52")
     private String question_3_52;
 
-    @Column(name="question_3_53")
+    @Column(name = "question_3_53")
     private String question_3_53;
 
-    @Column(name="question_3_54")
+    @Column(name = "question_3_54")
     private String question_3_54;
 
-    @Column(name="question_3_55")
+    @Column(name = "question_3_55")
     private String question_3_55;
 
-    @Column(name="question_3_56")
+    @Column(name = "question_3_56")
     private String question_3_56;
 
-    @Column(name="question_3_57")
+    @Column(name = "question_3_57")
     private String question_3_57;
 
-    public BasicQuestions(){
+    public BasicQuestions() {
 
     }
 

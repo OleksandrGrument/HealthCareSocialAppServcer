@@ -140,7 +140,7 @@
                         <div class="checkbox">
                             <input type="checkbox" name="question3_3" id="question3_3" <%out.print(listQuestion3.get(4));%>>
                             <label for="question3_3" style="display: inline-block; width: 170px;">Artificial insemination</label>
-                            <input type="text" name="question3_3_1" id="question3_3_1" class="ml5 mr5"  value="<%out.print(listQuestion3.get(5));%>"/>time
+                            <input type="text" name="question3_3_1" id="question3_3_1" class="ml5 mr5" value="<%out.print(listQuestion3.get(5));%>"/>time
                         </div>
 
                         <div class="checkbox">
@@ -262,7 +262,7 @@
                         <div class="checkbox pt5 pb5 pr10 ml0 closeCheckbox">
                             <input type="checkbox" name="question4_1_14" id="question4_1_14" value="14" <%out.print(listQuestion4.get(13));%>>
                             <label for="question4_1_14" style="display: inline-block;">Other</label>
-                            <input type="text" name="question4_1_14_1" id="question4_1_14_1" class="ml5 mr5" value=" <%out.print(listQuestion4.get(14));%>"/>
+                            <input type="text" name="question4_1_14_1" id="question4_1_14_1" class="ml5 mr5" value="<%out.print(listQuestion4.get(14));%>"/>
                         </div>
                     </div>
                     <!-- #End Female -->

@@ -4,20 +4,18 @@ import org.hibernate.annotations.GenericGenerator;
 
 import javax.persistence.*;
 
-/**
- * Created by olegs on 17.02.2017.
- */
 
 @Entity
 @Table(name = "cities")
 public class City {
+
     @Id
     @GeneratedValue(generator = "increment2")
     @GenericGenerator(name = "increment2", strategy = "increment")
     @Column(name = "id")
     private Long id;
 
-    @Column(name="name", nullable = false)
+    @Column(name = "name", nullable = false)
     private String name;
 
     public City(String name) {

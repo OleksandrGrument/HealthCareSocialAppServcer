@@ -9,13 +9,10 @@ import org.springframework.transaction.annotation.Transactional;
 
 import java.util.List;
 
-/**
- * Created by olegs on 17.02.2017.
- */
-
 @Service("cityService")
 @Transactional
 public class CityServiceImpl implements CityService {
+
     private CityDao cityDao;
 
     @Autowired(required = true)
@@ -38,8 +35,8 @@ public class CityServiceImpl implements CityService {
     @Override
     public City findByName(String name) {
         List<City> cities = cityDao.findAll();
-        for(City city : cities) {
-            if(city.getName().equals(name)) {
+        for (City city : cities) {
+            if (city.getName().equals(name)) {
                 return city;
             }
         }

@@ -1,7 +1,6 @@
 package com.ComeOnBaby.dao;
 
 
-
 import com.ComeOnBaby.model.AppUser;
 import com.ComeOnBaby.model.Note;
 import org.hibernate.Criteria;
@@ -44,7 +43,6 @@ public class NoteDaoImpl extends AbstractDao<Integer, Note> implements NoteDao {
         logger.error("Note findById successfully, Note=" + note);
         return note;
     }
-
 
 
     @Override
@@ -91,7 +89,7 @@ public class NoteDaoImpl extends AbstractDao<Integer, Note> implements NoteDao {
     @Override
     public List<Note> findAll() {
         Session session = sessionFactory.getCurrentSession();
-        Query query =  session.createQuery("from Note");
+        Query query = session.createQuery("from Note");
         return query.list();
     }
 

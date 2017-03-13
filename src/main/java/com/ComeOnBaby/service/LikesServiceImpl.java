@@ -10,7 +10,8 @@ import org.springframework.transaction.annotation.Transactional;
 import java.util.List;
 
 @Service("likesService")
-public class LikesServiceImpl implements LikesService{
+public class LikesServiceImpl implements LikesService {
+
     private LikesDao likesDao;
 
     @Autowired(required = true)

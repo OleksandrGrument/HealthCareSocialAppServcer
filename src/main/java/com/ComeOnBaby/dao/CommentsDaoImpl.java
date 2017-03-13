@@ -57,7 +57,7 @@ public class CommentsDaoImpl implements CommentsDao {
     @Override
     public List<Comment> findAll() {
         Session session = sessionFactory.getCurrentSession();
-        Query query =  session.createQuery("from Comments");
+        Query query = session.createQuery("from Comments");
         return query.list();
     }
 

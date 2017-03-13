@@ -10,6 +10,7 @@ import java.util.List;
 
 @Service("recipeGuideService")
 public class RecipeGuideServiceImpl implements RecipeGuideService {
+
     private RecipeGuideDao recipeGuideDao;
 
     @Autowired(required = true)
@@ -43,7 +44,7 @@ public class RecipeGuideServiceImpl implements RecipeGuideService {
 
     @Override
     @Transactional
-    public RecipeGuide getRecipeGuideById(long id){
+    public RecipeGuide getRecipeGuideById(long id) {
         return recipeGuideDao.read(id);
     }
 }

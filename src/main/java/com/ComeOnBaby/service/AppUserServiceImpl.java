@@ -27,7 +27,9 @@ public class AppUserServiceImpl implements AppUserService {
 
     @Override
     @Transactional()
-    public AppUser findById(Long id) {return appUserDao.read(id);}
+    public AppUser findById(Long id) {
+        return appUserDao.read(id);
+    }
 
     @Override
     @Transactional()

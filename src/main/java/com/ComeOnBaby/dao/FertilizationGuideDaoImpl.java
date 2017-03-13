@@ -1,7 +1,6 @@
 package com.ComeOnBaby.dao;
 
 
-
 import com.ComeOnBaby.model.FertilizationGuide;
 import org.hibernate.Query;
 import org.hibernate.Session;
@@ -58,7 +57,7 @@ public class FertilizationGuideDaoImpl implements FertilizationGuideDao {
     @Override
     public List<FertilizationGuide> findAll() {
         Session session = sessionFactory.getCurrentSession();
-        Query query =  session.createQuery("from FertilizationGuide");
+        Query query = session.createQuery("from FertilizationGuide");
         return query.list();
     }
 }

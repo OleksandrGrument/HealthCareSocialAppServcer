@@ -11,6 +11,7 @@ import java.util.List;
 
 @Service("fertilizationGuideService")
 public class FertilizationGuideServiceImpl implements FertilizationGuideService {
+
     private FertilizationGuideDao fertilizationGuideDao;
 
     @Autowired(required = true)
@@ -44,7 +45,7 @@ public class FertilizationGuideServiceImpl implements FertilizationGuideService 
 
     @Override
     @Transactional
-    public FertilizationGuide getFertilizationGuideById(Long id){
+    public FertilizationGuide getFertilizationGuideById(Long id) {
         return fertilizationGuideDao.read(id);
     }
 }

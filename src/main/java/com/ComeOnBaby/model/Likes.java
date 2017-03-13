@@ -5,15 +5,15 @@ import org.hibernate.validator.constraints.NotEmpty;
 import javax.persistence.*;
 
 @Entity
-@Table(name="likes")
+@Table(name = "likes")
 public class Likes {
 
-    public Likes(){
+    public Likes() {
     }
 
     @Id
     @NotEmpty
-    @Column(name="id_blog", nullable=false)
+    @Column(name = "id_blog", nullable = false)
     private Long idBlog;
 
 
@@ -23,11 +23,11 @@ public class Likes {
 
 
     @NotEmpty
-    @Column(name="id_user", nullable=false)
+    @Column(name = "id_user", nullable = false)
     private Long idUser;
 
     @NotEmpty
-    @Column(name="like", nullable=false)
+    @Column(name = "like", nullable = false)
     private Boolean like;
 
 

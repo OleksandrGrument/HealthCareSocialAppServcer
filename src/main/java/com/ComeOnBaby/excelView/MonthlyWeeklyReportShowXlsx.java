@@ -10,9 +10,7 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import java.util.Map;
 
-/**
- * Created by mr_je on 06.03.2017.
- */
+
 public class MonthlyWeeklyReportShowXlsx extends AbstractXlsxView {
 
     private DataNoteByMonthWeek dataNoteByMonthWeek;
