@@ -33,7 +33,7 @@ public class StoryAndRecipesController {
 
         ModelAndView mySuccessStory = new ModelAndView("mySuccessStory");
         ArrayList<Blog> blogs = (ArrayList<Blog>) blogService.findBlogByType(3);
-        mySuccessStory.addObject("type" , 3);
+        mySuccessStory.addObject("type", 3);
         mySuccessStory.addObject("title", "My Success story");
         mySuccessStory.addObject("blogs", blogs);
         return mySuccessStory;
@@ -96,7 +96,7 @@ public class StoryAndRecipesController {
 
         ModelAndView newBlog = new ModelAndView("mySuccessStoryEdit");
 
-        newBlog.addObject("type" , type);
+        newBlog.addObject("type", type);
         newBlog.addObject("isNew", true);
 
         return newBlog;
@@ -110,8 +110,8 @@ public class StoryAndRecipesController {
 
         if (id.equals("")) {
 
-             blog = new Blog();
-            AppUser appUser = appUserService.findById((long)1);
+            blog = new Blog();
+            AppUser appUser = appUserService.findById((long) 1);
 
             blog.setDatetime(new Date());
             blog.setTitle(title);
@@ -139,7 +139,7 @@ public class StoryAndRecipesController {
 
         } else {
 
-             blog = blogService.findById(Long.valueOf(id));
+            blog = blogService.findById(Long.valueOf(id));
 
             blog.setDatetime(new Date());
             blog.setTitle(title);

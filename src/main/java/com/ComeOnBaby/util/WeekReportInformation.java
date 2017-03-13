@@ -24,7 +24,7 @@ public class WeekReportInformation {
         }
         this.startOfWeek = dateFirstDayOfWeek(calendar);
         this.endOfWeek = dateLastDayOfWeek(calendar);
-        this.countWeekOfYear = calendar.get(Calendar.WEEK_OF_YEAR)-1;
+        this.countWeekOfYear = calendar.get(Calendar.WEEK_OF_YEAR) - 1;
     }
 
     public String getStartOfWeek() {

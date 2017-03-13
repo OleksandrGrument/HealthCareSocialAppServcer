@@ -16,73 +16,72 @@ public class Note {
     @Column(name = "id")
     private Long id;
 
-    @Column(name="user_id", nullable=false)
+    @Column(name = "user_id", nullable = false)
     private Long user_id;
 
-//    @NotEmpty
-//    @DateTimeFormat
-    @Column(name="date", nullable=false)
+
+    @Column(name = "date", nullable = false)
     private Date date;
 
-    @Column(name="bbt")
+    @Column(name = "bbt")
     private Float bbt;
 
-    @Column(name="recommended_food")
+    @Column(name = "recommended_food")
     private String recommended_food;
 
-    @Column(name="recommended_nuts")
+    @Column(name = "recommended_nuts")
     private String recommended_nuts;
 
-    @Column(name="has_nuts")
+    @Column(name = "has_nuts")
     private Boolean has_nuts;
 
-    @Column(name="recommended_tea")
+    @Column(name = "recommended_tea")
     private String recommended_tea;
 
-    @Column(name="has_tea")
+    @Column(name = "has_tea")
     private Boolean has_tea;
 
-    @Column(name="has_exercise")
+    @Column(name = "has_exercise")
     private Boolean has_exercise;
 
-    @Column(name="recommended_exercise")
+    @Column(name = "recommended_exercise")
     private String recommended_exercise;
 
-    @Column(name="going_to_bed_from")
+    @Column(name = "going_to_bed_from")
     private String going_to_bed_from;
 
-    @Column(name="going_to_bed_to")
+    @Column(name = "going_to_bed_to")
     private String going_to_bed_to;
 
-    @Column(name="water_intake")
+    @Column(name = "water_intake")
     private Double water_intake;
 
-    @Column(name="heating_bathing")
+    @Column(name = "heating_bathing")
     private Integer heating_bathing;
 
-    @Column(name="vitamin")
+    @Column(name = "vitamin")
     private Boolean vitamin;
 
-    @Column(name="folic_acid")
+    @Column(name = "folic_acid")
     private Boolean folic_acid;
 
-    @Column(name="coffee_intake")
+    @Column(name = "coffee_intake")
     private Integer coffee_intake;
 
-    @Column(name="alcohol_intake")
+    @Column(name = "alcohol_intake")
     private Integer alcohol_intake;
 
-    @Column(name="smoking")
+    @Column(name = "smoking")
     private Boolean smoking;
 
-    @Column(name="emotional_state")
+    @Column(name = "emotional_state")
     private Integer emotional_state;
 
-    @Column(name="bmi")
+    @Column(name = "bmi")
     private Float bmi;
 
 
-    public Note(){
+    public Note() {
     }
 
     public Long getId() {

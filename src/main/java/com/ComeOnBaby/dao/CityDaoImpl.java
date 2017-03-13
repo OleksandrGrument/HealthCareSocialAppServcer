@@ -6,11 +6,9 @@ import org.springframework.stereotype.Repository;
 
 import java.util.List;
 
-/**
- * Created by olegs on 17.02.2017.
- */
+
 @Repository("cityDao")
-public class CityDaoImpl extends AbstractDao<Long, City> implements CityDao{
+public class CityDaoImpl extends AbstractDao<Long, City> implements CityDao {
     @Override
     public Long create(City city) {
         Long id = (Long) getSession().save(city);

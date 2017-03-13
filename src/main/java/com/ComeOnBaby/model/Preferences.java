@@ -18,53 +18,53 @@ public class Preferences {
 //    private AppUser user;
 
     @Id
-    @Column(name="user_id", nullable=false)
+    @Column(name = "user_id", nullable = false)
     private Long id;
 
-    @OneToOne(fetch= FetchType.LAZY)
-    @JoinColumn(name="user_id")
+    @OneToOne(fetch = FetchType.LAZY)
+    @JoinColumn(name = "user_id")
     private AppUser appUser;
 
-    @Column(name="city_id")
+    @Column(name = "city_id")
     private Long city;
 
-    @Column(name="nickname")
+    @Column(name = "nickname")
     private String nickname;
 
-    @Column(name="gender")
+    @Column(name = "gender")
     private String gender;
 
-    @Column(name="birthday")
+    @Column(name = "birthday")
     private Integer birth_year;
 
-    @Column(name="adress")
+    @Column(name = "adress")
     private String address;
 
-    @Column(name="menstrual_cycle")
+    @Column(name = "menstrual_cycle")
     private Integer menstrual_cycle;
 
-    @Column(name="red_days")
+    @Column(name = "red_days")
     private Integer red_days;
 
-    @Column(name="last_menstruation_start_day")
+    @Column(name = "last_menstruation_start_day")
     private String last_cycle;
 
-    @Column(name="weigth")
+    @Column(name = "weigth")
     private Float weight;
 
-    @Column(name="height")
+    @Column(name = "height")
     private Float height;
 
-    @Column(name="avatar")
+    @Column(name = "avatar")
     private String avatar;
 
-    @Column(name="is_agreement")
+    @Column(name = "is_agreement")
     private Boolean is_agreement;
 
-    @Column(name="is_finish_question")
+    @Column(name = "is_finish_question")
     private Boolean is_finish_question;
 
-    public Preferences(){
+    public Preferences() {
     }
 
     public AppUser getAppUser() {

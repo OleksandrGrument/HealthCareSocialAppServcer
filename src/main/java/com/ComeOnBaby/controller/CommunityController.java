@@ -2,7 +2,7 @@ package com.ComeOnBaby.controller;
 
 import com.ComeOnBaby.model.*;
 import com.ComeOnBaby.service.*;
-import com.ComeOnBaby.configuration.ConstConfig;
+import com.ComeOnBaby.util.ConstConfig;
 import com.ComeOnBaby.util.ServerResponseAnswersConstant;
 import com.google.gson.Gson;
 import org.json.JSONArray;

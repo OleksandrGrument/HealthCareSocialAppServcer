@@ -146,28 +146,48 @@ public class UserManagementController {
                                            @RequestParam(value = "question6_8", required = false) boolean question6_8,
                                            @RequestParam(value = "question6_9", required = false) boolean question6_9,
                                            @RequestParam(value = "question6_10_1") String question6_10_1) {
-        ModelAndView basicQuestionsEdit = new ModelAndView("redirect:/users/basic-questions/"+userId);
+        ModelAndView basicQuestionsEdit = new ModelAndView("redirect:/users/basic-questions/" + userId);
         AppUser user = appUserService.findById(userId);
         System.out.println("==========START basicQuestionsEdit");
 
         BasicQuestions basicQuestions = basicQuestionsService.readBasicQuestionsByUser(user);
 
         //How many years have you not been able to be pregnant?
-        switch (question1){
-            case "1":basicQuestions.setQuestion_1_1("0"); break;
-            case "2":basicQuestions.setQuestion_1_1("1-2"); break;
-            case "3":basicQuestions.setQuestion_1_1("2-3"); break;
-            case "4":basicQuestions.setQuestion_1_1("3-5"); break;
-            case "5":basicQuestions.setQuestion_1_1("5+"); break;
+        switch (question1) {
+            case "1":
+                basicQuestions.setQuestion_1_1("0");
+                break;
+            case "2":
+                basicQuestions.setQuestion_1_1("1-2");
+                break;
+            case "3":
+                basicQuestions.setQuestion_1_1("2-3");
+                break;
+            case "4":
+                basicQuestions.setQuestion_1_1("3-5");
+                break;
+            case "5":
+                basicQuestions.setQuestion_1_1("5+");
+                break;
         }
 
         //Do you currently have children?
-        switch (question2){
-            case "1":basicQuestions.setQuestion_1_2("0"); break;
-            case "2":basicQuestions.setQuestion_1_2("1"); break;
-            case "3":basicQuestions.setQuestion_1_2("2"); break;
-            case "4":basicQuestions.setQuestion_1_2("3"); break;
-            case "5":basicQuestions.setQuestion_1_2("4+"); break;
+        switch (question2) {
+            case "1":
+                basicQuestions.setQuestion_1_2("0");
+                break;
+            case "2":
+                basicQuestions.setQuestion_1_2("1");
+                break;
+            case "3":
+                basicQuestions.setQuestion_1_2("2");
+                break;
+            case "4":
+                basicQuestions.setQuestion_1_2("3");
+                break;
+            case "5":
+                basicQuestions.setQuestion_1_2("4+");
+                break;
         }
 
         //What treatment did you experience?
@@ -183,49 +203,49 @@ public class UserManagementController {
         basicQuestions.setQuestion_1_3_20(question3_10_1);
 
         //Female
-        basicQuestions.setQuestion_2_21(question4_1_1+"");
-        basicQuestions.setQuestion_2_22(question4_1_2+"");
-        basicQuestions.setQuestion_2_23(question4_1_3+"");
-        basicQuestions.setQuestion_2_24(question4_1_4+"");
-        basicQuestions.setQuestion_2_25(question4_1_5+"");
-        basicQuestions.setQuestion_2_26(question4_1_6+"");
-        basicQuestions.setQuestion_2_27(question4_1_7+"");
-        basicQuestions.setQuestion_2_28(question4_1_8+"");
-        basicQuestions.setQuestion_2_29(question4_1_9+"");
-        basicQuestions.setQuestion_2_30(question4_1_10+"");
-        basicQuestions.setQuestion_2_31(question4_1_11+"");
-        basicQuestions.setQuestion_2_32(question4_1_12+"");
-        basicQuestions.setQuestion_2_33(question4_1_13+"");
+        basicQuestions.setQuestion_2_21(question4_1_1 + "");
+        basicQuestions.setQuestion_2_22(question4_1_2 + "");
+        basicQuestions.setQuestion_2_23(question4_1_3 + "");
+        basicQuestions.setQuestion_2_24(question4_1_4 + "");
+        basicQuestions.setQuestion_2_25(question4_1_5 + "");
+        basicQuestions.setQuestion_2_26(question4_1_6 + "");
+        basicQuestions.setQuestion_2_27(question4_1_7 + "");
+        basicQuestions.setQuestion_2_28(question4_1_8 + "");
+        basicQuestions.setQuestion_2_29(question4_1_9 + "");
+        basicQuestions.setQuestion_2_30(question4_1_10 + "");
+        basicQuestions.setQuestion_2_31(question4_1_11 + "");
+        basicQuestions.setQuestion_2_32(question4_1_12 + "");
+        basicQuestions.setQuestion_2_33(question4_1_13 + "");
         basicQuestions.setQuestion_2_34(question4_1_14_1);
 
         //Male
-        basicQuestions.setQuestion_2_35(question4_2_1+"");
-        basicQuestions.setQuestion_2_36(question4_2_2+"");
-        basicQuestions.setQuestion_2_37(question4_2_3+"");
-        basicQuestions.setQuestion_2_38(question4_2_4+"");
-        basicQuestions.setQuestion_2_39(question4_2_5+"");
+        basicQuestions.setQuestion_2_35(question4_2_1 + "");
+        basicQuestions.setQuestion_2_36(question4_2_2 + "");
+        basicQuestions.setQuestion_2_37(question4_2_3 + "");
+        basicQuestions.setQuestion_2_38(question4_2_4 + "");
+        basicQuestions.setQuestion_2_39(question4_2_5 + "");
         basicQuestions.setQuestion_2_40(question4_2_6_1);
 
         //What help do you need? Are you struggling with something?
-        basicQuestions.setQuestion_3_41(question5_1+"");
-        basicQuestions.setQuestion_3_42(question5_2+"");
-        basicQuestions.setQuestion_3_43(question5_3+"");
-        basicQuestions.setQuestion_3_44(question5_4+"");
-        basicQuestions.setQuestion_3_45(question5_5+"");
-        basicQuestions.setQuestion_3_46(question5_6+"");
-        basicQuestions.setQuestion_3_47(question5_7+"");
+        basicQuestions.setQuestion_3_41(question5_1 + "");
+        basicQuestions.setQuestion_3_42(question5_2 + "");
+        basicQuestions.setQuestion_3_43(question5_3 + "");
+        basicQuestions.setQuestion_3_44(question5_4 + "");
+        basicQuestions.setQuestion_3_45(question5_5 + "");
+        basicQuestions.setQuestion_3_46(question5_6 + "");
+        basicQuestions.setQuestion_3_47(question5_7 + "");
         basicQuestions.setQuestion_3_48(question5_8_1);
 
         //What are your plans for your family structure?
-        basicQuestions.setQuestion_3_49(question6_1+"");
-        basicQuestions.setQuestion_3_50(question6_2+"");
-        basicQuestions.setQuestion_3_51(question6_3+"");
-        basicQuestions.setQuestion_3_52(question6_4+"");
-        basicQuestions.setQuestion_3_53(question6_5+"");
-        basicQuestions.setQuestion_3_54(question6_6+"");
-        basicQuestions.setQuestion_3_55(question6_7+"");
-        basicQuestions.setQuestion_3_56(question6_8+"");
-        basicQuestions.setQuestion_3_56(question6_9+"");
+        basicQuestions.setQuestion_3_49(question6_1 + "");
+        basicQuestions.setQuestion_3_50(question6_2 + "");
+        basicQuestions.setQuestion_3_51(question6_3 + "");
+        basicQuestions.setQuestion_3_52(question6_4 + "");
+        basicQuestions.setQuestion_3_53(question6_5 + "");
+        basicQuestions.setQuestion_3_54(question6_6 + "");
+        basicQuestions.setQuestion_3_55(question6_7 + "");
+        basicQuestions.setQuestion_3_56(question6_8 + "");
+        basicQuestions.setQuestion_3_56(question6_9 + "");
         basicQuestions.setQuestion_3_57(question6_10_1);
 
         basicQuestionsService.updateBasicQuestions(basicQuestions);
@@ -280,6 +300,8 @@ public class UserManagementController {
 
         AppUser user = appUserService.findById(userId);
         List<Note> notices = noteService.findUserNotes(user);
+
+
         DataNoteByMonthWeek dataNoteByMonth = new DataNoteByMonthWeek(notices, month, year);
 
         String daysInMonthsString = dataNoteByMonth.daysInMonthsString();
@@ -312,7 +334,7 @@ public class UserManagementController {
         ModelAndView weeklyReportShow = new ModelAndView("weeklyReportShow");
 
 
-        System.out.println("countWeekOfYear in controller "+ countWeekOfYear);
+        System.out.println("countWeekOfYear in controller " + countWeekOfYear);
         AppUser user = appUserService.findById(userId);
         List<Note> notes = noteService.findUserNotes(user);
 

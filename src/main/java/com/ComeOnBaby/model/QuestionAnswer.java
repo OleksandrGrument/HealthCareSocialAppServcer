@@ -13,7 +13,7 @@ import java.util.Date;
 @Table(name = "q_a")
 public class QuestionAnswer {
 
-    public QuestionAnswer(){
+    public QuestionAnswer() {
     }
 
 
@@ -39,22 +39,22 @@ public class QuestionAnswer {
     private Date answerDate;
 
 
-    @Column(name="title", nullable=false)
+    @Column(name = "title", nullable = false)
     private String title;
 
 
-    @Column(name="text", nullable=false)
+    @Column(name = "text", nullable = false)
     private String questionText;
 
 
-    @Column(name="is_access", nullable=false)
+    @Column(name = "is_access", nullable = false)
     private Boolean isAccess;
 
 
-    @Column(name="answer")
+    @Column(name = "answer")
     private String answerText;
 
-    @Column(name = "is_answered")
+    @Column(name = "is_answered", nullable = false)
     private Boolean isAnswered;
 
 
@@ -79,7 +79,7 @@ public class QuestionAnswer {
     }
 
     public String getQuestionDateFormat() {
-        return  new SimpleDateFormat("yyyy-MM-dd").format(questionDate);
+        return new SimpleDateFormat("yyyy-MM-dd").format(questionDate);
     }
 
     public void setQuestionDate(Date questionDate) {
@@ -91,8 +91,8 @@ public class QuestionAnswer {
     }
 
     public String getAnswerDateFormat() {
-        if (answerDate !=null){
-            return  new SimpleDateFormat("yyyy-MM-dd").format(answerDate);
+        if (answerDate != null) {
+            return new SimpleDateFormat("yyyy-MM-dd").format(answerDate);
         } else {
             return "";
         }
@@ -117,7 +117,6 @@ public class QuestionAnswer {
     public void setQuestionText(String questionText) {
         this.questionText = questionText;
     }
-
 
 
     public String getAnswerText() {

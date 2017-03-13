@@ -10,6 +10,7 @@ import java.util.List;
 
 @Service("questionAnswerService")
 public class QuestionAnswerServiceImpl implements QuestionAnswerService {
+
     private QuestionAnswerDao questionAnswerDao;
 
     @Autowired(required = true)

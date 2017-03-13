@@ -63,7 +63,6 @@ public class NoticeEventController {
     }
 
 
-
     @RequestMapping(value = "/delete-notice/{id}", method = RequestMethod.GET)
     public ModelAndView deleteNotice(@PathVariable Long id) {
 
@@ -74,8 +73,8 @@ public class NoticeEventController {
         return new ModelAndView("redirect:/notice/events");
     }
 
-    @RequestMapping(value = "/delete-image-from-notice/{noticeId}/{imageIndex}" , method = RequestMethod.GET)
-    public ModelAndView deleteImageFromNotice (@PathVariable(value = "noticeId") Long noticeId , @PathVariable(value = "imageIndex") Integer imageIndex){
+    @RequestMapping(value = "/delete-image-from-notice/{noticeId}/{imageIndex}", method = RequestMethod.GET)
+    public ModelAndView deleteImageFromNotice(@PathVariable(value = "noticeId") Long noticeId, @PathVariable(value = "imageIndex") Integer imageIndex) {
 
 
         Notice notice = noticeService.get(noticeId);
@@ -83,8 +82,7 @@ public class NoticeEventController {
         String noticeFilesNamesBeforeUpdate = notice.getImages();
 
 
-
-        ArrayList<String> imagesList = new ArrayList (Arrays.asList(noticeFilesNamesBeforeUpdate.split("<>")));
+        ArrayList<String> imagesList = new ArrayList(Arrays.asList(noticeFilesNamesBeforeUpdate.split("<>")));
 
         imagesList.remove(imageIndex.intValue());
 
@@ -95,7 +93,7 @@ public class NoticeEventController {
         noticeService.updateNotice(notice);
 
 
-        return new ModelAndView("redirect:/notice/edit-notice/"+noticeId);
+        return new ModelAndView("redirect:/notice/edit-notice/" + noticeId);
     }
 
     @RequestMapping(value = "/save-new-notice", method = RequestMethod.POST)
@@ -136,13 +134,13 @@ public class NoticeEventController {
 
             String imagesFromNotice = notice.getImages();
 
-            String imagesUpdated = ImageEditFunctions.updateImages(imagesFromNotice , files);
+            String imagesUpdated = ImageEditFunctions.updateImages(imagesFromNotice, files);
             notice.setImages(imagesUpdated);
 
             noticeService.updateNotice(notice);
         }
 
-        return new ModelAndView("redirect:/notice/edit-notice/"+notice.getId());
+        return new ModelAndView("redirect:/notice/edit-notice/" + notice.getId());
     }
 
 

@@ -94,13 +94,13 @@ public class GuideController {
                     String pathToSaveFile = "pictures/";
                     SaveFile saveFile = new SaveFile(pathToSaveFile, files);
                     ArrayList<String> fileNames = saveFile.saveFileAndGetName();
-                    recipeGuide.setImageThumbnail(MainPathEnum.mainWebPath + "show-image/" + fileNames.get(0) );
+                    recipeGuide.setImageThumbnail(MainPathEnum.mainWebPath + "show-image/" + fileNames.get(0));
                 }
             }
             recipeGuideService.updateRecipeGuide(recipeGuide);
         }
 
-        return new ModelAndView("redirect:/guide/edit-recipe/"+recipeGuide.getId());
+        return new ModelAndView("redirect:/guide/edit-recipe/" + recipeGuide.getId());
     }
 
     @RequestMapping(value = "/delete-recipe/{id}", method = RequestMethod.GET)
@@ -131,12 +131,12 @@ public class GuideController {
         return fertilizationGuide;
     }
 
-    @RequestMapping(value = "/add-fertilization" , method = RequestMethod.GET)
-    public ModelAndView addFertilization(){
+    @RequestMapping(value = "/add-fertilization", method = RequestMethod.GET)
+    public ModelAndView addFertilization() {
 
         ModelAndView addFertilization = new ModelAndView("fertilizationGuideEdit");
 
-        addFertilization.addObject("isNew" , true);
+        addFertilization.addObject("isNew", true);
 
         return addFertilization;
     }
@@ -160,7 +160,7 @@ public class GuideController {
 
         if (id.equals("")) {
 
-             fertilizationGuide = new FertilizationGuide();
+            fertilizationGuide = new FertilizationGuide();
 
             fertilizationGuide.setDate(new Date());
             fertilizationGuide.setTitle(title);
@@ -178,7 +178,7 @@ public class GuideController {
 
         } else {
 
-             fertilizationGuide = fertilizationGuideService.getFertilizationGuideById(Long.valueOf(id));
+            fertilizationGuide = fertilizationGuideService.getFertilizationGuideById(Long.valueOf(id));
 
             fertilizationGuide.setDate(new Date());
             fertilizationGuide.setTitle(title);
@@ -195,7 +195,7 @@ public class GuideController {
             fertilizationGuideService.updateFertilizationGuide(fertilizationGuide);
         }
 
-        return new ModelAndView("redirect:/guide/edit-fertilization/"+fertilizationGuide.getId());
+        return new ModelAndView("redirect:/guide/edit-fertilization/" + fertilizationGuide.getId());
     }
 
     @RequestMapping(value = "/delete-fertilization/{id}", method = RequestMethod.GET)

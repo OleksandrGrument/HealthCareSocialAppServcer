@@ -2,19 +2,19 @@ package com.ComeOnBaby.model;
 
 import java.io.Serializable;
 
-public enum UserProfileType implements Serializable{
-	CUSTOMER("CUSTOMER"),
-	DBA("DBA"),
-	ADMIN("ADMIN");
+public enum UserProfileType implements Serializable {
+    CUSTOMER("CUSTOMER"),
+    DBA("DBA"),
+    ADMIN("ADMIN");
 
-	String userProfileType;
+    String userProfileType;
 
-	private UserProfileType(String userProfileType){
-		this.userProfileType = userProfileType;
-	}
+    private UserProfileType(String userProfileType) {
+        this.userProfileType = userProfileType;
+    }
 
-	public String getUserProfileType(){
-		return userProfileType;
-	}
+    public String getUserProfileType() {
+        return userProfileType;
+    }
 
 }

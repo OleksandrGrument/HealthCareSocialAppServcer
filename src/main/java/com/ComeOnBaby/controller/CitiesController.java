@@ -30,12 +30,14 @@ public class CitiesController {
     @Autowired
     CityService cityService;
 
-    @RequestMapping(value = "/cities", method = RequestMethod.POST,  produces="application/json")
+    @RequestMapping(value = "/cities", method = RequestMethod.POST, produces = "application/json")
     @ResponseStatus(value = HttpStatus.OK)
-    public @ResponseBody String cityAction (@RequestBody String body) {
+    public
+    @ResponseBody
+    String cityAction(@RequestBody String body) {
         System.out.println("Get json: " + body.toString());
         JSONObject inJSON = new JSONObject(body);
-        if(!inJSON.has(OPERATION)) throw new IllegalArgumentException("EXCEPTION! No operation.");
+        if (!inJSON.has(OPERATION)) throw new IllegalArgumentException("EXCEPTION! No operation.");
 
         JSONObject outJSON = new JSONObject();
         outJSON.put(RESULT, FAILURE);
@@ -47,17 +49,17 @@ public class CitiesController {
                 listCities(inJSON, outJSON);
                 break;
             }
-            default:{
+            default: {
                 break;
             }
         }
-        System.out.println("Out JSON: " + outJSON.toString()  + "\n");
+        System.out.println("Out JSON: " + outJSON.toString() + "\n");
         return outJSON.toString();
     }
 
     private void listCities(JSONObject inJSON, JSONObject outJSON) {
         List<City> list = cityService.getAllCities();
-        if(list != null) {
+        if (list != null) {
             outJSON.put(RESULT, SUCCESS);
             outJSON.put(MESSAGE, ServerResponseAnswersConstant.MSG_LIST_CITY_SUCCESS);
             JSONArray citiesArray = new JSONArray(list.toArray());
@@ -71,7 +73,9 @@ public class CitiesController {
 
     //EXCEPTION
     @ExceptionHandler(Exception.class)
-    public @ResponseBody String exception(Exception exc) {
+    public
+    @ResponseBody
+    String exception(Exception exc) {
         exc.printStackTrace();
         JSONObject result = new JSONObject();
         result.put(RESULT, FAILURE);
