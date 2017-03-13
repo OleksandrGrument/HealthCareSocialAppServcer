@@ -1,12 +1,9 @@
-package com.ComeOnBaby.XlsxView;
+package com.ComeOnBaby.excelView;
 
 import com.ComeOnBaby.model.AppUser;
-import com.ComeOnBaby.service.AppUserService;
 import org.apache.poi.ss.usermodel.Row;
 import org.apache.poi.ss.usermodel.Sheet;
 import org.apache.poi.ss.usermodel.Workbook;
-import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.servlet.view.document.AbstractXlsxView;
 
 import javax.servlet.http.HttpServletRequest;
