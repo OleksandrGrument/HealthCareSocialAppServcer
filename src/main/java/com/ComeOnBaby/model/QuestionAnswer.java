@@ -1,5 +1,6 @@
 package com.ComeOnBaby.model;
 
+import org.hibernate.annotations.ColumnDefault;
 import org.hibernate.annotations.GenericGenerator;
 import org.hibernate.validator.constraints.NotEmpty;
 
@@ -50,7 +51,7 @@ public class QuestionAnswer {
     private Boolean isAccess;
 
 
-    @Column(name="answer", nullable=false)
+    @Column(name="answer")
     private String answerText;
 
     @Column(name = "is_answered")

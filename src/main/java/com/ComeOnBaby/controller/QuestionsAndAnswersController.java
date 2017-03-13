@@ -59,19 +59,16 @@ public class QuestionsAndAnswersController {
     @RequestMapping(value = "/answer-the-question", method = RequestMethod.POST)
     public ModelAndView answerQa(@RequestParam(value = "id") Long id , @RequestParam("answerText") String answerText){
 
-        System.out.println("STEP 1");
+
         QuestionAnswer questionAnswer = questionAnswerService.getQuestionAnswerById(id);
 
-        System.out.println("STEP 2");
         questionAnswer.setIsAnswered(true);
         questionAnswer.setAnswerDate(new Date());
         questionAnswer.setAnswerText(answerText);
 
-        System.out.println("STEP 3");
         questionAnswerService.updateQuestionAnswer(questionAnswer);
 
-        System.out.println("STEP 4");
-        return new ModelAndView("redirect:/q-a/edit-question-answer/"+id.toString());
+        return new ModelAndView("redirect:/q-a/response-question-answer/"+id.toString());
     }
 
 
