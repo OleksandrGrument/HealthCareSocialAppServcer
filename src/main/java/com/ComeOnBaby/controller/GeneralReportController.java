@@ -1,6 +1,7 @@
 package com.ComeOnBaby.controller;
 
 import com.ComeOnBaby.comparator.NoteByDateComparator;
+import com.ComeOnBaby.excelView.MonthlyWeeklyReportShowXlsx;
 import com.ComeOnBaby.model.AppUser;
 import com.ComeOnBaby.model.Note;
 import com.ComeOnBaby.service.AppUserService;
@@ -67,7 +68,7 @@ public class GeneralReportController {
 
         AppUser user = appUserService.findById(userId);
         List<Note> notices = noteService.findUserNotes(user);
-        Collections.sort(notices, new NoteByDateComparator());
+        //Collections.sort(notices, new NoteByDateComparator());
 
         DataNoteByMonthWeek dataNoteByMonth = new DataNoteByMonthWeek(notices, month, year);
 

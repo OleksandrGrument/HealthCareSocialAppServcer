@@ -152,12 +152,11 @@
             <!-- #End User chart information -->
 
             <div class="mt10">
-                <button class="btn btn-primary">Download Excel</button>
+                <a class="btn btn-primary" href="<%out.print("/users/downloadMonthlyReport/"+user.getId()+"/"+month+"/"+year);%>">Download Excel</a>
             </div>
 
             <div class="mt20 delimiter">
                 <a href="<%out.print("/report/generalMonthlyReport");%>" class="btn btn-default">Back</a>
-                <button class="btn btn-primary">Confirm</button>
             </div>
 
         </section>

@@ -17,6 +17,7 @@ import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.servlet.ModelAndView;
 
+import javax.servlet.http.HttpServletRequest;
 import java.util.*;
 
 
@@ -49,12 +50,15 @@ public class UserManagementController {
 
 
     @RequestMapping(value = "/user-profile/{userId}", method = RequestMethod.GET)
-    public ModelAndView userProfile(@PathVariable Long userId) {
-
+    public ModelAndView userProfile(@PathVariable Long userId, HttpServletRequest request) {
         ModelAndView userProfile = new ModelAndView("userProfile");
+
+        String referer = request.getHeader("referer");
 
         AppUser user = appUserService.findById(userId);
 
+
+        userProfile.addObject("back",referer );
         userProfile.addObject("user", user);
 
         return userProfile;
@@ -261,6 +265,7 @@ public class UserManagementController {
 
         AppUser user = appUserService.findById(userId);
         List<Note> notices = noteService.findUserNotes(user);
+
 
         monthlyReport.addObject("user", user);
         monthlyReport.addObject("notices", notices);

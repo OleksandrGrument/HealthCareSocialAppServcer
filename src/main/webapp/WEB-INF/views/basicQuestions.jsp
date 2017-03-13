@@ -349,7 +349,7 @@
                         <div class="checkbox pt5 pb5 pr10 ml0 closeCheckbox">
                             <input type="checkbox" name="question5" id="question5_8" <%out.print(listQuestion6.get(7));%>>
                             <label for="question5_8" style="display: inline-block;">Other</label>
-                            <input type="text" name="question5_8_1" id="question5_8_1" class="ml5 mr5" value=" <%out.print(listQuestion6.get(8));%>"/>
+                            <input type="text" name="question5_8_1" id="question5_8_1" class="ml5 mr5" value="<%out.print(listQuestion6.get(8));%>"/>
                         </div>
                     </div>
 
@@ -404,7 +404,7 @@
                         <div class="checkbox pt5 pb5 pr10 ml0 closeCheckbox">
                             <input type="checkbox" name="question6" id="question6_10" value="10"  <%out.print(listQuestion7.get(8));%>>
                             <label for="question6_10" style="display: inline-block;">Other</label>
-                            <input type="text" name="question6_10_1" id="question6_10_1" class="ml5 mr5" value="  <%out.print(listQuestion7.get(9));%>"/>
+                            <input type="text" name="question6_10_1" id="question6_10_1" class="ml5 mr5" value="<%out.print(listQuestion7.get(9));%>"/>
                         </div>
                     </div>
                 </section>
@@ -443,16 +443,13 @@
 
             if ($.trim($("#" + input_id).val()).length > 0) {
                 $("#" + checkbox_id).attr("checked", true);
-                $("#" + checkbox_id).attr("disabled", false);
             }
 
             $("#" + input_id).keyup(function () {
                 if ($.trim($("#" + input_id).val()).length > 0) {
                     $("#" + checkbox_id).attr('checked', true);
-                    $("#" + checkbox_id).attr("disabled", false);
                 } else {
                     $("#" + checkbox_id).attr('checked', false);
-                    $("#" + checkbox_id).attr("disabled", true);
                 }
             });
         });

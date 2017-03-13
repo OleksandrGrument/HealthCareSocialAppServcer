@@ -79,8 +79,8 @@
                     <%for(int i = 0; i < allAppUserNotes.size(); i++){ %>
                         <tr>
                             <td align="center"><%out.print(allAppUserNotes.get(i).getUser_id());%></td>
-                            <td><a href="mailto:some@server.com.ua"><%out.print(listUsersByNoteByMonth.get(i).getEmail());%></a></td>
-                            <td><a href="userProfileShow.php"><%out.print(listUsersByNoteByMonth.get(i).getPreferences().getNickname());%></a></td>
+                            <td><%out.print(listUsersByNoteByMonth.get(i).getEmail());%></td>
+                            <td><a href="<%out.print("/users/user-profile/"+listUsersByNoteByMonth.get(i).getId());%>"><%out.print(listUsersByNoteByMonth.get(i).getPreferences().getNickname());%></a></td>
                             <td align="center" class="marker"><span class="good">Good</span></td>
                             <td align="center">
                                 <a href="<%out.print("/report/generalMonthlyReportShow/"+listUsersByNoteByMonth.get(i).getId()+"/"+dateFormatLink.format(allAppUserNotes.get(i).getDate()));%>"><%out.print(dateFormatOut.format(allAppUserNotes.get(i).getDate()));%></a>

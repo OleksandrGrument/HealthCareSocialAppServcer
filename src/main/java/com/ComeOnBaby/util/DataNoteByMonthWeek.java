@@ -18,13 +18,18 @@ public class DataNoteByMonthWeek {
 
     public DataNoteByMonthWeek(List<Note> notes, int month, int year) {
         SimpleDateFormat dateFormat = new SimpleDateFormat("MM.yyyy");
+        String strDate = month+"."+year;
+        Date date = null;
+        try {
+            date = dateFormat.parse(strDate);
+        } catch (ParseException e) {
+            e.printStackTrace();
+        }
         List<Note> dataNoteByMonth = new ArrayList<Note>();
         if(notes.get(0) != null){
-            //Note tempNote = notes.get(0);
             for (Note note : notes) {
-                if (note.getDate().getMonth() == month & note.getDate().getYear() == year) {
+                if (dateFormat.format(note.getDate()).equals(dateFormat.format(date))) {
                     dataNoteByMonth.add(note);
-                    //tempNote = note;
                 }
             }
         }else {
