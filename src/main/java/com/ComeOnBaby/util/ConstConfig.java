@@ -1,4 +1,4 @@
-package com.ComeOnBaby.configuration;
+package com.ComeOnBaby.util;
 
 import com.ComeOnBaby.enums.MainPathEnum;
 

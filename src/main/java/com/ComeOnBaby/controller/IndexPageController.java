@@ -28,7 +28,7 @@ public class IndexPageController {
 
 
     @RequestMapping(value = "/main", method = RequestMethod.GET)
-    public ModelAndView loginPage( ) {
+    public ModelAndView loginPage() {
 
         if (isCurrentAuthenticationAnonymous()) {
             ModelAndView mainPage = new ModelAndView("index");
@@ -41,10 +41,10 @@ public class IndexPageController {
     }
 
     @RequestMapping(value = "/session_expired", method = RequestMethod.POST)
-    public ModelAndView sessionExpired( ){
+    public ModelAndView sessionExpired() {
         ModelAndView modelAndView = new ModelAndView("redirect:/main");
 
-        modelAndView.addObject("isSessionExpired" , new Boolean(true));
+        modelAndView.addObject("isSessionExpired", new Boolean(true));
 
         return modelAndView;
     }

@@ -25,9 +25,9 @@ import java.util.GregorianCalendar;
 import java.util.List;
 
 @Controller
-@MultipartConfig(fileSizeThreshold=1024*1024*2, // 2MB
-        maxFileSize=1024*1024*10,      // 10MB
-        maxRequestSize=1024*1024*50)
+@MultipartConfig(fileSizeThreshold = 1024 * 1024 * 2, // 2MB
+        maxFileSize = 1024 * 1024 * 10,      // 10MB
+        maxRequestSize = 1024 * 1024 * 50)
 @SessionAttributes("roles")
 public class UsersController {
 
@@ -39,7 +39,7 @@ public class UsersController {
     //Operations
     private final static String REG_EMAIL_OPERATION = "registration";
     private final static String LOGIN_EMAIL_OPERATION = "loginemail";
-//    private final static String CHANGE_PASS_OPERATION = "changepass";
+    //    private final static String CHANGE_PASS_OPERATION = "changepass";
     private final static String FORGET_PASS_OPERATION = "forgetpass";
     private final static String SOCIAL_LOGIN_OPERATION = "loginsocial";
     private final static String UPDATE_EMAIL_OPERATION = "emailupdate";
@@ -90,15 +90,17 @@ public class UsersController {
     BasicQuestionsService basicQuestionsService;
 
 
-    @RequestMapping(value = "/users", method = RequestMethod.POST, produces={"application/json; charset=UTF-8"})
-    @ResponseStatus(value = HttpStatus.OK )
-    public @ResponseBody String userAction (@RequestBody String body) {
+    @RequestMapping(value = "/users", method = RequestMethod.POST, produces = {"application/json; charset=UTF-8"})
+    @ResponseStatus(value = HttpStatus.OK)
+    public
+    @ResponseBody
+    String userAction(@RequestBody String body) {
 
         System.out.println("Get json: " + body.toString());
         JSONObject inJSON = new JSONObject(body);
 
-        if(!inJSON.has(OPERATION)) throw new IllegalArgumentException(ServerResponseAnswersConstant.ERR_NO_OPERATION);
-        if(!inJSON.has(USER)) throw new IllegalArgumentException(ServerResponseAnswersConstant.ERR_NO_USER);
+        if (!inJSON.has(OPERATION)) throw new IllegalArgumentException(ServerResponseAnswersConstant.ERR_NO_OPERATION);
+        if (!inJSON.has(USER)) throw new IllegalArgumentException(ServerResponseAnswersConstant.ERR_NO_USER);
         //Default response values
         JSONObject outJSON = new JSONObject();
         outJSON.put(RESULT, FAILURE);
@@ -171,7 +173,7 @@ public class UsersController {
                 throw new IllegalArgumentException(ServerResponseAnswersConstant.ERR_UNKNOWN_OPERATION);
             }
         }
-        System.out.println("Out JSON: " + outJSON.toString()  + "\n");
+        System.out.println("Out JSON: " + outJSON.toString() + "\n");
        /* String respond = new String(outJSON.toString() , "UTF-8" );*/
         return outJSON.toString();
     }
@@ -183,13 +185,13 @@ public class UsersController {
         AppUser inUser = gson.fromJson(jsuser.toString(), AppUser.class);
         JSONObject jsnote = new JSONObject(inJSON.getString(DATA));
         Note note = parseNoteFromJson(jsnote.toString());
-        if(inUser.getId() == null || note == null) {
+        if (inUser.getId() == null || note == null) {
             outJSON.put(MESSAGE, ServerResponseAnswersConstant.ERR_SAVE_NOTE);
             return outJSON;
         }
         note.setUser_id(inUser.getId());
         Note bdNote = noteService.findByUserDate(inUser, note.getDate());
-        if(bdNote == null) {
+        if (bdNote == null) {
             noteService.addNewNote(note);
             System.out.println("Add new note");
         } else {
@@ -208,20 +210,20 @@ public class UsersController {
         JSONObject jsdata = new JSONObject(inJSON.getString(DATA));
         JSONObject jsonuser = new JSONObject(inJSON.getString(USER));
         AppUser inUser = gson.fromJson(jsonuser.toString(), AppUser.class);
-        if(inUser.getId() == null || userService.findById(inUser.getId()) == null) {
+        if (inUser.getId() == null || userService.findById(inUser.getId()) == null) {
             outJSON.put(MESSAGE, ServerResponseAnswersConstant.ERR_GET_NOTES);
             return outJSON;
         }
         Integer year = null, month = null;
-        if(jsdata != null) {
-            if(jsdata.has(YEAR)) year = jsdata.getInt(YEAR);
-            if(jsdata.has(MONTH)) year = jsdata.getInt(MONTH);
+        if (jsdata != null) {
+            if (jsdata.has(YEAR)) year = jsdata.getInt(YEAR);
+            if (jsdata.has(MONTH)) year = jsdata.getInt(MONTH);
         }
         List<Note> listNotes;
         Date startDate, endDate;
         //Set user notes for month
-        if(year != null && month != null) {
-            Calendar cal = new GregorianCalendar(year, month-1, 1);
+        if (year != null && month != null) {
+            Calendar cal = new GregorianCalendar(year, month - 1, 1);
             System.out.println(cal.toString());
             startDate = cal.getTime();
             cal.add(Calendar.MONTH, 1);
@@ -240,7 +242,7 @@ public class UsersController {
         else {
             listNotes = noteService.findUserNotes(inUser);
         }
-        if(listNotes == null) {
+        if (listNotes == null) {
             outJSON.put(MESSAGE, ServerResponseAnswersConstant.ERR_GET_NOTES);
             return outJSON;
         }
@@ -265,20 +267,20 @@ public class UsersController {
         String newEmail = data.getString(NEW_EMAIL);
         AppUser idUser = userService.findById(inUser.getId());
         //Если пользователя с таким ID нет, тогда ошибка
-        if(idUser == null) {
+        if (idUser == null) {
             outJSON.put(MESSAGE, ServerResponseAnswersConstant.ERR_USER_NOT_FOUND);
             return outJSON;
         }
         AppUser emailUser = userService.findByEmail(newEmail);
         //Если пользователя с этим мылом нет
-        if(emailUser == null) {
+        if (emailUser == null) {
             idUser.setEmail(newEmail);
             userService.updateUser(idUser);
             outJSON.put(RESULT, SUCCESS);
             outJSON.put(MESSAGE, ServerResponseAnswersConstant.MSG_EMAIL_UPDATE_SUCCESS);
             outJSON.put(USER, getUserJSON(idUser).toString());
             outJSON.put(DATA, data.toString());
-        //Если мыло не изменилось
+            //Если мыло не изменилось
         } else if (idUser.getId() == emailUser.getId()) {
             outJSON.put(RESULT, SUCCESS);
             outJSON.put(MESSAGE, ServerResponseAnswersConstant.MSG_EMAIL_UPDATE_SUCCESS);
@@ -301,7 +303,7 @@ public class UsersController {
         String newPassword = data.getString(NEW_PASSWORD);
         AppUser idUser = userService.findById(inUser.getId());
         //Если пользователя с таким ID нет, тогда ошибка
-        if(idUser == null) {
+        if (idUser == null) {
             outJSON.put(MESSAGE, ServerResponseAnswersConstant.ERR_USER_NOT_FOUND);
         } else {
             idUser.setPassword(newPassword);
@@ -324,13 +326,13 @@ public class UsersController {
         String password = inUser.getPassword();
         String loginType = inUser.getLoginType();
         String nickname = null;
-        if(jsdata.has(NICKNAME)) nickname = jsdata.getString(NICKNAME);
-        if(email == null || password == null || loginType == null || !loginType.equals(LOGIN_EMAIL)) {
+        if (jsdata.has(NICKNAME)) nickname = jsdata.getString(NICKNAME);
+        if (email == null || password == null || loginType == null || !loginType.equals(LOGIN_EMAIL)) {
             throw new IllegalArgumentException(ServerResponseAnswersConstant.ERR_ILLEGAL_ARGUMENT);
         }
         //Check if user with specified email allready exists in BD
         AppUser bdUser = userService.findByEmail(email);
-        if(bdUser != null) {
+        if (bdUser != null) {
             outJSON.put(MESSAGE, ServerResponseAnswersConstant.MSG_REGISTER_USER_FAIL);
         } else {
             Long userid = userService.addNewUser(inUser);
@@ -342,7 +344,7 @@ public class UsersController {
             Preferences preferences = new Preferences();
             preferences.setId(userid);
             preferences.setIs_agreement(true);
-            if(nickname != null) preferences.setNickname(nickname);
+            if (nickname != null) preferences.setNickname(nickname);
             prefService.addNewPreferences(preferences);
             JSONObject profile = getPreferencesJSON(prefService.findById(userid));
             outJSON.put(DATA, profile.toString());
@@ -359,15 +361,15 @@ public class UsersController {
         String email = inUser.getEmail();
         String password = inUser.getPassword();
         String loginType = inUser.getLoginType();
-        if(email == null || password == null || loginType == null) {
+        if (email == null || password == null || loginType == null) {
             throw new IllegalArgumentException(ServerResponseAnswersConstant.ERR_ILLEGAL_ARGUMENT);
         }
         //Check if user with specified email exists in BD
         AppUser bdUser = userService.findByEmail(email);
-        if(bdUser == null) {
+        if (bdUser == null) {
             outJSON.put(MESSAGE, ServerResponseAnswersConstant.MSG_LOGIN_EMAIL_FAIL);
         } else {
-            if(bdUser.getPassword() == null || !bdUser.getPassword().equals(password)) {
+            if (bdUser.getPassword() == null || !bdUser.getPassword().equals(password)) {
                 outJSON.put(MESSAGE, ServerResponseAnswersConstant.MSG_LOGIN_EMAIL_FAIL);
             } else {
                 outJSON.put(RESULT, SUCCESS);
@@ -425,23 +427,23 @@ public class UsersController {
         Long socialID = inUser.getSocialId();
         String loginType = inUser.getLoginType();
         String email = inUser.getEmail();
-        if(socialID == null || loginType == null || !(loginType.equals(LOGIN_KAKAO) || loginType.equals(LOGIN_FACEBOOK))) {
+        if (socialID == null || loginType == null || !(loginType.equals(LOGIN_KAKAO) || loginType.equals(LOGIN_FACEBOOK))) {
             throw new IllegalArgumentException(ServerResponseAnswersConstant.ERR_ILLEGAL_ARGUMENT);
         }
         //Ищем пользователя с таким socialID в БД
         AppUser bdIdUser = userService.findBySocialID(loginType, socialID);
         //Если указан email, ищем пользователя с таким мылом в БД
         AppUser bdEmailUser = null;
-        if(email != null) {
+        if (email != null) {
             bdEmailUser = userService.findByEmail(email);
         }
 
         //Если пользователя с таким socialID нет, то создаем его
-        if(bdIdUser == null) {
+        if (bdIdUser == null) {
             //Если пользователя с таким мылом нет, то используем его и генерируем пароль
-            if(bdEmailUser == null && email != null) {
+            if (bdEmailUser == null && email != null) {
                 setRandomUserPassword(inUser);
-            //Если пользователь с такой почтой существует, то не используем её
+                //Если пользователь с такой почтой существует, то не используем её
             } else {
                 inUser.setEmail(null);
                 inUser.setPassword(null);
@@ -454,7 +456,7 @@ public class UsersController {
             Preferences preferences = new Preferences();
             preferences.setId(userid);
             prefService.addNewPreferences(preferences);
-        //Если пользователь с таким socialID уже есть
+            //Если пользователь с таким socialID уже есть
         } else {
             outJSON.put(MESSAGE, ServerResponseAnswersConstant.MSG_LOGIN_SOCIAL_SUCCESS);
         }
@@ -471,7 +473,7 @@ public class UsersController {
     }
 
     //set Profile data to server
-    private JSONObject updateprofile(JSONObject inJSON, JSONObject outJSON){
+    private JSONObject updateprofile(JSONObject inJSON, JSONObject outJSON) {
         Gson gson = new Gson();
         JSONObject data = new JSONObject(inJSON.getString(DATA));
         JSONObject jsonuser = new JSONObject(inJSON.getString(USER));
@@ -497,7 +499,7 @@ public class UsersController {
     }
 
     // Update Basic Question from APP to Server
-    private JSONObject updateBasicQuestion(JSONObject inJSON, JSONObject outJSON){
+    private JSONObject updateBasicQuestion(JSONObject inJSON, JSONObject outJSON) {
         Gson gson = new Gson();
 
         System.out.println("JSON" + inJSON.getString(DATA));
@@ -525,14 +527,14 @@ public class UsersController {
     }
 
     //get Profile data to server
-    private JSONObject getProfile(JSONObject inJSON, JSONObject outJSON){
+    private JSONObject getProfile(JSONObject inJSON, JSONObject outJSON) {
         Gson gson = new Gson();
         JSONObject jsonuser = new JSONObject(inJSON.getString(USER));
         AppUser inUser = gson.fromJson(jsonuser.toString(), AppUser.class);
         Long id_user = inUser.getId();
 
         Preferences pref = prefService.findById(id_user);
-        if (pref==null) {
+        if (pref == null) {
             outJSON.put(MESSAGE, ServerResponseAnswersConstant.ERR_PROFILE_NOT_FOUND);
         } else {
             outJSON.put(RESULT, SUCCESS);
@@ -549,7 +551,7 @@ public class UsersController {
         outUser.put("id", appUser.getId());
         outUser.put("email", appUser.getEmail());
         outUser.put("password", appUser.getPassword());
-        outUser.put("socialID" , appUser.getSocialId());
+        outUser.put("socialID", appUser.getSocialId());
         outUser.put("loginType", appUser.getLoginType());
         return outUser;
     }
@@ -583,7 +585,6 @@ public class UsersController {
 //    }
 
 
-
     private JSONObject getNoteJSON(Note note) {
         JSONObject js = new JSONObject();
         try {
@@ -592,25 +593,26 @@ public class UsersController {
             js.put("year", cal.get(Calendar.YEAR));
             js.put("month", cal.get(Calendar.MONTH) + 1);
             js.put("day", cal.get(Calendar.DAY_OF_MONTH));
-            if(note.getBbt() != null) js.put("bbt", String.valueOf(note.getBbt()));
-            if(note.getRecommended_food() != null) js.put("recommended_foods", note.getRecommended_food());
-            if(note.getHas_nuts() != null) js.put("has_nut", String.valueOf(note.getHas_nuts()));
-            if(note.getRecommended_nuts() != null) js.put("recommended_nuts", note.getRecommended_nuts());
-            if(note.getHas_tea() != null) js.put("has_tea", String.valueOf(note.getHas_tea()));
-            if(note.getRecommended_tea() != null) js.put("recommended_teas", note.getRecommended_tea());
-            if(note.getHas_exercise() != null) js.put("has_exercise", String.valueOf(note.getHas_exercise()));
-            if(note.getRecommended_exercise() != null) js.put("recommended_exercise", note.getRecommended_exercise());
-            if(note.getGoing_to_bed_from() != null) js.put("going_to_bed_from", note.getGoing_to_bed_from());
-            if(note.getGoing_to_bed_to() != null) js.put("going_to_bed_to", note.getGoing_to_bed_to());
-            if(note.getWater_intake() != null) js.put("water_intake", String.valueOf(note.getWater_intake()));
-            if(note.getHeating_bathing() != null) js.put("hip_bath", String.valueOf(note.getHeating_bathing()));
-            if(note.getVitamin() != null) js.put("vitamin", String.valueOf(note.getVitamin()));
-            if(note.getFolic_acid() != null) js.put("folate", String.valueOf(note.getFolic_acid()));
-            if(note.getCoffee_intake() != null) js.put("coffee_intake", String.valueOf(note.getCoffee_intake()));
-            if(note.getAlcohol_intake() != null) js.put("alcohol_consumption", String.valueOf(note.getAlcohol_intake()));
-            if(note.getSmoking() != null) js.put("smoking", String.valueOf(note.getSmoking()));
-            if(note.getEmotional_state() != null) js.put("emotional_state", String.valueOf(note.getEmotional_state()));
-            if(note.getBmi() != null) js.put("bmi", String.valueOf(note.getBmi()));
+            if (note.getBbt() != null) js.put("bbt", String.valueOf(note.getBbt()));
+            if (note.getRecommended_food() != null) js.put("recommended_foods", note.getRecommended_food());
+            if (note.getHas_nuts() != null) js.put("has_nut", String.valueOf(note.getHas_nuts()));
+            if (note.getRecommended_nuts() != null) js.put("recommended_nuts", note.getRecommended_nuts());
+            if (note.getHas_tea() != null) js.put("has_tea", String.valueOf(note.getHas_tea()));
+            if (note.getRecommended_tea() != null) js.put("recommended_teas", note.getRecommended_tea());
+            if (note.getHas_exercise() != null) js.put("has_exercise", String.valueOf(note.getHas_exercise()));
+            if (note.getRecommended_exercise() != null) js.put("recommended_exercise", note.getRecommended_exercise());
+            if (note.getGoing_to_bed_from() != null) js.put("going_to_bed_from", note.getGoing_to_bed_from());
+            if (note.getGoing_to_bed_to() != null) js.put("going_to_bed_to", note.getGoing_to_bed_to());
+            if (note.getWater_intake() != null) js.put("water_intake", String.valueOf(note.getWater_intake()));
+            if (note.getHeating_bathing() != null) js.put("hip_bath", String.valueOf(note.getHeating_bathing()));
+            if (note.getVitamin() != null) js.put("vitamin", String.valueOf(note.getVitamin()));
+            if (note.getFolic_acid() != null) js.put("folate", String.valueOf(note.getFolic_acid()));
+            if (note.getCoffee_intake() != null) js.put("coffee_intake", String.valueOf(note.getCoffee_intake()));
+            if (note.getAlcohol_intake() != null)
+                js.put("alcohol_consumption", String.valueOf(note.getAlcohol_intake()));
+            if (note.getSmoking() != null) js.put("smoking", String.valueOf(note.getSmoking()));
+            if (note.getEmotional_state() != null) js.put("emotional_state", String.valueOf(note.getEmotional_state()));
+            if (note.getBmi() != null) js.put("bmi", String.valueOf(note.getBmi()));
         } catch (JSONException e) {
             e.printStackTrace();
             return null;
@@ -626,7 +628,7 @@ public class UsersController {
                 int year = js.getInt("year");
                 int month = js.getInt("month");
                 int day = js.getInt("day");
-                Calendar cal = new GregorianCalendar(year, month-1, day);
+                Calendar cal = new GregorianCalendar(year, month - 1, day);
                 note.setDate(cal.getTime());
             } else {
                 System.out.println("NoteDTO: Error parsing from JSON - invalid date");
@@ -634,79 +636,79 @@ public class UsersController {
             }
             if (js.has("bbt")) {
                 String bbt = checkNoJsonData(js.getString("bbt"));
-                if(bbt != null) note.setBbt(Float.valueOf(bbt));
+                if (bbt != null) note.setBbt(Float.valueOf(bbt));
             }
             if (js.has("recommended_foods")) {
                 String recommended_foods = checkNoJsonData(js.getString("recommended_foods"));
-                if(recommended_foods != null) note.setRecommended_food(recommended_foods);
+                if (recommended_foods != null) note.setRecommended_food(recommended_foods);
             }
             if (js.has("has_nut")) {
                 String has_nut = checkNoJsonData(js.getString("has_nut"));
-                if(has_nut != null) note.setHas_nuts(Boolean.valueOf(has_nut));
+                if (has_nut != null) note.setHas_nuts(Boolean.valueOf(has_nut));
             }
             if (js.has("recommended_nuts")) {
                 String recommended_nuts = checkNoJsonData(js.getString("recommended_nuts"));
-                if(recommended_nuts != null) note.setRecommended_nuts(recommended_nuts);
+                if (recommended_nuts != null) note.setRecommended_nuts(recommended_nuts);
             }
             if (js.has("has_tea")) {
                 String has_tea = checkNoJsonData(js.getString("has_tea"));
-                if(has_tea != null) note.setHas_tea(Boolean.valueOf(has_tea));
+                if (has_tea != null) note.setHas_tea(Boolean.valueOf(has_tea));
             }
             if (js.has("recommended_teas")) {
                 String recommended_teas = checkNoJsonData(js.getString("recommended_teas"));
-                if(recommended_teas != null) note.setRecommended_tea(recommended_teas);
+                if (recommended_teas != null) note.setRecommended_tea(recommended_teas);
             }
             if (js.has("has_exercise")) {
                 String has_exercise = checkNoJsonData(js.getString("has_exercise"));
-                if(has_exercise != null) note.setHas_exercise(Boolean.valueOf(has_exercise));
+                if (has_exercise != null) note.setHas_exercise(Boolean.valueOf(has_exercise));
             }
             if (js.has("recommended_exercise")) {
                 String recommended_exercise = checkNoJsonData(js.getString("recommended_exercise"));
-                if(recommended_exercise != null) note.setRecommended_exercise(recommended_exercise);
+                if (recommended_exercise != null) note.setRecommended_exercise(recommended_exercise);
             }
             if (js.has("going_to_bed_from") && js.has("going_to_bed_to")) {
                 String going_to_bed_from = checkNoJsonData(js.getString("going_to_bed_from"));
                 String going_to_bed_to = checkNoJsonData(js.getString("going_to_bed_to"));
-                if(going_to_bed_from != null && going_to_bed_to != null) {
+                if (going_to_bed_from != null && going_to_bed_to != null) {
                     note.setGoing_to_bed_from(going_to_bed_from);
                     note.setGoing_to_bed_to(going_to_bed_to);
                 }
             }
             if (js.has("water_intake")) {
                 String water_intake = checkNoJsonData(js.getString("water_intake"));
-                if(water_intake != null) note.setWater_intake(Double.parseDouble(water_intake));
+                if (water_intake != null) note.setWater_intake(Double.parseDouble(water_intake));
             }
             if (js.has("hip_bath")) {
                 String hip_bath = checkNoJsonData(js.getString("hip_bath"));
-                if(hip_bath != null) note.setHeating_bathing(Integer.valueOf(hip_bath));
+                if (hip_bath != null) note.setHeating_bathing(Integer.valueOf(hip_bath));
             }
             if (js.has("vitamin")) {
                 String vitamin = checkNoJsonData(js.getString("vitamin"));
-                if(vitamin != null) note.setVitamin(Boolean.valueOf(vitamin));
+                if (vitamin != null) note.setVitamin(Boolean.valueOf(vitamin));
             }
             if (js.has("folate")) {
                 String folate = checkNoJsonData(js.getString("folate"));
-                if(folate != null) note.setFolic_acid(Boolean.valueOf(folate));
+                if (folate != null) note.setFolic_acid(Boolean.valueOf(folate));
             }
             if (js.has("coffee_intake")) {
                 String coffee_intake = checkNoJsonData(js.getString("coffee_intake"));
-                if(coffee_intake != null) note.setCoffee_intake(Integer.parseInt(coffee_intake));
+                if (coffee_intake != null) note.setCoffee_intake(Integer.parseInt(coffee_intake));
             }
             if (js.has("alcohol_consumption")) {
                 String alcohol_consumption = checkNoJsonData(js.getString("alcohol_consumption"));
-                if(alcohol_consumption != null) note.setAlcohol_intake(Integer.parseInt(alcohol_consumption));
+                if (alcohol_consumption != null) note.setAlcohol_intake(Integer.parseInt(alcohol_consumption));
             }
             if (js.has("smoking")) {
                 String smoking = checkNoJsonData(js.getString("smoking"));
-                if(smoking != null) note.setSmoking(Boolean.valueOf(smoking));
+                if (smoking != null) note.setSmoking(Boolean.valueOf(smoking));
             }
             if (js.has("emotional_state")) {
                 String emotional_state = checkNoJsonData(js.getString("emotional_state"));
-                if(emotional_state != null) note.setEmotional_state(Integer.parseInt(emotional_state));
+                if (emotional_state != null) note.setEmotional_state(Integer.parseInt(emotional_state));
             }
             if (js.has("bmi")) {
                 String bmi = checkNoJsonData(js.getString("bmi"));
-                if(bmi != null) note.setBmi(Float.parseFloat(bmi));
+                if (bmi != null) note.setBmi(Float.parseFloat(bmi));
             }
         } catch (Exception e) {
             e.printStackTrace();
@@ -716,7 +718,7 @@ public class UsersController {
     }
 
     private String checkNoJsonData(String str) {
-        if(str.isEmpty() || str.equals("null")) {
+        if (str.isEmpty() || str.equals("null")) {
             return null;
         } else {
             return str;
@@ -736,7 +738,7 @@ public class UsersController {
             System.out.println("TO STRING GUIDE   : " + guide.toString());
             jsonArray.put(getGuideJSON(guide));
         }
-        outJSON.put(DATA,jsonArray.toString());
+        outJSON.put(DATA, jsonArray.toString());
         return outJSON;
     }
 
@@ -746,7 +748,7 @@ public class UsersController {
         outGuide.put("id", guide.getId());
         outGuide.put("title", guide.getTitle());
         outGuide.put("date", guide.getDateFormat());
-        outGuide.put("image" , guide.getImage());
+        outGuide.put("image", guide.getImage());
         return outGuide;
     }
 
@@ -763,7 +765,7 @@ public class UsersController {
         for (RecipeGuide recipe : recipeList) {
             jsonArray.put(getRecipeJSON(recipe));
         }
-        outJSON.put(DATA,jsonArray.toString());
+        outJSON.put(DATA, jsonArray.toString());
         return outJSON;
     }
 
@@ -773,16 +775,17 @@ public class UsersController {
         outGuide.put("id", recipe.getId());
         outGuide.put("title", recipe.getTitle());
         outGuide.put("date", recipe.getDateFormat());
-        outGuide.put("image_thumbnail" , recipe.getImageThumbnail());
-        outGuide.put("url_naver" , recipe.getUrlNaver());
+        outGuide.put("image_thumbnail", recipe.getImageThumbnail());
+        outGuide.put("url_naver", recipe.getUrlNaver());
         return outGuide;
     }
 
 
-
     //EXCEPTION
     @ExceptionHandler(Exception.class)
-    public @ResponseBody String exception(Exception exc) {
+    public
+    @ResponseBody
+    String exception(Exception exc) {
         exc.printStackTrace();
         JSONObject result = new JSONObject();
         result.put(RESULT, FAILURE);

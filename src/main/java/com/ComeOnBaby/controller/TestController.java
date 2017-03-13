@@ -21,14 +21,14 @@ public class TestController {
 
     @RequestMapping(value = "/addContact", method = RequestMethod.POST)
     public String addContact(@ModelAttribute("appUser")
-                                         AppUser appUser) {
+                                     AppUser appUser) {
         System.out.println("====TEST");
 
-        System.out.println("ID: "+ appUser.getId());
-        System.out.println("email: "+ appUser.getEmail());
-        System.out.println("password: "+ appUser.getPassword());
+        System.out.println("ID: " + appUser.getId());
+        System.out.println("email: " + appUser.getEmail());
+        System.out.println("password: " + appUser.getPassword());
         //System.out.println("socialID "+ appUser.getSocialId());
-        System.out.println("loginType: "+ appUser.getLoginType());
+        System.out.println("loginType: " + appUser.getLoginType());
 
         return "redirect:/test/employee";
     }

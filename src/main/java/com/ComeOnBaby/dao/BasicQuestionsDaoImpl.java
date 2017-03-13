@@ -57,7 +57,7 @@ public class BasicQuestionsDaoImpl implements BasicQuestionsDao {
     @Override
     public List<BasicQuestions> findAll() {
         Session session = sessionFactory.getCurrentSession();
-        Query query =  session.createQuery("from BasicQuestions");
+        Query query = session.createQuery("from BasicQuestions");
         return query.list();
     }
 
