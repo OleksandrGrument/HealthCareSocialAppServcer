@@ -67,10 +67,10 @@ public class PreferencesDaoImpl implements PreferencesDao {
         Preferences pref = null;
         Session session = sessionFactory.getCurrentSession();
 
-        List<Preferences> list =  session.createCriteria(Preferences.class)
+        List<Preferences> list = session.createCriteria(Preferences.class)
                 .add(Restrictions.eq("id", id))
                 .list();
-        if(list !=null && list.size()>0) return list.get(0);
+        if (list != null && list.size() > 0) return list.get(0);
         return pref;
     }
 }

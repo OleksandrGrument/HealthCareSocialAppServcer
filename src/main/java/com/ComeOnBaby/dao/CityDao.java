@@ -6,6 +6,7 @@ import java.util.List;
 
 
 public interface CityDao {
+
     Long create(City city);
 
     City read(Long id);

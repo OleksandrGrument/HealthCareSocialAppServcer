@@ -11,6 +11,7 @@ import java.util.List;
 
 @Service("noticeService")
 public class NoticeServiceImpl implements NoticeService {
+
     private NoticeDao noticeDao;
 
     @Autowired(required = true)

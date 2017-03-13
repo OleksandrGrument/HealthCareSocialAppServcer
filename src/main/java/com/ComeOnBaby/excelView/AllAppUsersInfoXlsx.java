@@ -11,13 +11,11 @@ import javax.servlet.http.HttpServletResponse;
 import java.util.List;
 import java.util.Map;
 
-/**
- * Created by Oleksandr on 3/2/2017.
- */
+
 public class AllAppUsersInfoXlsx extends AbstractXlsxView {
 
 
-   private List<AppUser> appUsers;
+    private List<AppUser> appUsers;
 
     @Override
     protected void buildExcelDocument(Map<String, Object> model,
@@ -48,9 +46,9 @@ public class AllAppUsersInfoXlsx extends AbstractXlsxView {
             fruitRow.createCell(2).setCellValue(appUser.getEmail());
             fruitRow.createCell(3).setCellValue(appUser.getPreferences().getBirth_year());
             fruitRow.createCell(4).setCellValue(appUser.getLoginType());
-            if(appUser.getPreferences().getGender().equals("true")){
+            if (appUser.getPreferences().getGender().equals("true")) {
                 fruitRow.createCell(5).setCellValue("Man");
-            }else {
+            } else {
                 fruitRow.createCell(5).setCellValue("Woman");
             }
 
@@ -60,7 +58,7 @@ public class AllAppUsersInfoXlsx extends AbstractXlsxView {
     }
 
 
-    public void setAppUserList(List<AppUser> appUsers){
+    public void setAppUserList(List<AppUser> appUsers) {
         this.appUsers = appUsers;
     }
 }

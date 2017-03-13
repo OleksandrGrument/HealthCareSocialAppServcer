@@ -5,13 +5,16 @@ import com.ComeOnBaby.model.BasicQuestions;
 
 import java.util.List;
 
-/**
- * Created by Home on 06.02.2017.
- */
+
 public interface BasicQuestionsService {
+
     void addNewBasicQuestions(BasicQuestions basicQuestions);
+
     BasicQuestions readBasicQuestionsByUser(AppUser user);
+
     void updateBasicQuestions(BasicQuestions basicQuestions);
+
     void deleteBasicQuestions(BasicQuestions basicQuestions);
+
     List<BasicQuestions> getAllBasicQuestions();
 }

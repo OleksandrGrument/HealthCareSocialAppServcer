@@ -19,7 +19,7 @@ public class DataNoteByMonthWeek {
     public DataNoteByMonthWeek(List<Note> notes, int month, int year) {
         SimpleDateFormat dateFormat = new SimpleDateFormat("MM.yyyy");
         List<Note> dataNoteByMonth = new ArrayList<Note>();
-        if(notes.get(0) != null){
+        if (notes.get(0) != null) {
             //Note tempNote = notes.get(0);
             for (Note note : notes) {
                 if (note.getDate().getMonth() == month & note.getDate().getYear() == year) {
@@ -27,14 +27,14 @@ public class DataNoteByMonthWeek {
                     //tempNote = note;
                 }
             }
-        }else {
+        } else {
             System.out.println("-------DataNoteByMonthWeek NULL");
         }
 
         this.dataNoteByMonthWeek = dataNoteByMonth;
     }
 
-    public DataNoteByMonthWeek(List<Note> dataNoteByWeek, int countWeekOfYear){
+    public DataNoteByMonthWeek(List<Note> dataNoteByWeek, int countWeekOfYear) {
         List<Note> notesByWeek = new ArrayList<>();
         for (Note note : dataNoteByWeek) {
             Calendar cal = convertDateToCalendar(note.getDate());
@@ -51,7 +51,7 @@ public class DataNoteByMonthWeek {
         return dataNoteByMonthWeek;
     }
 
-    public List<WeekReportInformation> weekReportInformation(){
+    public List<WeekReportInformation> weekReportInformation() {
         ArrayList<Integer> weekValue = new ArrayList<>();
         List<WeekReportInformation> weekReportInformation = new ArrayList<>();
         for (Note note : this.dataNoteByMonthWeek) {
@@ -135,7 +135,7 @@ public class DataNoteByMonthWeek {
                 countValue++;
             }
         }
-        return count/countValue;
+        return count / countValue;
     }
 
     public double slut() {
@@ -261,7 +261,7 @@ public class DataNoteByMonthWeek {
         String str = "";
         if ((value >= 0) & (value <= 1)) {
             str = "<span class=\"bad\">bad</span>";
-        } else if ((value >1) & (value <= 1.5)) {
+        } else if ((value > 1) & (value <= 1.5)) {
             str = "<span class=\"good\">good</span>";
         } else {
             str = "<span class=\"excellent\">excellent</span>";
@@ -273,7 +273,7 @@ public class DataNoteByMonthWeek {
         String str = "";
         if ((value >= 0) & (value <= 10)) {
             str = "<span class=\"excellent\">excellent</span>";
-        } else if ((value >11) & (value <= 20)) {
+        } else if ((value > 11) & (value <= 20)) {
             str = "<span class=\"good\">good</span>";
         } else {
             str = "<span class=\"bad\">bad</span>";
@@ -285,8 +285,8 @@ public class DataNoteByMonthWeek {
         String strDate = "";
         Collections.sort(dataNoteByMonthWeek, new NoteByDateComparator());
         for (int i = 0; i < dataNoteByMonthWeek.size(); i++) {
-            if(dataNoteByMonthWeek.get(i).getBbt()!= null){
-                strDate+= dataNoteByMonthWeek.get(i).getDate().getDate()+",";
+            if (dataNoteByMonthWeek.get(i).getBbt() != null) {
+                strDate += dataNoteByMonthWeek.get(i).getDate().getDate() + ",";
             }
         }
         System.out.println("date in month " + strDate);
@@ -295,12 +295,12 @@ public class DataNoteByMonthWeek {
 
     public String valueInMonthsString() {
         String strBtp = "";
-            for (int i = 0; i < dataNoteByMonthWeek.size(); i++) {
-               if(dataNoteByMonthWeek.get(i).getBbt()!= null){
-                   strBtp += dataNoteByMonthWeek.get(i).getBbt() + ",";
-                }
+        for (int i = 0; i < dataNoteByMonthWeek.size(); i++) {
+            if (dataNoteByMonthWeek.get(i).getBbt() != null) {
+                strBtp += dataNoteByMonthWeek.get(i).getBbt() + ",";
             }
-        System.out.println("value strBtp : "+strBtp);
+        }
+        System.out.println("value strBtp : " + strBtp);
         return strBtp;
     }
 
@@ -310,8 +310,8 @@ public class DataNoteByMonthWeek {
         SimpleDateFormat dateFormatter = new SimpleDateFormat("EEEE", Locale.ENGLISH);
         SimpleDateFormat dateFormatter1 = new SimpleDateFormat("EEEE dd.MM.yyyy");
         for (Note note : dataNoteByMonthWeek) {
-            if(note.getBbt()!= null){
-                strDate+= "'"+dateFormatter.format(note.getDate())+"',";
+            if (note.getBbt() != null) {
+                strDate += "'" + dateFormatter.format(note.getDate()) + "',";
             }
         }
         return strDate;
@@ -320,7 +320,7 @@ public class DataNoteByMonthWeek {
     public String valueInWeekString() {
         String strBtp = "";
         for (Note note : dataNoteByMonthWeek) {
-            if(note.getBbt()!= null){
+            if (note.getBbt() != null) {
                 strBtp += note.getBbt() + ",";
             }
         }
@@ -341,11 +341,11 @@ public class DataNoteByMonthWeek {
         return cal;
     }
 
-    public void listOutPut(){
+    public void listOutPut() {
         SimpleDateFormat dateFormatter1 = new SimpleDateFormat("EEEE dd.MM.yyyy");
         for (Note note : dataNoteByMonthWeek) {
-            if(note!= null){
-                System.out.println(dateFormatter1.format(note.getDate())+", ");
+            if (note != null) {
+                System.out.println(dateFormatter1.format(note.getDate()) + ", ");
             }
         }
     }

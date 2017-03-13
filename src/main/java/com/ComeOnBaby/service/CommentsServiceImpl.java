@@ -46,11 +46,13 @@ public class CommentsServiceImpl implements CommentsService {
 
     @Override
     @Transactional(readOnly = true)
-    public List<Comment> findByBlogID(Long blogID) {return commentsDao.findByBlogID(blogID);}
+    public List<Comment> findByBlogID(Long blogID) {
+        return commentsDao.findByBlogID(blogID);
+    }
 
     @Override
     @Transactional
-    public Comment findCommentById(Long commentId){
+    public Comment findCommentById(Long commentId) {
         return commentsDao.read(commentId);
     }
 }

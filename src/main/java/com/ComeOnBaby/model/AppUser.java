@@ -17,22 +17,22 @@ public class AppUser {
     @Column(name = "id")
     private Long id;
 
-    @Column(name="email", nullable = true)
+    @Column(name = "email", nullable = true)
     private String email;
 
-    @Column(name="password", nullable=true)
+    @Column(name = "password", nullable = true)
     private String password;
 
-    @Column(name="social_id", nullable=true)
+    @Column(name = "social_id", nullable = true)
     private Long socialID;
 
-    @Column(name="login_type", nullable=false)
+    @Column(name = "login_type", nullable = false)
     private String loginType;
 
     @OneToOne(mappedBy = "appUser", fetch = FetchType.EAGER)
     private Preferences preferences;
 
-    public AppUser(){
+    public AppUser() {
     }
 
     public void setPreferences(Preferences preferences) {
@@ -50,20 +50,45 @@ public class AppUser {
         this.loginType = loginType;
     }
 
-    public Long getId() {return id;}
-    public void setId(Long id) {this.id = id;}
+    public Long getId() {
+        return id;
+    }
 
-    public String getEmail() {return email;}
-    public void setEmail(String email) {this.email = email;}
+    public void setId(Long id) {
+        this.id = id;
+    }
 
-    public String getPassword() {return password;}
-    public void setPassword(String password) {this.password = password;}
+    public String getEmail() {
+        return email;
+    }
 
-    public Long getSocialId() {return socialID;}
-    public void setSocialId(Long socialId) {this.socialID = socialId;}
+    public void setEmail(String email) {
+        this.email = email;
+    }
 
-    public String getLoginType() {return loginType;}
-    public void setLoginType(String loginType) {this.loginType = loginType;}
+    public String getPassword() {
+        return password;
+    }
+
+    public void setPassword(String password) {
+        this.password = password;
+    }
+
+    public Long getSocialId() {
+        return socialID;
+    }
+
+    public void setSocialId(Long socialId) {
+        this.socialID = socialId;
+    }
+
+    public String getLoginType() {
+        return loginType;
+    }
+
+    public void setLoginType(String loginType) {
+        this.loginType = loginType;
+    }
 
     @Override
     public String toString() {

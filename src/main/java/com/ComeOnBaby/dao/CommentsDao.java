@@ -6,6 +6,7 @@ import com.ComeOnBaby.model.Comment;
 import java.util.List;
 
 public interface CommentsDao {
+
     Long create(Comment comment);
 
     Comment read(Long id);

@@ -10,7 +10,7 @@ import org.springframework.transaction.annotation.Transactional;
 import java.util.List;
 
 @Service("preferencesService")
-public class PreferencesServiceImpl implements PreferencesService{
+public class PreferencesServiceImpl implements PreferencesService {
     private PreferencesDao preferencesDao;
 
     @Autowired(required = true)
@@ -39,7 +39,7 @@ public class PreferencesServiceImpl implements PreferencesService{
     @Override
     @Transactional
     public Preferences findById(Long id) {
-           return preferencesDao.read(id);
+        return preferencesDao.read(id);
     }
 
     @Override
@@ -50,5 +50,7 @@ public class PreferencesServiceImpl implements PreferencesService{
 
     @Override
     @Transactional(readOnly = true)
-    public Preferences findFirstByUserId(Long id){return preferencesDao.findFirstByUserId(id);}
+    public Preferences findFirstByUserId(Long id) {
+        return preferencesDao.findFirstByUserId(id);
+    }
 }

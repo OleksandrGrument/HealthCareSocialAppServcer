@@ -60,7 +60,7 @@ public class Notice {
         //sb.append("<meta content='' name='author'/>");
         sb.append("</head>");
         sb.append("<body>");
-        sb.append("<h1>"+title+"</h1>");
+        sb.append("<h1>" + title + "</h1>");
         /*for(ImgText item: imgTexts){
             sb.append("<div>"+item.getQuestionText()+"</div>");
         }*/
