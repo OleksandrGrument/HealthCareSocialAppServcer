@@ -124,65 +124,65 @@
                 <section class="question">
                     <h4>What treatment did you experience? <small>(Duplicate checkable)</small></h4>
 
-                    <div class="mt10 mb10 clearfix">
+                    <div class="mt10 mb10 clearfix closeCheckbox">
                         <div class="checkbox">
                             <input type="checkbox" name="question3_1" id="question3_1" <%out.print(listQuestion3.get(0));%>>
                             <label for="question3_1" style="display: inline-block; width: 170px;">Induce natural pregnancy</label>
-                            <input type="text" name="question3_1_1" class="ml5 mr5" value="<%out.print(listQuestion3.get(1));%>" />time
+                            <input type="text" name="question3_1_1" id="question3_1_1" class="ml5 mr5" value="<%out.print(listQuestion3.get(1));%>" />time
                         </div>
 
                         <div class="checkbox">
                             <input type="checkbox" name="question3_2" id="question3_2" <%out.print(listQuestion3.get(2));%>>
                             <label for="question3_2" style="display: inline-block; width: 170px;">Induction of ovulation</label>
-                            <input type="text" name="question3_2_1" class="ml5 mr5" value="<%out.print(listQuestion3.get(3));%>"/>time
+                            <input type="text" name="question3_2_1" id="question3_2_1" class="ml5 mr5" value="<%out.print(listQuestion3.get(3));%>"/>time
                         </div>
 
                         <div class="checkbox">
                             <input type="checkbox" name="question3_3" id="question3_3" <%out.print(listQuestion3.get(4));%>>
                             <label for="question3_3" style="display: inline-block; width: 170px;">Artificial insemination</label>
-                            <input type="text" name="question3_3_1" class="ml5 mr5"  value="<%out.print(listQuestion3.get(5));%>"/>time
+                            <input type="text" name="question3_3_1" id="question3_3_1" class="ml5 mr5"  value="<%out.print(listQuestion3.get(5));%>"/>time
                         </div>
 
                         <div class="checkbox">
                             <input type="checkbox" name="question3_4" id="question3_4" <%out.print(listQuestion3.get(6));%>>
                             <label for="question3_4" style="display: inline-block; width: 170px;">In Vitro Fertilization</label>
-                            <input type="text" name="question3_4_1" class="ml5 mr5" value="<%out.print(listQuestion3.get(7));%>"/>time
+                            <input type="text" name="question3_4_1" id="question3_4_1" class="ml5 mr5" value="<%out.print(listQuestion3.get(7));%>"/>time
                         </div>
 
                         <div class="checkbox">
                             <input type="checkbox" name="question3_5" id="question3_5" <%out.print(listQuestion3.get(8));%>>
                             <label for="question3_5" style="display: inline-block; width: 170px;">Operation</label>
-                            <input type="text" name="question3_5_1" class="ml5 mr5" value="<%out.print(listQuestion3.get(9));%>"/>time
+                            <input type="text" name="question3_5_1" id="question3_5_1" class="ml5 mr5" value="<%out.print(listQuestion3.get(9));%>"/>time
                         </div>
 
                         <div class="checkbox">
                             <input type="checkbox" name="question3_6" id="question3_6" <%out.print(listQuestion3.get(10));%>>
                             <label for="question3_6" style="display: inline-block; width: 170px;">Endoscopy</label>
-                            <input type="text" name="question3_6_1" class="ml5 mr5" value="<%out.print(listQuestion3.get(11));%>"/>time
+                            <input type="text" name="question3_6_1" id="question3_6_1" class="ml5 mr5" value="<%out.print(listQuestion3.get(11));%>"/>time
                         </div>
 
                         <div class="checkbox">
                             <input type="checkbox" name="question3_7" id="question3_7" <%out.print(listQuestion3.get(12));%>>
                             <label for="question3_7" style="display: inline-block; width: 170px;">Laparoscopic procedure</label>
-                            <input type="text" name="question3_7_1" class="ml5 mr5" value="<%out.print(listQuestion3.get(13));%>"/>time
+                            <input type="text" name="question3_7_1" id="question3_7_1" class="ml5 mr5" value="<%out.print(listQuestion3.get(13));%>"/>time
                         </div>
 
                         <div class="checkbox">
                             <input type="checkbox" name="question3_8" id="question3_8" <%out.print(listQuestion3.get(14));%>>
                             <label for="question3_8" style="display: inline-block; width: 170px;">Endometrial stimulation</label>
-                            <input type="text" name="question3_8_1" class="ml5 mr5" value="<%out.print(listQuestion3.get(15));%>"/>time
+                            <input type="text" name="question3_8_1" id="question3_8_1" class="ml5 mr5" value="<%out.print(listQuestion3.get(15));%>"/>time
                         </div>
 
                         <div class="checkbox">
                             <input type="checkbox" name="question3_9" id="question3_9" <%out.print(listQuestion3.get(16));%>>
                             <label for="question3_9" style="display: inline-block; width: 170px;">Inspection</label>
-                            <input type="text" name="question3_9_1" class="ml5 mr5" value="<%out.print(listQuestion3.get(17));%>"/>time
+                            <input type="text" name="question3_9_1" id="question3_9_1" class="ml5 mr5" value="<%out.print(listQuestion3.get(17));%>"/>time
                         </div>
 
                         <div class="checkbox">
                             <input type="checkbox" name="question3_10" id="question3_10" <%out.print(listQuestion3.get(18));%>>
                             <label for="question3_10" style="display: inline-block; width: 170px;">Other</label>
-                            <input type="text" name="question3_10_1" class="ml5 mr5" value="<%out.print(listQuestion3.get(19));%>"/>time
+                            <input type="text" name="question3_10_1" id="question3_10_1" class="ml5 mr5" value="<%out.print(listQuestion3.get(19));%>"/>time
                         </div>
 
                     </div>
@@ -259,10 +259,10 @@
                             <label for="question4_1_13">Blood circulation disorder</label>
                         </div>
 
-                        <div class="checkbox pt5 pb5 pr10 ml0">
+                        <div class="checkbox pt5 pb5 pr10 ml0 closeCheckbox">
                             <input type="checkbox" name="question4_1_14" id="question4_1_14" value="14" <%out.print(listQuestion4.get(13));%>>
                             <label for="question4_1_14" style="display: inline-block;">Other</label>
-                            <input type="text" name="question4_1_14_1" class="ml5 mr5" value=" <%out.print(listQuestion4.get(14));%>"/>
+                            <input type="text" name="question4_1_14_1" id="question4_1_14_1" class="ml5 mr5" value=" <%out.print(listQuestion4.get(14));%>"/>
                         </div>
                     </div>
                     <!-- #End Female -->
@@ -295,10 +295,10 @@
                             <label for="question4_2_5">Unknown cause</label>
                         </div>
 
-                        <div class="checkbox pt5 pb5 pr10 ml0">
+                        <div class="checkbox pt5 pb5 pr10 ml0 closeCheckbox">
                             <input type="checkbox" name="question4_2_6" id="question4_2_6" <%out.print(listQuestion5.get(5));%>>
                             <label for="question4_2_6" style="display: inline-block;">Other</label>
-                            <input type="text" name="question4_2_6_1" class="ml5 mr5" value="<%out.print(listQuestion5.get(6));%>"/>
+                            <input type="text" name="question4_2_6_1" id="question4_2_6_1" class="ml5 mr5" value="<%out.print(listQuestion5.get(6));%>"/>
                         </div>
                     </div>
                     <!-- #End Male -->
@@ -346,10 +346,10 @@
                             <label for="question5_7">Nutrition consultation (eating habit)</label>
                         </div>
 
-                        <div class="checkbox pt5 pb5 pr10 ml0">
+                        <div class="checkbox pt5 pb5 pr10 ml0 closeCheckbox">
                             <input type="checkbox" name="question5" id="question5_8" <%out.print(listQuestion6.get(7));%>>
                             <label for="question5_8" style="display: inline-block;">Other</label>
-                            <input type="text" name="question5_8_1" class="ml5 mr5" value=" <%out.print(listQuestion6.get(8));%>"/>
+                            <input type="text" name="question5_8_1" id="question5_8_1" class="ml5 mr5" value=" <%out.print(listQuestion6.get(8));%>"/>
                         </div>
                     </div>
 
@@ -401,10 +401,10 @@
                             <label for="question6_9">Egg donation</label>
                         </div>
 
-                        <div class="checkbox pt5 pb5 pr10 ml0">
+                        <div class="checkbox pt5 pb5 pr10 ml0 closeCheckbox">
                             <input type="checkbox" name="question6" id="question6_10" value="10"  <%out.print(listQuestion7.get(8));%>>
                             <label for="question6_10" style="display: inline-block;">Other</label>
-                            <input type="text" name="question6_10_1" class="ml5 mr5" value="  <%out.print(listQuestion7.get(9));%>"/>
+                            <input type="text" name="question6_10_1" id="question6_10_1" class="ml5 mr5" value="  <%out.print(listQuestion7.get(9));%>"/>
                         </div>
                     </div>
                 </section>
@@ -426,6 +426,41 @@
 <!-- #End Wrapper -->
 
 <%@ include file="footerJavaScript.jsp" %>
+
+<script>
+    jQuery(document).ready(function($) {
+        $(".closeCheckbox").html(function () {
+
+            $("input[type=checkbox]").each(function () {
+                var checkbox_id = $(this).attr('id');
+                var input_id = checkbox_id + "_1";
+
+                $("#" + input_id).keypress(function (e) {
+                    if (e.which != 8 && e.which != 0 && (e.which < 48 || e.which > 57)) {
+                        return false;
+                    }
+                });
+
+                $("#" + checkbox_id).attr("disabled", true);
+
+                if ($.trim($("#" + input_id).val()).length > 0) {
+                    $("#" + checkbox_id).attr("checked", true);
+                    $("#" + checkbox_id).attr("disabled", false);
+                }
+
+                $("#" + input_id).keyup(function () {
+                    if ($.trim($("#" + input_id).val()).length > 0) {
+                        $("#" + checkbox_id).attr('checked', true);
+                        $("#" + checkbox_id).attr("disabled", false);
+                    } else {
+                        $("#" + checkbox_id).attr('checked', false);
+                        $("#" + checkbox_id).attr("disabled", true);
+                    }
+                });
+            });
+        });
+    });
+</script>
 
 </body>
 </html>
