@@ -18,14 +18,20 @@ public class DataNoteByMonthWeek {
 
     public DataNoteByMonthWeek(List<Note> notes, int month, int year) {
         SimpleDateFormat dateFormat = new SimpleDateFormat("MM.yyyy");
-        Date date = new Date(year, month, 0);
-
         List<Note> dataNoteByMonth = new ArrayList<Note>();
-        for (Note note : notes) {
-            if (!dateFormat.format(note.getDate()).equals(dateFormat.format(date))) {
-                dataNoteByMonth.add(note);
+        if(notes.get(0) != null){
+            Note tempNote = notes.get(0);
+            dataNoteByMonth.add(tempNote);
+            for (Note note : notes) {
+                if (!dateFormat.format(note.getDate()).equals(dateFormat.format(tempNote.getDate()))) {
+                    dataNoteByMonth.add(note);
+                    tempNote = note;
+                }
             }
+        }else {
+            System.out.println("-------DataNoteByMonthWeek NULL");
         }
+
         this.dataNoteByMonthWeek = dataNoteByMonth;
     }
 

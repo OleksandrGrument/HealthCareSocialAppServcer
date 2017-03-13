@@ -1,3 +1,7 @@
+<%@ page import="com.ComeOnBaby.model.Note" %>
+<%@ page import="java.util.List" %>
+<%@ page import="java.text.SimpleDateFormat" %>
+<%@ page import="com.ComeOnBaby.model.AppUser" %>
 <%@ taglib prefix="spring" uri="http://www.springframework.org/tags" %>
 <%@ page language="java" pageEncoding="UTF-8"%>
 <%@ page contentType="text/html;charset=UTF-8" %>
@@ -38,6 +42,9 @@
 
         <%@ include file="topLine.jsp" %>
 
+        <%List<Note> allAppUserNotes = (List<Note>) request.getAttribute("allAppUserNotes");%>
+        <%List<AppUser> listUsersByNoteByMonth = (List<AppUser>) request.getAttribute("listUsersByNoteByMonth");%>
+
         <!-- Content section -->
         <section class="container-fluid content">
             <h3><i class="fa fa-bar-chart"></i>Users monthly reports</h3>
@@ -62,29 +69,24 @@
                 </tr>
                 </tfoot>
 
+                <%
+                    SimpleDateFormat dateFormatOut = new SimpleDateFormat("MM-yyyy");
+                    SimpleDateFormat dateFormatLink = new SimpleDateFormat("MM/yyyy");
+                %>
+
                 <!-- Items list -->
                 <tbody>
-                <tr>
-                    <td align="center">1</td>
-                    <td><a href="mailto:some@server.com.ua">some@server.com.ua</a></td>
-                    <td><a href="userProfileShow.php">Tiger Nixon</a></td>
-                    <td align="center" class="marker"><span class="good">Good</span></td>
-                    <td align="center"><a href="generalMonthlyReportShow.php">01-2017</a></td>
-                </tr>
-                <tr>
-                    <td align="center">2</td>
-                    <td><a href="mailto:some@server.com.ua">some@server.com.ua</a></td>
-                    <td><a href="userProfileShow.php">Tiger Nixon</a></td>
-                    <td align="center" class="marker"><span class="excellent">Excellent</span></td>
-                    <td align="center"><a href="generalMonthlyReportShow.php">02-2017</a></td>
-                </tr>
-                <tr>
-                    <td align="center">3</td>
-                    <td><a href="mailto:some@server.com.ua">some@server.com.ua</a></td>
-                    <td><a href="userProfileShow.php">Tiger Nixon</a></td>
-                    <td align="center" class="marker"><span class="bad">Bad</span></td>
-                    <td align="center"><a href="generalMonthlyReportShow.php">03-2017</a></td>
-                </tr>
+                    <%for(int i = 0; i < allAppUserNotes.size(); i++){ %>
+                        <tr>
+                            <td align="center"><%out.print(allAppUserNotes.get(i).getUser_id());%></td>
+                            <td><a href="mailto:some@server.com.ua"><%out.print(listUsersByNoteByMonth.get(i).getEmail());%></a></td>
+                            <td><a href="userProfileShow.php"><%out.print(listUsersByNoteByMonth.get(i).getPreferences().getNickname());%></a></td>
+                            <td align="center" class="marker"><span class="good">Good</span></td>
+                            <td align="center">
+                                <a href="<%out.print("/report/generalMonthlyReportShow/"+listUsersByNoteByMonth.get(i).getId()+"/"+dateFormatLink.format(allAppUserNotes.get(i).getDate()));%>"><%out.print(dateFormatOut.format(allAppUserNotes.get(i).getDate()));%></a>
+                            </td>
+                        </tr>
+                    <%}%>
                 </tbody>
                 <!-- #End Items list -->
 

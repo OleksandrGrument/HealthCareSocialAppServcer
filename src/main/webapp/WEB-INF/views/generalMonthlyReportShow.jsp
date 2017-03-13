@@ -1,3 +1,5 @@
+<%@ page import="com.ComeOnBaby.model.AppUser" %>
+<%@ page import="com.ComeOnBaby.util.DataNoteByMonthWeek" %>
 <%@ taglib prefix="spring" uri="http://www.springframework.org/tags" %>
 <%@ page language="java" pageEncoding="UTF-8"%>
 <%@ page contentType="text/html;charset=UTF-8" %>
@@ -33,6 +35,11 @@
     </div>
     <!-- #End Sidebar -->
 
+    <% AppUser user = (AppUser) request.getAttribute("user"); %>
+    <% DataNoteByMonthWeek dataNoteByMonthWeek = (DataNoteByMonthWeek) request.getAttribute("dataNoteByMonth"); %>
+    <% int month = (int) request.getAttribute("month"); %>
+    <% int year = (int) request.getAttribute("year"); %>
+
     <!-- Page Content -->
     <div id="page-content-wrapper">
 
@@ -40,7 +47,8 @@
 
         <!-- Content section -->
         <section class="container-fluid content">
-            <h3><i class="fa fa-bar-chart"></i>User report for the: 01-2017</h3>
+            <h3><i class="fa fa-bar-chart"></i><%out.print("User report for the: "+month+"-"+year);%></h3>
+
 
             <!-- Show chart -->
             <div class="ct-chart"></div>
@@ -48,96 +56,95 @@
 
             <!-- User chart information -->
             <table class="user-profile-table">
-
                 <tbody>
                 <tr><td colspan="2" class="header pt0">Detailed information</td></tr>
                 <tr>
                     <td class="title">Recommended food:</td>
-                    <td>month 29 time intake</td>
-                    <td class="marker"><span class="good">Good</span></td>
+                    <td>month <%out.print(dataNoteByMonthWeek.recommendedFood());%> time intake</td>
+                    <td class="marker"><%out.print(dataNoteByMonthWeek.evolitionState(dataNoteByMonthWeek.recommendedFood()));%></td>
                 </tr>
 
                 <tr>
                     <td class="title">Nuts:</td>
-                    <td>month 17 ingestion</td>
-                    <td class="marker"><span class="bad">Bad</span></td>
+                    <td>month <%out.print(dataNoteByMonthWeek.nuts());%> ingestion</td>
+                    <td class="marker"><%out.print(dataNoteByMonthWeek.evolitionState(dataNoteByMonthWeek.nuts()));%></td>
                 </tr>
 
                 <tr>
                     <td class="title">Car:</td>
-                    <td>month 9 ingestion</td>
-                    <td class="marker"><span class="excellent">Excellent</span></td>
+                    <td>month <%out.print("@@@@");%> ingestion</td>
+                    <td class="marker"><%out.print(dataNoteByMonthWeek.evolitionState(0));%></td>
                 </tr>
 
                 <tr>
                     <td class="title">Exercise:</td>
-                    <td>month 15 time</td>
-                    <td class="marker"><span class="bad">Bad</span></td>
+                    <td>month <%out.print(dataNoteByMonthWeek.exercise());%> time</td>
+                    <td class="marker"><%out.print(dataNoteByMonthWeek.evolitionState(dataNoteByMonthWeek.exercise()));%></td>
                 </tr>
 
                 <tr>
                     <td class="title">Sleep before midnight:</td>
-                    <td>month 12 time</td>
-                    <td class="marker"><span class="excellent">Excellent</span></td>
+                    <td>month <%out.print("@@@@");%> time</td>
+                    <td class="marker"><%out.print(dataNoteByMonthWeek.evolitionState(0));%></td>
                 </tr>
 
                 <tr>
                     <td class="title">Average sleep time:</td>
-                    <td>month average 7 hours 16 minute</td>
-                    <td class="marker"><span class="good">Good</span></td>
+                    <td>month average <%out.print("@@@@");%></td>
+                    <td class="marker"><%out.print(dataNoteByMonthWeek.evolitionState(0));%></td>
                 </tr>
 
                 <tr>
                     <td class="title">Water ingestion:</td>
-                    <td>average of 0.8 liters per month</td>
-                    <td class="marker"><span class="bad">Bad</span></td>
+                    <td>average of <%out.print(dataNoteByMonthWeek.waterIngestion());%> liters per month</td>
+                    <td class="marker"><%out.print(dataNoteByMonthWeek.evolitionStateWater(dataNoteByMonthWeek.waterIngestion()));%></td>
                 </tr>
 
                 <tr>
                     <td class="title">Eun-hoon / Slut:</td>
-                    <td>month 19 times</td>
-                    <td class="marker"><span class="good">Good</span></td>
+                    <td>month <%out.print("@@@@");%> times</td>
+                    <td class="marker"><%out.print(dataNoteByMonthWeek.evolitionState(0));%></td>
                 </tr>
 
                 <tr>
                     <td class="title">Vitamin:</td>
-                    <td>month 15 times intake</td>
-                    <td class="marker"><span class="bad">Bad</span></td>
+                    <td>month <%out.print(dataNoteByMonthWeek.vitamin());%> times intake</td>
+                    <td class="marker"><%out.print(dataNoteByMonthWeek.evolitionState(dataNoteByMonthWeek.vitamin()));%></td>
                 </tr>
 
                 <tr>
                     <td class="title">Folic acid:</td>
-                    <td>month 10 Ingestion</td>
-                    <td class="marker"><span class="excellent">Excellent</span></td>
+                    <td>month <%out.print(dataNoteByMonthWeek.folicAcid());%> Ingestion</td>
+                    <td class="marker"><%out.print(dataNoteByMonthWeek.evolitionState(dataNoteByMonthWeek.folicAcid()));%></td>
                 </tr>
 
                 <tr>
                     <td class="title">Less than one cup of coffee:</td>
-                    <td>month 3 time</td>
-                    <td class="marker"><span class="good">Good</span></td>
+                    <td>month <%out.print(dataNoteByMonthWeek.coffee());%> time</td>
+                    <td class="marker"><%out.print(dataNoteByMonthWeek.evolitionState(dataNoteByMonthWeek.coffee()));%></td>
                 </tr>
 
                 <tr>
                     <td class="title">Alcohol:</td>
-                    <td>month 6 time Drinking / average 1.7 cups</td>
-                    <td class="marker"><span class="excellent">Excellent</span></td>
+                    <td>month <%out.print(dataNoteByMonthWeek.alcohol());%> time Drinking / average 0 cups</td>
+                    <td class="marker"><%out.print(dataNoteByMonthWeek.evolitionStateAlcohol(dataNoteByMonthWeek.alcohol()));%></td>
                 </tr>
 
                 <tr>
                     <td class="title">No smoking:</td>
-                    <td>month 8 times</td>
-                    <td class="marker"><span class="bad">Bad</span></td>
+                    <td>month <%out.print(dataNoteByMonthWeek.smoking());%> times</td>
+                    <td class="marker"><%out.print(dataNoteByMonthWeek.evolitionState(dataNoteByMonthWeek.smoking()));%></td>
                 </tr>
 
                 <tr><td class="delimiter" colspan="3"></td></tr>
                 <tr>
                     <td class="title">Emotion:</td>
-                    <td colspan="2">very good 5 times, good 3 times, usually 9 times, poor 7 times</td>
+                    <td colspan="2"><%out.print(dataNoteByMonthWeek.emotion());%></td>
                 </tr>
 
                 <tr>
                     <td class="title">BMI (Body Mass Index):</td>
-                    <td colspan="2">25 (normal)</td>
+                    <td colspan="2"><%out.print(dataNoteByMonthWeek.bodyMassIndex());%></td>
                 </tr>
 
                 </tbody>
@@ -149,7 +156,7 @@
             </div>
 
             <div class="mt20 delimiter">
-                <a href="generalMonthlyReport.php" class="btn btn-default">Back</a>
+                <a href="<%out.print("/report/generalMonthlyReport");%>" class="btn btn-default">Back</a>
                 <button class="btn btn-primary">Confirm</button>
             </div>
 
@@ -164,10 +171,13 @@
 
 <%@ include file="footerJavaScript.jsp" %>
 
+<% String daysInMonthsString = (String) request.getAttribute("daysInMonthsString"); %>
+<% String valueInMonthsString = (String) request.getAttribute("valueInMonthsString"); %>
+
 <script>
     new Chartist.Line('.ct-chart', {
-        labels: [01,02,03,04,05,06,07,08,09,10,11,12,13,14,15,16,17,18,19,20,21,22,23,24,25,26,27,28,29,30,31],
-        series: [[1,9,7,8,0,15,22,14,19,25,10,4,8,15,18,25,21,17,14,12,5,9,1,3,9,19,13,8,3,3,6]]
+        labels: [<%out.print(daysInMonthsString);%>],
+        series: [[<%out.print(valueInMonthsString);%>]]
     }, {
         fullWidth: true,
         showArea: true,

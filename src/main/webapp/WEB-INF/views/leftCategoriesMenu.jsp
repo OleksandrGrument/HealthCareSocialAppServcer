@@ -12,17 +12,11 @@
         <li>
             <a href="javascript:void(0);"><i class="fa fa-users" aria-hidden="true"></i> Community</a>
             <ul class="sub-menu">
-
-                <li><a href="javascript:void(0);"><i class="fa fa-angle-double-right" aria-hidden="true"></i> Notice / Event</a></li>
-                <li><a href="javascript:void(0);"><i class="fa fa-angle-double-right" aria-hidden="true"></i> My success story</a></li>
-                <li><a href="javascript:void(0);"><i class="fa fa-angle-double-right" aria-hidden="true"></i> My recipes</a></li>
-                <li><a href="javascript:void(0);"><i class="fa fa-angle-double-right" aria-hidden="true"></i> Husband story</a></li>
-                <li><a href="javascript:void(0);"><i class="fa fa-angle-double-right" aria-hidden="true"></i> Q &amp; A list</a></li>
-               <%-- <li><a href="/notice/events"><i class="fa fa-angle-double-right" aria-hidden="true"></i> Notice / Event</a></li>
+               <li><a href="/notice/events"><i class="fa fa-angle-double-right" aria-hidden="true"></i> Notice / Event</a></li>
                 <li><a href="/my/story"><i class="fa fa-angle-double-right" aria-hidden="true"></i> My success story</a></li>
                 <li><a href="/my/recipes"><i class="fa fa-angle-double-right" aria-hidden="true"></i> My recipes</a></li>
                 <li><a href="/my/husband"><i class="fa fa-angle-double-right" aria-hidden="true"></i> Husband story</a></li>
-                <li><a href="javascript:void(0);"><i class="fa fa-angle-double-right" aria-hidden="true"></i> Q &amp; A list</a></li>--%>
+                <li><a href="javascript:void(0);"><i class="fa fa-angle-double-right" aria-hidden="true"></i> Q &amp; A list</a></li>
             </ul>
         </li>
         <li><a href="javascript:void(0);"><i class="fa fa-envelope" aria-hidden="true"></i> Push</a></li>
