@@ -54,7 +54,7 @@ public class QuestionAnswer {
     @Column(name="answer")
     private String answerText;
 
-    @Column(name = "is_answered")
+    @Column(name = "is_answered" , nullable=false)
     private Boolean isAnswered;
 
 

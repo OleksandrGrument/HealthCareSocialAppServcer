@@ -23,7 +23,7 @@ public class AppConfig extends WebMvcConfigurerAdapter {
 
 
 	/*@Autowired
-	RoleToUserProfileConverter roleToUserProfileConverter;
+    RoleToUserProfileConverter roleToUserProfileConverter;
 	*/
 
     /**
@@ -66,27 +66,6 @@ public class AppConfig extends WebMvcConfigurerAdapter {
         registry.addResourceHandler("/img/**").addResourceLocations("/img/");
         registry.addResourceHandler("/static/**").addResourceLocations("/static/");
     }
-    /**
-     * Configure Converter to be used.
-     * In our example, we need a converter to convert string values[Roles] to UserProfiles in newUser.jsp
-     */
-   /* @Override
-    public void addFormatters(FormatterRegistry registry) {
-        registry.addConverter(roleToUserProfileConverter);
-    }*/
-
-
-    /**
-     * Configure MessageSource to lookup any validation/error message in internationalized property files
-     */
-
-/*
-    @Bean
-	public MessageSource messageSource() {
-	    ResourceBundleMessageSource messageSource = new ResourceBundleMessageSource();
-	    messageSource.setBasename("messages");
-	    return messageSource;
-	}*/
 
 
     /**
@@ -100,7 +79,6 @@ public class AppConfig extends WebMvcConfigurerAdapter {
     }
 
 
-
     //FILE DOWNLOAD RESOLVER MAPPING
     @Bean
     public MultipartResolver multipartResolver() {
@@ -108,7 +86,6 @@ public class AppConfig extends WebMvcConfigurerAdapter {
         multipartResolver.setMaxUploadSize(1000000000);
         return multipartResolver;
     }
-
 
 
     // Java mail
