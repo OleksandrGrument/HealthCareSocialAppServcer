@@ -80,7 +80,7 @@
 
                     while (questionAnswerIterator.hasNext()) {
                         QuestionAnswer questionAnswer = questionAnswerIterator.next();
-                        String editQuestionAnswerUrl = "/q-a/edit-question-answer/"+questionAnswer.getId();
+                        String editQuestionAnswerUrl = "/q-a/response-question-answer/"+questionAnswer.getId();
                         AppUser appUser = questionAnswer.getAppUser();
                         String goToUserProfileUrl = "/users/user-profile/" + appUser.getId();
                         String deleteQuestionAnswerUrl = "/q-a/delete-question-answer/"+questionAnswer.getId();
@@ -91,13 +91,13 @@
                         <td><a href="<%out.print(goToUserProfileUrl);%>"><%out.print(appUser.getPreferences().getNickname());%></a></td>
                         <td><a href="<%out.print(editQuestionAnswerUrl);%>"><%out.print(questionAnswer.getTitle());%></a></td>
 
-                        <%String checkClass = "fa fa-square-o"; if (questionAnswer.isAccess()) checkClass = "fa fa-check-square";%>
+                        <%String checkClass = "fa fa-square-o"; if (questionAnswer.isAnswered()) checkClass = "fa fa-check-square";%>
                         <td align="center"><i class="<%out.print(checkClass);%>"></i></td>
 
-                        <%String lockClass = "fa fa-unlock"; if (questionAnswer.isAnswered()) lockClass = "fa fa-lock"; %>
+                        <%String lockClass = "fa fa-lock"; if (questionAnswer.isAccess()) lockClass = "fa fa-unlock"; %>
                         <td align="center"><i class="<%out.print(lockClass);%>"></i></td>
 
-                        <td align="center"><%out.print(questionAnswer.getQuestionDate());%></td>
+                        <td align="center"><%out.print(questionAnswer.getQuestionDate().toString().substring(0, 19));%></td>
                         <td align="center">
                             <a href="<%out.print(editQuestionAnswerUrl);%>" data-toggle="tooltip" title="Edit"><i class="fa fa-edit"></i> Edit</a>&nbsp; |&nbsp;
                             <a href="<%out.print(deleteQuestionAnswerUrl);%>" data-toggle="tooltip" title="Delete" class="deleteConfirm"><i class="fa fa-trash"></i> Delete</a>

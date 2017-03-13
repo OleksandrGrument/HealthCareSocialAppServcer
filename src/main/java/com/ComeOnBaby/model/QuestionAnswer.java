@@ -1,5 +1,6 @@
 package com.ComeOnBaby.model;
 
+import org.hibernate.annotations.GenericGenerator;
 import org.hibernate.validator.constraints.NotEmpty;
 
 import javax.persistence.*;
@@ -16,8 +17,9 @@ public class QuestionAnswer {
 
 
     @Id
-    @NotEmpty
-    @Column(name="id", nullable=false)
+    @GeneratedValue(generator = "increment2")
+    @GenericGenerator(name = "increment2", strategy = "increment")
+    @Column(name = "id")
     private Long id;
 
 

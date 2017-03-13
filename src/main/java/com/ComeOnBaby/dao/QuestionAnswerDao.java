@@ -6,9 +6,7 @@ import com.ComeOnBaby.model.QuestionAnswer;
 
 import java.util.List;
 
-/**
- * Created by adm on 1/30/2017.
- */
+
 public interface QuestionAnswerDao {
     Long create(QuestionAnswer questionAnswer);
     QuestionAnswer read(Long id);
