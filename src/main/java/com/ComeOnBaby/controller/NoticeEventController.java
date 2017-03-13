@@ -101,9 +101,11 @@ public class NoticeEventController {
     @RequestMapping(value = "/save-new-notice", method = RequestMethod.POST)
     public ModelAndView saveNewRecipe(@RequestParam(value = "id") String id, @RequestParam("title") String title, @RequestParam("text") String noticeText, @RequestParam("filePicture[]") MultipartFile[] files) {
 
+        Notice notice;
+
         if (id.equals("")) {
 
-            Notice notice = new Notice();
+            notice = new Notice();
 
             notice.setDate(new Date());
             notice.setTitle(title);
@@ -126,7 +128,7 @@ public class NoticeEventController {
 
         } else {
 
-            Notice notice = noticeService.get(Long.valueOf(id));
+            notice = noticeService.get(Long.valueOf(id));
 
             notice.setDate(new Date());
             notice.setTitle(title);
@@ -140,7 +142,7 @@ public class NoticeEventController {
             noticeService.updateNotice(notice);
         }
 
-        return new ModelAndView("redirect:/notice/edit-notice/"+id);
+        return new ModelAndView("redirect:/notice/edit-notice/"+notice.getId());
     }
 
 

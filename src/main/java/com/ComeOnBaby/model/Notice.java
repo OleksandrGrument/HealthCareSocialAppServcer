@@ -62,7 +62,7 @@ public class Notice {
         sb.append("<body>");
         sb.append("<h1>"+title+"</h1>");
         /*for(ImgText item: imgTexts){
-            sb.append("<div>"+item.getText()+"</div>");
+            sb.append("<div>"+item.getQuestionText()+"</div>");
         }*/
         sb.append("</body>");
         sb.append("</html>");

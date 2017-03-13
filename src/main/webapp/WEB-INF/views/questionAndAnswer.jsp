@@ -1,3 +1,7 @@
+<%@ page import="com.ComeOnBaby.model.QuestionAnswer" %>
+<%@ page import="java.util.ArrayList" %>
+<%@ page import="java.util.Iterator" %>
+<%@ page import="com.ComeOnBaby.model.AppUser" %>
 <%@ taglib prefix="spring" uri="http://www.springframework.org/tags" %>
 <%@ page language="java" pageEncoding="UTF-8"%>
 <%@ page contentType="text/html;charset=UTF-8" %>
@@ -50,6 +54,7 @@
                     <th>Question</th>
                     <th width="50">Answer</th>
                     <th width="50">Status</th>
+                    <th >Date</th>
                     <th width="150">Action</th>
                 </tr>
                 </thead>
@@ -60,34 +65,45 @@
                     <th>Question</th>
                     <th>Answer</th>
                     <th>Status</th>
+                    <th>Date</th>
                     <th>Action</th>
                 </tr>
                 </tfoot>
 
                 <!-- Items list -->
                 <tbody>
-                <tr>
-                    <td align="center">1</td>
-                    <td><a href="userProfileShow.php">Tiger Nixon</a></td>
-                    <td><a href="questionAndAnswerEdit.php">What should I do when this happens?</a></td>
-                    <td align="center"><i class="fa fa-check-square"></i></td>
-                    <td align="center"><i class="fa fa-lock"></i></td>
-                    <td align="center">
-                        <a href="questionAndAnswerEdit.php" data-toggle="tooltip" title="Edit"><i class="fa fa-edit"></i> Edit</a>&nbsp; |&nbsp;
-                        <a href="javascript:void(0);" data-toggle="tooltip" title="Delete" class="deleteConfirm"><i class="fa fa-trash"></i> Delete</a>
-                    </td>
-                </tr>
-                <tr>
-                    <td align="center">2</td>
-                    <td><a href="userProfileShow.php">Tiger Nixon</a></td>
-                    <td><a href="questionAndAnswerEdit.php">What should I do when this happens?</a></td>
-                    <td align="center"><i class="fa fa-square-o"></td>
-                    <td align="center"><i class="fa fa-unlock"></i></td>
-                    <td align="center">
-                        <a href="questionAndAnswerEdit.php" data-toggle="tooltip" title="Edit"><i class="fa fa-edit"></i> Edit</a>&nbsp; |&nbsp;
-                        <a href="javascript:void(0);" data-toggle="tooltip" title="Delete" class="deleteConfirm"><i class="fa fa-trash"></i> Delete</a>
-                    </td>
-                </tr>
+
+                <%
+                    ArrayList<QuestionAnswer> questionAnswerArrayList = (ArrayList<QuestionAnswer>) request.getAttribute("questionAnswers");
+
+                    Iterator<QuestionAnswer> questionAnswerIterator = questionAnswerArrayList.iterator();
+
+                    while (questionAnswerIterator.hasNext()) {
+                        QuestionAnswer questionAnswer = questionAnswerIterator.next();
+                        String editQuestionAnswerUrl = "/q-a/edit-question-answer/"+questionAnswer.getId();
+                        AppUser appUser = questionAnswer.getAppUser();
+                        String goToUserProfileUrl = "/users/user-profile/" + appUser.getId();
+                        String deleteQuestionAnswerUrl = "/q-a/delete-question-answer/"+questionAnswer.getId();
+                %>
+
+                    <tr>
+                        <td align="center"><%out.print(questionAnswer.getId());%></td>
+                        <td><a href="<%out.print(goToUserProfileUrl);%>"><%out.print(appUser.getPreferences().getNickname());%></a></td>
+                        <td><a href="<%out.print(editQuestionAnswerUrl);%>"><%out.print(questionAnswer.getTitle());%></a></td>
+
+                        <%String checkClass = "fa fa-square-o"; if (questionAnswer.isAccess()) checkClass = "fa fa-check-square";%>
+                        <td align="center"><i class="<%out.print(checkClass);%>"></i></td>
+
+                        <%String lockClass = "fa fa-unlock"; if (questionAnswer.isAnswered()) lockClass = "fa fa-lock"; %>
+                        <td align="center"><i class="<%out.print(lockClass);%>"></i></td>
+
+                        <td align="center"><%out.print(questionAnswer.getQuestionDate());%></td>
+                        <td align="center">
+                            <a href="<%out.print(editQuestionAnswerUrl);%>" data-toggle="tooltip" title="Edit"><i class="fa fa-edit"></i> Edit</a>&nbsp; |&nbsp;
+                            <a href="<%out.print(deleteQuestionAnswerUrl);%>" data-toggle="tooltip" title="Delete" class="deleteConfirm"><i class="fa fa-trash"></i> Delete</a>
+                        </td>
+                    </tr>
+                <%}%>
                 </tbody>
                 <!-- #End Items list -->
 
