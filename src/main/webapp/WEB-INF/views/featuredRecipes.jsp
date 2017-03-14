@@ -47,7 +47,7 @@
             <h3><i class="fa fa-list-ul"></i>Featured recipes</h3>
 
             <div class="mb20">
-                <a href="/guide/add-recipe" class="btn btn-primary">Add new recipe</a>
+                <a href="/guide/add-recipe" class="btn btn-primary"><i class="fa fa-plus-circle mr10"></i>Add new recipe</a>
             </div>
 
             <table id="dataTable" class="table table-striped table-bordered" width="100%" cellspacing="0">

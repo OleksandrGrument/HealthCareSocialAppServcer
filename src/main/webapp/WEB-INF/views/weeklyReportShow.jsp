@@ -151,7 +151,7 @@
             <!-- #End User chart information -->
 
             <div class="mt10">
-                <a class="btn btn-primary" href="<%out.print("/users/downloadWeeklyReport/"+user.getId()+"/"+weekReport.getCountWeekOfYear());%>">Download Excel</a>
+                <a class="btn btn-primary" href="<%out.print("/users/downloadWeeklyReport/"+user.getId()+"/"+weekReport.getCountWeekOfYear());%>"><i class="fa fa-file-excel-o mr10"></i>Download Excel</a>
             </div>
 
             <div class="mt20 delimiter">

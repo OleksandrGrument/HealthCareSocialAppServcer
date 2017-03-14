@@ -412,7 +412,7 @@
 
                 <div class="mt20">
                     <a href="<% out.print("/users/user-profile/" + user.getId()); %>" class="btn btn-default">Back</a>
-                    <button type="submit" class="btn btn-primary">Confirm</button>
+                    <button type="submit" class="btn btn-primary">Save</button>
                 </div>
             </form>
 

@@ -46,7 +46,7 @@
             <h3><i class="fa fa-list-ul"></i>Fertilization guide</h3>
 
             <div class="mb20">
-                <a href="/guide/add-fertilization" class="btn btn-primary">Add new guide</a>
+                <a href="/guide/add-fertilization" class="btn btn-primary"><i class="fa fa-plus-circle mr10"></i>Add new guide</a>
             </div>
 
             <table id="dataTable" class="table table-striped table-bordered" width="100%" cellspacing="0">

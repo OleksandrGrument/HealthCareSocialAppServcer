@@ -73,6 +73,36 @@ jQuery(document).ready(function($) {
         maxFilesNum: 10,
     });
 
+    // pushNotificationsForm from validation
+    $('#pushNotificationsForm').formValidation({
+        framework: 'bootstrap',
+        excluded: ':disabled',
+        icon: {
+            valid: 'glyphicon glyphicon-ok',
+            invalid: 'glyphicon glyphicon-remove',
+            validating: 'glyphicon glyphicon-refresh'
+        },
+        fields: {
+            phoneNumber: {
+                validators: {
+                    notEmpty: {
+                        message: 'The notice id is required'
+                    },
+                    regexp: {
+                        message: 'The notice id can only contain the digits',
+                        regexp: /^[0-9  ]+$/
+                    }
+                }
+            },
+            notification: {
+                validators: {
+                    notEmpty: {
+                        message: 'The notification is required'
+                    }
+                }
+            }
+        }
+    });
 });
 
 

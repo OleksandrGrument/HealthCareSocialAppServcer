@@ -48,7 +48,7 @@
             <h3><i class="fa fa-file-text-o"></i><%out.print(title);%></h3>
 
             <div class="mb20">
-                <a href="<%out.print("/my/new/"+type);%>" class="btn btn-primary">Add new</a>
+                <a href="<%out.print("/my/new/"+type);%>" class="btn btn-primary"><i class="fa fa-plus-circle mr10"></i>Add new story</a>
             </div>
 
             <table id="dataTable" class="table table-striped table-bordered" width="100%" cellspacing="0">

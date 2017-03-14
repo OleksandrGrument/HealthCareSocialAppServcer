@@ -42,8 +42,9 @@ public class SecurityConfiguration extends WebSecurityConfigurerAdapter {
 
                 .antMatchers("/", "/list")
                 .access("hasRole('ADMIN') or hasRole('MANAGER') or hasRole('DBA')")
-                .antMatchers("/q-a/**", "/users/**", "/report/**", "/guide/**", "/notice/**", "/my/**").access("hasRole('MANAGER')").antMatchers("/users/")
-                .access("hasRole('ADMIN') or hasRole('DBA')").and().formLogin().loginPage("/main")
+                .antMatchers("/q-a/**", "/users/**", "/report/**", "/guide/**", "/notice/**", "/my/**").access("hasRole('MANAGER')")
+                .antMatchers("/user-app").permitAll()
+                .and().formLogin().loginPage("/main")
                 .loginProcessingUrl("/login").usernameParameter("ssoId").passwordParameter("password").and()
                 .rememberMe().rememberMeParameter("remember-me").tokenRepository(tokenRepository)
                 .tokenValiditySeconds(86400).and().exceptionHandling().accessDeniedPage("/access-denied").and().csrf().disable();

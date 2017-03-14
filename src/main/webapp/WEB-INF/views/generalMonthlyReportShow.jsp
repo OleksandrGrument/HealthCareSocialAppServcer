@@ -152,7 +152,7 @@
             <!-- #End User chart information -->
 
             <div class="mt10">
-                <a class="btn btn-primary" href="<%out.print("/users/downloadMonthlyReport/"+user.getId()+"/"+month+"/"+year);%>">Download Excel</a>
+                <a class="btn btn-primary" href="<%out.print("/users/downloadMonthlyReport/"+user.getId()+"/"+month+"/"+year);%>"><i class="fa fa-file-excel-o mr10"></i>Download Excel</a>
             </div>
 
             <div class="mt20 delimiter">

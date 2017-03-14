@@ -90,7 +90,7 @@ public class UsersController {
     BasicQuestionsService basicQuestionsService;
 
 
-    @RequestMapping(value = "/users", method = RequestMethod.POST, produces = {"application/json; charset=UTF-8"})
+    @RequestMapping(value = "/users-app", method = RequestMethod.POST, produces = {"application/json; charset=UTF-8"})
     @ResponseStatus(value = HttpStatus.OK)
     public
     @ResponseBody
