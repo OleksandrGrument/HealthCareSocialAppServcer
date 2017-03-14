@@ -9,7 +9,7 @@
                 <a href="javascript:void(0);" class="dropdown-toggle avatar" data-toggle="dropdown"><i class="fa fa-user-o"></i></a>
                 <ul class="dropdown-menu">
                   <%--  <li class="dropdown-menu-header text-center">Hello, Maxim!</li>--%>
-                    <li><a href="javascript:void(0);"><i class="fa fa-cog"></i> Settings</a></li>
+                    <li><a href="/setting/"><i class="fa fa-cog"></i> Settings</a></li>
                     <li><a href="/logout"><i class="fa fa-sign-out"></i> Logout</a></li>
                 </ul>
             </li>

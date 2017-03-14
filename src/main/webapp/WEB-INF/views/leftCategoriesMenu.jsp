@@ -31,7 +31,7 @@
             </ul>
 
         </li>
-        <li><a href="/test/employee"><i class="fa fa-cogs" aria-hidden="true"></i> Settings</a></li>
+        <li><a href="/setting/"><i class="fa fa-cogs" aria-hidden="true"></i> Settings</a></li>
     </ul>
     <div class="copyright">2017 &copy; ComeOnBaby</div>
 </aside>

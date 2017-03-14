@@ -1,7 +1,5 @@
 package com.ComeOnBaby.controller;
 
-import com.ComeOnBaby.comparator.NoteByDateComparator;
-import com.ComeOnBaby.excelView.MonthlyWeeklyReportShowXlsx;
 import com.ComeOnBaby.model.AppUser;
 import com.ComeOnBaby.model.Note;
 import com.ComeOnBaby.service.AppUserService;
@@ -16,8 +14,6 @@ import org.springframework.web.bind.annotation.SessionAttributes;
 import org.springframework.web.servlet.ModelAndView;
 
 import java.util.ArrayList;
-import java.util.Collection;
-import java.util.Collections;
 import java.util.List;
 
 @Controller

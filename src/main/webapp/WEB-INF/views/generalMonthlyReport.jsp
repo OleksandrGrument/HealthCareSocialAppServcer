@@ -76,7 +76,8 @@
 
                 <!-- Items list -->
                 <tbody>
-                    <%for(int i = 0; i < allAppUserNotes.size(); i++){ %>
+                    <%for(int i = 0; i < allAppUserNotes.size(); i++){
+                    if(listUsersByNoteByMonth.get(i).getId()!=1){%>
                         <tr>
                             <td align="center"><%out.print(allAppUserNotes.get(i).getUser_id());%></td>
                             <td><%out.print(listUsersByNoteByMonth.get(i).getEmail());%></td>
@@ -86,7 +87,7 @@
                                 <a href="<%out.print("/report/generalMonthlyReportShow/"+listUsersByNoteByMonth.get(i).getId()+"/"+dateFormatLink.format(allAppUserNotes.get(i).getDate()));%>"><%out.print(dateFormatOut.format(allAppUserNotes.get(i).getDate()));%></a>
                             </td>
                         </tr>
-                    <%}%>
+                    <%}}%>
                 </tbody>
                 <!-- #End Items list -->
 

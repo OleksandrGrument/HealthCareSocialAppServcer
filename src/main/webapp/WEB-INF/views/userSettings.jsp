@@ -1,3 +1,4 @@
+<%@ page import="com.ComeOnBaby.model.User" %>
 <%@ taglib prefix="spring" uri="http://www.springframework.org/tags" %>
 <%@ page language="java" pageEncoding="UTF-8"%>
 <%@ page contentType="text/html;charset=UTF-8" %>
@@ -38,12 +39,14 @@
 
         <%@ include file="topLine.jsp" %>
 
+        <% User userManager = (User) request.getAttribute("userManager");%>
+
         <!-- Content section -->
         <section class="container-fluid content">
             <h3><i class="fa fa-cog"></i>Settings</h3>
 
             <!-- Edit form -->
-            <form action="" method="post">
+            <form action="/setting/saveSetting" method="post">
                 <div class="row">
                     <div class="col-md-6">
 
@@ -51,31 +54,31 @@
 
                         <div class="form-group delimiter mt10 mb30">
                             <label for="email_notifications">E-mail notifications</label>
-                            <input type="email" name="email_notifications" id="email_notifications" class="form-control" placeholder="E-mail notifications" required/>
+                            <input type="email" name="email_notifications" id="email_notifications" class="form-control" placeholder="E-mail notifications" required value="<%out.print(userManager.getEmail());%>"/>
                         </div>
 
                         <h4 class="">Change password</h4>
 
                         <div class="form-group delimiter mt10">
                             <label for="old_password">Old password</label>
-                            <input type="password" name="old_password" id="old_password" class="form-control" placeholder="Old password" required/>
+                            <input type="password" name="old_password" id="old_password" class="form-control" placeholder="Old password"/>
                         </div>
 
                         <div class="form-group">
                             <label for="new_password">New password</label>
-                            <input type="password" name="password" id="new_password" class="form-control" placeholder="New password" required/>
+                            <input type="password" name="password" id="new_password" class="form-control" placeholder="New password"/>
                         </div>
 
                         <div class="form-group">
                             <label for="confirm_password">Confirm new password</label>
-                            <input type="password" name="confirm_password" id="confirm_password" class="form-control" placeholder="Confirm new password" required/>
+                            <input type="password" name="confirm_password" id="confirm_password" class="form-control" placeholder="Confirm new password"/>
                         </div>
 
                     </div>
                 </div>
 
                 <div class="mt20 delimiter">
-                    <button class="btn btn-primary">Save</button>
+                    <button type="submit" class="btn btn-primary">Save</button>
                 </div>
 
             </form>
