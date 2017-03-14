@@ -62,6 +62,8 @@ public class CommunityController {
     public static final String GET_NOTICES_OPERATION = "getnotices";
     public static final String DELETE_COMUNITY_RECORD_OPERATION = "deleterecord";
     private final static String GET_Q_A_OPERATION = "getqa";
+    private final static String UPLOAD_ITEM_Q_A_TO_SERVER = "upload-item-q-a";
+
 
 
 //    @Autowired
@@ -287,6 +289,10 @@ public class CommunityController {
                 getListComments(bdUser, req, outJSON);
                 break;
             }
+            case UPLOAD_ITEM_Q_A_TO_SERVER: {
+                upload_Q_A_toServer(bdUser.getId(), req, outJSON);
+                break;
+            }
 
             case GET_Q_A_OPERATION: {
                 getQ_A(outJSON);
@@ -436,6 +442,7 @@ public class CommunityController {
         js.put(BLOGTYPE, 1);
         js.put(BLOGTITLE, notice.getTitle());
         js.put(BLOGTEXT, notice.getText());
+        if(notice.getImages() != null) js.put(BLOGIMAGES, notice.getImages());
         return js;
     }
 
@@ -602,7 +609,7 @@ public class CommunityController {
 
         JSONArray jsonArray = new JSONArray();
 
-        for (QuestionAnswer questionAnswer : questionAnswerList) {
+        for (QuestionAnswer questionAnswer : questionAnswerList) { // TODO поставить условие на свои записи и без запрета
             jsonArray.put(get_Q_A_JSON(questionAnswer));
         }
         outJSON.put(DATA,jsonArray.toString());
@@ -627,6 +634,29 @@ public class CommunityController {
             if (pr.getNickname() != null) outQ_A.put(USERNICKNAME, pr.getNickname());
         }
         return outQ_A;
+    }
+
+    private void upload_Q_A_toServer (Long userID, CommunityRequest req, JSONObject outJSON) {
+        Blog blog = new Blog();
+        File[] images = null;
+        try {
+            images = saveImagesToStorage(req.getBitmaps());
+            blog.setImages(getStringFileNames(images, "<>"));
+            blog.setId_user(userID);
+            blog.setTitle(req.getTitle());
+            blog.setText(req.getContent());
+            blog.setType(req.getType());
+            blog.setDatetime(Calendar.getInstance().getTime());
+            blogService.addNewBlog(blog);
+        } catch (Exception exc) {
+            exc.printStackTrace();
+            removeFiles(images);
+            //outJSON.put(MESSAGE, ServerResponseAnswersConstant.MSG_SAVE_COMUNITY_RECORD_FAIL);
+            outJSON.put(MESSAGE, exc.getMessage());
+            return;
+        }
+        outJSON.put(RESULT, SUCCESS);
+        outJSON.put(MESSAGE, ServerResponseAnswersConstant.MSG_SAVE_COMUNITY_RECORD_SUCCESS);
     }
 
     //EXCEPTION
