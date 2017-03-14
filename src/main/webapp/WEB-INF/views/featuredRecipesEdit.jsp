@@ -84,7 +84,7 @@
 
                 <div class="mt20 delimiter">
                     <a href="/guide/featured-recipes" class="btn btn-default">Back</a>
-                    <button class="btn btn-primary" type="submit">Confirm</button>
+                    <button class="btn btn-primary" type="submit">Save</button>
                 </div>
             </form>
             <!-- #End Edit form -->

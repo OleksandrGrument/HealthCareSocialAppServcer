@@ -102,7 +102,7 @@
 
                 <div class="mt20 delimiter">
                     <a href="/notice/events" class="btn btn-default">Back</a>
-                    <button type="submit" class="btn btn-primary">Confirm</button>
+                    <button type="submit" class="btn btn-primary">Save</button>
                 </div>
             </form>
             <!-- #End Edit form -->

@@ -46,7 +46,7 @@
             <h3><i class="fa fa-calendar"></i>Notice / Event</h3>
 
             <div class="mb20">
-                <a href="/notice/add-notice" class="btn btn-primary">Add new notice / event</a>
+                <a href="/notice/add-notice" class="btn btn-primary"><i class="fa fa-plus-circle mr10"></i>Add new notice / event</a>
             </div>
 
             <table id="dataTable" class="table table-striped table-bordered" width="100%" cellspacing="0">
