@@ -50,14 +50,22 @@
                 <div class="row">
                     <div class="col-md-6">
 
-                        <h4 class="">Notifications</h4>
+                        <!-- Alert message -->
+                        <div class="alert alert-success">
+                            <a href="#" class="close" data-dismiss="alert" aria-label="close">&times;</a>
+                            <strong>Good!</strong>
+                            Your information was updated
+                        </div>
+                        <!-- #End Alert message -->
+
+                        <h4>Notifications</h4>
 
                         <div class="form-group delimiter mt10 mb30">
                             <label for="email_notifications">E-mail notifications</label>
                             <input type="email" name="email_notifications" id="email_notifications" class="form-control" placeholder="E-mail notifications" required value="<%out.print(userManager.getEmail());%>"/>
                         </div>
 
-                        <h4 class="">Change password</h4>
+                        <h4>Change password</h4>
 
                         <div class="form-group delimiter mt10">
                             <label for="old_password">Old password</label>

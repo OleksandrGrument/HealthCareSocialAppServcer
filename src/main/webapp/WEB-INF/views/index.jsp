@@ -39,7 +39,7 @@
 
             <button class="btn btn-block btn-signin" type="submit">Sign in</button>
         </form>
-    <%--    <a href="javascript:void(0);" class="forgot-password">Forgot the password?</a>--%>
+        <div class="text-center mt30 copyright">2017 © ComeOnBaby</div>
     </div>
 </div>
 <!-- #End Sign In -->

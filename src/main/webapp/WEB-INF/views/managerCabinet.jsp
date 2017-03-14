@@ -54,7 +54,7 @@
             <table id="dataTable" class="table table-striped table-bordered" width="100%" cellspacing="0">
                 <thead>
                 <tr>
-                    <th>ID</th>
+                    <th width="20">ID</th>
                     <th>Login</th>
                     <th>E-mail</th>
                     <th>Birthday</th>
