@@ -4,16 +4,12 @@
 <script src="/resources/js/jquery/jquery.mousewheel.min.js"></script>
 <script src="/resources/js/jquery/jquery.fancybox.min.js"></script>
 <script src="/resources/js/jquery/jquery.sweet-alert.min.js"></script>
-<script src="/resources/js/jquery/jquery.timeago.js"></script>
-<script src="/resources/js/jquery/jquery.timeago.ko.js"></script>
 
 <!-- Bootstrap -->
 <script src="/resources/js/bootstrap/bootstrap.min.js"></script>
 <script src="/resources/js/bootstrap/bootstrap-moment.min.js"></script>
 <script src="/resources/js/bootstrap/bootstrap-datetimepicker.min.js"></script>
-<script src="/resources/js/bootstrap/bootstrap-form-helpers.min.js"></script>
 <script src="/resources/js/bootstrap/bootstrap-select.min.js"></script>
-<script src="/resources/js/bootstrap/bootstrap.validator.min.js"></script>
 <script src="/resources/js/bootstrap/bootstrap-fileinput.min.js"></script>
 
 <!-- Data Tables -->
