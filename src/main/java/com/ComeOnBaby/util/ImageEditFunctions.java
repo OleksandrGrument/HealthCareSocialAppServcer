@@ -1,8 +1,11 @@
 package com.ComeOnBaby.util;
 
 
+import com.ComeOnBaby.enums.MainPathEnum;
+import com.ComeOnBaby.model.RecipeGuide;
 import org.springframework.web.multipart.MultipartFile;
 
+import java.io.File;
 import java.util.ArrayList;
 import java.util.Arrays;
 
@@ -57,6 +60,15 @@ public class ImageEditFunctions {
             noticeFileNames.append(name + "<>");
         }
         return noticeFileNames.toString();
+    }
+
+    public static void deleteImage(String filePath){
+        if (filePath!=null) {
+            String[] strAdress = filePath.split("/");
+            String fileName = strAdress[strAdress.length - 1];
+            File file = new File(MainPathEnum.mainPath + "/pictures/" + fileName);
+            file.delete();
+        }
     }
 
  /*   public static String saveOneImageAndReturnName (String images , MultipartFile[] files){

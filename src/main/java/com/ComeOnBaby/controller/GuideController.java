@@ -5,6 +5,7 @@ import com.ComeOnBaby.model.FertilizationGuide;
 import com.ComeOnBaby.model.RecipeGuide;
 import com.ComeOnBaby.service.FertilizationGuideService;
 import com.ComeOnBaby.service.RecipeGuideService;
+import com.ComeOnBaby.util.ImageEditFunctions;
 import com.ComeOnBaby.util.SaveFile;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -94,6 +95,7 @@ public class GuideController {
                     String pathToSaveFile = "pictures/";
                     SaveFile saveFile = new SaveFile(pathToSaveFile, files);
                     ArrayList<String> fileNames = saveFile.saveFileAndGetName();
+                    if (recipeGuide.getImageThumbnail()!=null) ImageEditFunctions.deleteImage(recipeGuide.getImageThumbnail());
                     recipeGuide.setImageThumbnail(MainPathEnum.mainWebPath + "show-image/" + fileNames.get(0));
                 }
             }
@@ -107,6 +109,8 @@ public class GuideController {
     public ModelAndView deleteRecipe(@PathVariable Long id) {
 
         RecipeGuide recipeGuide = recipeGuideService.getRecipeGuideById(id);
+
+        ImageEditFunctions.deleteImage(recipeGuide.getImageThumbnail());
 
         recipeGuideService.deleteRecipeGuide(recipeGuide);
 
@@ -172,6 +176,7 @@ public class GuideController {
                 String pathToSaveFile = "pictures/";
                 SaveFile saveFile = new SaveFile(pathToSaveFile, files);
                 ArrayList<String> fileNames = saveFile.saveFileAndGetName();
+                if (fertilizationGuide.getImage()!=null) ImageEditFunctions.deleteImage(fertilizationGuide.getImage());
                 fertilizationGuide.setImage(MainPathEnum.mainWebPath + "show-image/" + fileNames.get(0));
                 fertilizationGuideService.addNewFertilizationGuide(fertilizationGuide);
             }
@@ -189,6 +194,7 @@ public class GuideController {
                     String pathToSaveFile = "pictures/";
                     SaveFile saveFile = new SaveFile(pathToSaveFile, files);
                     ArrayList<String> fileNames = saveFile.saveFileAndGetName();
+                    if (fertilizationGuide.getImage()!=null) ImageEditFunctions.deleteImage(fertilizationGuide.getImage());
                     fertilizationGuide.setImage(MainPathEnum.mainWebPath + "show-image/" + fileNames.get(0));
                 }
             }
@@ -203,6 +209,7 @@ public class GuideController {
 
         FertilizationGuide fertilizationGuide = fertilizationGuideService.getFertilizationGuideById(id);
 
+        ImageEditFunctions.deleteImage(fertilizationGuide.getImage());
         fertilizationGuideService.deleteFertilizationGuide(fertilizationGuide);
 
         return new ModelAndView("redirect:/guide/fertilization");
