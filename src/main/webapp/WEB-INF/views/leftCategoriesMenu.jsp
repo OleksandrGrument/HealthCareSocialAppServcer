@@ -22,7 +22,7 @@
                 <li><a href="/q-a/list"><i class="fa fa-angle-double-right" aria-hidden="true"></i> Q &amp; A list</a></li>
             </ul>
         </li>
-        <li><a href="javascript:void(0);"><i class="fa fa-envelope" aria-hidden="true"></i> Push</a></li>
+        <li><a href="/push/notification"><i class="fa fa-envelope" aria-hidden="true"></i> Push</a></li>
         <li>
             <a href="javascript:void(0);"><i class="fa fa-bar-chart" aria-hidden="true"></i> Report</a>
             <ul class="sub-menu">

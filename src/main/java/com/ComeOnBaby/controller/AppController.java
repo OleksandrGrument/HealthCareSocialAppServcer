@@ -2,10 +2,13 @@ package com.ComeOnBaby.controller;
 
 
 import com.ComeOnBaby.enums.MainPathEnum;
+import com.ComeOnBaby.model.GoogleCloudMessageUser;
 import com.ComeOnBaby.model.User;
 import com.ComeOnBaby.model.UserProfile;
+import com.ComeOnBaby.service.GoogleCloudMessageService;
 import com.ComeOnBaby.service.UserProfileService;
 import com.ComeOnBaby.service.UserService;
+import org.json.JSONObject;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.MessageSource;
 import org.springframework.security.authentication.AuthenticationTrustResolver;
@@ -16,21 +19,16 @@ import org.springframework.security.web.authentication.rememberme.PersistentToke
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.ModelMap;
 import org.springframework.util.FileCopyUtils;
-import org.springframework.validation.BindingResult;
-import org.springframework.validation.FieldError;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.servlet.ModelAndView;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
-import javax.validation.Valid;
 import java.io.*;
 import java.net.URLConnection;
 import java.nio.charset.Charset;
 import java.util.Iterator;
-import java.util.List;
-import java.util.Locale;
 import java.util.Set;
 
 
@@ -177,6 +175,20 @@ public class AppController {
 
         //Copy bytes from source to destination(outputstream in this example), closes both streams.
         FileCopyUtils.copy(inputStream, response.getOutputStream());
+    }
+
+    @Autowired
+    GoogleCloudMessageService googleCloudMessageService;
+
+    @RequestMapping(value = "/google-cloud-id", method = RequestMethod.POST)
+    public void saveGoogleCloudId(@RequestBody String jsonString) {
+
+        JSONObject inJSON = new JSONObject(jsonString);
+
+        GoogleCloudMessageUser googleCloudMessageUser = new GoogleCloudMessageUser();
+        googleCloudMessageUser.setCloudAppKey(inJSON.getString("data"));
+        googleCloudMessageService.addNewGoogleCloudMessage(googleCloudMessageUser);
+
     }
 
 }
