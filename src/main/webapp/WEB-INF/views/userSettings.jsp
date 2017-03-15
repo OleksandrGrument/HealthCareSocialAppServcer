@@ -40,6 +40,11 @@
         <%@ include file="topLine.jsp" %>
 
         <% User userManager = (User) request.getAttribute("userManager");%>
+        <% String message = (String) request.getAttribute("message");
+        if (message == null) {message = "error";}%>
+
+
+
 
         <!-- Content section -->
         <section class="container-fluid content">
@@ -49,15 +54,14 @@
             <form action="/setting/saveSetting" method="post">
                 <div class="row">
                     <div class="col-md-6">
-
-                        <!-- Alert message -->
-                        <div class="alert alert-success">
-                            <a href="#" class="close" data-dismiss="alert" aria-label="close">&times;</a>
-                            <strong>Good!</strong>
-                            Your information was updated
-                        </div>
-                        <!-- #End Alert message -->
-
+                        <%if(message.equals("success")){%>
+                            <!-- Alert message -->
+                            <div class="alert alert-success">
+                                <strong>Good!</strong>
+                                Your information was updated
+                            </div>
+                            <!-- #End Alert message -->
+                        <%}%>
                         <h4>Notifications</h4>
 
                         <div class="form-group delimiter mt10 mb30">
@@ -68,8 +72,8 @@
                         <h4>Change password</h4>
 
                         <div class="form-group delimiter mt10">
-                            <label for="old_password">Old password</label>
-                            <input type="password" name="old_password" id="old_password" class="form-control" placeholder="Old password"/>
+                            <%--<label for="old_password">Old password</label>
+                            <input type="password" name="old_password" id="old_password" class="form-control" placeholder="Old password"/>--%>
                         </div>
 
                         <div class="form-group">

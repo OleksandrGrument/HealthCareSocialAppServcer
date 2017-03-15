@@ -344,7 +344,7 @@ public class UserManagementController {
         List<Note> notes = noteService.findUserNotes(user);
 
         DataNoteByMonthWeek dataNoteByWeek = new DataNoteByMonthWeek(notes, countWeekOfYear);
-        WeekReportInformation weekReportInformation = new WeekReportInformation(dataNoteByWeek.getDataNoteByMonthWeek().get(0).getDate());
+        WeekReportInformation weekReportInformation = new WeekReportInformation(dataNoteByWeek.getDataNoteByMonthWeek().get(0));
 
 
         weeklyReportShow.addObject("user", user);

@@ -28,31 +28,36 @@ public class SettingController {
         User userManager = userService.findById(userId);
 
         userSettings.addObject("userManager", userManager);
-        return  userSettings;
+        return userSettings;
     }
 
     @RequestMapping(value = "/saveSetting", method = RequestMethod.POST)
     public ModelAndView saveSetting(HttpSession httpSession, @RequestParam("email_notifications") String emailNotifications,
-                                    @RequestParam("old_password") String oldPassword, @RequestParam("password") String password,
+                                    @RequestParam("password") String password,
                                     @RequestParam("confirm_password") String confirmPassword) {
+
+        ModelAndView saveSetting = new ModelAndView("userSettings");
 
         int userId = (Integer) httpSession.getAttribute("UserId");
         User userManager = userService.findById(userId);
 
-        if (!emailNotifications.equals(userManager.getEmail())){
+
+        if (!emailNotifications.equals(userManager.getEmail())) {
             System.out.println("======change mail!!!");
             userManager.setEmail(emailNotifications);
             userService.updateUser(userManager);
+            saveSetting.addObject("message", "success");
         }
 
-
-        if(!oldPassword.equals("") && oldPassword.equals(userManager.getPassword())){
-            if (password.equals(confirmPassword)){
+        if (!password.equals("")) {
+            if (password.equals(confirmPassword)) {
                 userManager.setPassword(password);
                 userService.updateUser(userManager);
+                saveSetting.addObject("message", "success");
             }
         }
 
-        return new ModelAndView("redirect:/setting/");
+        saveSetting.addObject("userManager", userManager);
+        return saveSetting;
     }
 }
