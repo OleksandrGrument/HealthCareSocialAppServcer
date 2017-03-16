@@ -69,25 +69,25 @@
                 <!-- Items list -->
                 <tbody>
                 <%
-                    Date date = notices.get(0).getDate();
                     SimpleDateFormat dateFormat = new SimpleDateFormat("MM.yyyy");
                     SimpleDateFormat dateFormat1 = new SimpleDateFormat("MM/yyyy");
                 %>
-
-                <tr>
-                    <td><a href="<%out.print("/users/monthlyReportShow/"+notices.get(0).getAppUser().getId()+"/"+dateFormat1.format(date));%>"><%out.print(dateFormat.format(date));%></a></td>
-                    <td>Good</td>
-                </tr>
-
-                <%for(Note note: notices){
-                    if(!dateFormat.format(note.getDate()).equals(dateFormat.format(date))){%>
-                        <tr>
-                            <td><a href="<%out.print("/users/monthlyReportShow/"+note.getAppUser().getId()+"/"+dateFormat1.format(note.getDate()));%>"><%out.print(dateFormat.format(note.getDate()));%></a></td>
-                            <td>Good</td>
-                        </tr>
-                        <%date = note.getDate();%>
-                    <%}%>
-                <%}%>
+                <%if(notices.size()>0) {
+                    Date date = notices.get(0).getDate();%>
+                    <tr>
+                        <td><a href="<%out.print("/users/monthlyReportShow/"+notices.get(0).getAppUser().getId()+"/"+dateFormat1.format(date));%>"><%out.print(dateFormat.format(date));%></a></td>
+                        <td>Good</td>
+                    </tr>
+                    <%for(Note note: notices){
+                        if(!dateFormat.format(note.getDate()).equals(dateFormat.format(date))){%>
+                            <tr>
+                                <td><a href="<%out.print("/users/monthlyReportShow/"+note.getAppUser().getId()+"/"+dateFormat1.format(note.getDate()));%>"><%out.print(dateFormat.format(note.getDate()));%></a></td>
+                                <td>Good</td>
+                            </tr>
+                            <%date = note.getDate();%>
+                        <%}
+                    }
+                }%>
                 </tbody>
                 <!-- #End Items list -->
 
