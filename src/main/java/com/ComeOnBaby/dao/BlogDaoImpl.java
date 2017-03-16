@@ -68,4 +68,6 @@ public class BlogDaoImpl implements BlogDao {
         query.setParameter("type", type);
         return query.list();
     }
+
+
 }

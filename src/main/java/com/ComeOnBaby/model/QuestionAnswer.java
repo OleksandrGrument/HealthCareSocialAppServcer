@@ -24,7 +24,7 @@ public class QuestionAnswer {
     private Long id;
 
 
-    @ManyToOne(fetch = FetchType.EAGER)
+    @ManyToOne
     @JoinColumn(name = "id_user")
     private AppUser appUser;
 
