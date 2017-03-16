@@ -28,7 +28,7 @@
 
 <!-- 404 error page -->
 <div class="container text-center error-404">
-    <div><a href="/"><img src="images/logo-big.png" /></a></div>
+    <div><a href="/"><img src="/resources/images/logo-big.png" /></a></div>
     <div class="hit-the-floor">404</div>
     <h3>Page not found!</h3>
     <p>The page you are looking for could have been deleted or never have existed :( <br />We are sorry about it...</p>

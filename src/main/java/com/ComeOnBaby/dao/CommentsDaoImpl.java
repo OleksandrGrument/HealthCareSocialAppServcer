@@ -64,9 +64,9 @@ public class CommentsDaoImpl implements CommentsDao {
     @Override
     public List<Comment> findByBlogID(Long blogID) {
         Session session = sessionFactory.getCurrentSession();
-        Criteria criteria = session.createCriteria(Comment.class).add(Restrictions.like("id_blog", blogID));
-        List<Comment> list = criteria.list();
-        return list;
+        Query query = session.createQuery("select blog.comments From Blog blog where blog.id  =  :id");
+        query.setParameter("id", blogID);
+        return query.list();
     }
 }
 
