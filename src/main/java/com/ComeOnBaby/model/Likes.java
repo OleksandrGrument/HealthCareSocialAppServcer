@@ -1,5 +1,6 @@
 package com.ComeOnBaby.model;
 
+import org.hibernate.annotations.GenericGenerator;
 import org.hibernate.validator.constraints.NotEmpty;
 
 import javax.persistence.*;
@@ -12,13 +13,19 @@ public class Likes {
     }
 
     @Id
-    @NotEmpty
+    @GeneratedValue(generator = "increment2")
+    @GenericGenerator(name = "increment2", strategy = "increment")
+    @Column(name = "id", nullable = false)
+    private Long id;
+
+
+   /* @NotEmpty
     @Column(name = "id_blog", nullable = false)
     private Long idBlog;
+*/
 
-
-    @ManyToOne(fetch = FetchType.EAGER)
-    @JoinColumn(name = "id_blog", insertable = false, updatable = false)
+    @ManyToOne
+    @JoinColumn(name = "id_blog")
     private Blog blog;
 
 
@@ -55,11 +62,19 @@ public class Likes {
         this.blog = blog;
     }
 
-    public Long getIdBlog() {
+    public Long getId() {
+        return id;
+    }
+
+    public void setId(Long id) {
+        this.id = id;
+    }
+
+    /*    public Long getIdBlog() {
         return idBlog;
     }
 
     public void setIdBlog(Long idBlog) {
         this.idBlog = idBlog;
-    }
+    }*/
 }

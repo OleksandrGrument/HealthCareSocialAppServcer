@@ -2,6 +2,7 @@ package com.ComeOnBaby.dao;
 
 
 import com.ComeOnBaby.model.Blog;
+import org.hibernate.Hibernate;
 import org.hibernate.Query;
 import org.hibernate.Session;
 import org.hibernate.SessionFactory;
@@ -64,9 +65,11 @@ public class BlogDaoImpl implements BlogDao {
     @Override
     public List<Blog> findBlogByType(Integer type) {
         Session session = sessionFactory.getCurrentSession();
-        Query query = session.createQuery("select blog From Blog blog where blog.type  =  :type");
+        Query query = session.createQuery("select blog From Blog blog LEFT JOIN FETCH blog.comments LEFT JOIN FETCH  blog.likes where blog.type  =  :type");
         query.setParameter("type", type);
-        return query.list();
+        List<Blog> blogs = query.list();
+        return blogs;
+
     }
 
 
