@@ -61,29 +61,38 @@ public class NoteDaoImpl extends AbstractDao<Integer, Note> implements NoteDao {
 
     @Override
     public Note findByUserDate(AppUser user, Date date) {
-        //Session session = sessionFactory.getCurrentSession();
-        Criteria crit = createEntityCriteria();
-        crit.add(Restrictions.eq("user_id", user.getId()));
-        crit.add(Restrictions.eq("date", date));
-        Note note = (Note) crit.uniqueResult();
-        return note;
+
+        Session session = sessionFactory.getCurrentSession();
+        Query query = session.createQuery("select note From Note note where note.appUser.id  =  :id and note.date = :date");
+        query.setParameter("id", user.getId());
+        query.setParameter("date", date);
+        return (Note) query.uniqueResult();
     }
 
     @Override
     public List<Note> findUserNotes(AppUser user) {
-        Criteria crit = createEntityCriteria();
-        crit.add(Restrictions.eq("user_id", user.getId()));
-        List<Note> notes = crit.list();
-        return notes;
+
+        Session session = sessionFactory.getCurrentSession();
+        Query query = session.createQuery("select appUser.notes From AppUser appUser where appUser.id  =  :id");
+        query.setParameter("id", user.getId());
+        return query.list();
     }
 
     @Override
     public List<Note> findUserNotesInterval(AppUser user, Date startDate, Date endDate) {
-        Criteria crit = createEntityCriteria();
+
+        Session session = sessionFactory.getCurrentSession();
+        Query query = session.createQuery("select note From Note note where note.appUser.id  =  :id and note.date between :startDate and :endDate");
+        query.setParameter("id", user.getId());
+        query.setParameter("startDate" , startDate);
+        query.setParameter("endDate", endDate);
+
+
+        /*Criteria crit = createEntityCriteria();
         crit.add(Restrictions.eq("user_id", user.getId()));
         crit.add(Restrictions.between("date", startDate, endDate));
-        List<Note> notes = crit.list();
-        return notes;
+        List<Note> notes = crit.list();*/
+        return query.list();
     }
 
     @Override

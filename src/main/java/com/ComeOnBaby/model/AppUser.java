@@ -5,11 +5,15 @@ import org.hibernate.annotations.GenericGenerator;
 import org.hibernate.validator.constraints.NotEmpty;
 
 import javax.persistence.*;
+import java.util.Set;
 
 
 @Entity
 @Table(name = "users")
 public class AppUser {
+
+    public AppUser() {
+    }
 
     @Id
     @GeneratedValue(generator = "increment2")
@@ -32,7 +36,23 @@ public class AppUser {
     @OneToOne(mappedBy = "appUser", fetch = FetchType.EAGER)
     private Preferences preferences;
 
-    public AppUser() {
+    @OneToMany(mappedBy = "appUser", fetch = FetchType.EAGER)
+    private Set<Note> notes;
+
+    public Long getSocialID() {
+        return socialID;
+    }
+
+    public void setSocialID(Long socialID) {
+        this.socialID = socialID;
+    }
+
+    public Set<Note> getNotes() {
+        return notes;
+    }
+
+    public void setNotes(Set<Note> notes) {
+        this.notes = notes;
     }
 
     public void setPreferences(Preferences preferences) {

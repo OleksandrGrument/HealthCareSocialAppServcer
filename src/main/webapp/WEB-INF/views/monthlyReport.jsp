@@ -75,14 +75,14 @@
                 %>
 
                 <tr>
-                    <td><a href="<%out.print("/users/monthlyReportShow/"+user.getId()+"/"+dateFormat1.format(date));%>"><%out.print(dateFormat.format(date));%></a></td>
+                    <td><a href="<%out.print("/users/monthlyReportShow/"+notices.get(0).getAppUser().getId()+"/"+dateFormat1.format(date));%>"><%out.print(dateFormat.format(date));%></a></td>
                     <td>Good</td>
                 </tr>
 
                 <%for(Note note: notices){
                     if(!dateFormat.format(note.getDate()).equals(dateFormat.format(date))){%>
                         <tr>
-                            <td><a href="<%out.print("/users/monthlyReportShow/"+user.getId()+"/"+dateFormat1.format(note.getDate()));%>"><%out.print(dateFormat.format(note.getDate()));%></a></td>
+                            <td><a href="<%out.print("/users/monthlyReportShow/"+note.getAppUser().getId()+"/"+dateFormat1.format(note.getDate()));%>"><%out.print(dateFormat.format(note.getDate()));%></a></td>
                             <td>Good</td>
                         </tr>
                         <%date = note.getDate();%>

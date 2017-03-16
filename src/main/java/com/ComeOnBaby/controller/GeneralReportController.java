@@ -1,10 +1,12 @@
 package com.ComeOnBaby.controller;
 
+import com.ComeOnBaby.comparator.NoteByDateComparator;
 import com.ComeOnBaby.model.AppUser;
 import com.ComeOnBaby.model.Note;
 import com.ComeOnBaby.service.AppUserService;
 import com.ComeOnBaby.service.NoteService;
 import com.ComeOnBaby.util.DataNoteByMonthWeek;
+import com.ComeOnBaby.util.WeekReportInformation;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -13,7 +15,9 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.SessionAttributes;
 import org.springframework.web.servlet.ModelAndView;
 
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
+import java.util.Collections;
 import java.util.List;
 
 @Controller
@@ -32,28 +36,23 @@ public class GeneralReportController {
         ModelAndView generalMonthlyReport = new ModelAndView("generalMonthlyReport");
 
         List<AppUser> allAppUserList = appUserService.getAllUsers();
-        List<Note> allAppUserNotes = new ArrayList<>();
+        List<Note> allAppUserNotesByMonth = new ArrayList<>();
 
         for (AppUser appUser : allAppUserList) {
-            List<Note> notices = noteService.findUserNotes(appUser);
+            List<Note> notices = new ArrayList<>(appUser.getNotes());
+            Collections.sort(notices, new NoteByDateComparator());
             if(notices.size()>0) {
                 Note tempNote = notices.get(0);
-                allAppUserNotes.add(tempNote);
+                allAppUserNotesByMonth.add(tempNote);
                 for (Note note : notices) {
                     if (tempNote.getDate().getMonth() != note.getDate().getMonth()) {
-                        allAppUserNotes.add(note);
+                        allAppUserNotesByMonth.add(note);
                         tempNote = note;
                     }
                 }
             }
         }
-        List<AppUser> listUsersByNoteByMonth = new ArrayList<>();
-        for (Note note : allAppUserNotes){
-            listUsersByNoteByMonth.add(appUserService.findById(note.getUser_id()));
-        }
-
-        generalMonthlyReport.addObject("allAppUserNotes", allAppUserNotes);
-        generalMonthlyReport.addObject("listUsersByNoteByMonth", listUsersByNoteByMonth);
+        generalMonthlyReport.addObject("allAppUserNotesByMonth", allAppUserNotesByMonth);
 
         return generalMonthlyReport;
     }
@@ -64,7 +63,6 @@ public class GeneralReportController {
 
         AppUser user = appUserService.findById(userId);
         List<Note> notices = noteService.findUserNotes(user);
-        //Collections.sort(notices, new NoteByDateComparator());
 
         DataNoteByMonthWeek dataNoteByMonth = new DataNoteByMonthWeek(notices, month, year);
 
@@ -86,6 +84,45 @@ public class GeneralReportController {
 
         ModelAndView generalWeeklyReport = new ModelAndView("generalWeeklyReport");
 
+        List<AppUser> allAppUserList = appUserService.getAllUsers();
+        List<Note> allAppUserNotesByWeek = new ArrayList<>();
+
+        List<WeekReportInformation> weekReportInformationAllUsers = new ArrayList<>();
+
+        for (AppUser appUser : allAppUserList) {
+            List<Note> notices = new ArrayList<>(appUser.getNotes());
+            Collections.sort(notices, new NoteByDateComparator());
+
+            DataNoteByMonthWeek dataNoteByMonthWeek = new DataNoteByMonthWeek(notices);
+            weekReportInformationAllUsers.addAll(dataNoteByMonthWeek.weekReportInformation());
+
+        }
+        generalWeeklyReport.addObject("weekReportInformationAllUsers", weekReportInformationAllUsers);
+
         return generalWeeklyReport;
     }
+
+    @RequestMapping(value = "/generalWeeklyReportShow/{userId}/{countWeekOfYear}", method = RequestMethod.GET)
+    public ModelAndView weeklyReportShow(@PathVariable Long userId, @PathVariable int countWeekOfYear) {
+        ModelAndView weeklyReportShow = new ModelAndView("generalWeeklyReportShow");
+
+
+        System.out.println("countWeekOfYear in controller " + countWeekOfYear);
+        AppUser user = appUserService.findById(userId);
+        List<Note> notes = noteService.findUserNotes(user);
+
+        DataNoteByMonthWeek dataNoteByWeek = new DataNoteByMonthWeek(notes, countWeekOfYear);
+        WeekReportInformation weekReportInformation = new WeekReportInformation(dataNoteByWeek.getDataNoteByMonthWeek().get(0));
+
+
+        weeklyReportShow.addObject("user", user);
+        weeklyReportShow.addObject("weekReportInformation", weekReportInformation);
+        weeklyReportShow.addObject("dataNoteByWeek", dataNoteByWeek);
+
+        weeklyReportShow.addObject("daysInWeekString", dataNoteByWeek.daysInWeekString());
+        weeklyReportShow.addObject("valueInWeekString", dataNoteByWeek.valueInWeekString());
+
+        return weeklyReportShow;
+    }
+
 }

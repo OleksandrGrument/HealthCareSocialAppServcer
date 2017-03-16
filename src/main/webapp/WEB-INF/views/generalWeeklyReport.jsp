@@ -1,3 +1,7 @@
+<%@ page import="com.ComeOnBaby.model.Note" %>
+<%@ page import="com.ComeOnBaby.model.AppUser" %>
+<%@ page import="java.util.List" %>
+<%@ page import="com.ComeOnBaby.util.WeekReportInformation" %>
 <%@ taglib prefix="spring" uri="http://www.springframework.org/tags" %>
 <%@ page language="java" pageEncoding="UTF-8"%>
 <%@ page contentType="text/html;charset=UTF-8" %>
@@ -38,6 +42,8 @@
 
         <%@ include file="topLine.jsp" %>
 
+        <% List<WeekReportInformation> weekReportInformations = (List<WeekReportInformation>)request.getAttribute("weekReportInformationAllUsers"); %>
+
         <!-- Content section -->
         <section class="container-fluid content">
             <h3><i class="fa fa-bar-chart"></i>Users weekly reports</h3>
@@ -64,27 +70,16 @@
 
                 <!-- Items list -->
                 <tbody>
-                <tr>
-                    <td align="center">10</td>
-                    <td><a href="mailto:some@server.com.ua">some@server.com.ua</a></td>
-                    <td><a href="userProfileShow.php">Tiger Nixon</a></td>
-                    <td align="center" class="marker"><span class="good">Good</span></td>
-                    <td align="center"><a href="generalWeeklyReportShow.php">01-01-2017 &mdash; 07-01-2017</a></td>
-                </tr>
-                <tr>
-                    <td align="center">10</td>
-                    <td><a href="mailto:some@server.com.ua">some@server.com.ua</a></td>
-                    <td><a href="userProfileShow.php">Tiger Nixon</a></td>
-                    <td align="center" class="marker"><span class="excellent">Excellent</span></td>
-                    <td align="center"><a href="generalWeeklyReportShow.php">07-01-2017 &mdash; 14-01-2017</a></td>
-                </tr>
-                <tr>
-                    <td align="center">10</td>
-                    <td><a href="mailto:some@server.com.ua">some@server.com.ua</a></td>
-                    <td><a href="userProfileShow.php">Tiger Nixon</a></td>
-                    <td align="center" class="marker"><span class="bad">Bad</span></td>
-                    <td align="center"><a href="generalWeeklyReportShow.php">14-01-2017 &mdash; 21-01-2017</a></td>
-                </tr>
+                <%for (WeekReportInformation weekReportInformation : weekReportInformations){
+                    if(weekReportInformation.getNote().getAppUser().getId()!=1){%>
+                    <tr>
+                        <td align="center"><%out.print(weekReportInformation.getNote().getAppUser().getId());%></td>
+                        <td><%out.print(weekReportInformation.getNote().getAppUser().getEmail());%></td>
+                        <td><a href="<%out.print("/users/user-profile/"+weekReportInformation.getNote().getAppUser().getId());%>"><%out.print(weekReportInformation.getNote().getAppUser().getPreferences().getNickname());%></a></td>
+                        <td align="center" class="marker"><span class="good">Good</span></td>
+                        <td align="center"><a href="<%out.print("/report/generalWeeklyReportShow/"+weekReportInformation.getNote().getAppUser().getId()+"/"+weekReportInformation.getCountWeekOfYear());%>"><%out.print(weekReportInformation.getStartOfWeek()+"-"+weekReportInformation.getEndOfWeek());%></a></td>
+                    </tr>
+                <%}}%>
                 </tbody>
                 <!-- #End Items list -->
 

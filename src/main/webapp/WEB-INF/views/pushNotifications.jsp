@@ -1,3 +1,6 @@
+<%@ page import="com.ComeOnBaby.model.PushEvent" %>
+<%@ page import="java.util.ArrayList" %>
+<%@ page import="java.util.Iterator" %>
 <%@ taglib prefix="spring" uri="http://www.springframework.org/tags" %>
 <%@ page language="java" pageEncoding="UTF-8"%>
 <%@ page contentType="text/html;charset=UTF-8" %>
@@ -66,24 +69,22 @@
 
                 <!-- Items list -->
                 <tbody>
-                <tr>
-                    <td align="center">1</td>
-                    <td align="center">35</td>
-                    <td>November with the Ministry of Gender Equality and Family!</td>
-                    <td align="center">15-03-2017 15:56</td>
-                </tr>
-                <tr>
-                    <td align="center">2</td>
-                    <td align="center">33</td>
-                    <td>November with the Ministry of Gender Equality and Family!</td>
-                    <td align="center">12-03-2017 12:36</td>
-                </tr>
-                <tr>
-                    <td align="center">3</td>
-                    <td align="center">28</td>
-                    <td>November with the Ministry of Gender Equality and Family!</td>
-                    <td align="center">05-03-2017 09:16</td>
-                </tr>
+                <%
+                    ArrayList<PushEvent> noticeArrayList = (ArrayList<PushEvent>) request.getAttribute("pushEvents");
+
+                    Iterator<PushEvent> pushEventIterator = noticeArrayList.iterator();
+
+                    while (pushEventIterator.hasNext()) {
+                        PushEvent pushEvent = pushEventIterator.next();
+
+                %>
+                    <tr>
+                        <td align="center"><%out.print(pushEvent.getId());%></td>
+                        <td align="center"><%out.print(pushEvent.getNoticeId());%></td>
+                        <td><%out.print(pushEvent.getNotificationText());%></td>
+                        <td align="center"><%out.print(pushEvent.getQuestionDate().toString().substring(0 ,19));%></td>
+                    </tr>
+                <%}%>
                 </tbody>
                 <!-- #End Items list -->
 
@@ -103,7 +104,7 @@
     <div class="modal-dialog">
 
         <!-- Modal content-->
-        <form method="post" id="pushNotificationsForm" role="form" data-toggle="validator">
+        <form method="post" action="/push/send" id="pushNotificationsForm" role="form" data-toggle="validator">
             <div class="modal-content">
                 <div class="modal-header">
                     <button type="button" class="close" data-dismiss="modal">&times;</button>
@@ -115,18 +116,18 @@
 
                     <div class="form-group">
                         <label for="noticeId" class="control-label">Notice ID</label>
-                        <input type="text" class="form-control form-block" name="phoneNumber" id="noticeId" placeholder="Notice ID" required/>
+                        <input type="text" class="form-control form-block" name="id" id="noticeId" placeholder="Notice ID" required/>
                     </div>
 
                     <div class="form-group">
                         <label for="notification" class="control-label">Notification</label>
-                        <textarea name="notification" id="notification" class="form-control form-block" rows="3" placeholder="Notification" required></textarea>
+                        <textarea name="notificationText" id="notification" class="form-control form-block" rows="3" placeholder="Notification" required></textarea>
                     </div>
 
-                    <div class="form-group">
+          <%--          <div class="form-group">
                         <label class="control-label">Push image</label>
                         <input id="fileInput" name="push_image" type="file" class="file" placeholder="Push image"/>
-                    </div>
+                    </div>--%>
 
                 </div>
                 <!-- #End Modal body -->
@@ -144,6 +145,37 @@
 <!-- #End Push notifications Modal -->
 
 <%@ include file="footerJavaScript.jsp" %>
+
+<script>
+    <%
+        Boolean isSuccess = (Boolean) request.getAttribute("isSuccess");
+        Boolean isFalse = (Boolean) request.getAttribute("isFalse");
+    %>
+    jQuery(document).ready(function() {
+        <%if (isSuccess !=null && isSuccess){%>
+
+                // success
+                swal({
+                    title: 'Great!',
+                    text: 'Push Success!',
+                    type: 'success',
+                    confirmButtonColor: '#307f7a'
+                });
+        <%}
+            if (isFalse !=null && isFalse) {
+        %>
+                // error
+                swal({
+                    title: 'Oops...',
+                    text: 'Notice ID not exist!',
+                    type: 'error',
+                    confirmButtonColor: '#307f7a'
+                });
+
+        <%}%>
+    });
+</script>
+
 
 </body>
 </html>

@@ -1,5 +1,10 @@
 package com.ComeOnBaby.util;
 
+import com.ComeOnBaby.model.AppUser;
+import com.ComeOnBaby.model.Note;
+import com.ComeOnBaby.service.AppUserService;
+import org.springframework.beans.factory.annotation.Autowired;
+
 import java.text.DateFormat;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
@@ -10,11 +15,13 @@ public class WeekReportInformation {
     private String startOfWeek;
     private String endOfWeek;
     private int countWeekOfYear;
+    private Note note;
 
-    public WeekReportInformation(Date date) {
+    public WeekReportInformation(Note note) {
+        this.note = note;
         Calendar calendar = null;
         DateFormat formatter = new SimpleDateFormat("dd-MM-yyyy");
-        String stringDate = formatter.format(date);
+        String stringDate = formatter.format(this.note.getDate());
         try {
             Date newDate = formatter.parse(stringDate);
             calendar = Calendar.getInstance();
@@ -37,6 +44,10 @@ public class WeekReportInformation {
 
     public int getCountWeekOfYear() {
         return countWeekOfYear;
+    }
+
+    public Note getNote() {
+        return note;
     }
 
     private String dateFirstDayOfWeek(Calendar calendar) {

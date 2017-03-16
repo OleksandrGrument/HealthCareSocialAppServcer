@@ -42,8 +42,7 @@
 
         <%@ include file="topLine.jsp" %>
 
-        <%List<Note> allAppUserNotes = (List<Note>) request.getAttribute("allAppUserNotes");%>
-        <%List<AppUser> listUsersByNoteByMonth = (List<AppUser>) request.getAttribute("listUsersByNoteByMonth");%>
+        <%List<Note> notices = (List<Note>) request.getAttribute("allAppUserNotesByMonth");%>
 
         <!-- Content section -->
         <section class="container-fluid content">
@@ -76,15 +75,15 @@
 
                 <!-- Items list -->
                 <tbody>
-                    <%for(int i = 0; i < allAppUserNotes.size(); i++){
-                    if(listUsersByNoteByMonth.get(i).getId()!=1){%>
+                    <%for(Note note : notices){
+                    if(note.getAppUser().getId()!=1){%>
                         <tr>
-                            <td align="center"><%out.print(allAppUserNotes.get(i).getUser_id());%></td>
-                            <td><%out.print(listUsersByNoteByMonth.get(i).getEmail());%></td>
-                            <td><a href="<%out.print("/users/user-profile/"+listUsersByNoteByMonth.get(i).getId());%>"><%out.print(listUsersByNoteByMonth.get(i).getPreferences().getNickname());%></a></td>
+                            <td align="center"><%out.print(note.getAppUser().getId());%></td>
+                            <td><%out.print(note.getAppUser().getEmail());%></td>
+                            <td><a href="<%out.print("/users/user-profile/"+note.getAppUser().getId());%>"><%out.print(note.getAppUser().getPreferences().getNickname());%></a></td>
                             <td align="center" class="marker"><span class="good">Good</span></td>
                             <td align="center">
-                                <a href="<%out.print("/report/generalMonthlyReportShow/"+listUsersByNoteByMonth.get(i).getId()+"/"+dateFormatLink.format(allAppUserNotes.get(i).getDate()));%>"><%out.print(dateFormatOut.format(allAppUserNotes.get(i).getDate()));%></a>
+                                <a href="<%out.print("/report/generalMonthlyReportShow/"+note.getAppUser().getId()+"/"+dateFormatLink.format(note.getDate()));%>"><%out.print(dateFormatOut.format(note.getDate()));%></a>
                             </td>
                         </tr>
                     <%}}%>

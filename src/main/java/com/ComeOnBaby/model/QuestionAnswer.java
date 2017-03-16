@@ -1,8 +1,8 @@
 package com.ComeOnBaby.model;
 
-import org.hibernate.annotations.ColumnDefault;
+
 import org.hibernate.annotations.GenericGenerator;
-import org.hibernate.validator.constraints.NotEmpty;
+
 
 import javax.persistence.*;
 import java.text.SimpleDateFormat;

@@ -16,8 +16,9 @@ public class Note {
     @Column(name = "id")
     private Long id;
 
-    @Column(name = "user_id", nullable = false)
-    private Long user_id;
+    @ManyToOne/*(fetch = FetchType.EAGER)*/
+    @JoinColumn(name = "user_id")
+    private AppUser appUser;
 
 
     @Column(name = "date", nullable = false)
@@ -81,6 +82,7 @@ public class Note {
     private Float bmi;
 
 
+
     public Note() {
     }
 
@@ -92,12 +94,12 @@ public class Note {
         this.id = id;
     }
 
-    public Long getUser_id() {
-        return user_id;
+    public AppUser getAppUser() {
+        return appUser;
     }
 
-    public void setUser_id(Long user_id) {
-        this.user_id = user_id;
+    public void setAppUser(AppUser appUser) {
+        this.appUser = appUser;
     }
 
     public Date getDate() {
@@ -260,30 +262,4 @@ public class Note {
         this.bmi = bmi;
     }
 
-    @Override
-    public String toString() {
-        return "Note{" +
-                "user_id=" + user_id +
-                ", date=" + date +
-                ", bbt=" + bbt +
-                ", recommended_food='" + recommended_food + '\'' +
-                ", recommended_nuts='" + recommended_nuts + '\'' +
-                ", has_nuts=" + has_nuts +
-                ", recommended_tea='" + recommended_tea + '\'' +
-                ", has_tea=" + has_tea +
-                ", has_exercise=" + has_exercise +
-                ", recommended_exercise='" + recommended_exercise + '\'' +
-                ", going_to_bed_from='" + going_to_bed_from + '\'' +
-                ", going_to_bed_to='" + going_to_bed_to + '\'' +
-                ", water_intake=" + water_intake +
-                ", heating_bathing=" + heating_bathing +
-                ", vitamin=" + vitamin +
-                ", folic_acid=" + folic_acid +
-                ", coffee_intake=" + coffee_intake +
-                ", alcohol_intake=" + alcohol_intake +
-                ", smoking=" + smoking +
-                ", emotional_state=" + emotional_state +
-                ", bmi=" + bmi +
-                '}';
-    }
 }

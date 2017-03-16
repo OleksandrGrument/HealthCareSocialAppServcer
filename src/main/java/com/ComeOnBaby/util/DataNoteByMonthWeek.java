@@ -64,7 +64,7 @@ public class DataNoteByMonthWeek {
             int value = cal.get(Calendar.WEEK_OF_YEAR);
             if (weekValue.indexOf(value) < 0) {
                 weekValue.add(value);
-                weekReportInformation.add(new WeekReportInformation(note.getDate()));
+                weekReportInformation.add(new WeekReportInformation(note));
             }
         }
         return weekReportInformation;

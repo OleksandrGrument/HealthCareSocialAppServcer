@@ -5,6 +5,8 @@ import org.springframework.web.servlet.support.AbstractAnnotationConfigDispatche
 import javax.servlet.FilterRegistration;
 import javax.servlet.ServletContext;
 import javax.servlet.ServletException;
+import javax.servlet.ServletRegistration;
+
 
 public class AppInitializer extends AbstractAnnotationConfigDispatcherServletInitializer {
 
@@ -27,9 +29,13 @@ public class AppInitializer extends AbstractAnnotationConfigDispatcherServletIni
     public void onStartup(ServletContext servletContext) throws ServletException {
         super.onStartup(servletContext);
 
-//        logger.info("Definition UTF-8 Encoding (CharsetFilter())");
         FilterRegistration.Dynamic encodingFilter = servletContext.addFilter("charsetFilter", new CharsetFilter());
         encodingFilter.addMappingForUrlPatterns(null, false, "/*");
     }
 
+    @Override
+    protected void customizeRegistration(ServletRegistration.Dynamic registration) {
+        boolean done = registration.setInitParameter("throwExceptionIfNoHandlerFound", "true"); // -> true
+        if(!done) throw new RuntimeException();
+    }
 }

@@ -189,7 +189,9 @@ public class UsersController {
             outJSON.put(MESSAGE, ServerResponseAnswersConstant.ERR_SAVE_NOTE);
             return outJSON;
         }
-        note.setUser_id(inUser.getId());
+
+        AppUser appUser = userService.findById(inUser.getId());
+        note.setAppUser(appUser);
         Note bdNote = noteService.findByUserDate(inUser, note.getDate());
         if (bdNote == null) {
             noteService.addNewNote(note);
