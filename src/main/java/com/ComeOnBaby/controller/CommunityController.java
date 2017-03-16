@@ -62,9 +62,8 @@ public class CommunityController {
     public static final String GET_NOTICES_OPERATION = "getnotices";
     public static final String DELETE_COMUNITY_RECORD_OPERATION = "deleterecord";
     private final static String GET_Q_A_OPERATION = "getqa";
-    private final static String UPLOAD_ITEM_Q_A_TO_SERVER = "upload-item-q-a";
-
-
+    private final static String UPLOAD_ITEM_Q_A_TO_SERVER = "saveqa";
+    private final static String DELETE_Q_A_RECORD_OPERATION = "delete-q-a";
 
 //    @Autowired
 //    ServletContext context;
@@ -289,13 +288,9 @@ public class CommunityController {
                 getListComments(bdUser, req, outJSON);
                 break;
             }
-            case UPLOAD_ITEM_Q_A_TO_SERVER: {
-                upload_Q_A_toServer(bdUser.getId(), req, outJSON);
-                break;
-            }
 
             case GET_Q_A_OPERATION: {
-                getQ_A(outJSON);
+                getQ_A(outJSON, bdUser);
                 break;
             }
             case DELETE_COMUNITY_RECORD_OPERATION: {
@@ -310,6 +305,88 @@ public class CommunityController {
         System.out.println("Out JSON: " + outJSON.toString()  + "\n");
         return outJSON.toString();
     }
+
+    @RequestMapping(value = "/community-qa", method = RequestMethod.POST, produces={"application/json; charset=UTF-8"})
+    public @ResponseBody String q_aOperation (@RequestBody String body) {
+        JSONObject inJSON = new JSONObject(body);
+        System.out.println("URL_PATH:/community-qa; Controller:q_aOperation(); JSON: "+inJSON.toString());
+
+        JSONObject outJSON = new JSONObject();
+        outJSON.put(RESULT, FAILURE);
+        outJSON.put(OPERATION, inJSON.getString(OPERATION));
+        outJSON.put(MESSAGE, ServerResponseAnswersConstant.ERR_SERVER_ERROR);
+
+        if (!inJSON.has(OPERATION)) throw new IllegalArgumentException(ServerResponseAnswersConstant.ERR_NO_OPERATION);
+        if (!inJSON.has("user")) throw new IllegalArgumentException(ServerResponseAnswersConstant.ERR_NO_USER);
+        JSONObject jsonUser = new JSONObject(inJSON.getString("user"));
+        Gson gson = new Gson();
+        AppUser inUser = gson.fromJson(jsonUser.toString(), AppUser.class);
+        AppUser bdUser = null;
+        if (inUser == null || inUser.getId() != null) {
+            bdUser = userService.findById(inUser.getId());
+        }
+        if (bdUser == null) {
+            outJSON.put(MESSAGE, ServerResponseAnswersConstant.ERR_USER_NOT_FOUND);
+            return outJSON.toString();
+        }
+        switch (inJSON.getString(OPERATION)) {
+            case UPLOAD_ITEM_Q_A_TO_SERVER: {
+                upload_Q_A_toServer(bdUser.getId(), inJSON, outJSON);
+                break;
+            }
+            case DELETE_Q_A_RECORD_OPERATION: {
+                deleteItem_Q_A_Server(bdUser.getId(), inJSON, outJSON);
+                break;
+            }
+            default: {
+                outJSON.put(MESSAGE, ServerResponseAnswersConstant.ERR_UNKNOWN_OPERATION);
+                return outJSON.toString();
+            }
+        }
+        System.out.println("Out JSON: " + outJSON.toString()  + "\n");
+        return outJSON.toString();
+    }
+
+    private JSONObject deleteItem_Q_A_Server(Long userID, JSONObject inJSON, JSONObject outJSON){
+        Gson gson = new Gson();
+        JSONObject jsonUser = new JSONObject(inJSON.getString("user"));
+        AppUser appUser = gson.fromJson(jsonUser.toString(), AppUser.class);
+
+        if (userID == null) {
+            throw new IllegalArgumentException(ServerResponseAnswersConstant.ERR_USER_NOT_FOUND);
+        } else {
+            QuestionAnswer questionAnswer = q_a_service.getQuestionAnswerById(inJSON.getLong("id"));
+            q_a_service.deleteQuestionAnswer(questionAnswer);
+            outJSON.put(RESULT, SUCCESS);
+            outJSON.put(MESSAGE, ServerResponseAnswersConstant.MSG_SAVE_COMUNITY_RECORD_SUCCESS);
+        }
+        return outJSON;
+    }
+
+    private JSONObject upload_Q_A_toServer (Long userID, JSONObject inJSON, JSONObject outJSON) {
+        Gson gson = new Gson();
+        JSONObject jsonUser = new JSONObject(inJSON.getString("user"));
+        AppUser appUser = gson.fromJson(jsonUser.toString(), AppUser.class);
+
+        if (userID == null) {
+            throw new IllegalArgumentException(ServerResponseAnswersConstant.ERR_USER_NOT_FOUND);
+        } else {
+            QuestionAnswer questionAnswer = new QuestionAnswer();
+            questionAnswer.setAppUser(appUser);
+            questionAnswer.setId(userID);
+            questionAnswer.setQuestionText(inJSON.getString("text"));
+            questionAnswer.setTitle(inJSON.getString("title"));
+            questionAnswer.setQuestionDate(Calendar.getInstance().getTime());
+            questionAnswer.setIsAccess(inJSON.getBoolean("is_access"));
+            questionAnswer.setIsAnswered(false);
+
+            q_a_service.addNewQuestionAnswer(questionAnswer);
+            outJSON.put(RESULT, SUCCESS);
+            outJSON.put(MESSAGE, ServerResponseAnswersConstant.MSG_SAVE_COMUNITY_RECORD_SUCCESS);
+        }
+        return outJSON;
+    }
+
 
     //Delete community record operation
     private void deleteCommunityOperation(AppUser user, CommunityRequest req, JSONObject outJSON) {
@@ -601,16 +678,17 @@ public class CommunityController {
 
 
     //Get QuestionAnswer
-    private JSONObject getQ_A(JSONObject outJSON) {
-
+    private JSONObject getQ_A(JSONObject outJSON, AppUser bdUser) {
         List<QuestionAnswer> questionAnswerList = q_a_service.getAllQuestionAnswers();
         outJSON.put(RESULT, SUCCESS);
         outJSON.put(MESSAGE, ServerResponseAnswersConstant.MSG_Q_A_DOWNLOAD_SUCCESS);
 
         JSONArray jsonArray = new JSONArray();
 
-        for (QuestionAnswer questionAnswer : questionAnswerList) { // TODO поставить условие на свои записи и без запрета
-            jsonArray.put(get_Q_A_JSON(questionAnswer));
+        for (QuestionAnswer questionAnswer : questionAnswerList) {
+            if(bdUser.getId().equals(questionAnswer.getAppUser().getId())|| !questionAnswer.isAccess()){
+                jsonArray.put(get_Q_A_JSON(questionAnswer));
+            }
         }
         outJSON.put(DATA,jsonArray.toString());
         return outJSON;
@@ -636,28 +714,6 @@ public class CommunityController {
         return outQ_A;
     }
 
-    private void upload_Q_A_toServer (Long userID, CommunityRequest req, JSONObject outJSON) {
-        Blog blog = new Blog();
-        File[] images = null;
-        try {
-            images = saveImagesToStorage(req.getBitmaps());
-            blog.setImages(getStringFileNames(images, "<>"));
-            blog.setId_user(userID);
-            blog.setTitle(req.getTitle());
-            blog.setText(req.getContent());
-            blog.setType(req.getType());
-            blog.setDatetime(Calendar.getInstance().getTime());
-            blogService.addNewBlog(blog);
-        } catch (Exception exc) {
-            exc.printStackTrace();
-            removeFiles(images);
-            //outJSON.put(MESSAGE, ServerResponseAnswersConstant.MSG_SAVE_COMUNITY_RECORD_FAIL);
-            outJSON.put(MESSAGE, exc.getMessage());
-            return;
-        }
-        outJSON.put(RESULT, SUCCESS);
-        outJSON.put(MESSAGE, ServerResponseAnswersConstant.MSG_SAVE_COMUNITY_RECORD_SUCCESS);
-    }
 
     //EXCEPTION
     @ExceptionHandler(Exception.class)
