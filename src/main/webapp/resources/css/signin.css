@@ -1,10 +1,5 @@
 @charset "utf-8";
-@import url(http://fonts.googleapis.com/earlyaccess/nanumgothic.css);
-@import url(http://fonts.googleapis.com/earlyaccess/nanummyeongjo.css);
-
-
-body, html { font-family: 'Nanum Gothic', Arial, Tahoma, Verdana, sans-serif; height: 100%; font-size: 10pt;
-    background-repeat: no-repeat; background-color: #364150 }
+body, html { background: #364150 no-repeat; }
 
 .card-container.card { max-width: 350px; padding: 20px 40px; }
 .btn { font-weight: 700; height: 36px; -moz-user-select: none; -webkit-user-select: none; user-select: none; cursor: default; }
