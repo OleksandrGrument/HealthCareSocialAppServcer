@@ -41,35 +41,6 @@ public class Notice {
     @Column(name = "images")
     private String images;
 
-    public void rewriteHtml() {
-        StringBuilder sb = new StringBuilder();
-        sb.append("<!DOCTYPE html>");
-        sb.append("<!--[if IE 8]> <html lang='en' class='ie8 no-js'> <![endif]-->");
-        sb.append("<!--[if IE 9]> <html lang='en' class='ie9 no-js'> <![endif]-->");
-        sb.append("<!--[if !IE]><!-->");
-        sb.append("<html lang='en'>");
-        sb.append("<!--<![endif]-->");
-        sb.append("<!-- BEGIN HEAD -->");
-        sb.append("<head>");
-        sb.append("<meta charset='utf-8'/>");
-        sb.append("<title>ComeOnBaby</title>");
-        //sb.append("<meta http-equiv='X-UA-Compatible' content='IE=edge'>");
-        //sb.append("<meta content='width=device-width, initial-scale=1.0' name='viewport'/>");
-        sb.append("<meta http-equiv='Content-type' content='text/html; charset=utf-8'>");
-        //sb.append("<meta content='' name='description'/>");
-        //sb.append("<meta content='' name='author'/>");
-        sb.append("</head>");
-        sb.append("<body>");
-        sb.append("<h1>" + title + "</h1>");
-        /*for(ImgText item: imgTexts){
-            sb.append("<div>"+item.getQuestionText()+"</div>");
-        }*/
-        sb.append("</body>");
-        sb.append("</html>");
-  /*      html = sb.toString();*/
-    }
-
-
     public Long getId() {
         return id;
     }

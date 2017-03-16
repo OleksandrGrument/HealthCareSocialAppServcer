@@ -1,7 +1,12 @@
+<%@ page import="org.springframework.util.StringUtils" %>
 <aside class="sidebar-nav">
     <div class="left-top-line logo"><a href="/">ComeOnBaby</a></div>
+    <%
+        String currentPath = (String) request.getAttribute("javax.servlet.forward.request_uri");
+        System.out.println(currentPath);
+    %>
     <ul>
-        <li><a href="/users/"><i class="fa fa-user" aria-hidden="true"></i> Users</a></li>
+        <li <%--<%if(currentPageJsp.equals("managerCabinet.jsp")) out.print("active");%>--%>><a href="/users/"><i class="fa fa-user" aria-hidden="true"></i> Users</a></li>
         <li>
             <a href="/guide/featured-recipes"><i class="fa fa-file" aria-hidden="true"></i> Guide</a>
             <ul class="sub-menu">

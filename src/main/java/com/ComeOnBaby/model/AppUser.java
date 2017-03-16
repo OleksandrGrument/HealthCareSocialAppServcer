@@ -39,7 +39,7 @@ public class AppUser {
     @OneToMany(mappedBy = "appUser"/*, fetch = FetchType.EAGER*/)
     private Set<Note> notes;
 
-    @OneToMany(mappedBy = "appUser"/*, fetch = FetchType.EAGER*/)
+    @OneToMany(mappedBy = "appUser"  /*fetch = FetchType.EAGER*//**//**/)
     private Set<QuestionAnswer> questionAnswers;
 
     public Long getSocialID() {

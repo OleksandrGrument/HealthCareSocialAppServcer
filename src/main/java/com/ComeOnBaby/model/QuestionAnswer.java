@@ -24,7 +24,7 @@ public class QuestionAnswer {
     private Long id;
 
 
-    @ManyToOne
+    @ManyToOne(fetch = FetchType.EAGER)
     @JoinColumn(name = "id_user")
     private AppUser appUser;
 
@@ -117,7 +117,6 @@ public class QuestionAnswer {
     public void setQuestionText(String questionText) {
         this.questionText = questionText;
     }
-
 
     public String getAnswerText() {
         return answerText;

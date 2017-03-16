@@ -13,9 +13,6 @@ import java.util.Date;
 
 public class Preferences {
 
-//    @OneToOne(cascade = CascadeType.ALL)
-//    @PrimaryKeyJoinColumn
-//    private AppUser user;
 
     @Id
     @Column(name = "user_id", nullable = false)

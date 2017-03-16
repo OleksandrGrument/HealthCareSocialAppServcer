@@ -21,8 +21,8 @@ public class QuestionAnswerDaoImpl implements QuestionAnswerDao {
     private SessionFactory sessionFactory;
 
     @Autowired
-    public void setSessionFactory(SessionFactory sf) {
-        this.sessionFactory = sf;
+    public void setSessionFactory(SessionFactory sessionFactory) {
+        this.sessionFactory = sessionFactory;
     }
 
 
@@ -58,15 +58,12 @@ public class QuestionAnswerDaoImpl implements QuestionAnswerDao {
     public List<QuestionAnswer> findQA_ByAccessAndID(Long appUserId)    {
         Session session = sessionFactory.getCurrentSession();
 
-
         Query selectAllWithAccessQuery = session.createQuery("from QuestionAnswer questionAndAndswer where questionAndAndswer.isAccess =:access");
         selectAllWithAccessQuery.setParameter("access" , false);
 
-      /*  Query selectAllUnAccessedQuestions = session.createQuery("select appUser.questionAnswers from AppUser appUser where appUser.id=:id selecthaving appUser.questionAnswers.isAccess =:access" );*/
         Query selectAllUnAccessedQuestions = session.createQuery("select questionAnswer from QuestionAnswer questionAnswer where questionAnswer.appUser.id=:id and questionAnswer.isAccess =:access" );
         selectAllUnAccessedQuestions.setParameter("id" , appUserId);
         selectAllUnAccessedQuestions.setParameter("access" , true);
-
 
         List<QuestionAnswer> questionAnswers = selectAllWithAccessQuery.list();
         questionAnswers.addAll(selectAllUnAccessedQuestions.list());

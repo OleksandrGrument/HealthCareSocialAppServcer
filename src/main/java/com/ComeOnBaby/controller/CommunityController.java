@@ -373,7 +373,7 @@ public class CommunityController {
         } else {
             QuestionAnswer questionAnswer = new QuestionAnswer();
             questionAnswer.setAppUser(appUser);
-            questionAnswer.setId(userID);
+            questionAnswer.setId(questionAnswer.getId());
             questionAnswer.setQuestionText(inJSON.getString("text"));
             questionAnswer.setTitle(inJSON.getString("title"));
             questionAnswer.setQuestionDate(Calendar.getInstance().getTime());
@@ -471,15 +471,17 @@ public class CommunityController {
     }
 
     private void getCommunityRecordsOperation(CommunityRequest req, JSONObject outJSON) {
+
         List<Blog> list = blogService.findBlogByType(req.getType());
-        JSONArray jsarr = new JSONArray();
+        JSONArray jsonArray = new JSONArray();
         for (int i = 0; i < list.size(); i++) {
+
             Blog blog = list.get(i);
-            jsarr.put(getBlogJSON(blog));
+            jsonArray.put(getBlogJSON(blog));
         }
         outJSON.put(RESULT, SUCCESS);
         outJSON.put(MESSAGE, ServerResponseAnswersConstant.MSG_GET_COMMUNITY_RECORDS_SUCCESS);
-        outJSON.put(DATA, jsarr.toString());
+        outJSON.put(DATA, jsonArray.toString());
     }
 
     private final static String BLOGID = "blog_id";
@@ -496,14 +498,8 @@ public class CommunityController {
         JSONObject json = new JSONObject();
         json.put(BLOGID, blog.getId());
         json.put(USERID, blog.getId_user());
-//        Preferences pr = prefService.findById(blog.getIdUser());
-//        if(pr != null) {
-//            if (pr.getAvatar() != null) json.put(USERAVATAR, pr.getAvatar());
-//            if (pr.getNickname() != null) json.put(USERNICKNAME, pr.getNickname());
-//        }
-        Preferences pref = blog.getAppUser().getPreferences();
-        if(pref != null && pref.getAvatar() != null) json.put(USERAVATAR, pref.getAvatar());
-        if (pref != null && pref.getNickname() != null) json.put(USERNICKNAME, pref.getNickname());
+        json.put(USERAVATAR, blog.getAppUser().getPreferences().getAvatar());
+        json.put(USERNICKNAME, blog.getAppUser().getPreferences().getNickname());
         json.put(BLOGTYPE, blog.getType());
         json.put(BLOGTITLE, blog.getTitle());
         json.put(BLOGTEXT, blog.getText());
@@ -531,11 +527,9 @@ public class CommunityController {
         json.put(BLOGID, comment.getBlog().getId());
         json.put(USERID, comment.getAppUser().getId());
         json.put(BLOGTEXT, comment.getText());
-        Preferences pr = prefService.findById(comment.getAppUser().getId());
-        if(pr != null) {
-            if (pr.getAvatar() != null) json.put(USERAVATAR, pr.getAvatar());
-            if (pr.getNickname() != null) json.put(USERNICKNAME, pr.getNickname());
-        }
+        json.put(USERAVATAR, comment.getAppUser().getPreferences().getAvatar());
+        json.put(USERNICKNAME, comment.getAppUser().getPreferences().getNickname());
+
         json.put(BLOGDATE, dateFormat.format(comment.getDatetime()));
         return json;
     }
@@ -685,6 +679,7 @@ public class CommunityController {
         outJSON.put(MESSAGE, ServerResponseAnswersConstant.MSG_Q_A_DOWNLOAD_SUCCESS);
 
         JSONArray jsonArray = new JSONArray();
+
         for (int i=0; i<questionAnswerList.size(); i++) {
             jsonArray.put(get_Q_A_JSON(questionAnswerList.get(i)));
         }
@@ -704,11 +699,9 @@ public class CommunityController {
         outQ_A.put("is_access", questionAnswer.isAccess());
         outQ_A.put("answer", questionAnswer.getAnswerText());
         outQ_A.put("is_answer", questionAnswer.isAnswered());
-        Preferences pr = prefService.findById(questionAnswer.getAppUser().getId());
-        if(pr != null) {
-            if (pr.getAvatar() != null) outQ_A.put(USERAVATAR, pr.getAvatar());
-            if (pr.getNickname() != null) outQ_A.put(USERNICKNAME, pr.getNickname());
-        }
+        outQ_A.put(USERAVATAR, questionAnswer.getAppUser().getPreferences().getAvatar());
+        outQ_A.put(USERNICKNAME, questionAnswer.getAppUser().getPreferences().getNickname());
+
         return outQ_A;
     }
 
