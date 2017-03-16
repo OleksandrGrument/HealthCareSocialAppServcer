@@ -679,16 +679,14 @@ public class CommunityController {
 
     //Get QuestionAnswer
     private JSONObject getQ_A(JSONObject outJSON, AppUser bdUser) {
-        List<QuestionAnswer> questionAnswerList = q_a_service.getAllQuestionAnswers();
+        Long idUserApp = bdUser.getId();
+        List<QuestionAnswer> questionAnswerList = q_a_service.findQA_ByAccessAndID(idUserApp);
         outJSON.put(RESULT, SUCCESS);
         outJSON.put(MESSAGE, ServerResponseAnswersConstant.MSG_Q_A_DOWNLOAD_SUCCESS);
 
         JSONArray jsonArray = new JSONArray();
-
-        for (QuestionAnswer questionAnswer : questionAnswerList) {
-            if(bdUser.getId().equals(questionAnswer.getAppUser().getId())|| !questionAnswer.isAccess()){
-                jsonArray.put(get_Q_A_JSON(questionAnswer));
-            }
+        for (int i=0; i<questionAnswerList.size(); i++) {
+            jsonArray.put(get_Q_A_JSON(questionAnswerList.get(i)));
         }
         outJSON.put(DATA,jsonArray.toString());
         return outJSON;

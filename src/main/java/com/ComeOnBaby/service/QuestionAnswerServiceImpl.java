@@ -43,8 +43,14 @@ public class QuestionAnswerServiceImpl implements QuestionAnswerService {
     }
 
     @Override
+    @Transactional(readOnly = true)
+    public List<QuestionAnswer> findQA_ByAccessAndID(Long id) { return questionAnswerDao.findQA_ByAccessAndID(id);   }
+
+    @Override
     @Transactional
     public QuestionAnswer getQuestionAnswerById(Long id) {
         return questionAnswerDao.read(id);
     }
+
+
 }

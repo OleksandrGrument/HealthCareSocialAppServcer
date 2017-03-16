@@ -55,6 +55,27 @@ public class QuestionAnswerDaoImpl implements QuestionAnswerDao {
     }
 
     @Override
+    public List<QuestionAnswer> findQA_ByAccessAndID(Long appUserId)    {
+        Session session = sessionFactory.getCurrentSession();
+
+
+        Query selectAllWithAccessQuery = session.createQuery("from QuestionAnswer questionAndAndswer where questionAndAndswer.isAccess =:access");
+        selectAllWithAccessQuery.setParameter("access" , false);
+
+      /*  Query selectAllUnAccessedQuestions = session.createQuery("select appUser.questionAnswers from AppUser appUser where appUser.id=:id selecthaving appUser.questionAnswers.isAccess =:access" );*/
+        Query selectAllUnAccessedQuestions = session.createQuery("select questionAnswer from QuestionAnswer questionAnswer where questionAnswer.appUser.id=:id and questionAnswer.isAccess =:access" );
+        selectAllUnAccessedQuestions.setParameter("id" , appUserId);
+        selectAllUnAccessedQuestions.setParameter("access" , true);
+
+
+        List<QuestionAnswer> questionAnswers = selectAllWithAccessQuery.list();
+        questionAnswers.addAll(selectAllUnAccessedQuestions.list());
+
+        return questionAnswers;
+
+    }
+
+    @Override
     public List<QuestionAnswer> findAll() {
         Session session = sessionFactory.getCurrentSession();
         Query query = session.createQuery("from QuestionAnswer");

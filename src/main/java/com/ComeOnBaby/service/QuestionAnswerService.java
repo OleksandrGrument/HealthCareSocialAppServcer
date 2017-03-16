@@ -15,5 +15,8 @@ public interface QuestionAnswerService {
 
     List<QuestionAnswer> getAllQuestionAnswers();
 
+    List<QuestionAnswer> findQA_ByAccessAndID(Long id);
+
     QuestionAnswer getQuestionAnswerById(Long id);
+
 }
