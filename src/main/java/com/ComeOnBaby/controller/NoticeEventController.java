@@ -68,6 +68,14 @@ public class NoticeEventController {
 
         Notice notice = noticeService.get(id);
 
+        ArrayList<String> imagesList = new ArrayList(Arrays.asList(notice.getImages().split("<>")));
+
+        if(imagesList.size() != 0){
+            for (String fileName : imagesList){
+                ImageEditFunctions.deleteImage(fileName);
+            }
+        }
+
         noticeService.deleteNotice(notice);
 
         return new ModelAndView("redirect:/notice/events");
@@ -83,6 +91,7 @@ public class NoticeEventController {
 
 
         ArrayList<String> imagesList = new ArrayList(Arrays.asList(noticeFilesNamesBeforeUpdate.split("<>")));
+        ImageEditFunctions.deleteImage(imagesList.get(imageIndex.intValue()));
 
         imagesList.remove(imageIndex.intValue());
 
@@ -97,7 +106,8 @@ public class NoticeEventController {
     }
 
     @RequestMapping(value = "/save-new-notice", method = RequestMethod.POST)
-    public ModelAndView saveNewRecipe(@RequestParam(value = "id") String id, @RequestParam("title") String title, @RequestParam("text") String noticeText, @RequestParam("filePicture[]") MultipartFile[] files) {
+    public ModelAndView saveNewRecipe(@RequestParam(value = "id") String id, @RequestParam("title") String title,
+                                      @RequestParam("text") String noticeText, @RequestParam("filePicture[]") MultipartFile[] files) {
 
         Notice notice;
 
@@ -113,7 +123,6 @@ public class NoticeEventController {
             if (!files[0].isEmpty()) {
                 String pathToSaveFile = "pictures/";
                 SaveFile saveFile = new SaveFile(pathToSaveFile, files);
-                saveFile.saveFileAndGetName();
 
                 ArrayList<String> fileNames = saveFile.saveFileAndGetName();
 

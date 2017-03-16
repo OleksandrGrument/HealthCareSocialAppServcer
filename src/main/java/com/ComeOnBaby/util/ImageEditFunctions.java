@@ -16,7 +16,6 @@ public class ImageEditFunctions {
         // Get all images as list
         ArrayList<String> imagesList = new ArrayList(Arrays.asList(images.split("<>")));
 
-
         // Get all params
         String noticeFileNamesToReturn = "";
 
@@ -31,6 +30,7 @@ public class ImageEditFunctions {
         if (freeSpace < filesLength) {
             int spaceToClear = filesLength - freeSpace - 1;
             for (int i = 0; i < spaceToClear; i++) {
+                deleteImage(imagesList.get(imagesList.size() - 1));
                 imagesList.remove(imagesList.size() - 1);
             }
         }
@@ -40,6 +40,7 @@ public class ImageEditFunctions {
         //Save to file
         if (files.length != 0) {
             if (!files[0].isEmpty()) {
+
                 String pathToSaveFile = "pictures/";
                 SaveFile saveFile = new SaveFile(pathToSaveFile, files);
                 ArrayList<String> fileNames = saveFile.saveFileAndGetName();
