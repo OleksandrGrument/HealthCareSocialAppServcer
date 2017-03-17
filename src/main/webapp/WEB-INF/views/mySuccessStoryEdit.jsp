@@ -99,7 +99,7 @@
                         <%String text = ""; if (!isNew) text = blog.getText();%>
                         <div class="form-group">
                             <label class="control-label">Story text</label>
-                            <textarea class="form-control" name="text" id="editor"><%out.print(text);%></textarea>
+                            <textarea rows="4" class="form-control" name="text"><%out.print(text);%></textarea>
                         </div>
                         <%if (!isNew){%>
                             <div class="form-group">

@@ -62,9 +62,9 @@
 
                         <!-- Answer section -->
                         <div class="form-group">
-                            <label for="editor">Answer</label>
+                            <label for="editor1">Answer</label>
                             <%String answerText = ""; if (questionAnswer.isAnswered()) answerText = questionAnswer.getAnswerText(); %>
-                            <textarea name="answerText" class="form-control" id="editor"><%out.print(answerText);%></textarea>
+                            <textarea rows="4" name="answerText" class="form-control" id="editor1"><%out.print(answerText);%></textarea>
                         </div>
                         <!-- #End Answer section -->
                     </div>
