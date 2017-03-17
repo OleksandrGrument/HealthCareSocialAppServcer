@@ -21,5 +21,7 @@ public interface NoteService {
 
     public List<Note> findUserNotesInterval(AppUser user, Date startDate, Date endDate);
 
-    List<Note> getAllNotes();
+    public List<Note> getAllNotes();
+
+    public List<Note> findNotesWithUser();
 }

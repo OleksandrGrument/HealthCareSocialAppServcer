@@ -60,4 +60,10 @@ public class AppUserServiceImpl implements AppUserService {
     public List<AppUser> getAllUsers() {
         return appUserDao.findAll();
     }
+
+    @Override
+    @Transactional(readOnly = true)
+    public List<AppUser> findAllUserWithNotes() {
+        return appUserDao.findAllUserWithNotes();
+    }
 }

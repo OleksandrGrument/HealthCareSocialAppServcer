@@ -22,4 +22,6 @@ public interface AppUserDao {
     void delete(AppUser appUser);
 
     List<AppUser> findAll();
+
+    List<AppUser> findAllUserWithNotes();
 }

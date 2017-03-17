@@ -83,4 +83,10 @@ public class AppUserDaoImpl extends AbstractDao<Integer, AppUser> implements App
         return query.list();
     }
 
+    public List<AppUser> findAllUserWithNotes(){
+        Session session = sessionFactory.getCurrentSession();
+        Query query = session.createQuery("select appUser from AppUser appUser LEFT JOIN FETCH appUser.notes ");
+        return query.list();
+    }
+
 }

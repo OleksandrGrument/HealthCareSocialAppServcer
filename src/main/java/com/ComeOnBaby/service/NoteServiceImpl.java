@@ -64,4 +64,9 @@ public class NoteServiceImpl implements NoteService {
     public List<Note> getAllNotes() {
         return noteDao.findAll();
     }
+
+    @Override
+    public List<Note> findNotesWithUser() {
+        return noteDao.findNotesWithUser();
+    }
 }

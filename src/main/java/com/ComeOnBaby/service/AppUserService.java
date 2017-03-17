@@ -21,4 +21,6 @@ public interface AppUserService {
     void deleteUser(AppUser users);
 
     List<AppUser> getAllUsers();
+
+    List<AppUser> findAllUserWithNotes();
 }
