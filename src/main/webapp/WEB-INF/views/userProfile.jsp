@@ -113,8 +113,7 @@
                 <a href="<%out.print("/users/weekly-report/"+user.getId());%>" class="btn btn-default"><i class="fa fa-bar-chart"></i> 주간 리포트</a>
             </div>
             <div class="mt20 delimiter">
-                <%String back = (String) request.getAttribute("back");%>
-                <a href="<%out.print(back);%>" class="btn btn-default">뒤로</a>
+                <a href="/" class="btn btn-default">뒤로</a>
             </div>
 
         </section>
