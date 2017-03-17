@@ -69,11 +69,11 @@
                     <td class="marker"><%out.print(dataNoteByWeek.evolitionState(dataNoteByWeek.nuts()));%></td>
                 </tr>
 
-                <tr>
+<%--                <tr>
                     <td class="title">Car:</td>
                     <td>month <%out.print("@@@@");%> ingestion</td>
                     <td class="marker"><%out.print(dataNoteByWeek.evolitionState(0));%></td>
-                </tr>
+                </tr>--%>
 
                 <tr>
                     <td class="title">Exercise:</td>
@@ -81,7 +81,7 @@
                     <td class="marker"><%out.print(dataNoteByWeek.evolitionState(dataNoteByWeek.exercise()));%></td>
                 </tr>
 
-                <tr>
+<%--                <tr>
                     <td class="title">Sleep before midnight:</td>
                     <td>month <%out.print("@@@@");%> time</td>
                     <td class="marker"><%out.print(dataNoteByWeek.evolitionState(0));%></td>
@@ -91,7 +91,7 @@
                     <td class="title">Average sleep time:</td>
                     <td>month average <%out.print("@@@@");%></td>
                     <td class="marker"><%out.print(dataNoteByWeek.evolitionState(0));%></td>
-                </tr>
+                </tr>--%>
 
                 <tr>
                     <td class="title">Water ingestion:</td>
@@ -99,11 +99,11 @@
                     <td class="marker"><%out.print(dataNoteByWeek.evolitionStateWater(dataNoteByWeek.waterIngestion()));%></td>
                 </tr>
 
-                <tr>
+<%--                <tr>
                     <td class="title">Eun-hoon / Slut:</td>
                     <td>month <%out.print("@@@@");%> times</td>
                     <td class="marker"><%out.print(dataNoteByWeek.evolitionState(0));%></td>
-                </tr>
+                </tr>--%>
 
                 <tr>
                     <td class="title">Vitamin:</td>

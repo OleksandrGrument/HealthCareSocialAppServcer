@@ -118,7 +118,6 @@ public class QuestionAnswer {
         this.questionText = questionText;
     }
 
-
     public String getAnswerText() {
         return answerText;
     }

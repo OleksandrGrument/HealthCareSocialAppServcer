@@ -4,13 +4,15 @@ package com.ComeOnBaby.model;
 import org.hibernate.annotations.GenericGenerator;
 
 import javax.persistence.*;
+import java.io.Serializable;
 import java.util.Date;
+import java.util.HashSet;
 import java.util.Set;
 
 
 @Entity
 @Table(name = "blog")
-public class Blog {
+public class Blog implements Serializable {
 
     @Id
     @GeneratedValue(generator = "increment2")
@@ -38,10 +40,10 @@ public class Blog {
     @Temporal(TemporalType.TIMESTAMP)
     private Date datetime;
 
-    @OneToMany(mappedBy = "blog", fetch = FetchType.EAGER)
+    @OneToMany(mappedBy = "blog", fetch = FetchType.LAZY)
     private Set<Comment> comments;
 
-    @OneToMany(mappedBy = "blog", fetch = FetchType.EAGER)
+    @OneToMany(mappedBy = "blog")
     private Set<Likes> likes;
 
 

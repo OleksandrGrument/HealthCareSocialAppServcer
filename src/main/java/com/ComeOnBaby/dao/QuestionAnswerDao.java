@@ -16,5 +16,7 @@ public interface QuestionAnswerDao {
 
     void delete(QuestionAnswer questionAnswer);
 
+    List<QuestionAnswer> findQA_ByAccessAndID(Long id);
+
     List<QuestionAnswer> findAll();
 }

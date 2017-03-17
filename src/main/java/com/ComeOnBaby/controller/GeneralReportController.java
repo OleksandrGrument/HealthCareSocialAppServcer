@@ -37,6 +37,7 @@ public class GeneralReportController {
 
         List<AppUser> allAppUserList = appUserService.getAllUsers();
         List<Note> allAppUserNotesByMonth = new ArrayList<>();
+        //List<Note> allAppUsersNotes = noteService.getAllNotes();
 
         for (AppUser appUser : allAppUserList) {
             List<Note> notices = new ArrayList<>(appUser.getNotes());

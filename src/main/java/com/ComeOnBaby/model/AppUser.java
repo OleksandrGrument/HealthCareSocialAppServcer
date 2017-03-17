@@ -33,11 +33,14 @@ public class AppUser {
     @Column(name = "login_type", nullable = false)
     private String loginType;
 
-    @OneToOne(mappedBy = "appUser", fetch = FetchType.EAGER)
+    @OneToOne(mappedBy = "appUser"/*, fetch = FetchType.EAGER*/)
     private Preferences preferences;
 
-    @OneToMany(mappedBy = "appUser", fetch = FetchType.EAGER)
+    @OneToMany(mappedBy = "appUser"/*, fetch = FetchType.EAGER*/)
     private Set<Note> notes;
+
+    @OneToMany(mappedBy = "appUser"  /*fetch = FetchType.EAGER*//**//**/)
+    private Set<QuestionAnswer> questionAnswers;
 
     public Long getSocialID() {
         return socialID;
@@ -108,6 +111,14 @@ public class AppUser {
 
     public void setLoginType(String loginType) {
         this.loginType = loginType;
+    }
+
+    public Set<QuestionAnswer> getQuestionAnswers() {
+        return questionAnswers;
+    }
+
+    public void setQuestionAnswers(Set<QuestionAnswer> questionAnswers) {
+        this.questionAnswers = questionAnswers;
     }
 
     @Override

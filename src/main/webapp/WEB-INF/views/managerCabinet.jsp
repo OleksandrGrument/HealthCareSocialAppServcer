@@ -83,7 +83,7 @@
 
                    while (appUserIterator.hasNext()) {
                         AppUser user = appUserIterator.next();
-                        if (user.getId()!=1){
+                        if (user.getId()!=1 && user.getPreferences().getGender()!=null){
                         Preferences preferences = user.getPreferences();
                %>
                         <tr>
