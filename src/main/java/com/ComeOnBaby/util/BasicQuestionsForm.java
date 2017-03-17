@@ -337,7 +337,7 @@ public class BasicQuestionsForm {
         } else {
             listQuestion4.add("");
         }
-        if (basicQuestions.getQuestion_2_34() != null & !("false").equals(basicQuestions.getQuestion_2_34())) {
+        if (basicQuestions.getQuestion_2_34() != null & !("").equals(basicQuestions.getQuestion_2_34())) {
             listQuestion4.add("checked");
             listQuestion4.add(basicQuestions.getQuestion_2_34());
         } else {

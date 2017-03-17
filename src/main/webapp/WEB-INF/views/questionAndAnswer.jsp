@@ -54,7 +54,7 @@
                     <th>Question</th>
                     <th width="50">Answer</th>
                     <th width="50">Status</th>
-                    <th >Date</th>
+                    <th width="150">Date</th>
                     <th width="150">Action</th>
                 </tr>
                 </thead>

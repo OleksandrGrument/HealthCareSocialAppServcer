@@ -116,7 +116,7 @@
                 <%}%>
 
                 <% String backLink = "" ;
-                    if (type.equals(2)) backLink="/my/recipe"; else if (type.equals(3)) backLink="/my/story";
+                    if (type.equals(2)) backLink="/my/recipes"; else if (type.equals(3)) backLink="/my/story";
                     else if (type.equals(4)) backLink="/my/husband";
                 %>
                 <div class="mt20 delimiter">

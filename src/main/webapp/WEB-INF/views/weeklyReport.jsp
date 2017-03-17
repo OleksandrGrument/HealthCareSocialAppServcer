@@ -67,13 +67,15 @@
 
                 <!-- Items list -->
                 <tbody>
-                <%for(WeekReportInformation weekReport : weekReports){ %>
-                    <tr>
-                        <td align="center"><%out.print(weekReport.getCountWeekOfYear());%></td>
-                        <td><a href="<%out.print("/users/weeklyReportShow/"+user.getId()+"/"+weekReport.getCountWeekOfYear());%>"><%out.print(weekReport.getStartOfWeek()+" &mdash; "+weekReport.getEndOfWeek());%></a></td>
-                        <td align="center" class="marker"><span class="good">Good</span></td>
-                    </tr>
-                <%}%>
+                <%for(WeekReportInformation weekReport : weekReports){
+                    if (!weekReport.getStartOfWeek().equals(weekReport.getEndOfWeek())){%>
+                        <tr>
+                            <td align="center"><%out.print(weekReport.getCountWeekOfYear());%></td>
+                            <td><a href="<%out.print("/users/weeklyReportShow/"+user.getId()+"/"+weekReport.getCountWeekOfYear());%>"><%out.print(weekReport.getStartOfWeek()+" &mdash; "+weekReport.getEndOfWeek());%></a></td>
+                            <td align="center" class="marker"><span class="good">Good</span></td>
+                        </tr>
+                <%  }
+                }%>
                 </tbody>
                 <!-- #End Items list -->
 

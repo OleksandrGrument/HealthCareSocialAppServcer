@@ -71,7 +71,7 @@
                 <!-- Items list -->
                 <tbody>
                 <%for (WeekReportInformation weekReportInformation : weekReportInformations){
-                    if(weekReportInformation.getNote().getAppUser().getId()!=1){%>
+                    if(weekReportInformation.getNote().getAppUser().getId()!=1 &&(!weekReportInformation.getStartOfWeek().equals(weekReportInformation.getEndOfWeek()))){%>
                     <tr>
                         <td align="center"><%out.print(weekReportInformation.getNote().getAppUser().getId());%></td>
                         <td><%out.print(weekReportInformation.getNote().getAppUser().getEmail());%></td>
