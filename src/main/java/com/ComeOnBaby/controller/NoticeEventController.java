@@ -131,6 +131,10 @@ public class NoticeEventController {
                 notice.setImages(noticeFileNames);
 
                 noticeService.addNewNotice(notice);
+            }else{
+                notice.setImages("");
+
+                noticeService.addNewNotice(notice);
             }
 
         } else {
