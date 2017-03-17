@@ -51,7 +51,7 @@ public class WeekReportInformation {
     }
 
     private String dateFirstDayOfWeek(Calendar calendar) {
-        SimpleDateFormat formattedDate = new SimpleDateFormat("dd.MM.yyyy");
+        SimpleDateFormat formattedDate = new SimpleDateFormat("yyyy-MM-dd");
         Integer dayDifference = calendar.get(Calendar.DAY_OF_WEEK) == 1 ? -6 : (Calendar.SUNDAY - calendar.get(Calendar.DAY_OF_WEEK));
         calendar.add(Calendar.DAY_OF_MONTH, dayDifference);
         String dateFirstDayOfWeek = formattedDate.format(calendar.getTime()); //Дата на начало текущей недели
@@ -60,7 +60,7 @@ public class WeekReportInformation {
     }
 
     private String dateLastDayOfWeek(Calendar calendar) {
-        SimpleDateFormat formattedDate = new SimpleDateFormat("dd.MM.yyyy");
+        SimpleDateFormat formattedDate = new SimpleDateFormat("yyyy-MM-dd");
         Integer dayDifference = calendar.get(Calendar.DAY_OF_WEEK) == 1 ? -6 : (Calendar.SATURDAY - calendar.get(Calendar.DAY_OF_WEEK));
         calendar.add(Calendar.DAY_OF_MONTH, dayDifference);
         String dateLastDayOfWeek = formattedDate.format(calendar.getTime());

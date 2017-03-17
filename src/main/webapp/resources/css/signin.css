@@ -7,9 +7,9 @@ body, html { background: #364150 no-repeat; }
 /* Card component */
 .card { background-color: #F7F7F7; padding: 20px 25px 30px; margin: 50px auto 25px;
     -moz-border-radius: 2px; -webkit-border-radius: 2px; border-radius: 2px;
-    -moz-box-shadow: 0px 2px 2px rgba(0, 0, 0, 0.3);
-    -webkit-box-shadow: 0px 2px 2px rgba(0, 0, 0, 0.3);
-    box-shadow: 0px 2px 2px rgba(0, 0, 0, 0.3);  }
+    -moz-box-shadow: 0 2px 2px rgba(0, 0, 0, 0.3);
+    -webkit-box-shadow: 0 2px 2px rgba(0, 0, 0, 0.3);
+    box-shadow: 0 2px 2px rgba(0, 0, 0, 0.3);  }
 .profile-img-card { width: 96px; height: 96px; margin: 0 auto 10px; display: block;
     -moz-border-radius: 10px; -webkit-border-radius: 10px; border-radius: 10px; }
 
@@ -28,7 +28,7 @@ body, html { background: #364150 no-repeat; }
 .form-signin .form-control:focus { border-color: #3b9c96; outline: 0;
     -webkit-box-shadow: inset 0 1px 1px rgba(0,0,0,.1),0 0 8px rgba(48, 127, 122, .4);
     box-shadow: inset 0 1px 1px rgba(0,0,0,.1),0 0 8px rgba(48, 127, 122, .4); }
-.btn.btn-signin { background-color: #3b9c96; cursor: pointer; padding: 0px; font-weight: 700; font-size: 14px; color: #fff;
+.btn.btn-signin { background-color: #3b9c96; cursor: pointer; padding: 0; font-weight: 700; font-size: 14px; color: #fff;
     height: 36px; -moz-border-radius: 3px; -webkit-border-radius: 3px; border-radius: 3px; border: none;
     -o-transition: all 0.218s; -moz-transition: all 0.218s; -webkit-transition: all 0.218s; transition: all 0.218s; }
 

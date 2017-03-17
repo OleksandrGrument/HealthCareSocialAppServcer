@@ -7,7 +7,7 @@
 <%@ taglib prefix="sec" uri="http://www.springframework.org/security/tags" %>
 <%@ page session="false" %>
 <!DOCTYPE html>
-<html lang="en">
+<html lang="kr">
 <head>
     <meta charset="utf-8" />
     <meta http-equiv="X-UA-Compatible" content="IE=edge" />
@@ -18,7 +18,7 @@
     <meta name="description" content="" />
     <meta name="keywords" content="" />
 
-    <title>User profile :: Come On Baby</title>
+    <title>프로필 :: Come On Baby</title>
 
     <%@ include file="headerStyles.jsp" %>
 
@@ -43,7 +43,7 @@
 
         <!-- Content section -->
         <section class="container-fluid content">
-            <h3><i class="fa fa-user"></i>User profile</h3>
+            <h3><i class="fa fa-user"></i>프로필</h3>
 
             <table class="user-profile-table">
 
@@ -51,70 +51,70 @@
                 <%Preferences preferences = user.getPreferences();%>
                 <tbody>
                 <!-- Base information -->
-                <tr><td colspan="2" class="header pt0">Base information</td></tr>
+                <tr><td colspan="2" class="header pt0">기본 정보</td></tr>
                 <tr>
-                    <td class="title">Name:</td>
+                    <td class="title">닉네임:</td>
                     <td><%if (preferences!=null) out.print(preferences.getNickname());%></td>
                 </tr>
                 <tr>
-                    <td class="title">E-mail:</td>
+                    <td class="title">이메일:</td>
                     <td><a href="mailto:<%out.print(user.getEmail());%>"><%out.print(user.getEmail());%></a></td>
                 </tr>
 
                 <tr>
-                    <td class="title">Sex:</td>
+                    <td class="title">성별:</td>
                     <%if (preferences!=null) if(preferences.getGender()!= null) {
                         if(preferences.getGender().equals("true")){%>
-                    <td><i class="fa fa-mars"></i> <%out.print(" Man");%></td>
-                    <%}else if(preferences.getGender().equals("false")){%>
-                    <td><i class="fa fa-venus"></i> <%out.print(" Women");%></td>
-                    <%}%>
+                            <td><i class="fa fa-mars"></i> <%out.print(" 남성");%></td>
+                        <%}else if(preferences.getGender().equals("false")){%>
+                            <td><i class="fa fa-venus"></i> <%out.print(" 여성");%></td>
+                        <%}%>
                     <%}else if (preferences.getGender()== null){%>
-                    <td><i class="fa fa-venus"></i> <%out.print("");%></td> %>
+                        <td><i class="fa fa-venus"></i> <%out.print("");%></td> %>
                     <%}%>
                 </tr>
                 <tr>
-                    <td class="title">Birthday:</td>
+                    <td class="title">출생연도:</td>
                     <td><%out.print(preferences.getBirth_year());%></td>
                 </tr>
                 <tr>
-                    <td class="title">City:</td>
+                    <td class="title">거주지역:</td>
                     <td><%--<%preferences.%>--%></td>
                 </tr>
                 <tr>
-                    <td class="title">Address:</td>
+                    <td class="title">주소:</td>
                     <td><%out.print(preferences.getAddress());%></td>
                 </tr>
 
                 <!-- Personal information -->
-                <tr><td colspan="2" class="header">Personal information</td></tr>
+                <tr><td colspan="2" class="header">개인 정보</td></tr>
                 <tr>
-                    <td class="title">Menstrual cycle:</td>
+                    <td class="title">생리주기:</td>
                     <td><%out.print(preferences.getMenstrual_cycle());%></td>
                 </tr>
                 <tr>
-                    <td class="title">Last menstrual date:</td>
+                    <td class="title">마지막 생리시작일:</td>
                     <td><%out.print(preferences.getLast_cycle());%></td>
                 </tr>
                 <tr>
-                    <td class="title">Height:</td>
+                    <td class="title">키:</td>
                     <td><%out.print(preferences.getHeight());%></td>
                 </tr>
                 <tr>
-                    <td class="title">Weight:</td>
+                    <td class="title">몸무게:</td>
                     <td><%out.print(preferences.getWeight());%></td>
                 </tr>
                 </tbody>
             </table>
 
             <div class="mt10">
-                <a href="<%out.print("/users/basic-questions/"+user.getId());%>" class="btn btn-default">Basic questions</a>
-                <a href="<%out.print("/users/monthly-report/"+user.getId());%>" class="btn btn-default">Monthly report</a>
-                <a href="<%out.print("/users/weekly-report/"+user.getId());%>" class="btn btn-default">Weekly report</a>
+                <a href="<%out.print("/users/basic-questions/"+user.getId());%>" class="btn btn-default"><i class="fa fa-question-circle-o"></i> 기초질문사항</a>
+                <a href="<%out.print("/users/monthly-report/"+user.getId());%>" class="btn btn-default"><i class="fa fa-bar-chart"></i> 월간 리포트</a>
+                <a href="<%out.print("/users/weekly-report/"+user.getId());%>" class="btn btn-default"><i class="fa fa-bar-chart"></i> 주간 리포트</a>
             </div>
             <div class="mt20 delimiter">
                 <%String back = (String) request.getAttribute("back");%>
-                <a href="<%out.print(back);%>" class="btn btn-default">Back</a>
+                <a href="<%out.print(back);%>" class="btn btn-default">뒤로</a>
             </div>
 
         </section>

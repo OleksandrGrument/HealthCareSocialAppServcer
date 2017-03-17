@@ -31,6 +31,9 @@ jQuery(document).ready(function($) {
     // Show nice tables
     $('#dataTable').DataTable({
         responsive: true,
+        language: {
+            url: "/resources/js/dataTables/dataTables.korean.lg"
+        }
     });
 
     // Recipes open link

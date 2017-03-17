@@ -10,7 +10,7 @@
 <%@ taglib prefix="sec" uri="http://www.springframework.org/security/tags" %>
 <%@ page session="false" %>
 <!DOCTYPE html>
-<html lang="en">
+<html lang="kr">
 <head>
     <meta charset="utf-8" />
     <meta http-equiv="X-UA-Compatible" content="IE=edge" />
@@ -21,7 +21,7 @@
     <meta name="description" content="" />
     <meta name="keywords" content="" />
 
-    <title>Monthly reports :: Come On Baby</title>
+    <title>사용자 월간 리포트 :: Come On Baby</title>
 
     <%@ include file="headerStyles.jsp" %>
 
@@ -45,7 +45,7 @@
 
         <!-- Content section -->
         <section class="container-fluid content">
-            <h3><i class="fa fa-bar-chart"></i>Monthly report</h3>
+            <h3><i class="fa fa-bar-chart"></i>월간 리포트</h3>
 
             <% AppUser user = (AppUser) request.getAttribute("user"); %>
             <% List<Note> notices = (List<Note>) request.getAttribute("notices"); %>
@@ -53,36 +53,38 @@
             <table id="dataTable" class="table table-striped table-bordered" width="100%" cellspacing="0">
                 <thead>
                 <tr>
-                    <%--<th>ID</th>--%>
-                    <th>Generation month</th>
-                    <th>Evaluation</th>
+                    <th width="20">ID</th>
+                    <th>창조 월</th>
+                    <th width="100">평가</th>
                 </tr>
                 </thead>
                 <tfoot>
                 <tr>
-                    <%--<th>ID</th>--%>
-                    <th>Generation month</th>
-                    <th>Evaluation</th>
+                    <th>ID</th>
+                    <th>창조 월</th>
+                    <th>평가</th>
                 </tr>
                 </tfoot>
 
                 <!-- Items list -->
                 <tbody>
                 <%
-                    SimpleDateFormat dateFormat = new SimpleDateFormat("MM.yyyy");
+                    SimpleDateFormat dateFormat = new SimpleDateFormat("yyyy-MM");
                     SimpleDateFormat dateFormat1 = new SimpleDateFormat("MM/yyyy");
                 %>
                 <%if(notices.size()>0) {
                     Date date = notices.get(0).getDate();%>
                     <tr>
+                        <td align="center"><%out.print(notices.get(0).getAppUser().getId());%></td>
                         <td><a href="<%out.print("/users/monthlyReportShow/"+notices.get(0).getAppUser().getId()+"/"+dateFormat1.format(date));%>"><%out.print(dateFormat.format(date));%></a></td>
-                        <td>Good</td>
+                        <td align="center" class="marker"><span class="good">Good</span></td>
                     </tr>
                     <%for(Note note: notices){
                         if(!dateFormat.format(note.getDate()).equals(dateFormat.format(date))){%>
                             <tr>
+                                <td align="center"><%out.print(note.getAppUser().getId());%></td>
                                 <td><a href="<%out.print("/users/monthlyReportShow/"+note.getAppUser().getId()+"/"+dateFormat1.format(note.getDate()));%>"><%out.print(dateFormat.format(note.getDate()));%></a></td>
-                                <td>Good</td>
+                                <td align="center" class="marker"><span class="good">Good</span></td>
                             </tr>
                             <%date = note.getDate();%>
                         <%}
@@ -94,7 +96,7 @@
             </table>
 
             <div class="mt20 delimiter">
-                <a href="<% out.print("/users/user-profile/" + user.getId()); %>" class="btn btn-default">Back</a>
+                <a href="<% out.print("/users/user-profile/" + user.getId()); %>" class="btn btn-default">뒤로</a>
             </div>
 
 

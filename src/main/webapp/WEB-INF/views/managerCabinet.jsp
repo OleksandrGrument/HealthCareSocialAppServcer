@@ -9,7 +9,7 @@
 <%@ taglib prefix="sec" uri="http://www.springframework.org/security/tags" %>
 <%@ page session="false" %>
 <!DOCTYPE html>
-<html lang="en">
+<html lang="kr">
 <head>
     <meta charset="utf-8" />
     <meta http-equiv="X-UA-Compatible" content="IE=edge" />
@@ -20,7 +20,7 @@
     <meta name="description" content="" />
     <meta name="keywords" content="" />
 
-    <title>Users list :: Come On Baby</title>
+    <title>회원관리 :: Come On Baby</title>
 
     <%@ include file="headerStyles.jsp" %>
 
@@ -45,31 +45,31 @@
 
         <!-- Content section -->
         <section class="container-fluid content">
-            <h3><i class="fa fa-user"></i>Users list</h3>
+            <h3><i class="fa fa-user"></i>회원관리</h3>
 
             <div class="mb20">
-                <a class="btn btn-primary" href="/users/download/"><i class="fa fa-file-excel-o mr10"></i>Download Excel</a>
+                <a class="btn btn-primary" href="/users/download/"><i class="fa fa-file-excel-o mr10"></i>엑셀 다운로드</a>
             </div>
 
             <table id="dataTable" class="table table-striped table-bordered" width="100%" cellspacing="0">
                 <thead>
                 <tr>
                     <th width="20">ID</th>
-                    <th>Login</th>
-                    <th>E-mail</th>
-                    <th>Birthday</th>
-                    <th>Classification</th>
-                    <th>Sex</th>
+                    <th>닉네임</th>
+                    <th>이메일</th>
+                    <th width="100">출생연도</th>
+                    <th width="100">회원분류</th>
+                    <th width="100">성별</th>
                 </tr>
                 </thead>
                 <tfoot>
                 <tr>
                     <th>ID</th>
-                    <th>Login</th>
-                    <th>E-mail</th>
-                    <th>Birthday</th>
-                    <th>Classification</th>
-                    <th>Sex</th>
+                    <th>닉네임</th>
+                    <th>이메일</th>
+                    <th>출생연도</th>
+                    <th>회원분류</th>
+                    <th>성별</th>
                 </tr>
                 </tfoot>
 
@@ -87,20 +87,20 @@
                         Preferences preferences = user.getPreferences();
                %>
                         <tr>
-                            <td><%out.print(user.getId());%></td>
-                            <td><%if (preferences!=null) %><a href="<%out.print("/users/user-profile/"+user.getId());%>">   <% out.print(preferences.getNickname());%></a></td>
-                            <td><%out.print(user.getEmail());%></td>
-                            <td><%if (preferences!=null) out.print(preferences.getBirth_year());%></td>
-                            <td><%out.print(user.getLoginType());%></td>
+                            <td align="center"><%out.print(user.getId());%></td>
+                            <td><%if (preferences!=null) %><a href="<%out.print("/users/user-profile/"+user.getId());%>"><% out.print(preferences.getNickname());%></a></td>
+                            <td><a href="mailto:<%out.print(user.getEmail());%>"><%out.print(user.getEmail());%></a></td>
+                            <td align="center"><%if (preferences!=null) out.print(preferences.getBirth_year());%>년</td>
+                            <td align="center"><%out.print(user.getLoginType());%></td>
 
                             <%if (preferences!=null) if(preferences.getGender()!= null) {
                                 if(preferences.getGender().equals("true")){%>
-                                    <td><i class="fa fa-mars"></i> <%out.print(" Man");%></td>
+                                    <td align="center"><i class="fa fa-mars"></i> <%out.print(" 남성");%></td>
                                 <%}else if(preferences.getGender().equals("false")){%>
-                                    <td><i class="fa fa-venus"></i> <%out.print(" Women");%></td>
+                                    <td align="center"><i class="fa fa-venus"></i> <%out.print(" 여성");%></td>
                                 <%}%>
                             <%}else if (preferences.getGender()== null){%>
-                                <td><i class="fa fa-venus"></i> <%out.print("");%></td> %>
+                                <td align="center"><i class="fa fa-venus"></i> <%out.print("");%></td> %>
                             <%}%>
                         </tr>
                     <%}%>

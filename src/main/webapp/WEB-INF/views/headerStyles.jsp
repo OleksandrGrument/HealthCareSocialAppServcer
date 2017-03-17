@@ -24,6 +24,6 @@
 <link href="/resources/css/responsive.css" rel="stylesheet" />
 
 <!--[if lt IE 9]>
-<script src="/resources/js/dataTables/html5shiv.js"></script>
-<script src="/resources/js/dataTables/respond.min.js"></script>
+<script src="/resources/js/other/html5shiv.js"></script>
+<script src="/resources/js/other/respond.min.js"></script>
 <![endif]-->

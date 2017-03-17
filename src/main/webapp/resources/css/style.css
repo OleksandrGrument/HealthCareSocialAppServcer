@@ -8,6 +8,7 @@ h1, h2, h3, h4, h5 { margin: 0; padding: 0; }
 
 h3 { margin-bottom: 30px; font-size: 18pt; color: #307f7a; }
 h3 i.fa { padding-right: 10px; }
+h4 { font-weight: bold; font-size: 12pt; padding: 0 0 10px 0; color: #3b9c96; }
 
 /* Base container */
 #wrapper { padding-left: 0;

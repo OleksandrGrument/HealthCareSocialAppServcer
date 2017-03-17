@@ -224,7 +224,7 @@ public class DataNoteByMonthWeek {
             }
         }
 
-        str = "very good " + countEmotionVeryGood + " times, good " + countEmotionGood + " times, usually " + countEmotionUsually + " times, poor " + countEmotionPoor;
+        str = "매우 좋음 " + countEmotionVeryGood + "회, 좋음 " + countEmotionGood + "회, 보통 " + countEmotionUsually + "회, 우울 " + countEmotionPoor + "회";
         return str;
     }
 
@@ -237,15 +237,15 @@ public class DataNoteByMonthWeek {
             value += note.getBmi();
         }
         if ((value / count >= 0) & (value / count < 18.5)) {
-            str = (value / count) + " (underweight)";
+            str = (value / count) + " (체중 감량)";
         } else if ((value / count >= 18.5) & (value / count < 23)) {
-            str = (value / count) + " (normal)";
+            str = (value / count) + " (정상)";
         } else if ((value / count >= 23) & (value / count < 25)) {
-            str = (value / count) + " (overweight)";
+            str = (value / count) + " (초과 중량)";
         } else if ((value / count >= 25) & (value / count < 30)) {
-            str = (value / count) + " (obesity)";
+            str = (value / count) + " (비만)";
         } else {
-            str = (value / count) + " (altitude obesity)";
+            str = (value / count) + " (고도 비만)";
         }
         return str;
     }
@@ -312,7 +312,7 @@ public class DataNoteByMonthWeek {
     public String daysInWeekString() {
         String strDate = "";
 
-        SimpleDateFormat dateFormatter = new SimpleDateFormat("EEEE", Locale.ENGLISH);
+        SimpleDateFormat dateFormatter = new SimpleDateFormat("EEEE", Locale.KOREA);
         SimpleDateFormat dateFormatter1 = new SimpleDateFormat("EEEE dd.MM.yyyy");
         for (Note note : dataNoteByMonthWeek) {
             if(note.getBbt()!= null){

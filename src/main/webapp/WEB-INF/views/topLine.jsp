@@ -1,3 +1,9 @@
+<%@ taglib prefix="spring" uri="http://www.springframework.org/tags" %>
+<%@ page language="java" pageEncoding="UTF-8"%>
+<%@ page contentType="text/html;charset=UTF-8" %>
+<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
+<%@ taglib prefix="sec" uri="http://www.springframework.org/security/tags" %>
+<%@ page session="false" %>
 <!-- Top line -->
 <header class="container-fluid top-line">
     <div class="text-left top-switcher pull-left">
@@ -8,9 +14,9 @@
             <li class="dropdown">
                 <a href="javascript:void(0);" class="dropdown-toggle avatar" data-toggle="dropdown"><i class="fa fa-user-o"></i></a>
                 <ul class="dropdown-menu">
-                  <%--  <li class="dropdown-menu-header text-center">Hello, Maxim!</li>--%>
-                    <li><a href="/setting/"><i class="fa fa-cog"></i> Settings</a></li>
-                    <li><a href="/logout"><i class="fa fa-sign-out"></i> Logout</a></li>
+                    <li class="dropdown-menu-header text-center">환영</li>
+                    <li><a href="/setting/"><i class="fa fa-cog"></i> 설정</a></li>
+                    <li><a href="/logout"><i class="fa fa-sign-out"></i> 로그 아웃</a></li>
                 </ul>
             </li>
         </ul>

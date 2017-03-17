@@ -8,7 +8,7 @@
 <%@ taglib prefix="sec" uri="http://www.springframework.org/security/tags" %>
 <%@ page session="false" %>
 <!DOCTYPE html>
-<html lang="en">
+<html lang="kr">
 <head>
     <meta charset="utf-8" />
     <meta http-equiv="X-UA-Compatible" content="IE=edge" />
@@ -19,7 +19,7 @@
     <meta name="description" content="" />
     <meta name="keywords" content="" />
 
-    <title>Weekly reports :: Come On Baby</title>
+    <title>사용자 주간 리포트 :: Come On Baby</title>
 
     <%@ include file="headerStyles.jsp" %>
 
@@ -43,7 +43,7 @@
 
         <!-- Content section -->
         <section class="container-fluid content">
-            <h3><i class="fa fa-bar-chart"></i>Weekly report</h3>
+            <h3><i class="fa fa-bar-chart"></i>주간 리포트</h3>
 
             <% AppUser user = (AppUser) request.getAttribute("user"); %>
             <% List<WeekReportInformation> weekReports = (List<WeekReportInformation>)request.getAttribute("weekReportInformation"); %>
@@ -52,16 +52,16 @@
             <table id="dataTable" class="table table-striped table-bordered" width="100%" cellspacing="0">
                 <thead>
                 <tr>
-                    <th>ID</th>
-                    <th>Generation week</th>
-                    <th>Evaluation</th>
+                    <th width="20">ID</th>
+                    <th>생성주간</th>
+                    <th width="100">평가</th>
                 </tr>
                 </thead>
                 <tfoot>
                 <tr>
                     <th>ID</th>
-                    <th>Generation week</th>
-                    <th>Evaluation</th>
+                    <th>생성주간</th>
+                    <th>평가</th>
                 </tr>
                 </tfoot>
 
@@ -69,9 +69,9 @@
                 <tbody>
                 <%for(WeekReportInformation weekReport : weekReports){ %>
                     <tr>
-                        <td width="50"><%out.print(weekReport.getCountWeekOfYear());%></td>
-                        <td><a href="<%out.print("/users/weeklyReportShow/"+user.getId()+"/"+weekReport.getCountWeekOfYear());%>"><%out.print(weekReport.getStartOfWeek()+" - "+weekReport.getEndOfWeek());%></a></td>
-                        <td>Good</td>
+                        <td align="center"><%out.print(weekReport.getCountWeekOfYear());%></td>
+                        <td><a href="<%out.print("/users/weeklyReportShow/"+user.getId()+"/"+weekReport.getCountWeekOfYear());%>"><%out.print(weekReport.getStartOfWeek()+" &mdash; "+weekReport.getEndOfWeek());%></a></td>
+                        <td align="center" class="marker"><span class="good">Good</span></td>
                     </tr>
                 <%}%>
                 </tbody>
@@ -80,7 +80,7 @@
             </table>
 
             <div class="mt20 delimiter">
-                <a href="<% out.print("/users/user-profile/" + user.getId()); %>" class="btn btn-default">Back</a>
+                <a href="<% out.print("/users/user-profile/" + user.getId()); %>" class="btn btn-default">뒤로</a>
             </div>
 
 

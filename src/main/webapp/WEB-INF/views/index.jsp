@@ -16,7 +16,7 @@
     <meta name="description" content="" />
     <meta name="keywords" content="" />
 
-    <title>Welcome to Administration :: Come On Baby</title>
+    <title>컴온베이비 어드민 :: Come On Baby</title>
 
     <%@ include file="headerStyles.jsp" %>
 
@@ -34,10 +34,10 @@
         <p id="profile-name" class="profile-name-card"></p>
         <form class="form-signin" action="${loginUrl}" method="post">
 
-            <input type="text" id="inputId" class="form-control" placeholder="ID" name="ssoId" required autofocus>
-            <input type="password" id="inputPassword" class="form-control" placeholder="Password" name="password" required>
+            <input type="text" id="inputId" class="form-control" placeholder="아이디" name="ssoId" required autofocus>
+            <input type="password" id="inputPassword" class="form-control" placeholder="비밀번호" name="password" required>
 
-            <button class="btn btn-block btn-signin" type="submit">Sign in</button>
+            <button class="btn btn-block btn-signin" type="submit">로그인</button>
         </form>
         <div class="text-center mt30 copyright">2017 © ComeOnBaby</div>
     </div>
