@@ -36,8 +36,9 @@ public class BlogDaoImpl implements BlogDao {
     @Override
     public Blog read(Long id) {
         Session session = sessionFactory.getCurrentSession();
-        Blog blog = (Blog) session.get(Blog.class, id);
-        logger.error("BlogService findById successfully, BlogService=" + blog);
+        Query query = session.createQuery("select blog From Blog blog LEFT JOIN FETCH blog.comments LEFT JOIN FETCH  blog.likes where blog.id  =  :id");
+        query.setParameter("id", id);
+        Blog blog = (Blog) query.uniqueResult();
         return blog;
     }
 
@@ -58,7 +59,7 @@ public class BlogDaoImpl implements BlogDao {
     @Override
     public List<Blog> findAll() {
         Session session = sessionFactory.getCurrentSession();
-        Query query = session.createQuery("from Blog");
+        Query query = session.createQuery("select blog From Blog blog LEFT JOIN FETCH blog.comments LEFT JOIN FETCH  blog.likes");
         return query.list();
     }
 

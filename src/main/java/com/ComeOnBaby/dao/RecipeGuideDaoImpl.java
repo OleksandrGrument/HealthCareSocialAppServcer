@@ -13,7 +13,7 @@ import org.springframework.stereotype.Repository;
 import java.util.List;
 
 
-@Repository("recipe_guideDao")
+@Repository("recipeGuideDao")
 public class RecipeGuideDaoImpl implements RecipeGuideDao {
 
     private static final Logger logger = LoggerFactory.getLogger(RecipeGuideDaoImpl.class);

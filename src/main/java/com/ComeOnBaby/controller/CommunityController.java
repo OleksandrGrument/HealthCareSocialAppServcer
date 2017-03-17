@@ -439,7 +439,7 @@ public class CommunityController {
 
 
     // Save comments for blog
-    private void saveCommentOperation(AppUser user, CommunityRequest req, JSONObject outJSON) {
+    private void saveCommentOperation(AppUser user, CommunityRequest req, JSONObject outJSON) {   /// !!!!!!!!!!!!!!!!!!!!!!!!!!!
         System.out.println("INSIDE SAVE COMMENT: ");
         try {
             Comment comment = new Comment();
@@ -458,7 +458,7 @@ public class CommunityController {
         outJSON.put(MESSAGE, ServerResponseAnswersConstant.MSG_SAVE_COMMENT_SUCCESS);
     }
 
-    private void getListComments(AppUser user, CommunityRequest req, JSONObject outJSON) {
+    private void getListComments(AppUser user, CommunityRequest req, JSONObject outJSON) {      /// !!!!!!!!!!!!!!!!!!!!!!!!!!!
         List<Comment> comments = commentsService.findByBlogID(req.communityID);
         JSONArray jsarr = new JSONArray();
         for (int i = 0; i < comments.size(); i++) {
@@ -494,7 +494,7 @@ public class CommunityController {
     private final static String BLOGIMAGES = "images";
     private final static String BLOGDATE = "date";
 
-    private JSONObject getBlogJSON(Blog blog) {
+    private JSONObject getBlogJSON(Blog blog) {   /// !!!!!!!!!!!!!!!!!!!!!!!!!!!
         JSONObject json = new JSONObject();
         json.put(BLOGID, blog.getId());
         json.put(USERID, blog.getId_user());
@@ -521,7 +521,7 @@ public class CommunityController {
 
     private final static String COMMID = "comm_id";
 
-    private JSONObject getCommentJSON(Comment comment) {
+    private JSONObject getCommentJSON(Comment comment) {   /// !!!!!!!!!!!!!!!!!!!!!!!!!!!
         JSONObject json = new JSONObject();
         json.put(COMMID, comment.getId());
         json.put(BLOGID, comment.getBlog().getId());
