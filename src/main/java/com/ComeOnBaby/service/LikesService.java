@@ -14,4 +14,5 @@ public interface LikesService {
     void deleteLikes(Likes likes);
 
     List<Likes> getAllLikes();
+
 }

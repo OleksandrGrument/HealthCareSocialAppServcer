@@ -50,15 +50,11 @@ public class UserManagementController {
 
 
     @RequestMapping(value = "/user-profile/{userId}", method = RequestMethod.GET)
-    public ModelAndView userProfile(@PathVariable Long userId, HttpServletRequest request) {
+    public ModelAndView userProfile(@PathVariable Long userId) {
         ModelAndView userProfile = new ModelAndView("userProfile");
-
-        String referer = request.getHeader("referer");
 
         AppUser user = appUserService.findById(userId);
 
-
-        userProfile.addObject("back",referer );
         userProfile.addObject("user", user);
 
         return userProfile;

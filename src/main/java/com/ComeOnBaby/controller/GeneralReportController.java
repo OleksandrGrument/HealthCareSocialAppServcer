@@ -35,17 +35,28 @@ public class GeneralReportController {
     public ModelAndView generalMonthlyReport() {
         ModelAndView generalMonthlyReport = new ModelAndView("generalMonthlyReport");
 
-        List<AppUser> allAppUserList = appUserService.getAllUsers();
-        List<Note> allAppUserNotesByMonth = new ArrayList<>();
-        //List<Note> allAppUsersNotes = noteService.getAllNotes();
+        List<Note> allAppUsersNotes = noteService.getAllNotes();
+        List<AppUser> appUsers = new ArrayList<>();
+        for (Note note: allAppUsersNotes){
+            if(appUsers.indexOf(note.getAppUser())<0){
+                appUsers.add(note.getAppUser());
+            }
+        }
 
-        for (AppUser appUser : allAppUserList) {
-            List<Note> notices = new ArrayList<>(appUser.getNotes());
-            Collections.sort(notices, new NoteByDateComparator());
-            if(notices.size()>0) {
-                Note tempNote = notices.get(0);
+        List<Note> allAppUserNotesByMonth = new ArrayList<>();
+
+        for (AppUser appUser : appUsers){
+            List<Note> userNotes = new ArrayList<>();
+            for (Note note : allAppUsersNotes){
+                if(note.getAppUser().getId() == appUser.getId()){
+                    userNotes.add(note);
+                }
+            }
+            Collections.sort(userNotes, new NoteByDateComparator());
+            if(userNotes.size()>0) {
+                Note tempNote = userNotes.get(0);
                 allAppUserNotesByMonth.add(tempNote);
-                for (Note note : notices) {
+                for (Note note : userNotes) {
                     if (tempNote.getDate().getMonth() != note.getDate().getMonth()) {
                         allAppUserNotesByMonth.add(note);
                         tempNote = note;
@@ -53,6 +64,7 @@ public class GeneralReportController {
                 }
             }
         }
+
         generalMonthlyReport.addObject("allAppUserNotesByMonth", allAppUserNotesByMonth);
 
         return generalMonthlyReport;
@@ -85,16 +97,26 @@ public class GeneralReportController {
 
         ModelAndView generalWeeklyReport = new ModelAndView("generalWeeklyReport");
 
-        List<AppUser> allAppUserList = appUserService.getAllUsers();
-        List<Note> allAppUserNotesByWeek = new ArrayList<>();
+        List<Note> allAppUsersNotes = noteService.getAllNotes();
+        List<AppUser> appUsers = new ArrayList<>();
+        for (Note note: allAppUsersNotes){
+            if(appUsers.indexOf(note.getAppUser())<0){
+                appUsers.add(note.getAppUser());
+            }
+        }
 
         List<WeekReportInformation> weekReportInformationAllUsers = new ArrayList<>();
 
-        for (AppUser appUser : allAppUserList) {
-            List<Note> notices = new ArrayList<>(appUser.getNotes());
-            Collections.sort(notices, new NoteByDateComparator());
+        for (AppUser appUser : appUsers){
+            List<Note> userNotes = new ArrayList<>();
+            for (Note note : allAppUsersNotes){
+                if(note.getAppUser().getId() == appUser.getId()){
+                    userNotes.add(note);
+                }
+            }
+            Collections.sort(userNotes, new NoteByDateComparator());
 
-            DataNoteByMonthWeek dataNoteByMonthWeek = new DataNoteByMonthWeek(notices);
+            DataNoteByMonthWeek dataNoteByMonthWeek = new DataNoteByMonthWeek(userNotes);
             weekReportInformationAllUsers.addAll(dataNoteByMonthWeek.weekReportInformation());
 
         }

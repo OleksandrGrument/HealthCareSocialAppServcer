@@ -23,4 +23,6 @@ public interface NoteDao {
     List<Note> findUserNotesInterval(AppUser user, Date startDate, Date endDate);
 
     List<Note> findAll();
+
+    List<Note> findNotesWithUser();
 }

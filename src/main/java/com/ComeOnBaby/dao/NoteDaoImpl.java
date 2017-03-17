@@ -13,6 +13,7 @@ import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 
+import javax.persistence.OneToMany;
 import java.util.Date;
 import java.util.List;
 
@@ -102,6 +103,13 @@ public class NoteDaoImpl extends AbstractDao<Integer, Note> implements NoteDao {
         return query.list();
     }
 
+
+    @Override
+    public List<Note> findNotesWithUser(){
+        Session session = sessionFactory.getCurrentSession();
+        Query query = session.createQuery("from Note note LEFT JOIN fetch note.appUser");
+        return query.list();
+    }
 }
 
 

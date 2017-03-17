@@ -113,8 +113,7 @@
                 <a href="<%out.print("/users/weekly-report/"+user.getId());%>" class="btn btn-default">Weekly report</a>
             </div>
             <div class="mt20 delimiter">
-                <%String back = (String) request.getAttribute("back");%>
-                <a href="<%out.print(back);%>" class="btn btn-default">Back</a>
+                <a href="/" class="btn btn-default">Back</a>
             </div>
 
         </section>
