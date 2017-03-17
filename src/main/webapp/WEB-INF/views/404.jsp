@@ -29,10 +29,21 @@
 <!-- 404 error page -->
 <div class="container text-center error-404">
     <div><a href="/"><img src="/resources/images/logo-big.png" /></a></div>
+
+    <%String error = (String) request.getAttribute("error");%>
+    <%if(error==null){%>
     <div class="hit-the-floor">404</div>
     <h3>Page not found!</h3>
     <p>The page you are looking for could have been deleted or never have existed :( <br />We are sorry about it...</p>
     <a href="/" class="btn btn-primary">Go back to our homepage</a>
+    <%} else {%>
+    <div class="hit-the-floor">Error</div>
+    <h3>Some error!</h3>
+    <p><%out.print(error);%></p>
+    <a href="/" class="btn btn-primary">Go back to our homepage</a>
+    <%}%>
+
+
 </div>
 <!-- #End 404 error page -->
 
