@@ -1,5 +1,6 @@
 package com.ComeOnBaby.controller;
 
+import ch.qos.logback.core.net.SyslogOutputStream;
 import com.ComeOnBaby.model.*;
 import com.ComeOnBaby.service.*;
 import com.ComeOnBaby.util.ConstConfig;
@@ -56,6 +57,7 @@ public class CommunityController {
     //Operations
     public static final String UPDATE_AVATAR_OPERATION = "updateavatar";
     public static final String SAVE_COMUNITY_RECORD_OPERATION = "saverecord";
+    public static final String EDIT_COMUNITY_RECORD_OPERATION = "editrecord";
     public static final String GET_COMUNITY_RECORDS_OPERATION = "getrecords";
     public static final String SAVE_COMMENT_OPERATION = "savecomment";
     public static final String GET_COMMENTS_OPERATION = "getcomments";
@@ -270,6 +272,11 @@ public class CommunityController {
         switch (req.getOperation()) {
             case SAVE_COMUNITY_RECORD_OPERATION: {
                 saveCommunityRecord(bdUser.getId(), req, outJSON);
+                break;
+            }
+
+            case EDIT_COMUNITY_RECORD_OPERATION: {
+                editCommunityItem(bdUser.getId(), req, outJSON);
                 break;
             }
             case GET_COMUNITY_RECORDS_OPERATION: {
@@ -555,6 +562,25 @@ public class CommunityController {
             }
         outJSON.put(RESULT, SUCCESS);
         outJSON.put(MESSAGE, ServerResponseAnswersConstant.MSG_SAVE_COMUNITY_RECORD_SUCCESS);
+    }
+
+    private void editCommunityItem(Long userID, CommunityRequest req, JSONObject outJSON) {
+        Blog blog = blogService.findById(req.communityID);
+        System.out.println("!!!!!!!! BLOG !!!!!"+blog.toString());
+        System.out.println("!!!!!!!! CommunityRequest !!!!!"+req.toString());
+        try {
+            blog.setTitle(req.getTitle());
+            blog.setText(req.getContent());
+            blog.setDatetime(Calendar.getInstance().getTime());
+            blogService.updateBlog(blog);
+        } catch (Exception exc) {
+            exc.printStackTrace();
+            //outJSON.put(MESSAGE, ServerResponseAnswersConstant.MSG_EDIT_COMUNITY_ITEM_FAIL);
+            outJSON.put(MESSAGE, exc.getMessage());
+            return;
+        }
+        outJSON.put(RESULT, SUCCESS);
+        outJSON.put(MESSAGE, ServerResponseAnswersConstant.MSG_EDIT_COMUNITY_ITEM_SUCCESS);
     }
 
     //Get String with filenames separated by separator
