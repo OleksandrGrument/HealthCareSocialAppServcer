@@ -37,7 +37,10 @@
                 <li><a href="/report/generalWeeklyReport"><i class="fa fa-angle-double-right" aria-hidden="true"></i> Weekly report</a></li>
             </ul>
         </li>
-        <li><a href="managersList.php"><i class="fa fa-user-secret" aria-hidden="true"></i> Managers</a></li>
+        <%HttpSession session = request.getSession();
+            if (session.getAttribute("UserRole").equals("ADMIN")){%>
+        <li><a href="/admin/manager-list"><i class="fa fa-user-secret" aria-hidden="true"></i> Managers</a></li>
+        <%}%>
         <li><a href="/setting/"><i class="fa fa-cogs" aria-hidden="true"></i> Settings</a></li>
     </ul>
     <div class="copyright">2017 &copy; 컴온베이비</div>

@@ -42,7 +42,8 @@ public class SecurityConfiguration extends WebSecurityConfigurerAdapter {
 
                 .antMatchers("/", "/list")
                 .access("hasRole('ADMIN') or hasRole('MANAGER') or hasRole('DBA')")
-                .antMatchers("/q-a/**", "/users/**", "/report/**", "/guide/**", "/notice/**", "/my/**" ,"/push/**" ,"/setting/**" ).access("hasRole('MANAGER')")
+                .antMatchers("/admin/**" ).access("hasRole('ADMIN')")
+                .antMatchers("/q-a/**", "/users/**", "/report/**", "/guide/**", "/notice/**", "/my/**" ,"/push/**" ,"/setting/**" ).access("hasRole('MANAGER') or hasRole('ADMIN')")
                 .antMatchers("/user-app").permitAll()
                 .and().formLogin().loginPage("/main")
                 .loginProcessingUrl("/login").usernameParameter("ssoId").passwordParameter("password").and()
