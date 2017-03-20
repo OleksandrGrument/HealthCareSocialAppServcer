@@ -18,7 +18,7 @@
     <meta name="description" content="" />
     <meta name="keywords" content="" />
 
-    <title>프로필 :: Come On Baby</title>
+    <title>프로필 :: 컴온베이비</title>
 
     <%@ include file="headerStyles.jsp" %>
 

@@ -18,7 +18,7 @@
     <meta name="description" content="" />
     <meta name="keywords" content="" />
 
-    <title>기초질문사항 :: Come On Baby</title>
+    <title>기초질문사항 :: 컴온베이비</title>
 
     <%@ include file="headerStyles.jsp" %>
 

@@ -16,7 +16,7 @@
     <meta name="description" content="" />
     <meta name="keywords" content="" />
 
-    <title>컴온베이비 어드민 :: Come On Baby</title>
+    <title>컴온베이비 어드민 :: 컴온베이비</title>
 
     <%@ include file="headerStyles.jsp" %>
 

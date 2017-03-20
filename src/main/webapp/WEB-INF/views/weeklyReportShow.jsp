@@ -19,7 +19,7 @@
     <meta name="description" content="" />
     <meta name="keywords" content="" />
 
-    <title>사용자 주간 리포트 :: Come On Baby</title>
+    <title>사용자 주간 리포트 :: 컴온베이비</title>
 
     <%@ include file="headerStyles.jsp" %>
 

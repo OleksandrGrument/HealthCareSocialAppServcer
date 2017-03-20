@@ -6,7 +6,7 @@
 <%@ taglib prefix="sec" uri="http://www.springframework.org/security/tags" %>
 <%@ page session="false" %>
 <!DOCTYPE html>
-<html lang="en">
+<html lang="kr">
 <head>
     <meta charset="utf-8" />
     <meta http-equiv="X-UA-Compatible" content="IE=edge" />
@@ -17,7 +17,7 @@
     <meta name="description" content="" />
     <meta name="keywords" content="" />
 
-    <title>Edit recipes :: Come On Baby</title>
+    <title>요리법 수정 :: 컴온베이비</title>
 
     <%@ include file="headerStyles.jsp" %>
 
@@ -45,7 +45,7 @@
         <!-- Content section -->
         <section class="container-fluid content">
 
-            <%String headTitle ="New Recipe"; if (!isNew) headTitle = recipeGuide.getTitle();%>
+            <%String headTitle ="새로운 조리법"; if (!isNew) headTitle = recipeGuide.getTitle();%>
             <h3><i class="fa fa-list-ul"></i><%out.print(headTitle);%></h3>
 
             <!-- Edit form -->
@@ -57,34 +57,34 @@
 
                         <%String title =""; if (!isNew) title = recipeGuide.getTitle();%>
                         <div class="form-group">
-                            <label for="title">Recipe title</label>
-                            <input type="text" class="form-control" name="title" id="title" value="<%out.print(title);%>" placeholder="Recipe title">
+                            <label for="title">가이드 제목</label>
+                            <input type="text" class="form-control" name="title" id="title" value="<%out.print(title);%>" placeholder="가이드 제목">
                         </div>
 
                         <%String urlNaver =""; if (!isNew) urlNaver = recipeGuide.getUrlNaver();%>
                         <div class="form-group">
-                            <label for="url">Recipe URL <%if (!isNew){%><a href="javascript:void(0);" class="pl5 recipesOpenLink"><i class="fa fa-link"></i> Open link</a><%}%></label>
-                            <input type="text" class="form-control" name="url" id="url" value="<%out.print(urlNaver);%>" placeholder="Recipe URL">
+                            <label for="url">URL <%if (!isNew){%><a href="javascript:void(0);" class="pl5 recipesOpenLink"><i class="fa fa-link"></i> 링크 열기</a><%}%></label>
+                            <input type="text" class="form-control" name="url" id="url" value="<%out.print(urlNaver);%>" placeholder="URL">
                         </div>
 
                         <% if(!isNew){
                             String urlPic = recipeGuide.getImageThumbnail(); %>
                         <div class="form-group form-img-thumbnail">
-                            <a data-fancybox="gallery" href="<%out.print(urlPic);%>"><img src="<%out.print(urlPic);%>" alt="Roasted Carrot Soup" class="img-thumbnail"></a>
+                            <a data-fancybox="gallery" href="<%out.print(urlPic);%>"><img src="<%out.print(urlPic);%>" alt="<%out.print(title);%>" class="img-thumbnail"></a>
                         </div>
                         <%}%>
 
 
                         <div class="form-group">
-                            <label class="control-label">Recipe image</label>
+                            <label class="control-label">안내 이미지</label>
                             <input id="fileInput" name="filePicture[]" type="file" class="file" <%if (isNew){%>required <%}%>>
                         </div>
                     </div>
                 </div>
 
                 <div class="mt20 delimiter">
-                    <a href="/guide/featured-recipes" class="btn btn-default">Back</a>
-                    <button class="btn btn-primary" type="submit">Save</button>
+                    <a href="/guide/featured-recipes" class="btn btn-default">뒤로</a>
+                    <button class="btn btn-primary" type="submit">구하다</button>
                 </div>
             </form>
             <!-- #End Edit form -->

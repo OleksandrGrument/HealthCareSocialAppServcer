@@ -6,7 +6,7 @@
 <%@ taglib prefix="sec" uri="http://www.springframework.org/security/tags" %>
 <%@ page session="false" %>
 <!DOCTYPE html>
-<html lang="en">
+<html lang="kr">
 <head>
     <meta charset="utf-8" />
     <meta http-equiv="X-UA-Compatible" content="IE=edge" />
@@ -17,7 +17,7 @@
     <meta name="description" content="" />
     <meta name="keywords" content="" />
 
-    <title>Edit guide :: Come On Baby</title>
+    <title>가이드 편집 :: 컴온베이비</title>
 
     <%@ include file="headerStyles.jsp" %>
 
@@ -46,7 +46,7 @@
 
         <!-- Content section -->
         <section class="container-fluid content">
-            <%String headTitle ="New Fertilization"; if (!isNew) headTitle = fertilizationGuide.getTitle();%>
+            <%String headTitle ="새로운 난임가이드 리스트"; if (!isNew) headTitle = fertilizationGuide.getTitle();%>
             <h3><i class="fa fa-list-ul"></i><%out.print(headTitle);%></h3>
 
             <!-- Edit form -->
@@ -59,27 +59,27 @@
 
                         <%String title =""; if (!isNew) title = fertilizationGuide.getTitle();%>
                         <div class="form-group">
-                            <label for="title">Guide title</label>
-                            <input type="text" class="form-control" name="title" id="title" value="<%out.print(title);%>" placeholder="Guide title" required />
+                            <label for="title">가이드 제목</label>
+                            <input type="text" class="form-control" name="title" id="title" value="<%out.print(title);%>" placeholder="가이드 제목" required />
                         </div>
 
                         <% if(!isNew){
                             String urlPic = fertilizationGuide.getImage(); %>
                         <div class="form-group form-img-thumbnail">
-                            <a data-fancybox="gallery" href="<%out.print(urlPic);%>"><img src="<%out.print(urlPic);%>" alt="Roasted Carrot Soup" class="img-thumbnail"></a>
+                            <a data-fancybox="gallery" href="<%out.print(urlPic);%>"><img src="<%out.print(urlPic);%>" alt="<%out.print(title);%>" class="img-thumbnail"></a>
                         </div>
                         <%}%>
 
                         <div class="form-group">
-                            <label class="control-label">Guide image</label>
+                            <label class="control-label">안내 이미지</label>
                             <input id="fileInput" name="filePicture[]" type="file" class="file" <%if (isNew){%>required <%}%> />
                         </div>
                     </div>
                 </div>
 
                 <div class="mt20 delimiter">
-                    <a href="/guide/fertilization" class="btn btn-default">Back</a>
-                    <button class="btn btn-primary" type="submit">Save</button>
+                    <a href="/guide/fertilization" class="btn btn-default">뒤로</a>
+                    <button class="btn btn-primary" type="submit">구하다</button>
                 </div>
             </form>
             <!-- #End Edit form -->

@@ -20,7 +20,7 @@
     <meta name="description" content="" />
     <meta name="keywords" content="" />
 
-    <title>회원관리 :: Come On Baby</title>
+    <title>회원관리 :: 컴온베이비</title>
 
     <%@ include file="headerStyles.jsp" %>
 

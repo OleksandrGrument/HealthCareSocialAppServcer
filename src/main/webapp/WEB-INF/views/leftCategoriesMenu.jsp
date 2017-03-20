@@ -5,7 +5,7 @@
 <%@ taglib prefix="sec" uri="http://www.springframework.org/security/tags" %>
 <%@ page session="false" %>
 <aside class="sidebar-nav">
-    <div class="left-top-line logo"><a href="/">ComeOnBaby</a></div>
+    <div class="left-top-line logo"><a href="/">컴온베이비</a></div>
     <%
         String currentPath = (String) request.getAttribute("javax.servlet.forward.request_uri");
         System.out.println(currentPath);
@@ -13,10 +13,10 @@
     <ul>
         <li><a href="/users/"><i class="fa fa-user" aria-hidden="true"></i> 회원관리</a></li>
         <li>
-            <a href="/guide/featured-recipes"><i class="fa fa-file" aria-hidden="true"></i> Guide</a>
+            <a href="/guide/featured-recipes"><i class="fa fa-file" aria-hidden="true"></i> 가이드</a>
             <ul class="sub-menu">
-                <li><a href="/guide/featured-recipes"><i class="fa fa-angle-double-right" aria-hidden="true"></i> Featured recipes</a></li>
-                <li><a href="/guide/fertilization"><i class="fa fa-angle-double-right" aria-hidden="true"></i> Fertilization guide</a></li>
+                <li><a href="/guide/featured-recipes"><i class="fa fa-angle-double-right" aria-hidden="true"></i> 추천레시피 리스트</a></li>
+                <li><a href="/guide/fertilization"><i class="fa fa-angle-double-right" aria-hidden="true"></i> 난임가이드 리스트</a></li>
             </ul>
         </li>
         <li>
@@ -40,5 +40,5 @@
         <li><a href="managersList.php"><i class="fa fa-user-secret" aria-hidden="true"></i> Managers</a></li>
         <li><a href="/setting/"><i class="fa fa-cogs" aria-hidden="true"></i> Settings</a></li>
     </ul>
-    <div class="copyright">2017 &copy; ComeOnBaby</div>
+    <div class="copyright">2017 &copy; 컴온베이비</div>
 </aside>
