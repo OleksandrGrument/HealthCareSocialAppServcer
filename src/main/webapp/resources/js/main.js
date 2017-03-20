@@ -53,8 +53,8 @@ jQuery(document).ready(function($) {
             text: "You won't be able to revert this!",
             type: 'warning',
             showCancelButton: true,
-            confirmButtonColor: '#3085d6',
-            cancelButtonColor: '#d33',
+            confirmButtonColor: '#3b9c96',
+            cancelButtonColor: '#aaa',
             confirmButtonText: 'Yes, delete it!'
         }).then(function(isConfirm){
             if (isConfirm) {
