@@ -1,3 +1,5 @@
+<%@ page import="com.ComeOnBaby.model.User" %>
+<%@ page import="java.util.List" %>
 <%@ taglib prefix="spring" uri="http://www.springframework.org/tags" %>
 <%@ page language="java" pageEncoding="UTF-8"%>
 <%@ page contentType="text/html;charset=UTF-8" %>
@@ -38,13 +40,16 @@
 
         <%@ include file="topLine.jsp" %>
 
+
         <!-- Content section -->
         <section class="container-fluid content">
             <h3><i class="fa fa-user-secret"></i>Managers</h3>
 
             <div class="mb20">
-                <button class="btn btn-primary"><i class="fa fa-plus-circle mr10"></i>Add new manager</button>
+                <a href="<%out.print("/admin/addNewManager");%>" class="btn btn-primary"><i class="fa fa-plus-circle mr10"></i>Add new manager</a>
             </div>
+
+            <%List<User> managerList = (List<User>) request.getAttribute("managerList");%>
 
             <table id="dataTable" class="table table-striped table-bordered" width="100%" cellspacing="0">
                 <thead>
@@ -66,24 +71,20 @@
 
                 <!-- Items list -->
                 <tbody>
-                <tr>
-                    <td align="center">1</td>
-                    <td><a href="managersListEdit.php">Tiger Nixon</a></td>
-                    <td><a href="mailto:info@someserver.com">info@someserver.com</a></td>
-                    <td align="center">
-                        <a href="managersListEdit.php" data-toggle="tooltip" title="Edit"><i class="fa fa-edit"></i> Edit</a>&nbsp; |&nbsp;
-                        <a href="javascript:void(0);" data-toggle="tooltip" title="Delete" class="deleteConfirm"><i class="fa fa-trash"></i> Delete</a>
-                    </td>
-                </tr>
-                <tr>
-                    <td align="center">2</td>
-                    <td><a href="managersListEdit.php">Tiger Nixon</a></td>
-                    <td><a href="mailto:info@someserver.com">info@someserver.com</a></td>
-                    <td align="center">
-                        <a href="managersListEdit.php" data-toggle="tooltip" title="Edit"><i class="fa fa-edit"></i> Edit</a>&nbsp; |&nbsp;
-                        <a href="javascript:void(0);" data-toggle="tooltip" title="Delete" class="deleteConfirm"><i class="fa fa-trash"></i> Delete</a>
-                    </td>
-                </tr>
+
+                <%if (managerList.size()>0){
+                    for (User manager : managerList){%>
+                        <tr>
+                            <td align="center"><%out.print(manager.getId());%></td>
+                            <td><a href="<%out.print("/admin/managerEdit/"+manager.getId());%>"><%out.print(manager.getSsoId());%></a></td>
+                            <td><a href="mailto:info@someserver.com"><%out.print(manager.getEmail());%></a></td>
+                            <td align="center">
+                                <a href="<%out.print("/admin/managerEdit/"+manager.getId());%>" data-toggle="tooltip" title="Edit"><i class="fa fa-edit"></i> Edit</a>&nbsp; |&nbsp;
+                                <a href="<%out.print("/admin/managerDelete/"+manager.getId());%>" data-toggle="tooltip" title="Delete" class="deleteConfirm"><i class="fa fa-trash"></i> Delete</a>
+                            </td>
+                        </tr>
+                <%  }
+                }%>
                 </tbody>
                 <!-- #End Items list -->
 

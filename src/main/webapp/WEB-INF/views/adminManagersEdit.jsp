@@ -1,3 +1,4 @@
+<%@ page import="com.ComeOnBaby.model.User" %>
 <%@ taglib prefix="spring" uri="http://www.springframework.org/tags" %>
 <%@ page language="java" pageEncoding="UTF-8"%>
 <%@ page contentType="text/html;charset=UTF-8" %>
@@ -38,49 +39,61 @@
 
         <%@ include file="topLine.jsp" %>
 
+        <%User manager = (User) request.getAttribute("manager");%>
+        <%boolean isNew = (boolean) request.getAttribute("isNew");%>
+        <%String formAction = "/admin/saveManager";%>
+
         <!-- Content section -->
         <section class="container-fluid content">
-            <h3><i class="fa fa-user-secret"></i>Manager settings</h3>
+            <%String stringTitle = "";
+            if (isNew) {
+                stringTitle = "Add new manager";
+            }else {
+                stringTitle = "Manager settings";
+            }%>
+            <h3><i class="fa fa-user-secret"></i><%out.print(stringTitle);%></h3>
 
             <!-- Edit form -->
-            <form action="" method="post">
+            <form action="<%out.print(formAction);%>" method="post">
                 <div class="row">
                     <div class="col-md-6">
+
+                        <input type="hidden" name="id" value="<%if (!isNew)out.print(manager.getId());%>">
 
                         <h4>Basic information</h4>
 
                         <div class="form-group delimiter mt10">
                             <label for="login">Login</label>
-                            <input type="text" name="login" id="login" class="form-control" placeholder="Login" required/>
+                            <input type="text" name="login" id="login" class="form-control" placeholder="Login" value="<%if (!isNew) out.print(manager.getSsoId());%>" required/>
                         </div>
 
-                        <div class="form-group">
+                        <%--<div class="form-group">
                             <label for="name">Name</label>
                             <input type="text" name="email" id="name" class="form-control" placeholder="Name" required/>
-                        </div>
+                        </div>--%>
 
                         <div class="form-group">
                             <label for="email">E-mail</label>
-                            <input type="email" name="email" id="email" class="form-control" placeholder="E-mail" required/>
+                            <input type="email" name="email" id="email" class="form-control" placeholder="E-mail" value="<%if (!isNew) out.print(manager.getEmail());%>" required/>
                         </div>
 
                         <h4>Change password</h4>
 
                         <div class="form-group delimiter mt10">
                             <label for="new_password">New password</label>
-                            <input type="password" name="password" id="new_password" class="form-control" placeholder="New password" required/>
+                            <input type="password" name="password" id="new_password" class="form-control" placeholder="New password"/>
                         </div>
 
                         <div class="form-group">
                             <label for="confirm_password">Confirm new password</label>
-                            <input type="password" name="confirm_password" id="confirm_password" class="form-control" placeholder="Confirm new password" required/>
+                            <input type="password" name="confirm_password" id="confirm_password" class="form-control" placeholder="Confirm new password"/>
                         </div>
 
                     </div>
                 </div>
 
                 <div class="mt20 delimiter">
-                    <a href="managersList.php" class="btn btn-default">Back</a>
+                    <a href="/admin/manager-list" class="btn btn-default">Back</a>
                     <button class="btn btn-primary">Save</button>
                 </div>
 
