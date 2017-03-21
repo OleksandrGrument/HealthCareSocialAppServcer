@@ -3,6 +3,7 @@ package com.ComeOnBaby.service;
 
 import com.ComeOnBaby.dao.AppUserDao;
 import com.ComeOnBaby.model.AppUser;
+import org.hibernate.Query;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
@@ -18,6 +19,8 @@ public class AppUserServiceImpl implements AppUserService {
     public void setCaseDao(AppUserDao appUserDao) {
         this.appUserDao = appUserDao;
     }
+
+
 
     @Override
     @Transactional()
@@ -65,5 +68,12 @@ public class AppUserServiceImpl implements AppUserService {
     @Transactional(readOnly = true)
     public List<AppUser> findAllUserWithNotes() {
         return appUserDao.findAllUserWithNotes();
+    }
+
+
+    @Override
+    @Transactional
+    public void deleteUserById(Long id){
+        appUserDao.deleteUserById(id);
     }
 }

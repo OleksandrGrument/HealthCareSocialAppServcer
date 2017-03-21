@@ -23,4 +23,6 @@ public interface AppUserService {
     List<AppUser> getAllUsers();
 
     List<AppUser> findAllUserWithNotes();
+
+    void deleteUserById(Long id);
 }
