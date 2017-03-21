@@ -12,6 +12,8 @@ public class DataNoteByMonthWeek {
 
     private List<Note> dataNoteByMonthWeek;
 
+    public DataNoteByMonthWeek(){}
+
     public DataNoteByMonthWeek(List<Note> dataNoteByMonthWeek) {
         this.dataNoteByMonthWeek = dataNoteByMonthWeek;
     }
@@ -91,11 +93,12 @@ public class DataNoteByMonthWeek {
         return count;
     }
 
-    public int car() {
+    public int typeOfTea() {
         int count = 0;
         for (Note note : dataNoteByMonthWeek) {
-            if (note.getGoing_to_bed_from() != null) {
-                count++;
+            if (note.getRecommended_tea() != null) {
+                String[] strings = note.getRecommended_tea().split(",");
+                count+=strings.length;
             }
         }
         return count;
@@ -114,9 +117,9 @@ public class DataNoteByMonthWeek {
     public int sleepBeforeMidnight() {
         int count = 0;
         for (Note note : dataNoteByMonthWeek) {
-            //if(note.get!=null){
-            count++;
-            //}
+            if(note.getGoing_to_bed_from()!=null){
+                count++;
+            }
         }
         return count;
     }
@@ -124,9 +127,9 @@ public class DataNoteByMonthWeek {
     public int averageSleepTime() {
         int count = 0;
         for (Note note : dataNoteByMonthWeek) {
-            //if(note.get!=null){
+            if(note.getGoing_to_bed_to()!=null){
             count++;
-            //}
+            }
         }
         return count;
     }
@@ -332,7 +335,7 @@ public class DataNoteByMonthWeek {
         return strBtp;
     }
 
-    private Calendar convertDateToCalendar(Date date) {
+    public Calendar convertDateToCalendar(Date date) {
         Calendar cal = null;
         DateFormat formatter = new SimpleDateFormat("dd-MM-yyyy");
         String stringDate = formatter.format(date);
@@ -346,12 +349,44 @@ public class DataNoteByMonthWeek {
         return cal;
     }
 
-    public void listOutPut(){
-        SimpleDateFormat dateFormatter1 = new SimpleDateFormat("EEEE dd.MM.yyyy");
-        for (Note note : dataNoteByMonthWeek) {
-            if(note!= null){
-                System.out.println(dateFormatter1.format(note.getDate())+", ");
+    public String generalStatus(){
+        String generalStatus = "";
+        int count = 0;
+        List<String> stringList = new ArrayList<>();
+
+        stringList.add(evolitionState(recommendedFood()));
+        stringList.add(evolitionState(nuts()));
+        stringList.add(evolitionState(typeOfTea()));
+        stringList.add(evolitionState(exercise()));
+        stringList.add(evolitionState(sleepBeforeMidnight()));
+        stringList.add(evolitionState(averageSleepTime()));
+        stringList.add(evolitionStateWater(waterIngestion()));
+        stringList.add(evolitionState(vitamin()));
+        stringList.add(evolitionState(folicAcid()));
+        stringList.add(evolitionState(coffee()));
+        stringList.add(evolitionState(alcohol()));
+        stringList.add(evolitionState(smoking()));
+
+        for(String string : stringList){
+            if (string.equals("<span class=\"bad\">bad</span>")){
+                count+=1;
+            } else if (string.equals("<span class=\"good\">Good</span>")){
+                count+=2;
+            }else if (string.equals("<span class=\"excellent\">excellent</span>")) {
+                count += 3;
             }
         }
+
+        int totalCount = count / stringList.size();
+
+        switch (totalCount){
+            default: generalStatus = "<span class=\"bad\">bad</span>"; break;
+            case 2: generalStatus = "<span class=\"good\">Good</span>"; break;
+            case 3: generalStatus = "<span class=\"excellent\">excellent</span>"; break;
+        }
+
+        return generalStatus;
     }
+
+
 }

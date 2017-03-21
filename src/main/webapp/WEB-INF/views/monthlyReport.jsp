@@ -49,6 +49,7 @@
 
             <% AppUser user = (AppUser) request.getAttribute("user"); %>
             <% List<Note> notices = (List<Note>) request.getAttribute("notices"); %>
+            <%List<String> generalStatus = (List<String>) request.getAttribute("generalStatus");%>
 
             <table id="dataTable" class="table table-striped table-bordered" width="100%" cellspacing="0">
                 <thead>
@@ -72,22 +73,24 @@
                     SimpleDateFormat dateFormat = new SimpleDateFormat("yyyy-MM");
                     SimpleDateFormat dateFormat1 = new SimpleDateFormat("MM/yyyy");
                 %>
-                <%if(notices.size()>0) {
+                <%int count = 1;
+                    if(notices.size()>0) {
                     Date date = notices.get(0).getDate();%>
                     <tr>
                         <td align="center"><%out.print(notices.get(0).getAppUser().getId());%></td>
                         <td><a href="<%out.print("/users/monthlyReportShow/"+notices.get(0).getAppUser().getId()+"/"+dateFormat1.format(date));%>"><%out.print(dateFormat.format(date));%></a></td>
-                        <td align="center" class="marker"><span class="good">Good</span></td>
+                        <td align="center" class="marker"><%out.print(generalStatus.get(0));%></td>
                     </tr>
                     <%for(Note note: notices){
                         if(!dateFormat.format(note.getDate()).equals(dateFormat.format(date))){%>
                             <tr>
                                 <td align="center"><%out.print(note.getAppUser().getId());%></td>
                                 <td><a href="<%out.print("/users/monthlyReportShow/"+note.getAppUser().getId()+"/"+dateFormat1.format(note.getDate()));%>"><%out.print(dateFormat.format(note.getDate()));%></a></td>
-                                <td align="center" class="marker"><span class="good">Good</span></td>
+                                <td align="center" class="marker"><%out.print(generalStatus.get(count));%></td>
                             </tr>
-                            <%date = note.getDate();%>
-                        <%}
+                            <%date = note.getDate();
+                            count++;
+                        }
                     }
                 }%>
                 </tbody>

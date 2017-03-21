@@ -258,13 +258,27 @@ public class UserManagementController {
     public ModelAndView monthlyReport(@PathVariable Long userId) {
 
         ModelAndView monthlyReport = new ModelAndView("monthlyReport");
+        List<String> generalStatus = new ArrayList<>();
 
         AppUser user = appUserService.findById(userId);
         List<Note> notices = noteService.findUserNotes(user);
 
+        Collections.sort(notices, new NoteByDateComparator());
+        if(notices.size()>0) {
+            Note tempNote = notices.get(0);
+            generalStatus.add(new DataNoteByMonthWeek(notices, tempNote.getDate().getMonth(), tempNote.getDate().getYear()).generalStatus());
+            for (Note note : notices) {
+                if (tempNote.getDate().getMonth() != note.getDate().getMonth()) {
+                    generalStatus.add(new DataNoteByMonthWeek(notices, note.getDate().getMonth(), note.getDate().getYear()).generalStatus());
+                    tempNote = note;
+                }
+            }
+        }
+
 
         monthlyReport.addObject("user", user);
         monthlyReport.addObject("notices", notices);
+        monthlyReport.addObject("generalStatus", generalStatus);
 
         return monthlyReport;
     }
@@ -278,9 +292,22 @@ public class UserManagementController {
         Collections.sort(notes, new NoteByDateComparator());
 
         DataNoteByMonthWeek dataNoteByWeek = new DataNoteByMonthWeek(notes);
+        List<String> generalStatus = new ArrayList<>();
+
+        if(notes.size()>0) {
+            Note tempNote = notes.get(0);
+            generalStatus.add(new DataNoteByMonthWeek(notes, new DataNoteByMonthWeek().convertDateToCalendar(tempNote.getDate()).get(Calendar.WEEK_OF_YEAR)).generalStatus());
+            for (Note note : notes) {
+                if (new DataNoteByMonthWeek().convertDateToCalendar(tempNote.getDate()).get(Calendar.WEEK_OF_YEAR) != new DataNoteByMonthWeek().convertDateToCalendar(note.getDate()).get(Calendar.WEEK_OF_YEAR)) {
+                    generalStatus.add(new DataNoteByMonthWeek(notes, new DataNoteByMonthWeek().convertDateToCalendar(note.getDate()).get(Calendar.WEEK_OF_YEAR)).generalStatus());
+                    tempNote = note;
+                }
+            }
+        }
 
         weeklyReport.addObject("user", user);
         weeklyReport.addObject("weekReportInformation", dataNoteByWeek.weekReportInformation());
+        weeklyReport.addObject("generalStatus", generalStatus);
 
         return weeklyReport;
     }

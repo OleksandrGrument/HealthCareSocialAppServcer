@@ -47,6 +47,7 @@
 
             <% AppUser user = (AppUser) request.getAttribute("user"); %>
             <% List<WeekReportInformation> weekReports = (List<WeekReportInformation>)request.getAttribute("weekReportInformation"); %>
+            <%List<String> generalStatus = (List<String>) request.getAttribute("generalStatus");%>
 
 
             <table id="dataTable" class="table table-striped table-bordered" width="100%" cellspacing="0">
@@ -67,14 +68,16 @@
 
                 <!-- Items list -->
                 <tbody>
-                <%for(WeekReportInformation weekReport : weekReports){
+                <%int count = 0;
+                for(WeekReportInformation weekReport : weekReports){
                     if (!weekReport.getStartOfWeek().equals(weekReport.getEndOfWeek())){%>
                         <tr>
                             <td align="center"><%out.print(weekReport.getCountWeekOfYear());%></td>
                             <td><a href="<%out.print("/users/weeklyReportShow/"+user.getId()+"/"+weekReport.getCountWeekOfYear());%>"><%out.print(weekReport.getStartOfWeek()+" &mdash; "+weekReport.getEndOfWeek());%></a></td>
-                            <td align="center" class="marker"><span class="good">Good</span></td>
+                            <td align="center" class="marker"><%out.print(generalStatus.get(count));%></td>
                         </tr>
-                <%  }
+                <%  count++;
+                    }
                 }%>
                 </tbody>
                 <!-- #End Items list -->

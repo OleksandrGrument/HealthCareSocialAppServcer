@@ -43,6 +43,7 @@
         <%@ include file="topLine.jsp" %>
 
         <% List<WeekReportInformation> weekReportInformations = (List<WeekReportInformation>)request.getAttribute("weekReportInformationAllUsers"); %>
+        <%List<String> generalStatus = (List<String>) request.getAttribute("generalStatus");%>
 
         <!-- Content section -->
         <section class="container-fluid content">
@@ -70,16 +71,19 @@
 
                 <!-- Items list -->
                 <tbody>
-                <%for (WeekReportInformation weekReportInformation : weekReportInformations){
-                    if(weekReportInformation.getNote().getAppUser().getId()!=1 &&(!weekReportInformation.getStartOfWeek().equals(weekReportInformation.getEndOfWeek()))){%>
-                    <tr>
-                        <td align="center"><%out.print(weekReportInformation.getNote().getAppUser().getId());%></td>
-                        <td><%out.print(weekReportInformation.getNote().getAppUser().getEmail());%></td>
-                        <td><a href="<%out.print("/users/user-profile/"+weekReportInformation.getNote().getAppUser().getId());%>"><%out.print(weekReportInformation.getNote().getAppUser().getPreferences().getNickname());%></a></td>
-                        <td align="center" class="marker"><span class="good">Good</span></td>
-                        <td align="center"><a href="<%out.print("/report/generalWeeklyReportShow/"+weekReportInformation.getNote().getAppUser().getId()+"/"+weekReportInformation.getCountWeekOfYear());%>"><%out.print(weekReportInformation.getStartOfWeek()+"-"+weekReportInformation.getEndOfWeek());%></a></td>
-                    </tr>
-                <%}}%>
+                <%  int count = 0;
+                    for (WeekReportInformation weekReportInformation : weekReportInformations){
+                        if(weekReportInformation.getNote().getAppUser().getId()!=1 &&(!weekReportInformation.getStartOfWeek().equals(weekReportInformation.getEndOfWeek()))){%>
+                            <tr>
+                                <td align="center"><%out.print(weekReportInformation.getNote().getAppUser().getId());%></td>
+                                <td><%out.print(weekReportInformation.getNote().getAppUser().getEmail());%></td>
+                                <td><a href="<%out.print("/users/user-profile/"+weekReportInformation.getNote().getAppUser().getId());%>"><%out.print(weekReportInformation.getNote().getAppUser().getPreferences().getNickname());%></a></td>
+                                <td align="center" class="marker"><%out.print(generalStatus.get(count));%></td>
+                                <td align="center"><a href="<%out.print("/report/generalWeeklyReportShow/"+weekReportInformation.getNote().getAppUser().getId()+"/"+weekReportInformation.getCountWeekOfYear());%>"><%out.print(weekReportInformation.getStartOfWeek()+"-"+weekReportInformation.getEndOfWeek());%></a></td>
+                            </tr>
+                <%      count++;
+                        }
+                    }%>
                 </tbody>
                 <!-- #End Items list -->
 

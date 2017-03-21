@@ -50,6 +50,7 @@
             <h3><i class="fa fa-bar-chart"></i>User weekly for the: <%out.print(weekReport.getStartOfWeek()+ " - "+weekReport.getEndOfWeek());%></h3>
 
             <!-- Show chart -->
+            <h4>기초체온 그래프</h4>
             <div class="ct-chart"></div>
             <!-- #End Show chart -->
 
@@ -157,7 +158,6 @@
 
             <div class="mt20 delimiter">
                 <a href="<%out.print("/report/generalWeeklyReport");%>" class="btn btn-default">Back</a>
-                <button class="btn btn-primary">Confirm</button>
             </div>
 
         </section>

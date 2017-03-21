@@ -15,10 +15,10 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.SessionAttributes;
 import org.springframework.web.servlet.ModelAndView;
 
+import java.text.DateFormat;
+import java.text.ParseException;
 import java.text.SimpleDateFormat;
-import java.util.ArrayList;
-import java.util.Collections;
-import java.util.List;
+import java.util.*;
 
 @Controller
 @RequestMapping("/report")
@@ -44,6 +44,7 @@ public class GeneralReportController {
         }
 
         List<Note> allAppUserNotesByMonth = new ArrayList<>();
+        List<String> generalStatus = new ArrayList<>();
 
         for (AppUser appUser : appUsers){
             List<Note> userNotes = new ArrayList<>();
@@ -56,16 +57,18 @@ public class GeneralReportController {
             if(userNotes.size()>0) {
                 Note tempNote = userNotes.get(0);
                 allAppUserNotesByMonth.add(tempNote);
+                generalStatus.add(new DataNoteByMonthWeek(userNotes, tempNote.getDate().getMonth(), tempNote.getDate().getYear()).generalStatus());
                 for (Note note : userNotes) {
                     if (tempNote.getDate().getMonth() != note.getDate().getMonth()) {
                         allAppUserNotesByMonth.add(note);
+                        generalStatus.add(new DataNoteByMonthWeek(userNotes, note.getDate().getMonth(), note.getDate().getYear()).generalStatus());
                         tempNote = note;
                     }
                 }
             }
         }
-
         generalMonthlyReport.addObject("allAppUserNotesByMonth", allAppUserNotesByMonth);
+        generalMonthlyReport.addObject("generalStatus", generalStatus);
 
         return generalMonthlyReport;
     }
@@ -106,7 +109,9 @@ public class GeneralReportController {
         }
 
         List<WeekReportInformation> weekReportInformationAllUsers = new ArrayList<>();
+        List<String> generalStatus = new ArrayList<>();
 
+        DateFormat formatter = new SimpleDateFormat("dd-MM-yyyy");
         for (AppUser appUser : appUsers){
             List<Note> userNotes = new ArrayList<>();
             for (Note note : allAppUsersNotes){
@@ -114,13 +119,28 @@ public class GeneralReportController {
                     userNotes.add(note);
                 }
             }
+
             Collections.sort(userNotes, new NoteByDateComparator());
 
             DataNoteByMonthWeek dataNoteByMonthWeek = new DataNoteByMonthWeek(userNotes);
             weekReportInformationAllUsers.addAll(dataNoteByMonthWeek.weekReportInformation());
 
+
+            if(userNotes.size()>0) {
+                Note tempNote = userNotes.get(0);
+                generalStatus.add(new DataNoteByMonthWeek(userNotes, new DataNoteByMonthWeek().convertDateToCalendar(tempNote.getDate()).get(Calendar.WEEK_OF_YEAR)).generalStatus());
+                for (Note note : userNotes) {
+                    if (new DataNoteByMonthWeek().convertDateToCalendar(tempNote.getDate()).get(Calendar.WEEK_OF_YEAR) != new DataNoteByMonthWeek().convertDateToCalendar(note.getDate()).get(Calendar.WEEK_OF_YEAR)) {
+                        generalStatus.add(new DataNoteByMonthWeek(userNotes, new DataNoteByMonthWeek().convertDateToCalendar(note.getDate()).get(Calendar.WEEK_OF_YEAR)).generalStatus());
+                        tempNote = note;
+                    }
+                }
+            }
+
+
         }
         generalWeeklyReport.addObject("weekReportInformationAllUsers", weekReportInformationAllUsers);
+        generalWeeklyReport.addObject("generalStatus", generalStatus);
 
         return generalWeeklyReport;
     }

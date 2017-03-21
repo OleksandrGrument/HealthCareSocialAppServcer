@@ -43,6 +43,7 @@
         <%@ include file="topLine.jsp" %>
 
         <%List<Note> notices = (List<Note>) request.getAttribute("allAppUserNotesByMonth");%>
+        <%List<String> generalStatus = (List<String>) request.getAttribute("generalStatus");%>
 
         <!-- Content section -->
         <section class="container-fluid content">
@@ -75,18 +76,21 @@
 
                 <!-- Items list -->
                 <tbody>
-                    <%for(Note note : notices){
-                    if(note.getAppUser().getId()!=1){%>
-                        <tr>
-                            <td align="center"><%out.print(note.getAppUser().getId());%></td>
-                            <td><%out.print(note.getAppUser().getEmail());%></td>
-                            <td><a href="<%out.print("/users/user-profile/"+note.getAppUser().getId());%>"><%out.print(note.getAppUser().getPreferences().getNickname());%></a></td>
-                            <td align="center" class="marker"><span class="good">Good</span></td>
-                            <td align="center">
-                                <a href="<%out.print("/report/generalMonthlyReportShow/"+note.getAppUser().getId()+"/"+dateFormatLink.format(note.getDate()));%>"><%out.print(dateFormatOut.format(note.getDate()));%></a>
-                            </td>
-                        </tr>
-                    <%}}%>
+                    <% int count = 0;
+                    for(Note note : notices){
+                        if(note.getAppUser().getId()!=1 && generalStatus.size()==notices.size()){%>
+                            <tr>
+                                <td align="center"><%out.print(note.getAppUser().getId());%></td>
+                                    <td><%out.print(note.getAppUser().getEmail());%></td>
+                                    <td><a href="<%out.print("/users/user-profile/"+note.getAppUser().getId());%>"><%out.print(note.getAppUser().getPreferences().getNickname());%></a></td>
+                                    <td align="center" class="marker"><%out.print(generalStatus.get(count));%></td>
+                                    <td align="center">
+                                    <a href="<%out.print("/report/generalMonthlyReportShow/"+note.getAppUser().getId()+"/"+dateFormatLink.format(note.getDate()));%>"><%out.print(dateFormatOut.format(note.getDate()));%></a>
+                                </td>
+                            </tr>
+                            <%count++;%>
+                        <%}
+                    }%>
                 </tbody>
                 <!-- #End Items list -->
 

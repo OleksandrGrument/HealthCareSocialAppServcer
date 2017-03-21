@@ -51,6 +51,7 @@
 
 
             <!-- Show chart -->
+            <h4>기초체온 그래프</h4>
             <div class="ct-chart"></div>
             <!-- #End Show chart -->
 
@@ -70,11 +71,11 @@
                     <td class="marker"><%out.print(dataNoteByMonthWeek.evolitionState(dataNoteByMonthWeek.nuts()));%></td>
                 </tr>
 
-<%--                <tr>
+                <tr>
                     <td class="title">Car:</td>
-                    <td>month <%out.print("@@@@");%> ingestion</td>
-                    <td class="marker"><%out.print(dataNoteByMonthWeek.evolitionState(0));%></td>
-                </tr>--%>
+                    <td>month <%out.print(dataNoteByMonthWeek.typeOfTea());%> ingestion</td>
+                    <td class="marker"><%out.print(dataNoteByMonthWeek.evolitionState(dataNoteByMonthWeek.typeOfTea()));%></td>
+                </tr>
 
                 <tr>
                     <td class="title">Exercise:</td>
@@ -82,17 +83,17 @@
                     <td class="marker"><%out.print(dataNoteByMonthWeek.evolitionState(dataNoteByMonthWeek.exercise()));%></td>
                 </tr>
 
-<%--                <tr>
+               <tr>
                     <td class="title">Sleep before midnight:</td>
-                    <td>month <%out.print("@@@@");%> time</td>
-                    <td class="marker"><%out.print(dataNoteByMonthWeek.evolitionState(0));%></td>
+                    <td>month <%out.print(dataNoteByMonthWeek.sleepBeforeMidnight());%> time</td>
+                    <td class="marker"><%out.print(dataNoteByMonthWeek.evolitionState(dataNoteByMonthWeek.sleepBeforeMidnight()));%></td>
                 </tr>
 
                 <tr>
                     <td class="title">Average sleep time:</td>
-                    <td>month average <%out.print("@@@@");%></td>
-                    <td class="marker"><%out.print(dataNoteByMonthWeek.evolitionState(0));%></td>
-                </tr>--%>
+                    <td>month average <%out.print(dataNoteByMonthWeek.averageSleepTime());%></td>
+                    <td class="marker"><%out.print(dataNoteByMonthWeek.evolitionState(dataNoteByMonthWeek.averageSleepTime()));%></td>
+                </tr>
 
                 <tr>
                     <td class="title">Water ingestion:</td>
@@ -100,7 +101,7 @@
                     <td class="marker"><%out.print(dataNoteByMonthWeek.evolitionStateWater(dataNoteByMonthWeek.waterIngestion()));%></td>
                 </tr>
 
-<%--                <tr>
+                <%--<tr>
                     <td class="title">Eun-hoon / Slut:</td>
                     <td>month <%out.print("@@@@");%> times</td>
                     <td class="marker"><%out.print(dataNoteByMonthWeek.evolitionState(0));%></td>

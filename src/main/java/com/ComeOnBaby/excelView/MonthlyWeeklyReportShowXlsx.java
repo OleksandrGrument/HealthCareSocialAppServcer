@@ -49,7 +49,7 @@ public class MonthlyWeeklyReportShowXlsx extends AbstractXlsxView {
         Row fruitRow = sheet.createRow(rowCount);
         fruitRow.createCell(0).setCellValue(dataNoteByMonthWeek.recommendedFood());
         fruitRow.createCell(1).setCellValue(dataNoteByMonthWeek.nuts());
-        fruitRow.createCell(2).setCellValue(dataNoteByMonthWeek.car());
+        fruitRow.createCell(2).setCellValue(dataNoteByMonthWeek.typeOfTea());
         fruitRow.createCell(3).setCellValue(dataNoteByMonthWeek.exercise());
         fruitRow.createCell(4).setCellValue(dataNoteByMonthWeek.sleepBeforeMidnight());
         fruitRow.createCell(5).setCellValue(dataNoteByMonthWeek.averageSleepTime());
