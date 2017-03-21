@@ -116,9 +116,11 @@ public class AppUserDaoImpl extends AbstractDao<Integer, AppUser> implements App
 
         for (Blog blog : blogs){
             String images = blog.getImages();
-            ArrayList<String> imagesList = new ArrayList(Arrays.asList(images.split("<>")));
-            for (String image : imagesList){
-                ImageEditFunctions.deleteImage(image);
+            if(images!=null){
+                ArrayList<String> imagesList = new ArrayList(Arrays.asList(images.split("<>")));
+                for (String image : imagesList){
+                    ImageEditFunctions.deleteImage(image);
+                }
             }
         }
 
@@ -142,7 +144,9 @@ public class AppUserDaoImpl extends AbstractDao<Integer, AppUser> implements App
         findPreferenceQuery.setParameter("id", id);
         Preferences preference = (Preferences) findPreferenceQuery.uniqueResult();
         String avatarImage = preference.getAvatar();
-        ImageEditFunctions.deleteImage(avatarImage);
+        if(avatarImage!=null){
+            ImageEditFunctions.deleteImage(avatarImage);
+        }
 
         Query deletePreferencesQuery = session.createQuery("DELETE  Preferences preferences WHERE preferences.appUser.id = :id");
         deletePreferencesQuery.setParameter("id", id);

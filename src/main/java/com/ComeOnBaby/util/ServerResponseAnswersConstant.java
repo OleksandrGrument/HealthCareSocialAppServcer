@@ -57,4 +57,7 @@ public class ServerResponseAnswersConstant {
     public final static String MSG_GET_NOTICES_FAIL = "Get notices fail";
     public final static String MSG_DELETE_COMMUNITY_FAIL = "Delete community record fail";
     public final static String MSG_DELETE_COMMUNITY_SUCCESS = "Delete community record success";
+
+    public final static String MSG_DELETE_USER_FAIL = "Delete user record fail";
+    public final static String MSG_DELETE_USER_SUCCESS = "Delete user record success";
 }
