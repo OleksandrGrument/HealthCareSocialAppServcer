@@ -16,7 +16,8 @@ public class AdviceExceptionController {
             exceptionView =new  ModelAndView("redirect:/error/404");
         } else {
             exceptionView = new ModelAndView("404");
-           exceptionView.addObject("error" ,ex.toString());
+            /*exceptionView.addObject("number" , )*/
+           exceptionView.addObject("error" ,ex.getMessage());
         }
         return exceptionView;
     }

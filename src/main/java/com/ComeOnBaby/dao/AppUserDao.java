@@ -5,9 +5,7 @@ import com.ComeOnBaby.model.AppUser;
 
 import java.util.List;
 
-/**
- * Created by adm on 1/30/2017.
- */
+
 public interface AppUserDao {
     Long create(AppUser appUser);
 
@@ -24,4 +22,6 @@ public interface AppUserDao {
     List<AppUser> findAll();
 
     List<AppUser> findAllUserWithNotes();
+
+    void deleteUserById(Long id);
 }

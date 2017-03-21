@@ -53,6 +53,7 @@ public class UsersController {
     private final static String GET_USER_NOTES_OPERATION = "getnotes";
 
     public static final String UPLOAD_BASIC_QUESTION = "uploadbasicquestion";
+    public static final String DELETE_USER_OPERATION = "deleteUser";
 
     //JSON KEYS
     private final static String OPERATION = "operation";
@@ -161,6 +162,11 @@ public class UsersController {
             }
             case GET_GUIDE_OPERATION: {
                 getGuide(inJSON, outJSON);
+                break;
+            }
+
+            case DELETE_USER_OPERATION: {
+                deleteUser(inJSON, outJSON);
                 break;
             }
 
@@ -744,6 +750,26 @@ public class UsersController {
         return outJSON;
     }
 
+    private JSONObject deleteUser(JSONObject inJSON, JSONObject outJSON) {
+        System.out.println(inJSON.toString());
+        JSONObject jsonUser = new JSONObject(inJSON.getString("user"));
+        System.out.println(jsonUser.getLong("id"));
+        try {
+            Long user_id = jsonUser.getLong("id");
+            userService.deleteUserById(user_id);
+            outJSON.put(RESULT, SUCCESS);
+            outJSON.put(MESSAGE, ServerResponseAnswersConstant.MSG_DELETE_USER_SUCCESS);
+
+        } catch (JSONException e) {
+            e.printStackTrace();
+            outJSON.put(RESULT, FAILURE);
+            outJSON.put(MESSAGE, ServerResponseAnswersConstant.MSG_DELETE_USER_FAIL);
+            return outJSON;
+        }
+
+        return outJSON;
+    }
+
     //Make JSON from FertilizationGuide
     private JSONObject getGuideJSON(FertilizationGuide guide) {
         JSONObject outGuide = new JSONObject();
@@ -783,6 +809,7 @@ public class UsersController {
     }
 
 
+
     //EXCEPTION
     @ExceptionHandler(Exception.class)
     public
@@ -795,6 +822,8 @@ public class UsersController {
         System.out.println("Out JSON: " + result.toString() + "\n");
         return result.toString();
     }
+
+
 
 
 }

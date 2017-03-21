@@ -1,6 +1,8 @@
 package com.ComeOnBaby.controller;
 
 import com.ComeOnBaby.model.AppUser;
+import com.ComeOnBaby.service.AppUserService;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -17,6 +19,17 @@ public class TestController {
     public ModelAndView generalMonthlyReport() {
 
         return new ModelAndView("employee", "appUser", new AppUser());
+    }
+
+    @Autowired
+    AppUserService appUserService;
+
+    @RequestMapping(value = "/delete", method = RequestMethod.GET)
+    public ModelAndView delete() {
+
+        appUserService.deleteUserById((long)6);
+
+        return new ModelAndView("404");
     }
 
     @RequestMapping(value = "/addContact", method = RequestMethod.POST)
