@@ -9,7 +9,7 @@
 <%@ taglib prefix="sec" uri="http://www.springframework.org/security/tags" %>
 <%@ page session="false" %>
 <!DOCTYPE html>
-<html lang="en">
+<html lang="kr">
 <head>
     <meta charset="utf-8" />
     <meta http-equiv="X-UA-Compatible" content="IE=edge" />
@@ -20,7 +20,24 @@
     <meta name="description" content="" />
     <meta name="keywords" content="" />
 
-    <title>Edit story :: Come On Baby</title>
+    <% Blog blog = (Blog) request.getAttribute("blog"); %>
+    <% boolean isNew = (boolean) request.getAttribute("isNew"); %>
+    <% String formAction = "/my/save-new-story"; %>
+    <% Integer type;
+        if (isNew) {
+            type = (Integer) request.getAttribute("type");
+        } else {
+            type = blog.getType();
+        }
+    %>
+
+    <% String headTitle = "새로운 이야기";
+        if (!isNew) {
+            headTitle = "이야기 편집";
+        }
+    %>
+
+    <title><%out.print(headTitle);%> :: 컴온베이비</title>
 
     <%@ include file="headerStyles.jsp" %>
 
@@ -43,85 +60,88 @@
         <%@ include file="topLine.jsp" %>
 
 
-        <%Blog blog = (Blog) request.getAttribute("blog");%>
-        <%boolean isNew = (boolean) request.getAttribute("isNew");%>
-        <%String formAction = "/my/save-new-story";%>
-        <%Integer type;
-          if (isNew) type = (Integer) request.getAttribute("type");
-          else  type = blog.getType();           %>
         <!-- Content section -->
         <section class="container-fluid content">
 
-            <%String headTitle ="New "; if (!isNew) headTitle = "Edit information";%>
+
             <h3><i class="fa fa-file-text-o"></i><%out.print(headTitle);%></h3>
-
-
 
             <!-- Edit form -->
             <form action="<%out.print(formAction);%>" method="post" enctype="multipart/form-data">
                 <div class="row">
                     <div class="col-md-6">
 
-                        <input type="hidden" name="id" value="<%if (!isNew)out.print(blog.getId());%>">
+                        <input type="hidden" name="id" value="<% if (!isNew) out.print(blog.getId()); %>">
                         <input type="hidden" name="type" value="<% out.print(type) ;%>">
 
-                        <%String blogTitle =""; if (!isNew) blogTitle = blog.getTitle();%>
+                        <% String blogTitle ="";
+                            if (!isNew) {
+                                blogTitle = blog.getTitle();
+                            }
+                        %>
+
                         <div class="form-group">
-                            <label for="title">Title</label>
-                            <input type="text" class="form-control" name="title" id="title" value="<%out.print(blogTitle);%>" placeholder="Story title" required />
+                            <label for="title">표제</label>
+                            <input type="text" class="form-control" name="title" id="title" value="<%out.print(blogTitle);%>" placeholder="표제" required />
                         </div>
 
-                        <% if(!isNew){
+                        <% if (!isNew) {
 
                             List<String> images = (List<String>) request.getAttribute("images");
                             Iterator<String> imageIterator = images.iterator();
                             int imageIndex = 0;
-                            while(imageIterator.hasNext()){
+
+                            while (imageIterator.hasNext()) {
 
                                 String name = imageIterator.next();
-                                if (!name.equals("")){
+                                if (!name.equals("")) {
                                     String urlPic = MainPathEnum.mainWebPath+"show-image/"+name; %>
                                     <div class="form-group form-img-thumbnail">
-                                        <a data-fancybox="gallery" href="<%out.print(urlPic);%>"><img src="<%out.print(urlPic);%>" alt="Roasted Carrot Soup" class="img-thumbnail"></a>
+                                        <a data-fancybox="gallery" href="<%out.print(urlPic);%>"><img src="<%out.print(urlPic);%>" alt="<%out.print(blogTitle);%>" class="img-thumbnail"></a>
                                         <a href="<%out.print("/my/delete-image-from-story/"+blog.getId()+"/"+imageIndex);%>" class="delete deleteConfirm"><i class="fa fa-times"></i></a>
                                     </div>
                                     <%  imageIndex++;
                                 }
-                            }%>
-                        <%}%>
+                            } %>
+                        <% } %>
 
                         <div class="form-group">
-                            <label class="control-label">Story image</label>
+                            <label class="control-label">영상</label>
                             <input multiple id="tenFilesInput" name="filePicture[]" type="file" class="file">
                         </div>
 
 
                         <%String text = ""; if (!isNew) text = blog.getText();%>
                         <div class="form-group">
-                            <label class="control-label">Story text</label>
+                            <label class="control-label">기술</label>
                             <textarea rows="4" class="form-control" name="text"><%out.print(text);%></textarea>
                         </div>
                         <%if (!isNew){%>
                             <div class="form-group">
-                                <b>Story likes:</b> <%out.print(blog.getLikes().size());%> likes
+                                <b>좋아하는 이야기:</b> <%out.print(blog.getLikes().size());%> 좋은
                             </div>
                         <%}%>
                     </div>
                 </div>
 
-                <%if (!isNew){%>
+                <% if (!isNew) { %>
                     <div class="mt10">
-                        <a href="<%out.print("/my/comments/"+blog.getId());%>" class="btn btn-default">Story Comments (<%out.print(blog.getComments().size());%>)</a>
+                        <a href="<%out.print("/my/comments/"+blog.getId());%>" class="btn btn-default">이야기 댓글 (<%out.print(blog.getComments().size());%>)</a>
                     </div>
-                <%}%>
+                <% } %>
 
                 <% String backLink = "" ;
-                    if (type.equals(2)) backLink="/my/recipes"; else if (type.equals(3)) backLink="/my/story";
-                    else if (type.equals(4)) backLink="/my/husband";
+                    if (type.equals(2)) {
+                        backLink="/my/recipes";
+                    } else if (type.equals(3)) {
+                        backLink = "/my/story";
+                    } else if (type.equals(4)) {
+                        backLink = "/my/husband";
+                    }
                 %>
                 <div class="mt20 delimiter">
-                    <a href="<%out.print(backLink);%>" class="btn btn-default">Back</a>
-                    <button type="submit" class="btn btn-primary">Save</button>
+                    <a href="<%out.print(backLink);%>" class="btn btn-default">뒤로</a>
+                    <button type="submit" class="btn btn-primary">구하다</button>
                 </div>
             </form>
             <!-- #End Edit form -->

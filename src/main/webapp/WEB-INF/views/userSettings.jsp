@@ -6,7 +6,7 @@
 <%@ taglib prefix="sec" uri="http://www.springframework.org/security/tags" %>
 <%@ page session="false" %>
 <!DOCTYPE html>
-<html lang="en">
+<html lang="kr">
 <head>
     <meta charset="utf-8" />
     <meta http-equiv="X-UA-Compatible" content="IE=edge" />
@@ -17,7 +17,7 @@
     <meta name="description" content="" />
     <meta name="keywords" content="" />
 
-    <title>Settings :: Come On Baby</title>
+    <title>설정 :: 컴온베이비</title>
 
     <%@ include file="headerStyles.jsp" %>
 
@@ -41,56 +41,50 @@
 
         <% User userManager = (User) request.getAttribute("userManager");%>
         <% String message = (String) request.getAttribute("message");
-        if (message == null) {message = "error";}%>
-
-
-
+        if (message == null) { message = "error"; }%>
 
         <!-- Content section -->
         <section class="container-fluid content">
-            <h3><i class="fa fa-cog"></i>Settings</h3>
+            <h3><i class="fa fa-cog"></i>설정</h3>
 
             <!-- Edit form -->
             <form action="/setting/saveSetting" method="post">
                 <div class="row">
                     <div class="col-md-6">
+
                         <%if(message.equals("success")){%>
                             <!-- Alert message -->
                             <div class="alert alert-success">
-                                <strong>Good!</strong>
-                                Your information was updated
+                                <strong>좋은!</strong>
+                                귀하의 정보가 업데이트되었습니다.
                             </div>
                             <!-- #End Alert message -->
                         <%}%>
-                        <h4>Notifications</h4>
+
+                        <h4>알림</h4>
 
                         <div class="form-group delimiter mt10 mb30">
-                            <label for="email_notifications">E-mail notifications</label>
-                            <input type="email" name="email_notifications" id="email_notifications" class="form-control" placeholder="E-mail notifications" required value="<%out.print(userManager.getEmail());%>"/>
+                            <label for="email_notifications">이메일</label>
+                            <input type="email" name="email_notifications" id="email_notifications" class="form-control" placeholder="이메일" required value="<%out.print(userManager.getEmail());%>"/>
                         </div>
 
-                        <h4>Change password</h4>
+                        <h4>비밀번호 변경</h4>
 
-                        <div class="form-group delimiter mt10">
-                            <%--<label for="old_password">Old password</label>
-                            <input type="password" name="old_password" id="old_password" class="form-control" placeholder="Old password"/>--%>
+                        <div class="form-group">
+                            <label for="new_password">새 비밀번호</label>
+                            <input type="password" name="password" id="new_password" class="form-control" placeholder="새 비밀번호"/>
                         </div>
 
                         <div class="form-group">
-                            <label for="new_password">New password</label>
-                            <input type="password" name="password" id="new_password" class="form-control" placeholder="New password"/>
-                        </div>
-
-                        <div class="form-group">
-                            <label for="confirm_password">Confirm new password</label>
-                            <input type="password" name="confirm_password" id="confirm_password" class="form-control" placeholder="Confirm new password"/>
+                            <label for="confirm_password">새 암호를 확인합니다</label>
+                            <input type="password" name="confirm_password" id="confirm_password" class="form-control" placeholder="새 암호를 확인합니다"/>
                         </div>
 
                     </div>
                 </div>
 
                 <div class="mt20 delimiter">
-                    <button type="submit" class="btn btn-primary">Save</button>
+                    <button type="submit" class="btn btn-primary">구하다</button>
                 </div>
 
             </form>

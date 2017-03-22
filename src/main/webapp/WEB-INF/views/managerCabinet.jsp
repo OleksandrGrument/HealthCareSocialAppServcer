@@ -59,7 +59,7 @@
                     <th>이메일</th>
                     <th width="100">출생연도</th>
                     <th width="100">회원분류</th>
-                    <th width="100">성별</th>
+                    <th width="50">성별</th>
                 </tr>
                 </thead>
                 <tfoot>
@@ -88,8 +88,14 @@
                %>
                         <tr>
                             <td align="center"><%out.print(user.getId());%></td>
-                            <td><%if (preferences!=null) %><a href="<%out.print("/users/user-profile/"+user.getId());%>"><% out.print(preferences.getNickname());%></a></td>
-                            <td><a href="mailto:<%out.print(user.getEmail());%>"><%out.print(user.getEmail());%></a></td>
+                            <td><%if (preferences != null) %><a href="<%out.print("/users/user-profile/"+user.getId());%>"><% out.print(preferences.getNickname());%></a></td>
+                            <td>
+                                <%if (user.getEmail() != null && !("").equals(user.getEmail())) { %>
+                                    <a href="mailto:<%out.print(user.getEmail());%>"><%out.print(user.getEmail());%></a>
+                                <% } else { %>
+                                    <%out.print("-");%>
+                                <% } %>
+                            </td>
                             <td align="center"><%if (preferences!=null) out.print(preferences.getBirth_year());%>년</td>
                             <td align="center"><%out.print(user.getLoginType());%></td>
 

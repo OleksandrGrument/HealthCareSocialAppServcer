@@ -9,7 +9,7 @@
 <%@ taglib prefix="sec" uri="http://www.springframework.org/security/tags" %>
 <%@ page session="false" %>
 <!DOCTYPE html>
-<html lang="en">
+<html lang="kr">
 <head>
     <meta charset="utf-8" />
     <meta http-equiv="X-UA-Compatible" content="IE=edge" />
@@ -20,7 +20,7 @@
     <meta name="description" content="" />
     <meta name="keywords" content="" />
 
-    <title>Questions &amp; Answers :: Come On Baby</title>
+    <title>질문과 답변 :: 컴온베이비</title>
 
     <%@ include file="headerStyles.jsp" %>
 
@@ -44,29 +44,29 @@
 
         <!-- Content section -->
         <section class="container-fluid content">
-            <h3><i class="fa fa-question-circle-o"></i>Questions &amp; Answers</h3>
+            <h3><i class="fa fa-question-circle-o"></i>질문과 답변</h3>
 
             <table id="dataTable" class="table table-striped table-bordered" width="100%" cellspacing="0">
                 <thead>
                 <tr>
                     <th width="20">ID</th>
-                    <th>Login</th>
-                    <th>Question</th>
-                    <th width="50">Answer</th>
-                    <th width="50">Status</th>
-                    <th width="150">Date</th>
-                    <th width="150">Action</th>
+                    <th>닉네임</th>
+                    <th>문제</th>
+                    <th width="50">대답</th>
+                    <th width="50">지위</th>
+                    <th width="150">날짜</th>
+                    <th width="170">동작</th>
                 </tr>
                 </thead>
                 <tfoot>
                 <tr>
                     <th>ID</th>
-                    <th>Login</th>
-                    <th>Question</th>
-                    <th>Answer</th>
-                    <th>Status</th>
-                    <th>Date</th>
-                    <th>Action</th>
+                    <th>닉네임</th>
+                    <th>문제</th>
+                    <th>대답</th>
+                    <th>지위</th>
+                    <th>날짜</th>
+                    <th>동작</th>
                 </tr>
                 </tfoot>
 
@@ -99,8 +99,8 @@
 
                         <td align="center"><%out.print(questionAnswer.getQuestionDate().toString().substring(0, 19));%></td>
                         <td align="center">
-                            <a href="<%out.print(editQuestionAnswerUrl);%>" data-toggle="tooltip" title="Edit"><i class="fa fa-edit"></i> Edit</a>&nbsp; |&nbsp;
-                            <a href="<%out.print(deleteQuestionAnswerUrl);%>" data-toggle="tooltip" title="Delete" class="deleteConfirm"><i class="fa fa-trash"></i> Delete</a>
+                            <a href="<%out.print(editQuestionAnswerUrl);%>" data-toggle="tooltip" title="편집하다"><i class="fa fa-edit"></i> 편집하다</a>&nbsp; |&nbsp;
+                            <a href="<%out.print(deleteQuestionAnswerUrl);%>" data-toggle="tooltip" title="지우다" class="deleteConfirm"><i class="fa fa-trash"></i> 지우다</a>
                         </td>
                     </tr>
                 <%}%>

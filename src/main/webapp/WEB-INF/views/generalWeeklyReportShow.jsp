@@ -7,7 +7,7 @@
 <%@ taglib prefix="sec" uri="http://www.springframework.org/security/tags" %>
 <%@ page session="false" %>
 <!DOCTYPE html>
-<html lang="en">
+<html lang="kr">
 <head>
     <meta charset="utf-8" />
     <meta http-equiv="X-UA-Compatible" content="IE=edge" />
@@ -18,9 +18,7 @@
     <meta name="description" content="" />
     <meta name="keywords" content="" />
 
-
-
-    <title>User weekly :: Come On Baby</title>
+    <title>주간 리포트 :: 컴온베이비</title>
 
     <%@ include file="headerStyles.jsp" %>
 
@@ -47,7 +45,7 @@
 
         <!-- Content section -->
         <section class="container-fluid content">
-            <h3><i class="fa fa-bar-chart"></i>User weekly for the: <%out.print(weekReport.getStartOfWeek()+ " - "+weekReport.getEndOfWeek());%></h3>
+            <h3><i class="fa fa-bar-chart"></i>주간 리포트: <%out.print(weekReport.getStartOfWeek()+ " - "+weekReport.getEndOfWeek());%></h3>
 
             <!-- Show chart -->
             <h4>기초체온 그래프</h4>
@@ -56,108 +54,107 @@
 
             <!-- User chart information -->
             <table class="user-profile-table">
-
                 <tbody>
-                <tr><td colspan="2" class="header pt0">Detailed information</td></tr>
+                <tr><td colspan="2" class="header pt0">자세한 정보</td></tr>
                 <tr>
-                    <td class="title">Recommended food:</td>
-                    <td>month <%out.print(dataNoteByWeek.recommendedFood());%> time intake</td>
+                    <td class="title">추천음식:</td>
+                    <td>월 <%out.print(dataNoteByWeek.recommendedFood());%>회 섭취</td>
                     <td class="marker"><%out.print(dataNoteByWeek.evolitionState(dataNoteByWeek.recommendedFood()));%></td>
                 </tr>
 
                 <tr>
-                    <td class="title">Nuts:</td>
-                    <td>month <%out.print(dataNoteByWeek.nuts());%> ingestion</td>
+                    <td class="title">견과류:</td>
+                    <td>월 <%out.print(dataNoteByWeek.nuts());%>회 섭취</td>
                     <td class="marker"><%out.print(dataNoteByWeek.evolitionState(dataNoteByWeek.nuts()));%></td>
                 </tr>
 
-<%--                <tr>
-                    <td class="title">Car:</td>
-                    <td>month <%out.print("@@@@");%> ingestion</td>
-                    <td class="marker"><%out.print(dataNoteByWeek.evolitionState(0));%></td>
-                </tr>--%>
+                <tr>
+                    <td class="title">차:</td>
+                    <td>월 <%out.print(dataNoteByWeek.typeOfTea());%>회 섭취</td>
+                    <td class="marker"><%out.print(dataNoteByWeek.evolitionState(dataNoteByWeek.typeOfTea()));%></td>
+                </tr>
 
                 <tr>
-                    <td class="title">Exercise:</td>
-                    <td>month <%out.print(dataNoteByWeek.exercise());%> time</td>
+                    <td class="title">운동:</td>
+                    <td>월 <%out.print(dataNoteByWeek.exercise());%>회</td>
                     <td class="marker"><%out.print(dataNoteByWeek.evolitionState(dataNoteByWeek.exercise()));%></td>
                 </tr>
 
-<%--                <tr>
-                    <td class="title">Sleep before midnight:</td>
-                    <td>month <%out.print("@@@@");%> time</td>
-                    <td class="marker"><%out.print(dataNoteByWeek.evolitionState(0));%></td>
+                <tr>
+                    <td class="title">자정 전 취침:</td>
+                    <td>월 <%out.print(dataNoteByWeek.sleepBeforeMidnight());%>회</td>
+                    <td class="marker"><%out.print(dataNoteByWeek.evolitionState(dataNoteByWeek.sleepBeforeMidnight()));%></td>
                 </tr>
 
                 <tr>
-                    <td class="title">Average sleep time:</td>
-                    <td>month average <%out.print("@@@@");%></td>
-                    <td class="marker"><%out.print(dataNoteByWeek.evolitionState(0));%></td>
-                </tr>--%>
+                    <td class="title">평균 수면시간:</td>
+                    <td>월 평균 <%out.print(dataNoteByWeek.averageSleepTime());%>시간 16분</td>
+                    <td class="marker"><%out.print(dataNoteByWeek.evolitionState(dataNoteByWeek.averageSleepTime()));%></td>
+                </tr>
 
                 <tr>
-                    <td class="title">Water ingestion:</td>
-                    <td>average of <%out.print(dataNoteByWeek.waterIngestion());%> liters per month</td>
+                    <td class="title">물 섭취:</td>
+                    <td>월 평균 <%out.print(dataNoteByWeek.waterIngestion());%> 리터</td>
                     <td class="marker"><%out.print(dataNoteByWeek.evolitionStateWater(dataNoteByWeek.waterIngestion()));%></td>
                 </tr>
 
-<%--                <tr>
-                    <td class="title">Eun-hoon / Slut:</td>
-                    <td>month <%out.print("@@@@");%> times</td>
+                <%--<tr>
+                    <td class="title">좌훈 / 좌욕:</td>
+                    <td>월 <%out.print("@@@@");%>회</td>
                     <td class="marker"><%out.print(dataNoteByWeek.evolitionState(0));%></td>
                 </tr>--%>
 
                 <tr>
-                    <td class="title">Vitamin:</td>
-                    <td>month <%out.print(dataNoteByWeek.vitamin());%> times intake</td>
+                    <td class="title">비타민:</td>
+                    <td>월 <%out.print(dataNoteByWeek.vitamin());%>회 섭취</td>
                     <td class="marker"><%out.print(dataNoteByWeek.evolitionState(dataNoteByWeek.vitamin()));%></td>
                 </tr>
 
                 <tr>
-                    <td class="title">Folic acid:</td>
-                    <td>month <%out.print(dataNoteByWeek.folicAcid());%> Ingestion</td>
+                    <td class="title">엽산:</td>
+                    <td>월 <%out.print(dataNoteByWeek.folicAcid());%>회 섭취</td>
                     <td class="marker"><%out.print(dataNoteByWeek.evolitionState(dataNoteByWeek.folicAcid()));%></td>
                 </tr>
 
                 <tr>
-                    <td class="title">Less than one cup of coffee:</td>
-                    <td>month <%out.print(dataNoteByWeek.coffee());%> time</td>
+                    <td class="title">커피 1잔 이하:</td>
+                    <td>월 <%out.print(dataNoteByWeek.coffee());%>회</td>
                     <td class="marker"><%out.print(dataNoteByWeek.evolitionState(dataNoteByWeek.coffee()));%></td>
                 </tr>
 
                 <tr>
-                    <td class="title">Alcohol:</td>
-                    <td>month <%out.print(dataNoteByWeek.alcohol());%> time Drinking / average 0 cups</td>
+                    <td class="title">알코올:</td>
+                    <td>월 <%out.print(dataNoteByWeek.alcohol());%>회 음주 / 평균 1.7잔</td>
                     <td class="marker"><%out.print(dataNoteByWeek.evolitionStateAlcohol(dataNoteByWeek.alcohol()));%></td>
                 </tr>
 
                 <tr>
-                    <td class="title">No smoking:</td>
-                    <td>month <%out.print(dataNoteByWeek.smoking());%> times</td>
+                    <td class="title">금연:</td>
+                    <td>월 <%out.print(dataNoteByWeek.smoking());%>회</td>
                     <td class="marker"><%out.print(dataNoteByWeek.evolitionState(dataNoteByWeek.smoking()));%></td>
                 </tr>
 
                 <tr><td class="delimiter" colspan="3"></td></tr>
                 <tr>
-                    <td class="title">Emotion:</td>
+                    <td class="title">감정:</td>
                     <td colspan="2"><%out.print(dataNoteByWeek.emotion());%></td>
                 </tr>
 
                 <tr>
-                    <td class="title">BMI (Body Mass Index):</td>
+                    <td class="title">BMI (신체질량지수):</td>
                     <td colspan="2"><%out.print(dataNoteByWeek.bodyMassIndex());%></td>
                 </tr>
 
-
+                </tbody>
             </table>
             <!-- #End User chart information -->
 
             <div class="mt10">
-                <a class="btn btn-primary" href="<%out.print("/users/downloadWeeklyReport/"+weekReport.getNote().getAppUser().getId()+"/"+weekReport.getCountWeekOfYear());%>">Download Excel</a>
+                <a class="btn btn-primary" href="<%out.print("/users/downloadWeeklyReport/"+weekReport.getNote().getAppUser().getId()+"/"+weekReport.getCountWeekOfYear());%>">엑셀 다운로드</a>
             </div>
 
             <div class="mt20 delimiter">
-                <a href="<%out.print("/report/generalWeeklyReport");%>" class="btn btn-default">Back</a>
+                <a href="<%out.print("/report/generalWeeklyReport");%>" class="btn btn-default">뒤로</a>
             </div>
 
         </section>

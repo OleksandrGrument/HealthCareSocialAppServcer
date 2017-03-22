@@ -71,11 +71,11 @@
                     <td class="marker"><%out.print(dataNoteByMonthWeek.evolitionState(dataNoteByMonthWeek.nuts()));%></td>
                 </tr>
 
-                <%--<tr>
+                <tr>
                     <td class="title">차:</td>
-                    <td>월 <%out.print("@@@@");%>회 섭취</td>
-                    <td class="marker"><%out.print(dataNoteByMonthWeek.evolitionState(0));%></td>
-                </tr>--%>
+                    <td>월 <%out.print(dataNoteByMonthWeek.typeOfTea());%>회 섭취</td>
+                    <td class="marker"><%out.print(dataNoteByMonthWeek.evolitionState(dataNoteByMonthWeek.typeOfTea()));%></td>
+                </tr>
 
                 <tr>
                     <td class="title">운동:</td>
@@ -83,17 +83,17 @@
                     <td class="marker"><%out.print(dataNoteByMonthWeek.evolitionState(dataNoteByMonthWeek.exercise()));%></td>
                 </tr>
 
-                <%--<tr>
+                <tr>
                     <td class="title">자정 전 취침:</td>
-                    <td>월 <%out.print("@@@@");%>회</td>
-                    <td class="marker"><%out.print(dataNoteByMonthWeek.evolitionState(0));%></td>
-                </tr>--%>
+                    <td>월 <%out.print(dataNoteByMonthWeek.sleepBeforeMidnight());%>회</td>
+                    <td class="marker"><%out.print(dataNoteByMonthWeek.evolitionState(dataNoteByMonthWeek.sleepBeforeMidnight()));%></td>
+                </tr>
 
-                <%--<tr>
+                <tr>
                     <td class="title">평균 수면시간:</td>
-                    <td>월 평균 <%out.print("@@@@");%>시간 16분</td>
-                    <td class="marker"><%out.print(dataNoteByMonthWeek.evolitionState(0));%></td>
-                </tr>--%>
+                    <td>월 평균 <%out.print(dataNoteByMonthWeek.averageSleepTime());%>시간 16분</td>
+                    <td class="marker"><%out.print(dataNoteByMonthWeek.evolitionState(dataNoteByMonthWeek.averageSleepTime()));%></td>
+                </tr>
 
                 <tr>
                     <td class="title">물 섭취:</td>

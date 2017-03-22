@@ -10,7 +10,7 @@
 <%@ taglib prefix="sec" uri="http://www.springframework.org/security/tags" %>
 <%@ page session="false" %>
 <!DOCTYPE html>
-<html lang="en">
+<html lang="kr">
 <head>
     <meta charset="utf-8" />
     <meta http-equiv="X-UA-Compatible" content="IE=edge" />
@@ -21,7 +21,7 @@
     <meta name="description" content="" />
     <meta name="keywords" content="" />
 
-    <title>Story comments :: Come On Baby</title>
+    <title>이야기 댓글 :: 컴온베이비</title>
 
     <%@ include file="headerStyles.jsp" %>
 
@@ -48,10 +48,9 @@
             Blog blog = (Blog) request.getAttribute("blog");
         %>
 
-
         <!-- Content section -->
         <section class="container-fluid content">
-            <h3><i class="fa fa-comments-o"></i>Story comments</h3>
+            <h3><i class="fa fa-comments-o"></i>이야기 댓글</h3>
 
                 <div class="row">
                     <div class="col-md-6">
@@ -60,13 +59,13 @@
                             Iterator<Comment> commentIterator = comments.iterator();
                             String actionUrl = "/my/write-comment";
 
-
                             while (commentIterator.hasNext()) {
                                 Comment comment = commentIterator.next();
                                 String deleteCommentUrl = "/my/delete-comment/"+comment.getId()+"/"+blog.getId();
                                 AppUser appUser = comment.getAppUser();
-                            if(appUser.getId()!=1){
+                            if (appUser.getId() != 1) {
                         %>
+
                             <div class="comment">
                                 <div class="clearfix pb10">
                                     <span class="pull-left"><a href="<%out.print("/users/user-profile/"+appUser.getId());%>"><%out.print(appUser.getPreferences().getNickname());%> (ID: <%out.print(appUser.getId());%>)</a></span>
@@ -80,7 +79,7 @@
 
                             <div class="comment alert-warning">
                                 <div class="clearfix pb10">
-                                    <span class="pull-left"><b>Administrator</b></span>
+                                    <span class="pull-left"><b>관리자</b></span>
                                     <span class="pull-right"><a href="<%out.print(deleteCommentUrl);%>" data-toggle="tooltip" title="Delete" class="deleteConfirm"><i class="fa fa-remove"></i></a></span>
                                     <div class="pull-right mr20"><%out.print(comment.getDatetime().toString().substring(0, 19));%></div>
                                 </div>
@@ -94,19 +93,19 @@
                             <input type="hidden" name="id" value="<%out.print(blog.getId());%>">
 
                             <div class="form-group delimiter">
-                                <label class="control-label">Administrator comment</label>
-                                <textarea class="form-control" name="text" id="editor"></textarea>
+                                <label class="control-label">관리자 의견</label>
+                                <textarea class="form-control" name="text"></textarea>
                             </div>
 
                             <div class="text-right">
-                                <button type="submit" class="btn btn-primary">Send</button>
+                                <button type="submit" class="btn btn-primary">보내다</button>
                             </div>
                         </form>
                     </div>
                 </div>
             </form>
             <div class="mt20 delimiter">
-                <a href="<%out.print("/my/edit/"+blog.getId());%>" class="btn btn-default">Back</a>
+                <a href="<%out.print("/my/edit/"+blog.getId());%>" class="btn btn-default">뒤로</a>
             </div>
         </section>
         <!-- Content section -->

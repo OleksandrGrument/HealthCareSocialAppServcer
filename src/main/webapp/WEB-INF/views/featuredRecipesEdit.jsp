@@ -57,7 +57,7 @@
 
                         <%String title =""; if (!isNew) title = recipeGuide.getTitle();%>
                         <div class="form-group">
-                            <label for="title">가이드 제목</label>
+                            <label for="title">표제</label>
                             <input type="text" class="form-control" name="title" id="title" value="<%out.print(title);%>" placeholder="가이드 제목">
                         </div>
 
@@ -76,7 +76,7 @@
 
 
                         <div class="form-group">
-                            <label class="control-label">안내 이미지</label>
+                            <label class="control-label">영상</label>
                             <input id="fileInput" name="filePicture[]" type="file" class="file" <%if (isNew){%>required <%}%>>
                         </div>
                     </div>

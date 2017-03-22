@@ -1,5 +1,4 @@
 <%@ page import="com.ComeOnBaby.model.Notice" %>
-<%@ page import="java.util.ArrayList" %>
 <%@ page import="com.ComeOnBaby.enums.MainPathEnum" %>
 <%@ page import="java.util.List" %>
 <%@ page import="java.util.Iterator" %>
@@ -10,7 +9,7 @@
 <%@ taglib prefix="sec" uri="http://www.springframework.org/security/tags" %>
 <%@ page session="false" %>
 <!DOCTYPE html>
-<html lang="en">
+<html lang="kr">
 <head>
     <meta charset="utf-8" />
     <meta http-equiv="X-UA-Compatible" content="IE=edge" />
@@ -21,7 +20,7 @@
     <meta name="description" content="" />
     <meta name="keywords" content="" />
 
-    <title>Edit recipes :: Come On Baby</title>
+    <title>알림 / 이벤트 편집 :: 컴온베이비</title>
 
     <%@ include file="headerStyles.jsp" %>
 
@@ -50,7 +49,7 @@
 
         <!-- Content section -->
 
-        <%String headTitle ="New Notice"; if (!isNew) headTitle = notice.getTitle();%>
+        <%String headTitle ="새로운 알림 / 이벤트"; if (!isNew) headTitle = notice.getTitle();%>
         <section class="container-fluid content">
             <h3><i class="fa fa-calendar"></i><%out.print(headTitle);%></h3>
 
@@ -64,8 +63,8 @@
 
                         <%String title =""; if (!isNew) title = notice.getTitle();%>
                         <div class="form-group">
-                            <label for="title">Notice / event title</label>
-                            <input type="text" class="form-control" name="title" id="title" value="<%out.print(title);%>" placeholder="Notice / event title">
+                            <label for="title">표제</label>
+                            <input type="text" class="form-control" name="title" id="title" value="<%out.print(title);%>" placeholder="표제">
                         </div>
 
                         <% if(!isNew){
@@ -79,7 +78,7 @@
                                 if (!name.equals("")){
                                     String urlPic = MainPathEnum.mainWebPath+"show-image/"+name; %>
                                     <div class="form-group form-img-thumbnail">
-                                        <a data-fancybox="gallery" href="<%out.print(urlPic);%>"><img src="<%out.print(urlPic);%>" alt="Roasted Carrot Soup" class="img-thumbnail"></a>
+                                        <a data-fancybox="gallery" href="<%out.print(urlPic);%>"><img src="<%out.print(urlPic);%>" alt="<%out.print(title);%>" class="img-thumbnail"></a>
                                         <a href="<%out.print("/notice/delete-image-from-notice/"+notice.getId()+"/"+imageIndex);%>" class="delete deleteConfirm"><i class="fa fa-times"></i></a>
                                     </div>
                                     <% imageIndex++;
@@ -87,22 +86,22 @@
                             }%>
                         <%}%>
                         <div class="form-group">
-                            <label class="control-label">Notice / event image</label>
+                            <label class="control-label">영상</label>
                             <input multiple id="tenFilesInput" name="filePicture[]" type="file" class="file">
                         </div>
 
 
                         <%String text =""; if (!isNew) text = notice.getText();%>
                         <div class="form-group">
-                            <label class="control-label">Notice / event text</label>
+                            <label class="control-label">기술</label>
                             <textarea class="form-control" name="text" id="editor"><%out.print(text);%></textarea>
                         </div>
                     </div>
                 </div>
 
                 <div class="mt20 delimiter">
-                    <a href="/notice/events" class="btn btn-default">Back</a>
-                    <button type="submit" class="btn btn-primary">Save</button>
+                    <a href="/notice/events" class="btn btn-default">뒤로</a>
+                    <button type="submit" class="btn btn-primary">구하다</button>
                 </div>
             </form>
             <!-- #End Edit form -->

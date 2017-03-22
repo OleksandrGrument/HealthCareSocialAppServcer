@@ -8,7 +8,7 @@
 <%@ taglib prefix="sec" uri="http://www.springframework.org/security/tags" %>
 <%@ page session="false" %>
 <!DOCTYPE html>
-<html lang="en">
+<html lang="kr">
 <head>
     <meta charset="utf-8" />
     <meta http-equiv="X-UA-Compatible" content="IE=edge" />
@@ -19,7 +19,7 @@
     <meta name="description" content="" />
     <meta name="keywords" content="" />
 
-    <title>Edit recipes :: Come On Baby</title>
+    <title>공지 / 이벤트 리스트 :: 컴온베이비</title>
 
     <%@ include file="headerStyles.jsp" %>
 
@@ -43,27 +43,27 @@
 
         <!-- Content section -->
         <section class="container-fluid content">
-            <h3><i class="fa fa-calendar"></i>Notice / Event</h3>
+            <h3><i class="fa fa-calendar"></i>공지 / 이벤트 리스트</h3>
 
             <div class="mb20">
-                <a href="/notice/add-notice" class="btn btn-primary"><i class="fa fa-plus-circle mr10"></i>Add new notice / event</a>
+                <a href="/notice/add-notice" class="btn btn-primary"><i class="fa fa-plus-circle mr10"></i>새로운 알림 / 이벤트 추가</a>
             </div>
 
             <table id="dataTable" class="table table-striped table-bordered" width="100%" cellspacing="0">
                 <thead>
                 <tr>
                     <th width="20">ID</th>
-                    <th>Title</th>
-                    <th width="150">Date</th>
-                    <th width="150">Action</th>
+                    <th>표제</th>
+                    <th width="150">날짜</th>
+                    <th width="170">동작</th>
                 </tr>
                 </thead>
                 <tfoot>
                 <tr>
                     <th>ID</th>
-                    <th>Title</th>
-                    <th>Date</th>
-                    <th>Action</th>
+                    <th>표제</th>
+                    <th>날짜</th>
+                    <th>동작</th>
                 </tr>
                 </tfoot>
 
@@ -84,8 +84,8 @@
                     <td><a href="<%out.print(editNoticeUrl);%>"><%out.print(notice.getTitle());%></a></td>
                     <td align="center"><%out.print(notice.getDate().toString().substring(0, 19));%></td>
                     <td align="center">
-                        <a href="<%out.print(editNoticeUrl);%>" data-toggle="tooltip" title="Edit"><i class="fa fa-edit"></i> Edit</a>&nbsp; |&nbsp;
-                        <a href="<%out.print("/notice/delete-notice/"+notice.getId());%>" data-toggle="tooltip" title="Delete" class="deleteConfirm"><i class="fa fa-trash"></i> Delete</a>
+                        <a href="<%out.print(editNoticeUrl);%>" data-toggle="tooltip" title="편집하다"><i class="fa fa-edit"></i> 편집하다</a>&nbsp; |&nbsp;
+                        <a href="<%out.print("/notice/delete-notice/"+notice.getId());%>" data-toggle="tooltip" title="지우다" class="deleteConfirm"><i class="fa fa-trash"></i> 지우다</a>
                     </td>
                 </tr>
                 <%}%>

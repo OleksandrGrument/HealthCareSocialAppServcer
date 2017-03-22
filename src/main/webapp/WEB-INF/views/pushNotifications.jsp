@@ -8,7 +8,7 @@
 <%@ taglib prefix="sec" uri="http://www.springframework.org/security/tags" %>
 <%@ page session="false" %>
 <!DOCTYPE html>
-<html lang="en">
+<html lang="kr">
 <head>
     <meta charset="utf-8" />
     <meta http-equiv="X-UA-Compatible" content="IE=edge" />
@@ -43,27 +43,27 @@
 
         <!-- Content section -->
         <section class="container-fluid content">
-            <h3><i class="fa fa-bell-o"></i>Push notifications</h3>
+            <h3><i class="fa fa-bell-o"></i>Push 리스트</h3>
 
             <div class="mb20">
-                <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#pushNotifications"><i class="fa fa-plus-circle mr10"></i>Add new push</button>
+                <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#pushNotifications"><i class="fa fa-plus-circle mr10"></i>새로운 푸시 추가</button>
             </div>
 
             <table id="dataTable" class="table table-striped table-bordered" width="100%" cellspacing="0">
                 <thead>
                 <tr>
                     <th width="20">ID</th>
-                    <th width="70">Notice ID</th>
-                    <th>Notifications</th>
-                    <th width="150">Date</th>
+                    <th width="70">공지사항 ID</th>
+                    <th>푸시 메시지</th>
+                    <th width="150">날짜</th>
                 </tr>
                 </thead>
                 <tfoot>
                 <tr>
                     <th>ID</th>
-                    <th>Notice ID</th>
-                    <th>Notifications</th>
-                    <th>Date</th>
+                    <th>공지사항 ID</th>
+                    <th>푸시 메시지</th>
+                    <th>날짜</th>
                 </tr>
                 </tfoot>
 
@@ -108,24 +108,24 @@
             <div class="modal-content">
                 <div class="modal-header">
                     <button type="button" class="close" data-dismiss="modal">&times;</button>
-                    <h3 class="mb0"><i class="fa fa-bell-o"></i>Push notification</h3>
+                    <h3 class="mb0"><i class="fa fa-bell-o"></i>PUSH 보내기</h3>
                 </div>
 
                 <!-- Modal body -->
                 <div class="modal-body">
 
                     <div class="form-group">
-                        <label for="noticeId" class="control-label">Notice ID</label>
-                        <input type="text" class="form-control form-block" name="id" id="noticeId" placeholder="Notice ID" required/>
+                        <label for="noticeId" class="control-label">공지사항 ID</label>
+                        <input type="text" class="form-control form-block" name="id" id="noticeId" placeholder="공지사항 ID" required/>
                     </div>
 
                     <div class="form-group">
-                        <label for="notification" class="control-label">Notification</label>
-                        <textarea name="notificationText" id="notification" class="form-control form-block" rows="3" placeholder="Notification" required></textarea>
+                        <label for="notification" class="control-label">푸시 메시지</label>
+                        <textarea name="notificationText" id="notification" class="form-control form-block" rows="3" placeholder="푸시 메시지" required></textarea>
                     </div>
 
-          <%--          <div class="form-group">
-                        <label class="control-label">Push image</label>
+                    <%--<div class="form-group">
+                        <label class="control-label">푸쉬 이미지</label>
                         <input id="fileInput" name="push_image" type="file" class="file" placeholder="Push image"/>
                     </div>--%>
 
@@ -133,8 +133,8 @@
                 <!-- #End Modal body -->
 
                 <div class="modal-footer">
-                    <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
-                    <button type="submit" class="btn btn-primary">Send</button>
+                    <button type="button" class="btn btn-default" data-dismiss="modal">취소</button>
+                    <button type="submit" class="btn btn-primary">보내기</button>
                 </div>
             </div>
         </form>

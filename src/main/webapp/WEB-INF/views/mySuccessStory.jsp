@@ -8,7 +8,7 @@
 <%@ taglib prefix="sec" uri="http://www.springframework.org/security/tags" %>
 <%@ page session="false" %>
 <!DOCTYPE html>
-<html lang="en">
+<html lang="kr">
 <head>
     <meta charset="utf-8" />
     <meta http-equiv="X-UA-Compatible" content="IE=edge" />
@@ -19,7 +19,10 @@
     <meta name="description" content="" />
     <meta name="keywords" content="" />
 
-    <title>My success story :: Come On Baby</title>
+    <%String title = (String) request.getAttribute("title");%>
+    <%Integer type = (Integer) request.getAttribute("type");%>
+
+    <title><%out.print(title);%> :: 컴온베이비</title>
 
     <%@ include file="headerStyles.jsp" %>
 
@@ -43,33 +46,32 @@
 
         <!-- Content section -->
         <section class="container-fluid content">
-            <%String title = (String) request.getAttribute("title");%>
-            <%Integer type = (Integer) request.getAttribute("type");%>
+
             <h3><i class="fa fa-file-text-o"></i><%out.print(title);%></h3>
 
             <div class="mb20">
-                <a href="<%out.print("/my/new/"+type);%>" class="btn btn-primary"><i class="fa fa-plus-circle mr10"></i>Add new story</a>
+                <a href="<%out.print("/my/new/"+type);%>" class="btn btn-primary"><i class="fa fa-plus-circle mr10"></i>새로운 이야기 추가</a>
             </div>
 
             <table id="dataTable" class="table table-striped table-bordered" width="100%" cellspacing="0">
                 <thead>
                 <tr>
                     <th width="20">ID</th>
-                    <th>Title</th>
-                    <th width="90">Likes</th>
-                    <th width="90">Comments</th>
-                    <th width="150">Date</th>
-                    <th width="150">Action</th>
+                    <th>표제</th>
+                    <th width="90">좋은</th>
+                    <th width="90">논평</th>
+                    <th width="150">날짜</th>
+                    <th width="170">동작</th>
                 </tr>
                 </thead>
                 <tfoot>
                 <tr>
                     <th>ID</th>
-                    <th>Title</th>
-                    <th>Likes</th>
-                    <th>Comments</th>
-                    <th>Date</th>
-                    <th>Action</th>
+                    <th>표제</th>
+                    <th>좋은</th>
+                    <th>논평</th>
+                    <th>날짜</th>
+                    <th>동작</th>
                 </tr>
                 </tfoot>
 
@@ -93,8 +95,8 @@
                     <td align="center"><%out.print(blog.getComments().size());%></td>
                     <td align="center"><%out.print(blog.getDatetime().toString().substring(0, 19));%></td>
                     <td align="center">
-                        <a href="<%out.print(editStoryUrl);%>" data-toggle="tooltip" title="Edit"><i class="fa fa-edit"></i> Edit</a>&nbsp; |&nbsp;
-                        <a href="<%out.print("/my/delete/"+blog.getId());%>" data-toggle="tooltip" title="Delete" class="deleteConfirm"><i class="fa fa-trash"></i> Delete</a>
+                        <a href="<%out.print(editStoryUrl);%>" data-toggle="tooltip" title="편집하다"><i class="fa fa-edit"></i> 편집하다</a>&nbsp; |&nbsp;
+                        <a href="<%out.print("/my/delete/"+blog.getId());%>" data-toggle="tooltip" title="지우다" class="deleteConfirm"><i class="fa fa-trash"></i> 지우다</a>
                     </td>
                 </tr>
                 <%}%>

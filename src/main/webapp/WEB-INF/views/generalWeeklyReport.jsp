@@ -1,5 +1,3 @@
-<%@ page import="com.ComeOnBaby.model.Note" %>
-<%@ page import="com.ComeOnBaby.model.AppUser" %>
 <%@ page import="java.util.List" %>
 <%@ page import="com.ComeOnBaby.util.WeekReportInformation" %>
 <%@ taglib prefix="spring" uri="http://www.springframework.org/tags" %>
@@ -9,7 +7,7 @@
 <%@ taglib prefix="sec" uri="http://www.springframework.org/security/tags" %>
 <%@ page session="false" %>
 <!DOCTYPE html>
-<html lang="en">
+<html lang="kr">
 <head>
     <meta charset="utf-8" />
     <meta http-equiv="X-UA-Compatible" content="IE=edge" />
@@ -20,7 +18,7 @@
     <meta name="description" content="" />
     <meta name="keywords" content="" />
 
-    <title>Users weekly reports :: Come On Baby</title>
+    <title>주간 리포트 :: 컴온베이비</title>
 
     <%@ include file="headerStyles.jsp" %>
 
@@ -47,25 +45,25 @@
 
         <!-- Content section -->
         <section class="container-fluid content">
-            <h3><i class="fa fa-bar-chart"></i>Users weekly reports</h3>
+            <h3><i class="fa fa-bar-chart"></i>주간 리포트</h3>
 
             <table id="dataTable" class="table table-striped table-bordered" width="100%" cellspacing="0">
                 <thead>
                 <tr>
                     <th width="20">ID</th>
-                    <th>E-mail</th>
-                    <th>Login</th>
-                    <th width="100">Evaluation</th>
-                    <th width="200">Generation week</th>
+                    <th>이메일</th>
+                    <th>닉네임</th>
+                    <th width="100">평가</th>
+                    <th width="200">생성주간</th>
                 </tr>
                 </thead>
                 <tfoot>
                 <tr>
                     <th>ID</th>
-                    <th>E-mail</th>
-                    <th>Login</th>
-                    <th>Evaluation</th>
-                    <th>Generation week</th>
+                    <th>이메일</th>
+                    <th>닉네임</th>
+                    <th>평가</th>
+                    <th>생성주간</th>
                 </tr>
                 </tfoot>
 
@@ -76,7 +74,7 @@
                         if(weekReportInformation.getNote().getAppUser().getId()!=1 &&(!weekReportInformation.getStartOfWeek().equals(weekReportInformation.getEndOfWeek()))){%>
                             <tr>
                                 <td align="center"><%out.print(weekReportInformation.getNote().getAppUser().getId());%></td>
-                                <td><%out.print(weekReportInformation.getNote().getAppUser().getEmail());%></td>
+                                <td><a href="mailto:<%out.print(weekReportInformation.getNote().getAppUser().getEmail());%>"><%out.print(weekReportInformation.getNote().getAppUser().getEmail());%></a></td>
                                 <td><a href="<%out.print("/users/user-profile/"+weekReportInformation.getNote().getAppUser().getId());%>"><%out.print(weekReportInformation.getNote().getAppUser().getPreferences().getNickname());%></a></td>
                                 <td align="center" class="marker"><%out.print(generalStatus.get(count));%></td>
                                 <td align="center"><a href="<%out.print("/report/generalWeeklyReportShow/"+weekReportInformation.getNote().getAppUser().getId()+"/"+weekReportInformation.getCountWeekOfYear());%>"><%out.print(weekReportInformation.getStartOfWeek()+"-"+weekReportInformation.getEndOfWeek());%></a></td>

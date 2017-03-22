@@ -1,7 +1,6 @@
 <%@ page import="com.ComeOnBaby.model.Note" %>
 <%@ page import="java.util.List" %>
 <%@ page import="java.text.SimpleDateFormat" %>
-<%@ page import="com.ComeOnBaby.model.AppUser" %>
 <%@ taglib prefix="spring" uri="http://www.springframework.org/tags" %>
 <%@ page language="java" pageEncoding="UTF-8"%>
 <%@ page contentType="text/html;charset=UTF-8" %>
@@ -9,7 +8,7 @@
 <%@ taglib prefix="sec" uri="http://www.springframework.org/security/tags" %>
 <%@ page session="false" %>
 <!DOCTYPE html>
-<html lang="en">
+<html lang="kr">
 <head>
     <meta charset="utf-8" />
     <meta http-equiv="X-UA-Compatible" content="IE=edge" />
@@ -20,7 +19,7 @@
     <meta name="description" content="" />
     <meta name="keywords" content="" />
 
-    <title>Users monthly reports :: Come On Baby</title>
+    <title>월간 리포트 :: 컴온베이비</title>
 
     <%@ include file="headerStyles.jsp" %>
 
@@ -47,25 +46,25 @@
 
         <!-- Content section -->
         <section class="container-fluid content">
-            <h3><i class="fa fa-bar-chart"></i>Users monthly reports</h3>
+            <h3><i class="fa fa-bar-chart"></i>월간 리포트</h3>
 
             <table id="dataTable" class="table table-striped table-bordered" width="100%" cellspacing="0">
                 <thead>
                 <tr>
                     <th width="20">ID</th>
-                    <th>E-mail</th>
-                    <th>Login</th>
-                    <th width="100">Evaluation</th>
-                    <th width="200">Generation month</th>
+                    <th>이메일</th>
+                    <th>닉네임</th>
+                    <th width="100">평가</th>
+                    <th width="200">창조 월</th>
                 </tr>
                 </thead>
                 <tfoot>
                 <tr>
                     <th>ID</th>
-                    <th>E-mail</th>
-                    <th>Login</th>
-                    <th>Evaluation</th>
-                    <th>Generation month</th>
+                    <th>이메일</th>
+                    <th>닉네임</th>
+                    <th>평가</th>
+                    <th>창조 월</th>
                 </tr>
                 </tfoot>
 
@@ -81,7 +80,7 @@
                         if(note.getAppUser().getId()!=1 && generalStatus.size()==notices.size()){%>
                             <tr>
                                 <td align="center"><%out.print(note.getAppUser().getId());%></td>
-                                    <td><%out.print(note.getAppUser().getEmail());%></td>
+                                    <td><a href="mailto:<%out.print(note.getAppUser().getEmail());%>"><%out.print(note.getAppUser().getEmail());%></a></td>
                                     <td><a href="<%out.print("/users/user-profile/"+note.getAppUser().getId());%>"><%out.print(note.getAppUser().getPreferences().getNickname());%></a></td>
                                     <td align="center" class="marker"><%out.print(generalStatus.get(count));%></td>
                                     <td align="center">

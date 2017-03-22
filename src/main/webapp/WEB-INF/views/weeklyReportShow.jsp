@@ -60,79 +60,79 @@
                 <tr><td colspan="2" class="header pt0">자세한 정보</td></tr>
                 <tr>
                     <td class="title">추천음식:</td>
-                    <td>주 <%out.print(dataNoteByWeek.recommendedFood());%>회 섭취</td>
+                    <td>월 <%out.print(dataNoteByWeek.recommendedFood());%>회 섭취</td>
                     <td class="marker"><%out.print(dataNoteByWeek.evolitionState(dataNoteByWeek.recommendedFood()));%></td>
                 </tr>
 
                 <tr>
                     <td class="title">견과류:</td>
-                    <td>주 <%out.print(dataNoteByWeek.nuts());%>회 섭취</td>
+                    <td>월 <%out.print(dataNoteByWeek.nuts());%>회 섭취</td>
                     <td class="marker"><%out.print(dataNoteByWeek.evolitionState(dataNoteByWeek.nuts()));%></td>
                 </tr>
 
-                <%--<tr>
+                <tr>
                     <td class="title">차:</td>
-                    <td>주 <%out.print("@@@@");%>회 섭취</td>
-                    <td class="marker"><%out.print(dataNoteByWeek.evolitionState(0));%></td>
-                </tr>--%>
+                    <td>월 <%out.print(dataNoteByWeek.typeOfTea());%>회 섭취</td>
+                    <td class="marker"><%out.print(dataNoteByWeek.evolitionState(dataNoteByWeek.typeOfTea()));%></td>
+                </tr>
 
                 <tr>
                     <td class="title">운동:</td>
-                    <td>주 <%out.print(dataNoteByWeek.exercise());%>회</td>
+                    <td>월 <%out.print(dataNoteByWeek.exercise());%>회</td>
                     <td class="marker"><%out.print(dataNoteByWeek.evolitionState(dataNoteByWeek.exercise()));%></td>
                 </tr>
 
-                <%--<tr>
+                <tr>
                     <td class="title">자정 전 취침:</td>
-                    <td>주 <%out.print("@@@@");%>회</td>
-                    <td class="marker"><%out.print(dataNoteByWeek.evolitionState(0));%></td>
+                    <td>월 <%out.print(dataNoteByWeek.sleepBeforeMidnight());%>회</td>
+                    <td class="marker"><%out.print(dataNoteByWeek.evolitionState(dataNoteByWeek.sleepBeforeMidnight()));%></td>
                 </tr>
 
                 <tr>
                     <td class="title">평균 수면시간:</td>
-                    <td>평균 7시간 <%out.print("@@@@");%>분</td>
-                    <td class="marker"><%out.print(dataNoteByWeek.evolitionState(0));%></td>
-                </tr>--%>
+                    <td>월 평균 <%out.print(dataNoteByWeek.averageSleepTime());%>시간 16분</td>
+                    <td class="marker"><%out.print(dataNoteByWeek.evolitionState(dataNoteByWeek.averageSleepTime()));%></td>
+                </tr>
 
                 <tr>
                     <td class="title">물 섭취:</td>
-                    <td>평균 <%out.print(dataNoteByWeek.waterIngestion());%> 리터</td>
+                    <td>월 평균 <%out.print(dataNoteByWeek.waterIngestion());%> 리터</td>
                     <td class="marker"><%out.print(dataNoteByWeek.evolitionStateWater(dataNoteByWeek.waterIngestion()));%></td>
                 </tr>
 
                 <%--<tr>
-                    <td class="title">좌훈 / 좌요:</td>
-                    <td>주 <%out.print("@@@@");%>회</td>
+                    <td class="title">좌훈 / 좌욕:</td>
+                    <td>월 <%out.print("@@@@");%>회</td>
                     <td class="marker"><%out.print(dataNoteByWeek.evolitionState(0));%></td>
                 </tr>--%>
 
                 <tr>
                     <td class="title">비타민:</td>
-                    <td>주 <%out.print(dataNoteByWeek.vitamin());%>회 섭취</td>
+                    <td>월 <%out.print(dataNoteByWeek.vitamin());%>회 섭취</td>
                     <td class="marker"><%out.print(dataNoteByWeek.evolitionState(dataNoteByWeek.vitamin()));%></td>
                 </tr>
 
                 <tr>
                     <td class="title">엽산:</td>
-                    <td>주 <%out.print(dataNoteByWeek.folicAcid());%>회</td>
+                    <td>월 <%out.print(dataNoteByWeek.folicAcid());%>회 섭취</td>
                     <td class="marker"><%out.print(dataNoteByWeek.evolitionState(dataNoteByWeek.folicAcid()));%></td>
                 </tr>
 
                 <tr>
                     <td class="title">커피 1잔 이하:</td>
-                    <td>주 <%out.print(dataNoteByWeek.coffee());%>회</td>
+                    <td>월 <%out.print(dataNoteByWeek.coffee());%>회</td>
                     <td class="marker"><%out.print(dataNoteByWeek.evolitionState(dataNoteByWeek.coffee()));%></td>
                 </tr>
 
                 <tr>
                     <td class="title">알코올:</td>
-                    <td>주 <%out.print(dataNoteByWeek.alcohol());%>회 음주 / 평균 1.7잔</td>
+                    <td>월 <%out.print(dataNoteByWeek.alcohol());%>회 음주 / 평균 1.7잔</td>
                     <td class="marker"><%out.print(dataNoteByWeek.evolitionStateAlcohol(dataNoteByWeek.alcohol()));%></td>
                 </tr>
 
                 <tr>
                     <td class="title">금연:</td>
-                    <td>주 <%out.print(dataNoteByWeek.smoking());%>회</td>
+                    <td>월 <%out.print(dataNoteByWeek.smoking());%>회</td>
                     <td class="marker"><%out.print(dataNoteByWeek.evolitionState(dataNoteByWeek.smoking()));%></td>
                 </tr>
 

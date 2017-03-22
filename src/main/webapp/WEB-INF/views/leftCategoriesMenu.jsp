@@ -22,26 +22,30 @@
         <li>
             <a href="/notice/events"><i class="fa fa-users" aria-hidden="true"></i> Community</a>
             <ul class="sub-menu">
-                <li><a href="/notice/events"><i class="fa fa-angle-double-right" aria-hidden="true"></i> Notice / Event</a></li>
-                <li><a href="/my/story"><i class="fa fa-angle-double-right" aria-hidden="true"></i> My success story</a></li>
-                <li><a href="/my/recipes"><i class="fa fa-angle-double-right" aria-hidden="true"></i> My recipes</a></li>
-                <li><a href="/my/husband"><i class="fa fa-angle-double-right" aria-hidden="true"></i> Husband story</a></li>
-                <li><a href="/q-a/list"><i class="fa fa-angle-double-right" aria-hidden="true"></i> Q &amp; A list</a></li>
+                <li><a href="/notice/events"><i class="fa fa-angle-double-right" aria-hidden="true"></i> 공지 / 이벤트 리스트</a></li>
+                <li><a href="/my/story"><i class="fa fa-angle-double-right" aria-hidden="true"></i> 나의성공담 리스트</a></li>
+                <li><a href="/my/recipes"><i class="fa fa-angle-double-right" aria-hidden="true"></i> 나의레시피 리스트</a></li>
+                <li><a href="/my/husband"><i class="fa fa-angle-double-right" aria-hidden="true"></i> 남편이야기 리스트</a></li>
+                <li><a href="/q-a/list"><i class="fa fa-angle-double-right" aria-hidden="true"></i> Q &amp; A 리스트</a></li>
             </ul>
         </li>
-        <li><a href="/push/notification"><i class="fa fa-envelope" aria-hidden="true"></i> Push</a></li>
+        <li><a href="/push/notification"><i class="fa fa-envelope" aria-hidden="true"></i> Push 리스트</a></li>
         <li>
-            <a href="/report/generalMonthlyReport"><i class="fa fa-bar-chart" aria-hidden="true"></i> Report</a>
+            <a href="/report/generalMonthlyReport"><i class="fa fa-bar-chart" aria-hidden="true"></i> 리포트</a>
             <ul class="sub-menu">
-                <li><a href="/report/generalMonthlyReport"><i class="fa fa-angle-double-right" aria-hidden="true"></i> Monthly report</a></li>
-                <li><a href="/report/generalWeeklyReport"><i class="fa fa-angle-double-right" aria-hidden="true"></i> Weekly report</a></li>
+                <li><a href="/report/generalMonthlyReport"><i class="fa fa-angle-double-right" aria-hidden="true"></i> 월간 리포트</a></li>
+                <li><a href="/report/generalWeeklyReport"><i class="fa fa-angle-double-right" aria-hidden="true"></i> 주간 리포트</a></li>
             </ul>
         </li>
+
+        <%--
         <%HttpSession session = request.getSession();
-            if (session.getAttribute("UserRole").equals("ADMIN")){%>
-        <li><a href="/admin/manager-list"><i class="fa fa-user-secret" aria-hidden="true"></i> Managers</a></li>
+        if (session.getAttribute("UserRole").equals("ADMIN")) {%>
+            <li><a href="/admin/manager-list"><i class="fa fa-user-secret" aria-hidden="true"></i> 관리자</a></li>
         <%}%>
-        <li><a href="/setting/"><i class="fa fa-cogs" aria-hidden="true"></i> Settings</a></li>
+        --%>
+
+        <li><a href="/setting/"><i class="fa fa-cogs" aria-hidden="true"></i> 설정</a></li>
     </ul>
     <div class="copyright">2017 &copy; 컴온베이비</div>
 </aside>

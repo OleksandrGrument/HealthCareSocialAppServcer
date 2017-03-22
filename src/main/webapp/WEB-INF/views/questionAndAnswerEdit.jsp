@@ -6,7 +6,7 @@
 <%@ taglib prefix="sec" uri="http://www.springframework.org/security/tags" %>
 <%@ page session="false" %>
 <!DOCTYPE html>
-<html lang="en">
+<html lang="kr">
 <head>
     <meta charset="utf-8" />
     <meta http-equiv="X-UA-Compatible" content="IE=edge" />
@@ -17,7 +17,7 @@
     <meta name="description" content="" />
     <meta name="keywords" content="" />
 
-    <title>Answer question :: Come On Baby</title>
+    <title>질문에 대한 답변 :: 컴온베이비</title>
 
     <%@ include file="headerStyles.jsp" %>
 
@@ -43,7 +43,7 @@
 
         <!-- Content section -->
         <section class="container-fluid content">
-            <h3><i class="fa fa-question-circle-o"></i>Answer the question</h3>
+            <h3><i class="fa fa-question-circle-o"></i>질문에 대한 답변</h3>
 
             <!-- Edit form -->
             <%QuestionAnswer questionAnswer = (QuestionAnswer) request.getAttribute("questionAnswer");%>
@@ -51,6 +51,7 @@
             <form action="/q-a/answer-the-question" method="post">
                 <div class="row">
                     <div class="col-md-6">
+
                         <!-- Question section -->
                         <div class="question">
                             <h4><%out.print(questionAnswer.getTitle());%></h4>
@@ -62,17 +63,17 @@
 
                         <!-- Answer section -->
                         <div class="form-group">
-                            <label for="editor1">Answer</label>
+                            <label for="answer">대답</label>
                             <%String answerText = ""; if (questionAnswer.isAnswered()) answerText = questionAnswer.getAnswerText(); %>
-                            <textarea rows="4" name="answerText" class="form-control" id="editor1"><%out.print(answerText);%></textarea>
+                            <textarea rows="4" name="answerText" class="form-control" id="answer"><%out.print(answerText);%></textarea>
                         </div>
                         <!-- #End Answer section -->
                     </div>
                 </div>
 
                 <div class="mt20 delimiter">
-                    <a href="/q-a/list" class="btn btn-default">Back</a>
-                    <button type="submit" class="btn btn-primary">Save</button>
+                    <a href="/q-a/list" class="btn btn-default">뒤로</a>
+                    <button type="submit" class="btn btn-primary">구하다</button>
                 </div>
             </form>
             <!-- #End Edit form -->
