@@ -20,7 +20,7 @@
             </ul>
         </li>
         <li>
-            <a href="/notice/events"><i class="fa fa-users" aria-hidden="true"></i> Community</a>
+            <a href="/notice/events"><i class="fa fa-users" aria-hidden="true"></i> 집단</a>
             <ul class="sub-menu">
                 <li><a href="/notice/events"><i class="fa fa-angle-double-right" aria-hidden="true"></i> 공지 / 이벤트 리스트</a></li>
                 <li><a href="/my/story"><i class="fa fa-angle-double-right" aria-hidden="true"></i> 나의성공담 리스트</a></li>
@@ -42,7 +42,7 @@
         if (session.getAttribute("UserRole").equals("ADMIN")) {%>
             <li><a href="/admin/manager-list"><i class="fa fa-user-secret" aria-hidden="true"></i> 관리자</a></li>
         <%}%>
-        
+
         <li><a href="/setting/"><i class="fa fa-cogs" aria-hidden="true"></i> 설정</a></li>
     </ul>
     <div class="copyright">2017 &copy; 컴온베이비</div>
