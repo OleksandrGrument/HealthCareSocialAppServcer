@@ -59,14 +59,14 @@ public class BlogDaoImpl implements BlogDao {
     @Override
     public List<Blog> findAll() {
         Session session = sessionFactory.getCurrentSession();
-        Query query = session.createQuery("select blog From Blog blog LEFT JOIN FETCH blog.comments LEFT JOIN FETCH  blog.likes");
+        Query query = session.createQuery("select distinct blog From Blog blog LEFT JOIN FETCH blog.comments LEFT JOIN FETCH  blog.likes");
         return query.list();
     }
 
     @Override
     public List<Blog> findBlogByType(Integer type) {
         Session session = sessionFactory.getCurrentSession();
-        Query query = session.createQuery("select blog From Blog blog LEFT JOIN FETCH blog.comments LEFT JOIN FETCH  blog.likes where blog.type  =  :type");
+        Query query = session.createQuery("select distinct blog From Blog blog LEFT JOIN FETCH blog.comments LEFT JOIN FETCH  blog.likes where blog.type  =  :type");
         query.setParameter("type", type);
         List<Blog> blogs = query.list();
         return blogs;

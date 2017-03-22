@@ -61,7 +61,7 @@ public class GoogleCloudMessageDaoImpl implements GoogleCloudMessageDao {
     @Override
     public List <String> findAllKeys(){
         Session session = sessionFactory.getCurrentSession();
-        Query query = session.createQuery("select cloudAppKey from GoogleCloudMessageUser");
+        Query query = session.createQuery("select distinct cloudAppKey from GoogleCloudMessageUser");
         return query.list();
     }
 }

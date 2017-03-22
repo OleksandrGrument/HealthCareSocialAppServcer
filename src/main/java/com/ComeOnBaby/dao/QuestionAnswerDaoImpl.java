@@ -61,7 +61,7 @@ public class QuestionAnswerDaoImpl implements QuestionAnswerDao {
         Query selectAllWithAccessQuery = session.createQuery("from QuestionAnswer questionAndAndswer where questionAndAndswer.isAccess =:access");
         selectAllWithAccessQuery.setParameter("access" , false);
 
-        Query selectAllUnAccessedQuestions = session.createQuery("select questionAnswer from QuestionAnswer questionAnswer where questionAnswer.appUser.id=:id and questionAnswer.isAccess =:access" );
+        Query selectAllUnAccessedQuestions = session.createQuery("select distinct questionAnswer from QuestionAnswer questionAnswer where questionAnswer.appUser.id=:id and questionAnswer.isAccess =:access" );
         selectAllUnAccessedQuestions.setParameter("id" , appUserId);
         selectAllUnAccessedQuestions.setParameter("access" , true);
 

@@ -38,13 +38,11 @@
             </ul>
         </li>
 
-        <%--
         <%HttpSession session = request.getSession();
         if (session.getAttribute("UserRole").equals("ADMIN")) {%>
             <li><a href="/admin/manager-list"><i class="fa fa-user-secret" aria-hidden="true"></i> 관리자</a></li>
         <%}%>
-        --%>
-
+        
         <li><a href="/setting/"><i class="fa fa-cogs" aria-hidden="true"></i> 설정</a></li>
     </ul>
     <div class="copyright">2017 &copy; 컴온베이비</div>

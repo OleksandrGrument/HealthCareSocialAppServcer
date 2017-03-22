@@ -64,7 +64,7 @@ public class NoteDaoImpl extends AbstractDao<Integer, Note> implements NoteDao {
     public Note findByUserDate(AppUser user, Date date) {
 
         Session session = sessionFactory.getCurrentSession();
-        Query query = session.createQuery("select note From Note note where note.appUser.id  =  :id and note.date = :date");
+        Query query = session.createQuery("select distinct note From Note note where note.appUser.id  =  :id and note.date = :date");
         query.setParameter("id", user.getId());
         query.setParameter("date", date);
         return (Note) query.uniqueResult();
@@ -74,7 +74,7 @@ public class NoteDaoImpl extends AbstractDao<Integer, Note> implements NoteDao {
     public List<Note> findUserNotes(AppUser user) {
 
         Session session = sessionFactory.getCurrentSession();
-        Query query = session.createQuery("select appUser.notes From AppUser appUser where appUser.id  =  :id");
+        Query query = session.createQuery("select distinct appUser.notes From AppUser appUser where appUser.id  =  :id");
         query.setParameter("id", user.getId());
         return query.list();
     }
@@ -83,7 +83,7 @@ public class NoteDaoImpl extends AbstractDao<Integer, Note> implements NoteDao {
     public List<Note> findUserNotesInterval(AppUser user, Date startDate, Date endDate) {
 
         Session session = sessionFactory.getCurrentSession();
-        Query query = session.createQuery("select note From Note note where note.appUser.id  =  :id and note.date between :startDate and :endDate");
+        Query query = session.createQuery("select distinct note From Note note where note.appUser.id  =  :id and note.date between :startDate and :endDate");
         query.setParameter("id", user.getId());
         query.setParameter("startDate" , startDate);
         query.setParameter("endDate", endDate);
