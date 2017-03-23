@@ -3,6 +3,7 @@ package com.ComeOnBaby.service;
 
 import com.ComeOnBaby.dao.BlogDao;
 import com.ComeOnBaby.model.Blog;
+import com.ComeOnBaby.model.Likes;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
@@ -54,5 +55,11 @@ public class BlogServiceImpl implements BlogService {
     @Transactional(readOnly = true)
     public List<Blog> findBlogByType(Integer type) {
         return blogDao.findBlogByType(type);
+    }
+
+    @Override
+    @Transactional(readOnly = true)
+    public Likes findLikeInBlogByIdUsers(Long appUserId, Long blogId){
+        return blogDao.findLikeInBlogByIdUsers(appUserId, blogId);
     }
 }

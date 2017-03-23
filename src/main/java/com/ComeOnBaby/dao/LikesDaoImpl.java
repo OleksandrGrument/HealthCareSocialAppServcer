@@ -59,4 +59,6 @@ public class LikesDaoImpl implements LikesDao {
         Query query = session.createQuery("from Likes");
         return query.list();
     }
+
+
 }

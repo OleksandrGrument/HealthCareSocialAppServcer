@@ -60,4 +60,6 @@ public class ServerResponseAnswersConstant {
 
     public final static String MSG_DELETE_USER_FAIL = "Delete user record fail";
     public final static String MSG_DELETE_USER_SUCCESS = "Delete user record success";
+
+    public final static String MSG_IS_USER_LIKE_SUCCESS = "Is user like success";
 }

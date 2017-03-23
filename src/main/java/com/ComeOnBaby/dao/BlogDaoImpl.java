@@ -2,6 +2,7 @@ package com.ComeOnBaby.dao;
 
 
 import com.ComeOnBaby.model.Blog;
+import com.ComeOnBaby.model.Likes;
 import org.hibernate.Hibernate;
 import org.hibernate.Query;
 import org.hibernate.Session;
@@ -71,6 +72,17 @@ public class BlogDaoImpl implements BlogDao {
         List<Blog> blogs = query.list();
         return blogs;
 
+    }
+
+    @Override
+    public Likes findLikeInBlogByIdUsers(Long appUserId, Long blogId) {
+        Session session = sessionFactory.getCurrentSession();
+
+        Query selectBlogByIdQuery = session.createQuery("select distinct likes from Likes likes LEFT JOIN FETCH likes.blog LEFT JOIN FETCH  likes.appUser where likes.appUser.id=:id and likes.blog.id =:blogId" );
+        selectBlogByIdQuery.setParameter("id" , appUserId);
+        selectBlogByIdQuery.setParameter("blogId" , blogId);
+
+        return (Likes) selectBlogByIdQuery.uniqueResult();
     }
 
 

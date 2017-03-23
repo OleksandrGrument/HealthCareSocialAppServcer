@@ -23,6 +23,7 @@ import java.nio.file.Paths;
 import java.text.SimpleDateFormat;
 import java.util.Calendar;
 import java.util.List;
+import java.util.Set;
 import java.util.UUID;
 
 /**
@@ -67,6 +68,11 @@ public class CommunityController {
     private final static String UPLOAD_ITEM_Q_A_TO_SERVER = "saveqa";
     private final static String DELETE_Q_A_RECORD_OPERATION = "delete-q-a";
 
+    /* Likes */
+    public static final String ADD_LIKE_OPERATION = "addlike";
+    public static final String DELETE_LIKE_OPERATION = "deletelike";
+    public static final String IS_USER_LIKE_OPERATION = "isUserLike";
+
 //    @Autowired
 //    ServletContext context;
 
@@ -87,6 +93,9 @@ public class CommunityController {
 
     @Autowired
     NoticeService noticeService;
+
+    @Autowired
+    LikesService likesService;
 
 //    @RequestMapping(value = "/images/{imgName}", method = RequestMethod.GET, produces = {"image/jpg", "image/jpeg", "image/png"})
 //    public void getImage(HttpServletResponse response, @PathVariable String imgName) throws IOException {
@@ -292,7 +301,19 @@ public class CommunityController {
                 break;
             }
             case GET_COMMENTS_OPERATION: {
-                getListComments(bdUser, req, outJSON);
+                getListComments(req, outJSON);
+                break;
+            }
+            case ADD_LIKE_OPERATION: {
+                addLike(bdUser, req, outJSON);
+                break;
+            }
+            case DELETE_LIKE_OPERATION: {
+                deleteLike(bdUser, req, outJSON);
+                break;
+            }
+            case IS_USER_LIKE_OPERATION: {
+                isUserLike(bdUser, req, outJSON);
                 break;
             }
 
@@ -312,6 +333,62 @@ public class CommunityController {
         System.out.println("Out JSON: " + outJSON.toString()  + "\n");
         return outJSON.toString();
     }
+
+    private void addLike(AppUser bdUser, CommunityRequest req, JSONObject outJSON) {
+        Blog blog = blogService.findById(req.getCommunityID());
+        Set<Likes> likes = blog.getLikes();
+
+        Likes like = new Likes();
+        like.setBlog(blog);
+        like.setAppUser(bdUser);
+
+        likesService.addNewLikes(like);
+
+        likes.add(like);
+        blog.setLikes(likes);
+
+        blogService.updateBlog(blog);
+
+        outJSON.put(RESULT, SUCCESS);
+        outJSON.put(MESSAGE, ServerResponseAnswersConstant.MSG_SAVE_COMUNITY_RECORD_SUCCESS);
+    }
+
+    private void deleteLike(AppUser bdUser, CommunityRequest req, JSONObject outJSON) {
+        //Blog blog = blogService.findById(req.getCommunityID());
+        //Set<Likes> likes = blog.getLikes();
+
+        Likes like = blogService.findLikeInBlogByIdUsers(bdUser.getId(), req.getCommunityID());
+
+        if (like != null){
+            likesService.deleteLikes(like);
+        }
+
+        outJSON.put(RESULT, SUCCESS);
+        outJSON.put(MESSAGE, ServerResponseAnswersConstant.MSG_SAVE_COMUNITY_RECORD_SUCCESS);
+    }
+
+    private void isUserLike(AppUser bdUser, CommunityRequest req, JSONObject outJSON) {
+       // Blog blog = blogService.findById(req.getCommunityID());
+       // Set<Likes> likes = blog.getLikes();
+
+
+        Likes like = blogService.findLikeInBlogByIdUsers(bdUser.getId(), req.getCommunityID());
+
+        Boolean isUserLiked = false;
+
+        if (like != null){
+            isUserLiked = true;
+        }
+
+
+
+        outJSON.put(RESULT, SUCCESS);
+        outJSON.put(MESSAGE, ServerResponseAnswersConstant.MSG_IS_USER_LIKE_SUCCESS);
+        outJSON.put(DATA, isUserLiked);
+
+    }
+
+
 
     @RequestMapping(value = "/community-qa", method = RequestMethod.POST, produces={"application/json; charset=UTF-8"})
     public @ResponseBody String q_aOperation (@RequestBody String body) {
@@ -465,16 +542,16 @@ public class CommunityController {
         outJSON.put(MESSAGE, ServerResponseAnswersConstant.MSG_SAVE_COMMENT_SUCCESS);
     }
 
-    private void getListComments(AppUser user, CommunityRequest req, JSONObject outJSON) {      /// !!!!!!!!!!!!!!!!!!!!!!!!!!!
+    private void getListComments(CommunityRequest req, JSONObject outJSON) {
         List<Comment> comments = commentsService.findByBlogID(req.communityID);
-        JSONArray jsarr = new JSONArray();
+        JSONArray jsonArray = new JSONArray();
         for (int i = 0; i < comments.size(); i++) {
             Comment comm = comments.get(i);
-            jsarr.put(getCommentJSON(comm));
+            jsonArray.put(getCommentJSON(comm));
         }
         outJSON.put(RESULT, SUCCESS);
         outJSON.put(MESSAGE, ServerResponseAnswersConstant.MSG_GET_COMMENTS_SUCCESS);
-        outJSON.put(DATA, jsarr.toString());
+        outJSON.put(DATA, jsonArray.toString());
     }
 
     private void getCommunityRecordsOperation(CommunityRequest req, JSONObject outJSON) {
@@ -500,6 +577,8 @@ public class CommunityController {
     private final static String BLOGTEXT = "text";
     private final static String BLOGIMAGES = "images";
     private final static String BLOGDATE = "date";
+    private final static String LIKECOUNT = "likes";
+
 
     private JSONObject getBlogJSON(Blog blog) {   /// !!!!!!!!!!!!!!!!!!!!!!!!!!!
         JSONObject json = new JSONObject();
@@ -511,6 +590,7 @@ public class CommunityController {
         json.put(BLOGTITLE, blog.getTitle());
         json.put(BLOGTEXT, blog.getText());
         json.put(BLOGDATE, dateFormat.format(blog.getDatetime()));
+        json.put(LIKECOUNT, blog.getLikes().size());
         if(blog.getImages() != null) json.put(BLOGIMAGES, blog.getImages());
         return json;
     }

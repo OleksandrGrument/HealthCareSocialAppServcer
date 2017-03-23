@@ -28,16 +28,22 @@ public class Likes {
     @JoinColumn(name = "id_blog")
     private Blog blog;
 
+    @ManyToOne
+    @JoinColumn(name = "id_user")
+    private AppUser appUser;
 
-    @NotEmpty
+   /* @NotEmpty
     @Column(name = "id_user", nullable = false)
-    private Long idUser;
+    private Long idUser;*/
 
-    @NotEmpty
-    @Column(name = "like", nullable = false)
+
+/*
+    @Column(name = "like")
     private Boolean like;
+*/
 
 
+/*
     public Long getIdUser() {
         return idUser;
     }
@@ -45,14 +51,15 @@ public class Likes {
     public void setIdUser(Long idUser) {
         this.idUser = idUser;
     }
+*/
 
-    public Boolean getLike() {
+ /*   public Boolean getLike() {
         return like;
     }
 
     public void setLike(Boolean like) {
         this.like = like;
-    }
+    }*/
 
     public Blog getBlog() {
         return blog;
@@ -70,6 +77,14 @@ public class Likes {
         this.id = id;
     }
 
+    public AppUser getAppUser() {
+        return appUser;
+    }
+
+    public void setAppUser(AppUser appUser) {
+        this.appUser = appUser;
+    }
+
     /*    public Long getIdBlog() {
         return idBlog;
     }
@@ -77,4 +92,6 @@ public class Likes {
     public void setIdBlog(Long idBlog) {
         this.idBlog = idBlog;
     }*/
+
+
 }

@@ -43,7 +43,7 @@ public class Blog implements Serializable {
     @OneToMany(mappedBy = "blog", fetch = FetchType.LAZY)
     private Set<Comment> comments;
 
-    @OneToMany(mappedBy = "blog")
+    @OneToMany(mappedBy = "blog", fetch = FetchType.LAZY)
     private Set<Likes> likes;
 
 
