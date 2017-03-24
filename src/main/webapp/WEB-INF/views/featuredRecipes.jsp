@@ -87,7 +87,7 @@
                 <tr>
                     <td align="center"><%out.print(recipeGuide.getId());%></td>
                     <td><a href="<%out.print(editGuideUrl);%>"><%out.print(recipeGuide.getTitle());%></a></td>
-                    <td><a href="https://food52.com/recipes/9743-roasted-carrot-soup" target="_blank"><%out.print(recipeGuide.getUrlNaver());%></a></td>
+                    <td><a href="<%out.print(recipeGuide.getUrlNaver());%>" target="_blank"><%out.print(recipeGuide.getUrlNaver());%></a></td>
                     <td align="center"><%out.print(recipeGuide.getDate().toString().substring(0, 19));%></td>
                     <td align="center">
                         <input type="hidden" value="<%%>">
