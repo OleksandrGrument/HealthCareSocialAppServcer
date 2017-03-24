@@ -22,8 +22,6 @@ public class NotificationService {
 
         Message msg = new Message.Builder().collapseKey("gcm_message").delayWhileIdle(true).addData("message",message).build();
 
-
-
         try {
 
                 MulticastResult result = sender.send(msg, keys, retries);

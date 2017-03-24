@@ -27,7 +27,7 @@ public class TestController {
     @RequestMapping(value = "/delete", method = RequestMethod.GET)
     public ModelAndView delete() {
 
-        appUserService.deleteUserById((long)6);
+        appUserService.deleteUserById((long)8);
 
         return new ModelAndView("404");
     }
