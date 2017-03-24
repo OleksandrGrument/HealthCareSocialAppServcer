@@ -73,7 +73,7 @@ public class AppController {
 
         if (userProfile.getType().equals("ADMIN")) {
             System.out.println("LOGIN AS ADMIN");
-            modelAndView.setViewName("redirect:/admin/manager-list/");
+            modelAndView.setViewName("redirect:/users/");
 
         } else if (userProfile.getType().equals("MANAGER")) {
             System.out.println("LOGIN AS MANAGER");

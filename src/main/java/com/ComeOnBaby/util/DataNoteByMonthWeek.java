@@ -377,12 +377,12 @@ public class DataNoteByMonthWeek {
             }
         }
 
-        int totalCount = count / stringList.size();
-
-        switch (totalCount){
-            default: generalStatus = "<span class=\"bad\">bad</span>"; break;
-            case 2: generalStatus = "<span class=\"good\">Good</span>"; break;
-            case 3: generalStatus = "<span class=\"excellent\">excellent</span>"; break;
+        if((count >0) && (count <= 12)){
+            generalStatus = "<span class=\"bad\">bad</span>";
+        } else if ((count >12) && (count <= 24)){
+            generalStatus = "<span class=\"good\">Good</span>";
+        } else {
+            generalStatus = "<span class=\"excellent\">excellent</span>";
         }
 
         return generalStatus;
