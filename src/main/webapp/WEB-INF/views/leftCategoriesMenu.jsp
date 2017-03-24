@@ -39,7 +39,7 @@
         </li>
 
         <%HttpSession session = request.getSession();
-        if (session.getAttribute("UserRole").equals("ADMIN")) {%>
+        if (session != null && "ADMIN".equals(session.getAttribute("UserRole"))) {%>
             <li><a href="/admin/manager-list"><i class="fa fa-user-secret" aria-hidden="true"></i> 관리자</a></li>
         <%}%>
 
