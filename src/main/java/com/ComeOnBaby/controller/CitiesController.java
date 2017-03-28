@@ -30,7 +30,7 @@ public class CitiesController {
     @Autowired
     CityService cityService;
 
-    @RequestMapping(value = "/cities", method = RequestMethod.POST, produces = "application/json")
+    @RequestMapping(value = "/cities", method = RequestMethod.POST, produces = {"application/json; charset=UTF-8"})
     @ResponseStatus(value = HttpStatus.OK)
     public
     @ResponseBody
