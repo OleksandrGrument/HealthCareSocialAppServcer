@@ -29,6 +29,9 @@ public class FertilizationGuide {
     @Column(name = "image")
     private String image;
 
+    @Column(name = "url")
+    private String url;
+
     public FertilizationGuide() {
     }
 
@@ -68,11 +71,20 @@ public class FertilizationGuide {
         this.image = image;
     }
 
-    public FertilizationGuide(Long id, String title, Date date, String image) {
+    public String getUrl() {
+        return url;
+    }
+
+    public void setUrl(String url) {
+        this.url = url;
+    }
+
+    public FertilizationGuide(Long id, String title, Date date, String image, String url) {
         this.id = id;
         this.title = title;
         this.date = date;
         this.image = image;
+        this.url = url;
     }
 
     @Override
