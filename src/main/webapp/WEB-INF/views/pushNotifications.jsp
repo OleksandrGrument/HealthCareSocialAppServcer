@@ -2,7 +2,7 @@
 <%@ page import="java.util.ArrayList" %>
 <%@ page import="java.util.Iterator" %>
 <%@ taglib prefix="spring" uri="http://www.springframework.org/tags" %>
-<%@ page language="java" pageEncoding="UTF-8"%>
+<%@ page language="java" pageEncoding="UTF-8" %>
 <%@ page contentType="text/html;charset=UTF-8" %>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
 <%@ taglib prefix="sec" uri="http://www.springframework.org/security/tags" %>
@@ -10,16 +10,17 @@
 <!DOCTYPE html>
 <html lang="kr">
 <head>
-    <meta charset="utf-8" />
-    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
-    <meta name="viewport" content="width=device-width, initial-scale=1, minimum-scale=1, maximum-scale=1, user-scalable=no, minimal-ui" />
-    <meta name="format-detection" content="telephone=no" />
-    <meta name="format-detection" content="address=no" />
+    <meta charset="utf-8"/>
+    <meta http-equiv="X-UA-Compatible" content="IE=edge"/>
+    <meta name="viewport"
+          content="width=device-width, initial-scale=1, minimum-scale=1, maximum-scale=1, user-scalable=no, minimal-ui"/>
+    <meta name="format-detection" content="telephone=no"/>
+    <meta name="format-detection" content="address=no"/>
 
-    <meta name="description" content="" />
-    <meta name="keywords" content="" />
+    <meta name="description" content=""/>
+    <meta name="keywords" content=""/>
 
-    <title>Push notifications :: Come On Baby</title>
+    <title>Push 리스트 :: 컴온베이비</title>
 
     <%@ include file="headerStyles.jsp" %>
 
@@ -46,7 +47,9 @@
             <h3><i class="fa fa-bell-o"></i>Push 리스트</h3>
 
             <div class="mb20">
-                <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#pushNotifications"><i class="fa fa-plus-circle mr10"></i>새로운 푸시 추가</button>
+                <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#pushNotifications"><i
+                        class="fa fa-plus-circle mr10"></i>새로운
+                </button>
             </div>
 
             <table id="dataTable" class="table table-striped table-bordered" width="100%" cellspacing="0">
@@ -78,12 +81,12 @@
                         PushEvent pushEvent = pushEventIterator.next();
 
                 %>
-                    <tr>
-                        <td align="center"><%out.print(pushEvent.getId());%></td>
-                        <td align="center"><%out.print(pushEvent.getNoticeId());%></td>
-                        <td><%out.print(pushEvent.getNotificationText());%></td>
-                        <td align="center"><%out.print(pushEvent.getQuestionDate().toString().substring(0 ,19));%></td>
-                    </tr>
+                <tr>
+                    <td align="center"><%out.print(pushEvent.getId());%></td>
+                    <td align="center"><%out.print(pushEvent.getNoticeId());%></td>
+                    <td><%out.print(pushEvent.getNotificationText());%></td>
+                    <td align="center"><%out.print(pushEvent.getQuestionDate().toString().substring(0, 19));%></td>
+                </tr>
                 <%}%>
                 </tbody>
                 <!-- #End Items list -->
@@ -116,12 +119,14 @@
 
                     <div class="form-group">
                         <label for="noticeId" class="control-label">공지사항 ID</label>
-                        <input type="text" class="form-control form-block" name="id" id="noticeId" placeholder="공지사항 ID" required/>
+                        <input type="text" class="form-control form-block" name="id" id="noticeId" placeholder="공지사항 ID"
+                               required/>
                     </div>
 
                     <div class="form-group">
                         <label for="notification" class="control-label">푸시 메시지</label>
-                        <textarea name="notificationText" id="notification" class="form-control form-block" rows="3" placeholder="푸시 메시지" required></textarea>
+                        <textarea name="notificationText" id="notification" class="form-control form-block" rows="3"
+                                  placeholder="푸시 메시지" required></textarea>
                     </div>
 
                     <%--<div class="form-group">
@@ -151,26 +156,26 @@
         Boolean isSuccess = (Boolean) request.getAttribute("isSuccess");
         Boolean isFalse = (Boolean) request.getAttribute("isFalse");
     %>
-    jQuery(document).ready(function() {
+    jQuery(document).ready(function () {
         <%if (isSuccess !=null && isSuccess){%>
 
-                // success
-                swal({
-                    title: 'Great!',
-                    text: 'Push Success!',
-                    type: 'success',
-                    confirmButtonColor: '#307f7a'
-                });
+        // success
+        swal({
+            title: 'Great!',
+            text: 'Push Success!',
+            type: 'success',
+            confirmButtonColor: '#307f7a'
+        });
         <%}
             if (isFalse !=null && isFalse) {
         %>
-                // error
-                swal({
-                    title: 'Oops...',
-                    text: 'Notice ID not exist!',
-                    type: 'error',
-                    confirmButtonColor: '#307f7a'
-                });
+        // error
+        swal({
+            title: 'Oops...',
+            text: 'Notice ID not exist!',
+            type: 'error',
+            confirmButtonColor: '#307f7a'
+        });
 
         <%}%>
     });

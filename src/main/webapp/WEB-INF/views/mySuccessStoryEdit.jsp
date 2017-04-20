@@ -34,7 +34,7 @@
 
     <% String headTitle = "새로운";
         if (!isNew) {
-            headTitle = "편집";
+            headTitle = blog.getTitle();
         }
     %>
 
@@ -134,7 +134,7 @@
 
                 <% if (!isNew) { %>
                 <div class="mt10">
-                    <a href="<%out.print("/my/comments/"+blog.getId());%>" class="btn btn-default">이야기 댓글 (<%
+                    <a href="<%out.print("/my/comments/"+blog.getId());%>" class="btn btn-default">댓글을 (<%
                         out.print(blog.getComments().size());%>)</a>
                 </div>
                 <% } %>

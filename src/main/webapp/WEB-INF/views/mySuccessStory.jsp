@@ -51,8 +51,7 @@
             <h3><i class="fa fa-file-text-o"></i><%out.print(title);%></h3>
 
             <div class="mb20">
-                <a href="<%out.print("/my/new/"+type);%>" class="btn btn-primary"><i class="fa fa-plus-circle mr10"></i>새로운
-                    이야기 추가</a>
+                <a href="<%out.print("/my/new/"+type);%>" class="btn btn-primary"><i class="fa fa-plus-circle mr10"></i>새로운</a>
             </div>
 
             <table id="dataTable" class="table table-striped table-bordered" width="100%" cellspacing="0">
