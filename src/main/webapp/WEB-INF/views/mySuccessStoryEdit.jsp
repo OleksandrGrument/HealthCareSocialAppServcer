@@ -3,7 +3,7 @@
 <%@ page import="java.util.Iterator" %>
 <%@ page import="com.ComeOnBaby.enums.MainPathEnum" %>
 <%@ taglib prefix="spring" uri="http://www.springframework.org/tags" %>
-<%@ page language="java" pageEncoding="UTF-8"%>
+<%@ page language="java" pageEncoding="UTF-8" %>
 <%@ page contentType="text/html;charset=UTF-8" %>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
 <%@ taglib prefix="sec" uri="http://www.springframework.org/security/tags" %>
@@ -11,14 +11,15 @@
 <!DOCTYPE html>
 <html lang="kr">
 <head>
-    <meta charset="utf-8" />
-    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
-    <meta name="viewport" content="width=device-width, initial-scale=1, minimum-scale=1, maximum-scale=1, user-scalable=no, minimal-ui" />
-    <meta name="format-detection" content="telephone=no" />
-    <meta name="format-detection" content="address=no" />
+    <meta charset="utf-8"/>
+    <meta http-equiv="X-UA-Compatible" content="IE=edge"/>
+    <meta name="viewport"
+          content="width=device-width, initial-scale=1, minimum-scale=1, maximum-scale=1, user-scalable=no, minimal-ui"/>
+    <meta name="format-detection" content="telephone=no"/>
+    <meta name="format-detection" content="address=no"/>
 
-    <meta name="description" content="" />
-    <meta name="keywords" content="" />
+    <meta name="description" content=""/>
+    <meta name="keywords" content=""/>
 
     <% Blog blog = (Blog) request.getAttribute("blog"); %>
     <% boolean isNew = (boolean) request.getAttribute("isNew"); %>
@@ -31,9 +32,9 @@
         }
     %>
 
-    <% String headTitle = "새로운 이야기";
+    <% String headTitle = "새로운";
         if (!isNew) {
-            headTitle = "이야기 편집";
+            headTitle = "편집";
         }
     %>
 
@@ -74,7 +75,7 @@
                         <input type="hidden" name="id" value="<% if (!isNew) out.print(blog.getId()); %>">
                         <input type="hidden" name="type" value="<% out.print(type) ;%>">
 
-                        <% String blogTitle ="";
+                        <% String blogTitle = "";
                             if (!isNew) {
                                 blogTitle = blog.getTitle();
                             }
@@ -82,7 +83,8 @@
 
                         <div class="form-group">
                             <label for="title">표제</label>
-                            <input type="text" class="form-control" name="title" id="title" value="<%out.print(blogTitle);%>" placeholder="표제" required />
+                            <input type="text" class="form-control" name="title" id="title"
+                                   value="<%out.print(blogTitle);%>" placeholder="표제" required/>
                         </div>
 
                         <% if (!isNew) {
@@ -95,14 +97,17 @@
 
                                 String name = imageIterator.next();
                                 if (!name.equals("")) {
-                                    String urlPic = MainPathEnum.mainWebPath+"show-image/"+name; %>
-                                    <div class="form-group form-img-thumbnail">
-                                        <a data-fancybox="gallery" href="<%out.print(urlPic);%>"><img src="<%out.print(urlPic);%>" alt="<%out.print(blogTitle);%>" class="img-thumbnail"></a>
-                                        <a href="<%out.print("/my/delete-image-from-story/"+blog.getId()+"/"+imageIndex);%>" class="delete deleteConfirm"><i class="fa fa-times"></i></a>
-                                    </div>
-                                    <%  imageIndex++;
-                                }
-                            } %>
+                                    String urlPic = MainPathEnum.mainWebPath + "show-image/" + name; %>
+                        <div class="form-group form-img-thumbnail">
+                            <a data-fancybox="gallery" href="<%out.print(urlPic);%>"><img src="<%out.print(urlPic);%>"
+                                                                                          alt="<%out.print(blogTitle);%>"
+                                                                                          class="img-thumbnail"></a>
+                            <a href="<%out.print("/my/delete-image-from-story/"+blog.getId()+"/"+imageIndex);%>"
+                               class="delete deleteConfirm"><i class="fa fa-times"></i></a>
+                        </div>
+                        <% imageIndex++;
+                        }
+                        } %>
                         <% } %>
 
                         <div class="form-group">
@@ -111,28 +116,32 @@
                         </div>
 
 
-                        <%String text = ""; if (!isNew) text = blog.getText();%>
+                        <%
+                            String text = "";
+                            if (!isNew) text = blog.getText();
+                        %>
                         <div class="form-group">
-                            <label class="control-label">기술</label>
-                            <textarea rows="4" class="form-control" name="text"><%out.print(text);%></textarea>
+                            <label class="control-label" for="description">기술</label>
+                            <textarea rows="4" class="form-control" id="description" name="text"><%out.print(text);%></textarea>
                         </div>
-                        <%if (!isNew){%>
-                            <div class="form-group">
-                                <b>좋아하는 이야기:</b> <%out.print(blog.getLikes().size());%> 좋은
-                            </div>
+                        <%if (!isNew) {%>
+                        <div class="form-group">
+                            <b>좋아하는 이야기:</b> <%out.print(blog.getLikes().size());%> 좋은
+                        </div>
                         <%}%>
                     </div>
                 </div>
 
                 <% if (!isNew) { %>
-                    <div class="mt10">
-                        <a href="<%out.print("/my/comments/"+blog.getId());%>" class="btn btn-default">이야기 댓글 (<%out.print(blog.getComments().size());%>)</a>
-                    </div>
+                <div class="mt10">
+                    <a href="<%out.print("/my/comments/"+blog.getId());%>" class="btn btn-default">이야기 댓글 (<%
+                        out.print(blog.getComments().size());%>)</a>
+                </div>
                 <% } %>
 
-                <% String backLink = "" ;
+                <% String backLink = "";
                     if (type.equals(2)) {
-                        backLink="/my/recipes";
+                        backLink = "/my/recipes";
                     } else if (type.equals(3)) {
                         backLink = "/my/story";
                     } else if (type.equals(4)) {

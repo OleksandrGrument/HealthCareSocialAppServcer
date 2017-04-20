@@ -34,7 +34,7 @@ public class StoryAndRecipesController {
         ModelAndView mySuccessStory = new ModelAndView("mySuccessStory");
         ArrayList<Blog> blogs = (ArrayList<Blog>) blogService.findBlogByType(3);
         mySuccessStory.addObject("type", 3);
-        mySuccessStory.addObject("title", "나의성공담 리스트");
+        mySuccessStory.addObject("title", "자유 게시판");
         mySuccessStory.addObject("blogs", blogs);
         return mySuccessStory;
     }
@@ -46,7 +46,7 @@ public class StoryAndRecipesController {
         ArrayList<Blog> blogs = (ArrayList<Blog>) blogService.findBlogByType(2);
         myRecipes.addObject("type", 2);
         myRecipes.addObject("blogs", blogs);
-        myRecipes.addObject("title", "나의레시피 리스트");
+        myRecipes.addObject("title", "나의 레시피");
         return myRecipes;
     }
 
@@ -56,7 +56,7 @@ public class StoryAndRecipesController {
         ModelAndView myHusband = new ModelAndView("mySuccessStory");
         ArrayList<Blog> blogs = (ArrayList<Blog>) blogService.findBlogByType(4);
         myHusband.addObject("type", 4);
-        myHusband.addObject("title", "남편이야기 리스트");
+        myHusband.addObject("title", "남편 이야기");
         myHusband.addObject("blogs", blogs);
         return myHusband;
     }

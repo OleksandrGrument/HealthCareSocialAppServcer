@@ -18,7 +18,7 @@
     <meta name="description" content="" />
     <meta name="keywords" content="" />
 
-    <title>주간 리포트 :: 컴온베이비</title>
+    <title>주 간  리 포 트 :: 컴온베이비</title>
 
     <%@ include file="headerStyles.jsp" %>
 
@@ -45,7 +45,7 @@
 
         <!-- Content section -->
         <section class="container-fluid content">
-            <h3><i class="fa fa-bar-chart"></i>주간 리포트: <%out.print(weekReport.getStartOfWeek()+ " - "+weekReport.getEndOfWeek());%></h3>
+            <h3><i class="fa fa-bar-chart"></i>주 간  리 포 트: <%out.print(weekReport.getStartOfWeek()+ " - "+weekReport.getEndOfWeek());%></h3>
 
             <!-- Show chart -->
             <h4>기초체온 그래프</h4>

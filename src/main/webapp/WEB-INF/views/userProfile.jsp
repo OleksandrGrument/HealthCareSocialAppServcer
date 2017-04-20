@@ -109,8 +109,8 @@
 
             <div class="mt10">
                 <a href="<%out.print("/users/basic-questions/"+user.getId());%>" class="btn btn-default"><i class="fa fa-question-circle-o"></i> 기초질문사항</a>
-                <a href="<%out.print("/users/monthly-report/"+user.getId());%>" class="btn btn-default"><i class="fa fa-bar-chart"></i> 월간 리포트</a>
-                <a href="<%out.print("/users/weekly-report/"+user.getId());%>" class="btn btn-default"><i class="fa fa-bar-chart"></i> 주간 리포트</a>
+                <a href="<%out.print("/users/monthly-report/"+user.getId());%>" class="btn btn-default"><i class="fa fa-bar-chart"></i> 월 간  리 포 트</a>
+                <a href="<%out.print("/users/weekly-report/"+user.getId());%>" class="btn btn-default"><i class="fa fa-bar-chart"></i> 주 간  리 포 트</a>
             </div>
             <div class="mt20 delimiter">
                 <a href="/" class="btn btn-default">뒤로</a>

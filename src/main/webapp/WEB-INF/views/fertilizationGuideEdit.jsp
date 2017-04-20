@@ -1,6 +1,6 @@
 <%@ page import="com.ComeOnBaby.model.FertilizationGuide" %>
 <%@ taglib prefix="spring" uri="http://www.springframework.org/tags" %>
-<%@ page language="java" pageEncoding="UTF-8"%>
+<%@ page language="java" pageEncoding="UTF-8" %>
 <%@ page contentType="text/html;charset=UTF-8" %>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
 <%@ taglib prefix="sec" uri="http://www.springframework.org/security/tags" %>
@@ -8,16 +8,17 @@
 <!DOCTYPE html>
 <html lang="kr">
 <head>
-    <meta charset="utf-8" />
-    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
-    <meta name="viewport" content="width=device-width, initial-scale=1, minimum-scale=1, maximum-scale=1, user-scalable=no, minimal-ui" />
-    <meta name="format-detection" content="telephone=no" />
-    <meta name="format-detection" content="address=no" />
+    <meta charset="utf-8"/>
+    <meta http-equiv="X-UA-Compatible" content="IE=edge"/>
+    <meta name="viewport"
+          content="width=device-width, initial-scale=1, minimum-scale=1, maximum-scale=1, user-scalable=no, minimal-ui"/>
+    <meta name="format-detection" content="telephone=no"/>
+    <meta name="format-detection" content="address=no"/>
 
-    <meta name="description" content="" />
-    <meta name="keywords" content="" />
+    <meta name="description" content=""/>
+    <meta name="keywords" content=""/>
 
-    <title>가이드 편집 :: 컴온베이비</title>
+    <title>난 임  가 이 드 :: 컴온베이비</title>
 
     <%@ include file="headerStyles.jsp" %>
 
@@ -46,7 +47,10 @@
 
         <!-- Content section -->
         <section class="container-fluid content">
-            <%String headTitle ="새로운 난임가이드 리스트"; if (!isNew) headTitle = fertilizationGuide.getTitle();%>
+            <%
+                String headTitle = "새로운";
+                if (!isNew) headTitle = fertilizationGuide.getTitle();
+            %>
             <h3><i class="fa fa-list-ul"></i><%out.print(headTitle);%></h3>
 
             <!-- Edit form -->
@@ -57,22 +61,29 @@
                         <input type="hidden" name="id" value="<%if (!isNew)out.print(fertilizationGuide.getId());%>">
 
 
-                        <%String title =""; if (!isNew) title = fertilizationGuide.getTitle();%>
+                        <%
+                            String title = "";
+                            if (!isNew) title = fertilizationGuide.getTitle();
+                        %>
                         <div class="form-group">
                             <label for="title">가이드 제목</label>
-                            <input type="text" class="form-control" name="title" id="title" value="<%out.print(title);%>" placeholder="가이드 제목" required />
+                            <input type="text" class="form-control" name="title" id="title"
+                                   value="<%out.print(title);%>" placeholder="가이드 제목" required/>
                         </div>
 
-                        <% if(!isNew){
+                        <% if (!isNew) {
                             String urlPic = fertilizationGuide.getImage(); %>
                         <div class="form-group form-img-thumbnail">
-                            <a data-fancybox="gallery" href="<%out.print(urlPic);%>"><img src="<%out.print(urlPic);%>" alt="<%out.print(title);%>" class="img-thumbnail"></a>
+                            <a data-fancybox="gallery" href="<%out.print(urlPic);%>"><img src="<%out.print(urlPic);%>"
+                                                                                          alt="<%out.print(title);%>"
+                                                                                          class="img-thumbnail"></a>
                         </div>
                         <%}%>
 
                         <div class="form-group">
                             <label class="control-label">안내 이미지</label>
-                            <input id="fileInput" name="filePicture[]" type="file" class="file" <%if (isNew){%>required <%}%> />
+                            <input id="fileInput" name="filePicture[]" type="file" class="file"
+                                   <%if (isNew){%>required <%}%> />
                         </div>
                     </div>
                 </div>

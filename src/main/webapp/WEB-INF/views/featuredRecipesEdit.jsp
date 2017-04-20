@@ -1,6 +1,6 @@
 <%@ page import="com.ComeOnBaby.model.RecipeGuide" %>
 <%@ taglib prefix="spring" uri="http://www.springframework.org/tags" %>
-<%@ page language="java" pageEncoding="UTF-8"%>
+<%@ page language="java" pageEncoding="UTF-8" %>
 <%@ page contentType="text/html;charset=UTF-8" %>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
 <%@ taglib prefix="sec" uri="http://www.springframework.org/security/tags" %>
@@ -8,16 +8,17 @@
 <!DOCTYPE html>
 <html lang="kr">
 <head>
-    <meta charset="utf-8" />
-    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
-    <meta name="viewport" content="width=device-width, initial-scale=1, minimum-scale=1, maximum-scale=1, user-scalable=no, minimal-ui" />
-    <meta name="format-detection" content="telephone=no" />
-    <meta name="format-detection" content="address=no" />
+    <meta charset="utf-8"/>
+    <meta http-equiv="X-UA-Compatible" content="IE=edge"/>
+    <meta name="viewport"
+          content="width=device-width, initial-scale=1, minimum-scale=1, maximum-scale=1, user-scalable=no, minimal-ui"/>
+    <meta name="format-detection" content="telephone=no"/>
+    <meta name="format-detection" content="address=no"/>
 
-    <meta name="description" content="" />
-    <meta name="keywords" content="" />
+    <meta name="description" content=""/>
+    <meta name="keywords" content=""/>
 
-    <title>요리법 수정 :: 컴온베이비</title>
+    <title>추 천 레 시 피 :: 컴온베이비</title>
 
     <%@ include file="headerStyles.jsp" %>
 
@@ -45,7 +46,10 @@
         <!-- Content section -->
         <section class="container-fluid content">
 
-            <%String headTitle ="새로운 조리법"; if (!isNew) headTitle = recipeGuide.getTitle();%>
+            <%
+                String headTitle = "새로운";
+                if (!isNew) headTitle = recipeGuide.getTitle();
+            %>
             <h3><i class="fa fa-list-ul"></i><%out.print(headTitle);%></h3>
 
             <!-- Edit form -->
@@ -55,29 +59,42 @@
 
                         <input type="hidden" name="id" value="<%if (!isNew)out.print(recipeGuide.getId());%>">
 
-                        <%String title =""; if (!isNew) title = recipeGuide.getTitle();%>
+                        <%
+                            String title = "";
+                            if (!isNew) title = recipeGuide.getTitle();
+                        %>
                         <div class="form-group">
                             <label for="title">표제</label>
-                            <input type="text" class="form-control" name="title" id="title" value="<%out.print(title);%>" placeholder="가이드 제목">
+                            <input type="text" class="form-control" name="title" id="title"
+                                   value="<%out.print(title);%>" placeholder="가이드 제목">
                         </div>
 
-                        <%String urlNaver =""; if (!isNew) urlNaver = recipeGuide.getUrlNaver();%>
+                        <%
+                            String urlNaver = "";
+                            if (!isNew) urlNaver = recipeGuide.getUrlNaver();
+                        %>
                         <div class="form-group">
-                            <label for="url">URL <%if (!isNew){%><a href="javascript:void(0);" class="pl5 recipesOpenLink"><i class="fa fa-link"></i> 링크 열기</a><%}%></label>
-                            <input type="text" class="form-control" name="url" id="url" value="<%out.print(urlNaver);%>" placeholder="URL">
+                            <label for="url">URL <%if (!isNew) {%><a href="javascript:void(0);"
+                                                                     class="pl5 recipesOpenLink"><i
+                                    class="fa fa-link"></i> 링크 열기</a><%}%></label>
+                            <input type="text" class="form-control" name="url" id="url" value="<%out.print(urlNaver);%>"
+                                   placeholder="URL">
                         </div>
 
-                        <% if(!isNew){
+                        <% if (!isNew) {
                             String urlPic = recipeGuide.getImageThumbnail(); %>
                         <div class="form-group form-img-thumbnail">
-                            <a data-fancybox="gallery" href="<%out.print(urlPic);%>"><img src="<%out.print(urlPic);%>" alt="<%out.print(title);%>" class="img-thumbnail"></a>
+                            <a data-fancybox="gallery" href="<%out.print(urlPic);%>"><img src="<%out.print(urlPic);%>"
+                                                                                          alt="<%out.print(title);%>"
+                                                                                          class="img-thumbnail"></a>
                         </div>
                         <%}%>
 
 
                         <div class="form-group">
                             <label class="control-label">영상</label>
-                            <input id="fileInput" name="filePicture[]" type="file" class="file" <%if (isNew){%>required <%}%>>
+                            <input id="fileInput" name="filePicture[]" type="file" class="file"
+                                   <%if (isNew){%>required <%}%>>
                         </div>
                     </div>
                 </div>

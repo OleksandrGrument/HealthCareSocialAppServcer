@@ -19,7 +19,7 @@
     <meta name="description" content="" />
     <meta name="keywords" content="" />
 
-    <title>사용자 월간 리포트 :: 컴온베이비</title>
+    <title>월 간  리 포 트 :: 컴온베이비</title>
 
     <%@ include file="headerStyles.jsp" %>
 
@@ -48,7 +48,7 @@
 
         <!-- Content section -->
         <section class="container-fluid content">
-            <h3><i class="fa fa-bar-chart"></i>월간 리포트: <%out.print(year+"-"+month);%></h3>
+            <h3><i class="fa fa-bar-chart"></i>월 간  리 포 트: <%out.print(year+"-"+month);%></h3>
 
             <!-- Show chart -->
             <h4>기초체온 그래프</h4>

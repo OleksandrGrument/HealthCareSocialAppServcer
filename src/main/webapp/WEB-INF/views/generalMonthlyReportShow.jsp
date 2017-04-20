@@ -18,7 +18,7 @@
     <meta name="description" content="" />
     <meta name="keywords" content="" />
 
-    <title>월간 리포트 :: 컴온베이비</title>
+    <title>월 간  리 포 트 :: 컴온베이비</title>
 
     <%@ include file="headerStyles.jsp" %>
 
@@ -47,7 +47,7 @@
 
         <!-- Content section -->
         <section class="container-fluid content">
-            <h3><i class="fa fa-bar-chart"></i><%out.print("월간 리포트: "+month+"-"+year);%></h3>
+            <h3><i class="fa fa-bar-chart"></i><%out.print("월 간  리 포 트: "+month+"-"+year);%></h3>
 
 
             <!-- Show chart -->

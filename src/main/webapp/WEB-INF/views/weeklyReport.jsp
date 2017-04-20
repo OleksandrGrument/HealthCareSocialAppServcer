@@ -2,7 +2,7 @@
 <%@ page import="java.util.List" %>
 <%@ page import="com.ComeOnBaby.util.WeekReportInformation" %>
 <%@ taglib prefix="spring" uri="http://www.springframework.org/tags" %>
-<%@ page language="java" pageEncoding="UTF-8"%>
+<%@ page language="java" pageEncoding="UTF-8" %>
 <%@ page contentType="text/html;charset=UTF-8" %>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
 <%@ taglib prefix="sec" uri="http://www.springframework.org/security/tags" %>
@@ -10,16 +10,17 @@
 <!DOCTYPE html>
 <html lang="kr">
 <head>
-    <meta charset="utf-8" />
-    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
-    <meta name="viewport" content="width=device-width, initial-scale=1, minimum-scale=1, maximum-scale=1, user-scalable=no, minimal-ui" />
-    <meta name="format-detection" content="telephone=no" />
-    <meta name="format-detection" content="address=no" />
+    <meta charset="utf-8"/>
+    <meta http-equiv="X-UA-Compatible" content="IE=edge"/>
+    <meta name="viewport"
+          content="width=device-width, initial-scale=1, minimum-scale=1, maximum-scale=1, user-scalable=no, minimal-ui"/>
+    <meta name="format-detection" content="telephone=no"/>
+    <meta name="format-detection" content="address=no"/>
 
-    <meta name="description" content="" />
-    <meta name="keywords" content="" />
+    <meta name="description" content=""/>
+    <meta name="keywords" content=""/>
 
-    <title>사용자 주간 리포트 :: 컴온베이비</title>
+    <title>주 간 리 포 트 :: 컴온베이비</title>
 
     <%@ include file="headerStyles.jsp" %>
 
@@ -43,10 +44,10 @@
 
         <!-- Content section -->
         <section class="container-fluid content">
-            <h3><i class="fa fa-bar-chart"></i>주간 리포트</h3>
+            <h3><i class="fa fa-bar-chart"></i>주 간 리 포 트</h3>
 
             <% AppUser user = (AppUser) request.getAttribute("user"); %>
-            <% List<WeekReportInformation> weekReports = (List<WeekReportInformation>)request.getAttribute("weekReportInformation"); %>
+            <% List<WeekReportInformation> weekReports = (List<WeekReportInformation>) request.getAttribute("weekReportInformation"); %>
             <%List<String> generalStatus = (List<String>) request.getAttribute("generalStatus");%>
 
 
@@ -68,16 +69,20 @@
 
                 <!-- Items list -->
                 <tbody>
-                <%int count = 0;
-                for(WeekReportInformation weekReport : weekReports){
-                    if (!weekReport.getStartOfWeek().equals(weekReport.getEndOfWeek())){%>
-                        <tr>
-                            <td align="center"><%out.print(weekReport.getCountWeekOfYear());%></td>
-                            <td><a href="<%out.print("/users/weeklyReportShow/"+user.getId()+"/"+weekReport.getCountWeekOfYear());%>"><%out.print(weekReport.getStartOfWeek()+" &mdash; "+weekReport.getEndOfWeek());%></a></td>
-                            <td align="center" class="marker"><%out.print(generalStatus.get(count));%></td>
-                        </tr>
-                <%  count++;
-                    }
+                <%
+                    int count = 0;
+                    for (WeekReportInformation weekReport : weekReports) {
+                        if (!weekReport.getStartOfWeek().equals(weekReport.getEndOfWeek())) {
+                %>
+                <tr>
+                    <td align="center"><%out.print(weekReport.getCountWeekOfYear());%></td>
+                    <td>
+                        <a href="<%out.print("/users/weeklyReportShow/"+user.getId()+"/"+weekReport.getCountWeekOfYear());%>"><%
+                            out.print(weekReport.getStartOfWeek() + " &mdash; " + weekReport.getEndOfWeek());%></a></td>
+                    <td align="center" class="marker"><%out.print(generalStatus.get(count));%></td>
+                </tr>
+                <% count++;
+                }
                 }%>
                 </tbody>
                 <!-- #End Items list -->

@@ -20,7 +20,7 @@
     <meta name="description" content="" />
     <meta name="keywords" content="" />
 
-    <title>추천레시피 리스트 :: 컴온베이비</title>
+    <title>추 천  레 시 피 :: 컴온베이비</title>
 
     <%@ include file="headerStyles.jsp" %>
 
@@ -44,10 +44,10 @@
 
         <!-- Content section -->
         <section class="container-fluid content">
-            <h3><i class="fa fa-list-ul"></i>추천레시피 리스트</h3>
+            <h3><i class="fa fa-list-ul"></i>추 천  레 시 피</h3>
 
             <div class="mb20">
-                <a href="/guide/add-recipe" class="btn btn-primary"><i class="fa fa-plus-circle mr10"></i>새 가이드 추가</a>
+                <a href="/guide/add-recipe" class="btn btn-primary"><i class="fa fa-plus-circle mr10"></i>새로운</a>
             </div>
 
             <table id="dataTable" class="table table-striped table-bordered" width="100%" cellspacing="0">

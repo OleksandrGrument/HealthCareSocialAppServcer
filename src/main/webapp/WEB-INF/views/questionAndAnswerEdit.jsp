@@ -1,6 +1,6 @@
 <%@ page import="com.ComeOnBaby.model.QuestionAnswer" %>
 <%@ taglib prefix="spring" uri="http://www.springframework.org/tags" %>
-<%@ page language="java" pageEncoding="UTF-8"%>
+<%@ page language="java" pageEncoding="UTF-8" %>
 <%@ page contentType="text/html;charset=UTF-8" %>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
 <%@ taglib prefix="sec" uri="http://www.springframework.org/security/tags" %>
@@ -8,16 +8,17 @@
 <!DOCTYPE html>
 <html lang="kr">
 <head>
-    <meta charset="utf-8" />
-    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
-    <meta name="viewport" content="width=device-width, initial-scale=1, minimum-scale=1, maximum-scale=1, user-scalable=no, minimal-ui" />
-    <meta name="format-detection" content="telephone=no" />
-    <meta name="format-detection" content="address=no" />
+    <meta charset="utf-8"/>
+    <meta http-equiv="X-UA-Compatible" content="IE=edge"/>
+    <meta name="viewport"
+          content="width=device-width, initial-scale=1, minimum-scale=1, maximum-scale=1, user-scalable=no, minimal-ui"/>
+    <meta name="format-detection" content="telephone=no"/>
+    <meta name="format-detection" content="address=no"/>
 
-    <meta name="description" content="" />
-    <meta name="keywords" content="" />
+    <meta name="description" content=""/>
+    <meta name="keywords" content=""/>
 
-    <title>질문에 대한 답변 :: 컴온베이비</title>
+    <title>Q &amp; A :: 컴온베이비</title>
 
     <%@ include file="headerStyles.jsp" %>
 
@@ -39,11 +40,9 @@
 
         <%@ include file="topLine.jsp" %>
 
-
-
         <!-- Content section -->
         <section class="container-fluid content">
-            <h3><i class="fa fa-question-circle-o"></i>질문에 대한 답변</h3>
+            <h3><i class="fa fa-question-circle-o"></i>Q &amp; A</h3>
 
             <!-- Edit form -->
             <%QuestionAnswer questionAnswer = (QuestionAnswer) request.getAttribute("questionAnswer");%>
@@ -64,8 +63,12 @@
                         <!-- Answer section -->
                         <div class="form-group">
                             <label for="answer">대답</label>
-                            <%String answerText = ""; if (questionAnswer.isAnswered()) answerText = questionAnswer.getAnswerText(); %>
-                            <textarea rows="4" name="answerText" class="form-control" id="answer"><%out.print(answerText);%></textarea>
+                            <%
+                                String answerText = "";
+                                if (questionAnswer.isAnswered()) answerText = questionAnswer.getAnswerText();
+                            %>
+                            <textarea rows="4" name="answerText" class="form-control"
+                                      id="answer"><%out.print(answerText);%></textarea>
                         </div>
                         <!-- #End Answer section -->
                     </div>

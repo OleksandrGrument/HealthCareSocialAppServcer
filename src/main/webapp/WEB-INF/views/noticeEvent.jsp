@@ -19,7 +19,7 @@
     <meta name="description" content="" />
     <meta name="keywords" content="" />
 
-    <title>공지 / 이벤트 리스트 :: 컴온베이비</title>
+    <title>공지 / 이벤트 :: 컴온베이비</title>
 
     <%@ include file="headerStyles.jsp" %>
 
@@ -43,10 +43,10 @@
 
         <!-- Content section -->
         <section class="container-fluid content">
-            <h3><i class="fa fa-calendar"></i>공지 / 이벤트 리스트</h3>
+            <h3><i class="fa fa-calendar"></i>공지 / 이벤트</h3>
 
             <div class="mb20">
-                <a href="/notice/add-notice" class="btn btn-primary"><i class="fa fa-plus-circle mr10"></i>새로운 알림 / 이벤트 추가</a>
+                <a href="/notice/add-notice" class="btn btn-primary"><i class="fa fa-plus-circle mr10"></i>새로운</a>
             </div>
 
             <table id="dataTable" class="table table-striped table-bordered" width="100%" cellspacing="0">

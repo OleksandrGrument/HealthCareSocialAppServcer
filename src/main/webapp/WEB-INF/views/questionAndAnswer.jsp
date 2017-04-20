@@ -3,7 +3,7 @@
 <%@ page import="java.util.Iterator" %>
 <%@ page import="com.ComeOnBaby.model.AppUser" %>
 <%@ taglib prefix="spring" uri="http://www.springframework.org/tags" %>
-<%@ page language="java" pageEncoding="UTF-8"%>
+<%@ page language="java" pageEncoding="UTF-8" %>
 <%@ page contentType="text/html;charset=UTF-8" %>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
 <%@ taglib prefix="sec" uri="http://www.springframework.org/security/tags" %>
@@ -11,16 +11,17 @@
 <!DOCTYPE html>
 <html lang="kr">
 <head>
-    <meta charset="utf-8" />
-    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
-    <meta name="viewport" content="width=device-width, initial-scale=1, minimum-scale=1, maximum-scale=1, user-scalable=no, minimal-ui" />
-    <meta name="format-detection" content="telephone=no" />
-    <meta name="format-detection" content="address=no" />
+    <meta charset="utf-8"/>
+    <meta http-equiv="X-UA-Compatible" content="IE=edge"/>
+    <meta name="viewport"
+          content="width=device-width, initial-scale=1, minimum-scale=1, maximum-scale=1, user-scalable=no, minimal-ui"/>
+    <meta name="format-detection" content="telephone=no"/>
+    <meta name="format-detection" content="address=no"/>
 
-    <meta name="description" content="" />
-    <meta name="keywords" content="" />
+    <meta name="description" content=""/>
+    <meta name="keywords" content=""/>
 
-    <title>질문과 답변 :: 컴온베이비</title>
+    <title>Q &amp; A :: 컴온베이비</title>
 
     <%@ include file="headerStyles.jsp" %>
 
@@ -44,7 +45,7 @@
 
         <!-- Content section -->
         <section class="container-fluid content">
-            <h3><i class="fa fa-question-circle-o"></i>질문과 답변</h3>
+            <h3><i class="fa fa-question-circle-o"></i>Q &amp; A</h3>
 
             <table id="dataTable" class="table table-striped table-bordered" width="100%" cellspacing="0">
                 <thead>
@@ -80,29 +81,39 @@
 
                     while (questionAnswerIterator.hasNext()) {
                         QuestionAnswer questionAnswer = questionAnswerIterator.next();
-                        String editQuestionAnswerUrl = "/q-a/response-question-answer/"+questionAnswer.getId();
+                        String editQuestionAnswerUrl = "/q-a/response-question-answer/" + questionAnswer.getId();
                         AppUser appUser = questionAnswer.getAppUser();
                         String goToUserProfileUrl = "/users/user-profile/" + appUser.getId();
-                        String deleteQuestionAnswerUrl = "/q-a/delete-question-answer/"+questionAnswer.getId();
+                        String deleteQuestionAnswerUrl = "/q-a/delete-question-answer/" + questionAnswer.getId();
                 %>
 
-                    <tr>
-                        <td align="center"><%out.print(questionAnswer.getId());%></td>
-                        <td><a href="<%out.print(goToUserProfileUrl);%>"><%out.print(appUser.getPreferences().getNickname());%></a></td>
-                        <td><a href="<%out.print(editQuestionAnswerUrl);%>"><%out.print(questionAnswer.getTitle());%></a></td>
+                <tr>
+                    <td align="center"><%out.print(questionAnswer.getId());%></td>
+                    <td><a href="<%out.print(goToUserProfileUrl);%>"><%
+                        out.print(appUser.getPreferences().getNickname());%></a></td>
+                    <td><a href="<%out.print(editQuestionAnswerUrl);%>"><%out.print(questionAnswer.getTitle());%></a>
+                    </td>
 
-                        <%String checkClass = "fa fa-square-o"; if (questionAnswer.isAnswered()) checkClass = "fa fa-check-square";%>
-                        <td align="center"><i class="<%out.print(checkClass);%>"></i></td>
+                    <%
+                        String checkClass = "fa fa-square-o";
+                        if (questionAnswer.isAnswered()) checkClass = "fa fa-check-square";
+                    %>
+                    <td align="center"><i class="<%out.print(checkClass);%>"></i></td>
 
-                        <%String lockClass = "fa fa-unlock"; if (questionAnswer.isAccess()) lockClass = "fa fa-lock"; %>
-                        <td align="center"><i class="<%out.print(lockClass);%>"></i></td>
+                    <%
+                        String lockClass = "fa fa-unlock";
+                        if (questionAnswer.isAccess()) lockClass = "fa fa-lock";
+                    %>
+                    <td align="center"><i class="<%out.print(lockClass);%>"></i></td>
 
-                        <td align="center"><%out.print(questionAnswer.getQuestionDate().toString().substring(0, 19));%></td>
-                        <td align="center">
-                            <a href="<%out.print(editQuestionAnswerUrl);%>" data-toggle="tooltip" title="편집하다"><i class="fa fa-edit"></i> 편집하다</a>&nbsp; |&nbsp;
-                            <a href="<%out.print(deleteQuestionAnswerUrl);%>" data-toggle="tooltip" title="지우다" class="deleteConfirm"><i class="fa fa-trash"></i> 지우다</a>
-                        </td>
-                    </tr>
+                    <td align="center"><%out.print(questionAnswer.getQuestionDate().toString().substring(0, 19));%></td>
+                    <td align="center">
+                        <a href="<%out.print(editQuestionAnswerUrl);%>" data-toggle="tooltip" title="편집하다"><i
+                                class="fa fa-edit"></i> 편집하다</a>&nbsp; |&nbsp;
+                        <a href="<%out.print(deleteQuestionAnswerUrl);%>" data-toggle="tooltip" title="지우다"
+                           class="deleteConfirm"><i class="fa fa-trash"></i> 지우다</a>
+                    </td>
+                </tr>
                 <%}%>
                 </tbody>
                 <!-- #End Items list -->
