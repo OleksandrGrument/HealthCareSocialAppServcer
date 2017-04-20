@@ -777,6 +777,8 @@ public class UsersController {
         outGuide.put("title", guide.getTitle());
         outGuide.put("date", guide.getDateFormat());
         outGuide.put("image", guide.getImage());
+        outGuide.put("url", guide.getUrl());
+
         return outGuide;
     }
 

@@ -59,7 +59,10 @@ public class GuideController {
     }
 
     @RequestMapping(value = "/save-new-recipe", method = RequestMethod.POST)
-    public ModelAndView saveNewRecipe(@RequestParam(value = "id") String id, @RequestParam("title") String title, @RequestParam("url") String naverUrl, @RequestParam("filePicture[]") MultipartFile[] files) {
+    public ModelAndView saveNewRecipe(@RequestParam(value = "id") String id,
+                                      @RequestParam("title") String title,
+                                      @RequestParam("url") String naverUrl,
+                                      @RequestParam("filePicture[]") MultipartFile[] files) {
 
         RecipeGuide recipeGuide = new RecipeGuide();
 
@@ -158,7 +161,10 @@ public class GuideController {
     }
 
     @RequestMapping(value = "/save-new-fertilization", method = RequestMethod.POST)
-    public ModelAndView saveNewFertilization(@RequestParam(value = "id") String id, @RequestParam("title") String title, @RequestParam("filePicture[]") MultipartFile[] files) {
+    public ModelAndView saveNewFertilization(@RequestParam(value = "id") String id,
+                                             @RequestParam("title") String title,
+                                             @RequestParam("url") String url,
+                                             @RequestParam("filePicture[]") MultipartFile[] files) {
 
         FertilizationGuide fertilizationGuide = new FertilizationGuide();
 
@@ -168,6 +174,7 @@ public class GuideController {
 
             fertilizationGuide.setDate(new Date());
             fertilizationGuide.setTitle(title);
+            fertilizationGuide.setUrl(url);
 
 
             //Save to file
@@ -187,6 +194,7 @@ public class GuideController {
 
             fertilizationGuide.setDate(new Date());
             fertilizationGuide.setTitle(title);
+            fertilizationGuide.setUrl(url);
 
             //Save to file
             if (files.length != 0) {

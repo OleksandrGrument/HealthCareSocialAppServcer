@@ -63,6 +63,12 @@
                             <input type="text" class="form-control" name="title" id="title" value="<%out.print(title);%>" placeholder="가이드 제목" required />
                         </div>
 
+                        <%String urlNaver =""; if (!isNew) urlNaver = fertilizationGuide.getUrl();%>
+                        <div class="form-group">
+                            <label for="url">URL <%if (!isNew){%><a href="javascript:void(0);" class="pl5 recipesOpenLink"><i class="fa fa-link"></i> 링크 열기</a><%}%></label>
+                            <input type="text" class="form-control" name="url" id="url" value="<%out.print(urlNaver);%>" placeholder="URL">
+                        </div>
+
                         <% if(!isNew){
                             String urlPic = fertilizationGuide.getImage(); %>
                         <div class="form-group form-img-thumbnail">
