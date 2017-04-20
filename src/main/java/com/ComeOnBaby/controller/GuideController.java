@@ -176,6 +176,7 @@ public class GuideController {
             fertilizationGuide.setTitle(title);
             fertilizationGuide.setUrl(url);
 
+            fertilizationGuideService.addNewFertilizationGuide(fertilizationGuide);
 
             //Save to file
 
@@ -185,7 +186,7 @@ public class GuideController {
                 ArrayList<String> fileNames = saveFile.saveFileAndGetName();
                 if (fertilizationGuide.getImage()!=null) ImageEditFunctions.deleteImage(fertilizationGuide.getImage());
                 fertilizationGuide.setImage(MainPathEnum.mainWebPath + "show-image/" + fileNames.get(0));
-                fertilizationGuideService.addNewFertilizationGuide(fertilizationGuide);
+                fertilizationGuideService.updateFertilizationGuide(fertilizationGuide);
             }
 
         } else {
@@ -196,6 +197,9 @@ public class GuideController {
             fertilizationGuide.setTitle(title);
             fertilizationGuide.setUrl(url);
 
+            System.out.println("================= url === " + url) ;
+            fertilizationGuideService.updateFertilizationGuide(fertilizationGuide);
+
             //Save to file
             if (files.length != 0) {
                 if (!files[0].isEmpty()) {
@@ -204,9 +208,10 @@ public class GuideController {
                     ArrayList<String> fileNames = saveFile.saveFileAndGetName();
                     if (fertilizationGuide.getImage()!=null) ImageEditFunctions.deleteImage(fertilizationGuide.getImage());
                     fertilizationGuide.setImage(MainPathEnum.mainWebPath + "show-image/" + fileNames.get(0));
+                    fertilizationGuideService.updateFertilizationGuide(fertilizationGuide);
                 }
             }
-            fertilizationGuideService.updateFertilizationGuide(fertilizationGuide);
+
         }
 
         return new ModelAndView("redirect:/guide/edit-fertilization/" + fertilizationGuide.getId());
