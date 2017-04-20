@@ -1,5 +1,6 @@
 <!-- JQuery -->
 <script src="/resources/js/jquery/jquery.min.js"></script>
+<script src="/resources/js/other/promise.min.js"></script>
 <script src="/resources/js/jquery/jquery-ui.min.js"></script>
 <script src="/resources/js/jquery/jquery.mousewheel.min.js"></script>
 <script src="/resources/js/jquery/jquery.fancybox.min.js"></script>
