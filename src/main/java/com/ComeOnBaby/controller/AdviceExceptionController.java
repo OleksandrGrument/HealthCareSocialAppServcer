@@ -1,3 +1,4 @@
+/*
 package com.ComeOnBaby.controller;
 
 import org.springframework.web.bind.annotation.*;
@@ -16,7 +17,9 @@ public class AdviceExceptionController {
             exceptionView =new  ModelAndView("redirect:/error/404");
         } else {
             exceptionView = new ModelAndView("404");
-            /*exceptionView.addObject("number" , )*/
+            */
+/*exceptionView.addObject("number" , )*//*
+
            exceptionView.addObject("error" ,ex.getMessage());
         }
         return exceptionView;
@@ -32,3 +35,4 @@ public class AdviceExceptionController {
         return new ModelAndView("404");
     }
 }
+*/

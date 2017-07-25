@@ -119,8 +119,9 @@ public class NoticeEventController {
             notice.setTitle(title);
             notice.setText(noticeText);
 
+
             //Save to file
-            if (!files[0].isEmpty()) {
+            if (files != null || !files[0].isEmpty()) {
                 String pathToSaveFile = "pictures/";
                 SaveFile saveFile = new SaveFile(pathToSaveFile, files);
 

@@ -72,7 +72,7 @@
                         <div class="form-group">
                             <label for="title">표제</label>
                             <input type="text" class="form-control" name="title" id="title"
-                                   value="<%out.print(title);%>" placeholder="표제">
+                                   value="<%out.print(title);%>" placeholder="표제" required>
                         </div>
 
                         <% if (!isNew) {
@@ -98,7 +98,7 @@
                         <%}%>
                         <div class="form-group">
                             <label class="control-label">영상</label>
-                            <input multiple id="tenFilesInput" name="filePicture[]" type="file" class="file">
+                            <input multiple id="tenFilesInput" name="filePicture[]" type="file" class="file" >
                         </div>
 
 
@@ -130,7 +130,6 @@
 <!-- #End Wrapper -->
 
 <%@ include file="footerJavaScript.jsp" %>
-
 
 </body>
 </html>
