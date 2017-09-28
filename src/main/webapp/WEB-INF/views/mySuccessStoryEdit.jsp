@@ -1,7 +1,7 @@
-<%@ page import="com.ComeOnBaby.model.Blog" %>
+<%@ page import="com.HealthCareSocialAppServer.model.Blog" %>
 <%@ page import="java.util.List" %>
 <%@ page import="java.util.Iterator" %>
-<%@ page import="com.ComeOnBaby.enums.MainPathEnum" %>
+<%@ page import="com.HealthCareSocialAppServer.enums.MainPathEnum" %>
 <%@ taglib prefix="spring" uri="http://www.springframework.org/tags" %>
 <%@ page language="java" pageEncoding="UTF-8" %>
 <%@ page contentType="text/html;charset=UTF-8" %>

@@ -1,4 +1,4 @@
-<%@ page import="com.ComeOnBaby.model.FertilizationGuide" %>
+<%@ page import="com.HealthCareSocialAppServer.model.FertilizationGuide" %>
 <%@ page import="java.util.ArrayList" %>
 <%@ page import="java.util.Iterator" %>
 <%@ taglib prefix="spring" uri="http://www.springframework.org/tags" %>

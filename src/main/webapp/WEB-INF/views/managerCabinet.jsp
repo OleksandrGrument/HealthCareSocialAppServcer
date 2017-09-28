@@ -1,7 +1,7 @@
-<%@ page import="com.ComeOnBaby.model.AppUser" %>
+<%@ page import="com.HealthCareSocialAppServer.model.AppUser" %>
 <%@ page import="java.util.ArrayList" %>
 <%@ page import="java.util.Iterator" %>
-<%@ page import="com.ComeOnBaby.model.Preferences" %>
+<%@ page import="com.HealthCareSocialAppServer.model.Preferences" %>
 <%@ taglib prefix="spring" uri="http://www.springframework.org/tags" %>
 <%@ page language="java" pageEncoding="UTF-8"%>
 <%@ page contentType="text/html;charset=UTF-8" %>

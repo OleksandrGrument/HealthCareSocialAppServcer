@@ -1,4 +1,4 @@
-<%@ page import="com.ComeOnBaby.model.Note" %>
+<%@ page import="com.HealthCareSocialAppServer.model.Note" %>
 <%@ page import="java.util.List" %>
 <%@ page import="java.text.SimpleDateFormat" %>
 <%@ taglib prefix="spring" uri="http://www.springframework.org/tags" %>

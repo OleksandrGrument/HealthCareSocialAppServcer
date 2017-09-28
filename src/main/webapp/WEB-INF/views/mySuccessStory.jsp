@@ -1,5 +1,5 @@
 <%@ page import="java.util.ArrayList" %>
-<%@ page import="com.ComeOnBaby.model.Blog" %>
+<%@ page import="com.HealthCareSocialAppServer.model.Blog" %>
 <%@ page import="java.util.Iterator" %>
 <%@ taglib prefix="spring" uri="http://www.springframework.org/tags" %>
 <%@ page language="java" pageEncoding="UTF-8" %>

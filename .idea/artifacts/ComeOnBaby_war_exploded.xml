@@ -4,7 +4,7 @@
     <root id="root">
       <element id="directory" name="WEB-INF">
         <element id="directory" name="classes">
-          <element id="module-output" name="ComeOnBaby" />
+          <element id="module-output" name="HealthCareSocialAppServer" />
         </element>
         <element id="directory" name="lib">
           <element id="library" level="project" name="Maven: org.springframework:spring-core:4.2.5.RELEASE" />
@@ -74,7 +74,7 @@
       <element id="directory" name="META-INF">
         <element id="file-copy" path="$PROJECT_DIR$/target/ComeOnBaby/META-INF/MANIFEST.MF" />
       </element>
-      <element id="javaee-facet-resources" facet="ComeOnBaby/web/Web" />
+      <element id="javaee-facet-resources" facet="HealthCareSocialAppServer/web/Web" />
     </root>
   </artifact>
 </component>

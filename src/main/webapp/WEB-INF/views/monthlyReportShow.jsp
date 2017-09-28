@@ -1,5 +1,5 @@
-<%@ page import="com.ComeOnBaby.model.AppUser" %>
-<%@ page import="com.ComeOnBaby.util.DataNoteByMonthWeek" %>
+<%@ page import="com.HealthCareSocialAppServer.model.AppUser" %>
+<%@ page import="com.HealthCareSocialAppServer.util.DataNoteByMonthWeek" %>
 <%@ page import="java.util.Date" %>
 <%@ taglib prefix="spring" uri="http://www.springframework.org/tags" %>
 <%@ page language="java" pageEncoding="UTF-8"%>

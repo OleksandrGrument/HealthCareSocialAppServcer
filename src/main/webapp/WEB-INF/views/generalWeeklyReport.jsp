@@ -1,5 +1,5 @@
 <%@ page import="java.util.List" %>
-<%@ page import="com.ComeOnBaby.util.WeekReportInformation" %>
+<%@ page import="com.HealthCareSocialAppServer.util.WeekReportInformation" %>
 <%@ taglib prefix="spring" uri="http://www.springframework.org/tags" %>
 <%@ page language="java" pageEncoding="UTF-8"%>
 <%@ page contentType="text/html;charset=UTF-8" %>

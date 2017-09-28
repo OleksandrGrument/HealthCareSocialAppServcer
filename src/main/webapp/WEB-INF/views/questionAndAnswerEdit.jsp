@@ -1,4 +1,4 @@
-<%@ page import="com.ComeOnBaby.model.QuestionAnswer" %>
+<%@ page import="com.HealthCareSocialAppServer.model.QuestionAnswer" %>
 <%@ taglib prefix="spring" uri="http://www.springframework.org/tags" %>
 <%@ page language="java" pageEncoding="UTF-8" %>
 <%@ page contentType="text/html;charset=UTF-8" %>

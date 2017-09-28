@@ -1,5 +1,5 @@
-<%@ page import="com.ComeOnBaby.model.Notice" %>
-<%@ page import="com.ComeOnBaby.enums.MainPathEnum" %>
+<%@ page import="com.HealthCareSocialAppServer.model.Notice" %>
+<%@ page import="com.HealthCareSocialAppServer.enums.MainPathEnum" %>
 <%@ page import="java.util.List" %>
 <%@ page import="java.util.Iterator" %>
 <%@ taglib prefix="spring" uri="http://www.springframework.org/tags" %>

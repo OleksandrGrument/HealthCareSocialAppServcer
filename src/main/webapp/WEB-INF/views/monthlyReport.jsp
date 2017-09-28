@@ -1,5 +1,5 @@
-<%@ page import="com.ComeOnBaby.model.AppUser" %>
-<%@ page import="com.ComeOnBaby.model.Note" %>
+<%@ page import="com.HealthCareSocialAppServer.model.AppUser" %>
+<%@ page import="com.HealthCareSocialAppServer.model.Note" %>
 <%@ page import="java.util.List" %>
 <%@ page import="java.util.Date" %>
 <%@ page import="java.text.SimpleDateFormat" %>

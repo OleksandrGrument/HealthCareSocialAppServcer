@@ -1,4 +1,4 @@
-<%@ page import="com.ComeOnBaby.model.Notice" %>
+<%@ page import="com.HealthCareSocialAppServer.model.Notice" %>
 <%@ page import="java.util.Iterator" %>
 <%@ page import="java.util.ArrayList" %>
 <%@ taglib prefix="spring" uri="http://www.springframework.org/tags" %>
